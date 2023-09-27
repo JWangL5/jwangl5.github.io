@@ -1,0 +1,707 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>OpenCV | 图像的空间域处理之点运算 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="OpenCV | 图像的空间域处理之点运算" />
+<meta property="og:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-07T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-04-07T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OpenCV | 图像的空间域处理之点运算"/>
+<meta name="twitter:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/" /><link rel="prev" href="https://jwangl5.github.io/posts/image_basic_processing_by_opencv/" /><link rel="next" href="https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "OpenCV | 图像的空间域处理之点运算",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/image_point_operations_in_spatial_domain_by_opencv\/"
+        },"genre": "posts","wordcount":  4619 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/image_point_operations_in_spatial_domain_by_opencv\/","datePublished": "2020-04-07T00:00:00+08:00","dateModified": "2020-04-07T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">OpenCV | 图像的空间域处理之点运算</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-07">2020-04-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-04-07">2020-04-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4619 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
+        </div><div class="content" id="content"><p>​		在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>
+<ul>
+<li>单像素操作（点运算）：即对单个像素点进行处理</li>
+<li>邻域操作：即对某一像素点的操作与该点周围的其他点相关</li>
+<li>几何变换：对整张图片进行全局性的操作</li>
+<li>形态学操作：对特定图像形状（边界、凸壳等）的处理或操作</li>
+</ul>
+<p>​		本文介绍空间域处理的点运算，其主要有如下几种常见操作：图像加法、图像阈值、直方图均衡及图像的位运算</p>
+<h3 id="四图像加法" class="headerLink">
+    <a href="#%e5%9b%9b%e5%9b%be%e5%83%8f%e5%8a%a0%e6%b3%95" class="header-mark"></a>四、图像加法</h3><h4 id="直接相加" class="headerLink">
+    <a href="#%e7%9b%b4%e6%8e%a5%e7%9b%b8%e5%8a%a0" class="header-mark"></a>直接相加</h4><p>​		在opencv中，可以使用函数<code>cv2.add()</code>将某些图像的像素进行加法运算，当然也可以直接使用 Numpy，<code>res=img1+img2</code>。但需要注意的是：</p>
+<ul>
+<li>
+<p>相加的两幅图像尺寸、类型必须一致，或者可以直接加一个标量值</p>
+</li>
+<li>
+<p>OpenCV的加法是一种饱和操作（相加超过255则等于255），而Numpy的加法是一种模操作（相加超过255之后则对255取模求余数）</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([</span><span class="mi">250</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="mi">255</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="mi">4</span>
+</span></span></code></pre></div><h4 id="图像混合" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e6%b7%b7%e5%90%88" class="header-mark"></a>图像混合</h4><p>相比于加法，图像混合操作可能更使用一些，其本质也是加法，但却对图片作了不同的加权，给人一种混合或者透明的感觉，其计算公式如下：
+$$
+g(x)=(1− \alpha )  f_0(x)+ \alpha f_1(x) , \alpha \in [0,1]
+$$
+在opencv中，可以函数<code>cv2.addWeighted(α, img1, β, img2, γ)</code> 可以按下面的公式对图片进行混合操作，其具有更灵活的定义：
+$$
+dst = \alpha·img1 + \beta·img2+\gamma
+$$
+如下案例即把两幅图混合在一起，第一幅图的权重是 0.4，第二幅图的权重是 0.6，γ取值为 0：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/A.jpg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/B.jpeg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img2</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">addWeighted</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dst</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144113412.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144113412.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144113412.png"
+            srcset="https://img-blog.csdnimg.cn/20200225144113412.png, https://img-blog.csdnimg.cn/20200225144113412.png 1.5x, https://img-blog.csdnimg.cn/20200225144113412.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144113412.png">
+    </a></figure></p>
+<h3 id="五图像阈值" class="headerLink">
+    <a href="#%e4%ba%94%e5%9b%be%e5%83%8f%e9%98%88%e5%80%bc" class="header-mark"></a>五、图像阈值</h3><h4 id="全局阈值" class="headerLink">
+    <a href="#%e5%85%a8%e5%b1%80%e9%98%88%e5%80%bc" class="header-mark"></a>全局阈值</h4><p>简单来说，阈值操作就是当某一像素值高于设定的阈值时，我们给这个像素赋予一个值，否则我们给它赋予另外一个值</p>
+<p>阈值操作往往被用于图像分割、噪声修复等过程中</p>
+<p>在opencv中，阈值操作的函数是<code>cv2.threshhold()</code>，该函数包含四个参数：</p>
+<ul>
+<li>第一个参数是原图像，原图像应该是灰度图</li>
+<li>第二个参数就是用来对像素值进行分类的阈值</li>
+<li>第三个参数就是当像素值高于（有时是小于）阈值时应该被赋予的新的像素值</li>
+<li>第四个参数决定OpenCV中的不同阈值方法，这些方法包括：
+<ul>
+<li><code>cv2.THRESH_BINARY</code>：二值化操作，将大于阈值的部分设置为黑色（255），小于阈值的部分设置为白色（0）</li>
+<li><code>cv2.THRESH_BINARY_INV</code>：反向二值化，将大于阈值的部分设置为白色（0），小于阈值的部分设置为黑色（255）</li>
+<li><code>cv2.THRESH_TRUNC</code>： 大于阈值部分设为阈值，否则不变</li>
+<li><code>cv2.THRESH_TOZERO</code>： 大于阈值部分不变，小于阈值的部分设置为白色（0）</li>
+<li><code>cv2.THRESH_TOZERO_INV</code>：大于阈值部分设置为白色（0），小于阈值的部分不变</li>
+</ul>
+</li>
+</ul>
+<p>该函数具有两个返回值：</p>
+<ul>
+<li>第一个为 retVal，为最终处理的阈值（当使用cv2.THRESH_OTSU时设定阈值会自适应变化）</li>
+<li>第二个即是阈值化之后的图像结果</li>
+</ul>
+<p>下面即是一个用不同阈值处理方法得到的图像：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/03.png&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">thresh1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">thresh2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY_INV</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">thresh3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_TRUNC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">thresh4</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_TOZERO</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">thresh5</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_TOZERO_INV</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Original Image&#39;</span><span class="p">,</span><span class="s1">&#39;BINARY&#39;</span><span class="p">,</span><span class="s1">&#39;BINARY_INV&#39;</span><span class="p">,</span><span class="s1">&#39;TRUNC&#39;</span><span class="p">,</span><span class="s1">&#39;TOZERO&#39;</span><span class="p">,</span><span class="s1">&#39;TOZERO_INV&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="p">,</span> <span class="n">thresh1</span><span class="p">,</span> <span class="n">thresh2</span><span class="p">,</span> <span class="n">thresh3</span><span class="p">,</span> <span class="n">thresh4</span><span class="p">,</span> <span class="n">thresh5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144327932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure></p>
+<h4 id="otsus-二值化" class="headerLink">
+    <a href="#otsus-%e4%ba%8c%e5%80%bc%e5%8c%96" class="header-mark"></a>Otsu&rsquo;s 二值化</h4><p>Otsu是一种全局上自动选择阈值的方法，相比于人工地根据效果不断尝试，Otsu可以更快捷地根据图像的直方图给出相对较好的结果；</p>
+<p>这里用到到的函数还是<code>cv2.threshold()</code>，但是需要多传入一个参数（flag）：<code>cv2.THRESH_OTSU</code></p>
+<ul>
+<li>这时要把阈值设为0，然后算法会找到最优阈值，这个最优阈值就是返回值<code>retVal</code></li>
+<li>Ostu的算法在解决双峰图像的分割时有奇效！</li>
+</ul>
+<p>下面的案例中，输入图像是较暗，在使用127为全局阈值时效果并不好，可以通过Ostu的方法直接找到合适的阈值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpeg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret1</span><span class="p">,</span><span class="n">th1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret2</span><span class="p">,</span><span class="n">th2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="o">+</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">th1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">img</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">th2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Original Image&#39;</span><span class="p">,</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span><span class="s1">&#39;Global Thresholding (v=127)&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s1">&#39;Original Image&#39;</span><span class="p">,</span><span class="s1">&#39;Histogram&#39;</span><span class="p">,</span><span class="s2">&#34;Otsu&#39;s Thresholding(v=</span><span class="si">{}</span><span class="s2">)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ret2</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="p">],</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="mi">256</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">3</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144401650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure></p>
+<p><strong>Ostu的具体算法</strong>为：</p>
+<ul>
+<li>
+<p>在某灰度图片上共有M*N个像素点，其平均灰度值为μ</p>
+</li>
+<li>
+<p>根据某阈值T可将其分为两类，分别统计出大于/小于等于该阈值的像素点占总像素的百分比 ω1和 ω2，每一类的平均灰度值为μ1和μ2</p>
+</li>
+<li>
+<p>根据平均数的定义，有$\mu=\omega_1*\mu_1+\omega_2*\mu_2$</p>
+</li>
+<li>
+<p>在此基础上求得类间方差，为：
+$$
+\begin{aligned}
+g(x)&amp;=\omega_1*(\mu_1-\mu)^2+\omega_2*(\mu_2-\mu)^2 \
+&amp;=\omega_1\omega_2*(\mu_1-\mu_2)^2
+\end{aligned}
+$$</p>
+</li>
+<li>
+<p>对于每一个阈值T，都可以计算出其间类方差g(T)，Ostu即是找到了使得方差最小的阈值T</p>
+</li>
+</ul>
+<h4 id="自适应阈值" class="headerLink">
+    <a href="#%e8%87%aa%e9%80%82%e5%ba%94%e9%98%88%e5%80%bc" class="header-mark"></a>自适应阈值</h4><p>当同一幅图像上的不同部分的具有不同亮度时，全局阈值并不能得到很好的效果，我们可能会希望根据具体情况对图片的不同位置使用不同的阈值，该操作称为<strong>自适应阈值</strong></p>
+<p>（严格来说，自适应阈值参考了领域的像素值，不能算是点运算，但为了保持连贯性就与阈值操作一同放在了点运算的这部分）</p>
+<p>opencv提供<code>cv2.adaptiveThreshold()</code>函数完成自适应阈值的操作，其包含如下参数：
+<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144525167.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144525167.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144525167.png"
+            srcset="https://img-blog.csdnimg.cn/20200225144525167.png, https://img-blog.csdnimg.cn/20200225144525167.png 1.5x, https://img-blog.csdnimg.cn/20200225144525167.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144525167.png">
+    </a></figure></p>
+<ul>
+<li>
+<p>src为需要操作的图片</p>
+</li>
+<li>
+<p>maxValue为设定的新像素值</p>
+</li>
+<li>
+<p>adaptiveMethod是指定计算阈值的方法，通常为如下两种：</p>
+<ul>
+<li><code>cv2.ADPTIVE_THRESH_MEAN_C</code>：阈值取自相邻区域的平均值</li>
+<li><code>cv2.ADPTIVE_THRESH_GAUSSIAN_C</code>：阈值取值相邻区域的加权和，权重为一个二维高斯核</li>
+</ul>
+</li>
+<li>
+<p>thresholdType：即阈值处理的方式，只有两种可供选择</p>
+</li>
+<li>
+<p><code>cv2.THRESH_BINARY</code>：二值化，与全局阈值时含义相同，即
+$$
+dst(x,y) =
+\begin{cases}
+maxValue &amp; if \  src(x,y) &gt; T(x,y) \
+0 &amp; otherwise \
+\end{cases}
+$$</p>
+</li>
+<li>
+<p><code>cv2.THRESH_BINARY_INV</code>：反向二值化
+$$
+dst(x,y) =
+\begin{cases}
+0 &amp; if \  src(x,y) &gt; T(x,y) \
+maxValue &amp; otherwise \
+\end{cases}
+$$</p>
+</li>
+<li>
+<p>Block Size：用于设置邻域的大小</p>
+</li>
+<li>
+<p>C：一个常数C，阈值等于前面的输出结果减去这个常数</p>
+</li>
+</ul>
+<p>我们使用下面的代码来展示简单阈值与自适应阈值的差别：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/02.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">medianBlur</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span><span class="n">th1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">th2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">adaptiveThreshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">ADAPTIVE_THRESH_MEAN_C</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">th3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">adaptiveThreshold</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">ADAPTIVE_THRESH_GAUSSIAN_C</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Original Image&#39;</span><span class="p">,</span> <span class="s1">&#39;Global Thresholding (v = 127)&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;Adaptive Mean Thresholding&#39;</span><span class="p">,</span> <span class="s1">&#39;Adaptive Gaussian Thresholding&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span><span class="p">,</span> <span class="n">th1</span><span class="p">,</span> <span class="n">th2</span><span class="p">,</span> <span class="n">th3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144648937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure></p>
+<h3 id="七直方图均衡" class="headerLink">
+    <a href="#%e4%b8%83%e7%9b%b4%e6%96%b9%e5%9b%be%e5%9d%87%e8%a1%a1" class="header-mark"></a>七、直方图均衡</h3><h4 id="统计直方图" class="headerLink">
+    <a href="#%e7%bb%9f%e8%ae%a1%e7%9b%b4%e6%96%b9%e5%9b%be" class="header-mark"></a>统计直方图</h4><p>直方图是对整张图片灰度值的频率统计直方图，通过直方图我们可以对图像的对比度，亮度，灰度分布等有一个直观的认识。OpenCV和Numpy都有内置函数做这件事：</p>
+<p><strong>方法一</strong>：使用opencv的内置函数</p>
+<p>函数<code>cv2.calcHist(images,channels,mask,histSize,ranges[,hist[,accumulate]])</code>帮助我们统计一幅图像灰度值的频数，返回结果为包含统计结果的多维数组，其参数理解如下：
+<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144722373.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144722373.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144722373.png"
+            srcset="https://img-blog.csdnimg.cn/20200225144722373.png, https://img-blog.csdnimg.cn/20200225144722373.png 1.5x, https://img-blog.csdnimg.cn/20200225144722373.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144722373.png">
+    </a></figure></p>
+<ul>
+<li>images为需要分析的图片，需要以数组格式传入，即[img]</li>
+<li>channel为需要分析的通道，仍以数组格式传入，对于灰度图为[0]；对于彩色图，可以是 [0]，[1]，[2]，它们分别对应着通道 B，G，R</li>
+<li>mask，图像掩模（相当于选框），当要统计整幅图像的直方图就把它设为 None</li>
+<li>histSize，统计组的数目Bins，以数组格式传入，因为灰度值为[0, 255]的离散数据，其范围并不大，可以直接分为255组，即[256]</li>
+<li>ranges，像素值范围，通常为 [0, 256]</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">img</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">256</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([[</span>  <span class="mf">52.</span><span class="p">],</span> <span class="p">[</span>  <span class="mf">14.</span><span class="p">],</span><span class="o">...</span><span class="p">,</span> <span class="p">[</span><span class="mf">3470.</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>方法二</strong>：使用Numpy的统计函数</p>
+<p>使用Numpy中统计直方图的函数<code>np.histogram()</code>或<code>np.bincount()</code>可以完成这项任务，</p>
+<p><code>np.histogram()</code>通常使用前三个参数，返回一个包含统计结果的数组hist和分组的范围bins：
+<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225144838978.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225144838978.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225144838978.png"
+            srcset="https://img-blog.csdnimg.cn/20200225144838978.png, https://img-blog.csdnimg.cn/20200225144838978.png 1.5x, https://img-blog.csdnimg.cn/20200225144838978.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225144838978.png">
+    </a></figure></p>
+<ul>
+<li>a为原始数据，要求为一维数组的格式，可以对图片使用<code>img.ravel()</code>或<code>img.flatten()</code>将其转换为一维数组格式</li>
+<li>bins为灰度值统计时的组数</li>
+<li>range是所需统计数据的范围，对整张图统计时可以直接使用[0, 256]，也可以使用更小的范围进行更精细的观察</li>
+</ul>
+<p>如下案例是将灰度值分为32组进行统计：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="mi">32</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([</span>  <span class="mi">379</span><span class="p">,</span>  <span class="mi">2322</span><span class="p">,</span>  <span class="mi">3149</span><span class="p">,</span>  <span class="mi">3102</span><span class="p">,</span>  <span class="mi">1718</span><span class="p">,</span>  <span class="mi">3379</span><span class="p">,</span>  <span class="mi">3738</span><span class="p">,</span>  <span class="mi">8726</span><span class="p">,</span>  <span class="mi">8409</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="mi">11809</span><span class="p">,</span>  <span class="mi">8753</span><span class="p">,</span>  <span class="mi">3094</span><span class="p">,</span>  <span class="mi">2084</span><span class="p">,</span>  <span class="mi">1580</span><span class="p">,</span>  <span class="mi">1620</span><span class="p">,</span>  <span class="mi">2406</span><span class="p">,</span>  <span class="mi">1886</span><span class="p">,</span>  <span class="mi">2399</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">3793</span><span class="p">,</span>  <span class="mi">5047</span><span class="p">,</span>  <span class="mi">8013</span><span class="p">,</span> <span class="mi">11870</span><span class="p">,</span> <span class="mi">15268</span><span class="p">,</span> <span class="mi">10583</span><span class="p">,</span> <span class="mi">12241</span><span class="p">,</span> <span class="mi">12061</span><span class="p">,</span> <span class="mi">18225</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">9705</span><span class="p">,</span>  <span class="mi">1744</span><span class="p">,</span>  <span class="mi">1517</span><span class="p">,</span>  <span class="mi">3285</span><span class="p">,</span>  <span class="mi">4095</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int64</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bins</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([</span>  <span class="mf">0.</span><span class="p">,</span>   <span class="mf">8.</span><span class="p">,</span>  <span class="mf">16.</span><span class="p">,</span>  <span class="mf">24.</span><span class="p">,</span>  <span class="mf">32.</span><span class="p">,</span>  <span class="mf">40.</span><span class="p">,</span>  <span class="mf">48.</span><span class="p">,</span>  <span class="mf">56.</span><span class="p">,</span>  <span class="mf">64.</span><span class="p">,</span>  <span class="mf">72.</span><span class="p">,</span>  <span class="mf">80.</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mf">88.</span><span class="p">,</span>  <span class="mf">96.</span><span class="p">,</span> <span class="mf">104.</span><span class="p">,</span> <span class="mf">112.</span><span class="p">,</span> <span class="mf">120.</span><span class="p">,</span> <span class="mf">128.</span><span class="p">,</span> <span class="mf">136.</span><span class="p">,</span> <span class="mf">144.</span><span class="p">,</span> <span class="mf">152.</span><span class="p">,</span> <span class="mf">160.</span><span class="p">,</span> <span class="mf">168.</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="mf">176.</span><span class="p">,</span> <span class="mf">184.</span><span class="p">,</span> <span class="mf">192.</span><span class="p">,</span> <span class="mf">200.</span><span class="p">,</span> <span class="mf">208.</span><span class="p">,</span> <span class="mf">216.</span><span class="p">,</span> <span class="mf">224.</span><span class="p">,</span> <span class="mf">232.</span><span class="p">,</span> <span class="mf">240.</span><span class="p">,</span> <span class="mf">248.</span><span class="p">,</span> <span class="mf">256.</span><span class="p">])</span>
+</span></span></code></pre></div><p><code>np.bincount()</code>有3个参数，返回一个包含统计结果的数组：
+<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145002545.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145002545.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145002545.png"
+            srcset="https://img-blog.csdnimg.cn/20200225145002545.png, https://img-blog.csdnimg.cn/20200225145002545.png 1.5x, https://img-blog.csdnimg.cn/20200225145002545.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145002545.png">
+    </a></figure></p>
+<ul>
+<li>x为需要统计的数据，以数组形式传入，因而为<code>img.ravel()</code></li>
+<li>weight为与x同形状的权重值，用于调整统计的比例，在这里我们不需用</li>
+<li>minlength为最少的统计组数，这也可以不填</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">minlength</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([</span>  <span class="mi">52</span><span class="p">,</span>   <span class="mi">14</span><span class="p">,</span>   <span class="mi">18</span><span class="p">,</span>   <span class="mi">37</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>  <span class="mi">76</span><span class="p">,</span>   <span class="mi">77</span><span class="p">,</span> <span class="mi">3470</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int64</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>提示</strong>：通常，<code>np.bincount()</code>比<code>np.histogram</code>快10倍，opencv的内置方法<code>cv2.calcHist()</code>方法比<code>np.histogram()</code>快40倍，因而推荐使用opencv的内置方法进行直方图的统计</p>
+<h4 id="直方图的绘制" class="headerLink">
+    <a href="#%e7%9b%b4%e6%96%b9%e5%9b%be%e7%9a%84%e7%bb%98%e5%88%b6" class="header-mark"></a>直方图的绘制</h4><p>使用Matplotlib中有直方图绘制函数：<code>matplotlib.pyplot.hist()</code>它可以直接统计并绘制直方图。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145051448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure></p>
+<p>当然，也可以配合<code>cv2.calcHist()</code>方法来绘制更复杂的直方图，如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">histr</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">img</span><span class="p">],[</span><span class="n">i</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">256</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">histr</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">col</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145123715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure>
+<strong>提示</strong>：<code>enumerate()</code>是一种既可以遍历索引又可以遍历元素的方法，其可将数组或列表组成一个索引序列方便使用</p>
+<h4 id="直方图均衡化he" class="headerLink">
+    <a href="#%e7%9b%b4%e6%96%b9%e5%9b%be%e5%9d%87%e8%a1%a1%e5%8c%96he" class="header-mark"></a>直方图均衡化HE</h4><p>如果拿到了一副整体过亮或过暗的图片，其像素值在直方图上分布很集中，会影响视觉观察；我们可以通过直方图均衡化，将其做一个横向拉伸使其分布在直方图的各个位置上</p>
+<p>通常情况下这种操作会很大程度上地改善图像的对比度</p>
+<p>OpenCV中的直方图均衡化函数为<code>cv2.equalizeHist()</code>，该函数的输入图片仅仅是一副灰度图像，输出结果是直方图均衡化之后的图像，下边的代码是进行直方图均衡化的案例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/08.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">equ</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">equalizeHist</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span><span class="n">equ</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145205761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure>
+下面简单推导、分析直方图均衡化是经历了一个什么样的处理过程，并用Numpy来实现：</p>
+<ul>
+<li>
+<p>若原图灰度值r经过HE变换T后，变为s，则有：$s=T(r)$，变换后的函数值应该仍在灰度取值范围[0, L-1]内，且s应该关于r单调递增（即原本的亮暗不能颠倒）</p>
+</li>
+<li>
+<p>因而，其概率密度有$P(s)=P(T(r))$，用微分可以表示为：</p>
+</li>
+</ul>
+<p>$$
+P(s)=P(r)\frac{dr}{ds} \Bigg| _{r=T^{-1}(s)}
+$$</p>
+<p>（该式可以直观地理解为变换前后的概率密度函数下的面积相等）</p>
+<ul>
+<li>我们假设变换后的s服从均匀分布，即有</li>
+</ul>
+<p>$$
+P(s)=\frac{1}{L-1}
+$$</p>
+<ul>
+<li>因而，综合以上3式，可以解得</li>
+</ul>
+<p>$$
+s=T(x)=(L-1)\int_0^x p(r)dr
+$$</p>
+<ul>
+<li>
+<p>将其转换为离散形式，即为（L-1）乘以r的累积分布函数的值</p>
+</li>
+<li>
+<p>对于灰度图，（L-1）即为255，而原图的累积分布函数可以用频率代替概率进行统计</p>
+</li>
+</ul>
+<p>如下为Numpy代码对上述过程的实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/08.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计算累积分布图</span>
+</span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf_normalized</span> <span class="o">=</span> <span class="n">cdf</span> <span class="o">*</span> <span class="n">hist</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span> <span class="n">cdf</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cdf_normalized</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;cdf&#39;</span><span class="p">,</span><span class="s1">&#39;histogram&#39;</span><span class="p">),</span> <span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建Numpy掩模数组，cdf为原数组，当数组元素为0时，掩盖（计算时被忽略）</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">cdf</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf_m</span> <span class="o">=</span> <span class="p">(</span><span class="n">cdf_m</span> <span class="o">-</span> <span class="n">cdf_m</span><span class="o">.</span><span class="n">min</span><span class="p">())</span><span class="o">*</span><span class="mi">255</span><span class="o">/</span><span class="p">(</span><span class="n">cdf_m</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">cdf_m</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">cdf_m</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2</span> <span class="o">=</span> <span class="n">cdf</span><span class="p">[</span><span class="n">img</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="p">,</span><span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">img2</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">cdf_normalized</span> <span class="o">=</span> <span class="n">cdf</span> <span class="o">*</span> <span class="n">hist</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span> <span class="n">cdf</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cdf_normalized</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;cdf&#39;</span><span class="p">,</span><span class="s1">&#39;histogram&#39;</span><span class="p">),</span> <span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/2020022514525611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure></p>
+<h3 id="五图像位运算" class="headerLink">
+    <a href="#%e4%ba%94%e5%9b%be%e5%83%8f%e4%bd%8d%e8%bf%90%e7%ae%97" class="header-mark"></a>五、图像位运算</h3><p>在图像的操作中，往往也会用到逻辑运算（按位运算），包括有：<code>AND</code>，<code>OR</code>，<code>NOT</code>，<code>XOR</code> 等，它们主要针对于二值图像，常常用来规划选区（构建掩膜），Opencv提供了如下函数来完成这一操作：</p>
+<ul>
+<li>与运算 <code>cv2.btwise_and(img1, img2, mask)</code></li>
+<li>或运算 <code>cv2.bitwise_or(img1, img2, mask)</code></li>
+<li>非运算 <code>cv2.bitwise_not(img1, mask)</code></li>
+<li>异或运算(相同为1，不同为0) <code>cv2.bitwise_xor(img1, img2, mask)</code></li>
+</ul>
+<p>下面的案例综合运用了图像的按位运算，实现了将白色背景的Logo抠图并添加到背景图上的效果：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">img1</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/B.jpeg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/logo0.jpg&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">channels</span> <span class="o">=</span> <span class="n">img2</span><span class="o">.</span><span class="n">shape</span>
+</span></span><span class="line"><span class="cl"><span class="n">roi</span> <span class="o">=</span> <span class="n">img1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">rows</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">cols</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过阈值二值化操作滤去白色的背景，得到Logo的掩膜</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img2gray</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">mask_inv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145332615.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145332615.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145332615.png"
+            srcset="https://img-blog.csdnimg.cn/20200225145332615.png, https://img-blog.csdnimg.cn/20200225145332615.png 1.5x, https://img-blog.csdnimg.cn/20200225145332615.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145332615.png">
+    </a></figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 通过位运算得到不同的图像效果</span>
+</span></span><span class="line"><span class="cl"><span class="n">img1_bg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span><span class="n">roi</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img2_fg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span><span class="n">img2</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask_inv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">img1_bg</span><span class="p">,</span> <span class="n">img2_fg</span><span class="p">)</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145356844.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145356844.png">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145356844.png"
+            srcset="https://img-blog.csdnimg.cn/20200225145356844.png, https://img-blog.csdnimg.cn/20200225145356844.png 1.5x, https://img-blog.csdnimg.cn/20200225145356844.png 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145356844.png">
+    </a></figure></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">img1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">rows</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">cols</span> <span class="p">]</span> <span class="o">=</span> <span class="n">dst</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+        <img
+            
+            loading="lazy"
+            src="https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
+            srcset="https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            sizes="auto"
+            alt="https://img-blog.csdnimg.cn/20200225145529677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+    </a></figure>
+2020年2月25日 本性之初</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/image_basic_processing_by_opencv/" class="prev" rel="prev" title="OpenCV | 空间域处理之邻域操作/几何变换/形态学操作"><i class="fas fa-angle-left fa-fw"></i>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</a>
+            <a href="/posts/advanced_techniques_for_sudoku_solving/" class="next" rel="next" title="数独求解的高级技巧">数独求解的高级技巧<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

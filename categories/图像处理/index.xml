@@ -3,7 +3,25 @@
         <title>图像处理 - 分类 - Cell · Brain</title>
         <link>https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
         <description>图像处理 - 分类 - Cell · Brain</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>OpenCV | 图像的空间域处理之点运算</title>
+    <link>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</link>
+    <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</guid>
+    <description><![CDATA[​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处]]></description>
+</item><item>
+    <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
+    <link>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</link>
+    <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</guid>
+    <description><![CDATA[在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处理]]></description>
+</item><item>
+    <title>OpenCV | 图像的显示与存储</title>
+    <link>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</link>
+    <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</guid>
+    <description><![CDATA[一、python-opencv的安装方法一：使用pip命令 opencv依赖于Numpy和wheel两个包，需要提前安装 若下载很慢可以使用 -i 设]]></description>
+</item><item>
     <title>视频的编码与封装</title>
     <link>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</link>
     <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>

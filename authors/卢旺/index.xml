@@ -3,18 +3,48 @@
         <title>卢旺 - 作者 - Cell · Brain</title>
         <link>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</link>
         <description>卢旺 - 作者 - Cell · Brain</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
-    <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
-    <link>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</link>
-    <pubDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</guid>
-    <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
-</item><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
     <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</guid>
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
+</item><item>
+    <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
+    <link>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</link>
+    <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</guid>
+    <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
+</item><item>
+    <title>原神圣遗物角色适用表（4.0版本 附含下载链接）</title>
+    <link>https://jwangl5.github.io/posts/genshin-impact_artifacts/</link>
+    <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/genshin-impact_artifacts/</guid>
+    <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
+</item><item>
+    <title>数独求解的高级技巧</title>
+    <link>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</link>
+    <pubDate>Fri, 10 Feb 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</guid>
+    <description><![CDATA[本文档参照Hodoku官方的教程和我的系统性梳理 一、Singles Full house / Last digit （就是整行列宫的最后一个位置和数字） Hidden single （行列宫中只有一个位置可]]></description>
+</item><item>
+    <title>OpenCV | 图像的空间域处理之点运算</title>
+    <link>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</link>
+    <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</guid>
+    <description><![CDATA[​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处]]></description>
+</item><item>
+    <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
+    <link>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</link>
+    <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</guid>
+    <description><![CDATA[在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处理]]></description>
+</item><item>
+    <title>OpenCV | 图像的显示与存储</title>
+    <link>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</link>
+    <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</guid>
+    <description><![CDATA[一、python-opencv的安装方法一：使用pip命令 opencv依赖于Numpy和wheel两个包，需要提前安装 若下载很慢可以使用 -i 设]]></description>
 </item><item>
     <title>视频的编码与封装</title>
     <link>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</link>
