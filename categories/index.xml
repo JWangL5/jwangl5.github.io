@@ -3,5 +3,26 @@
         <title>Categories - 分类 - Cell · Brain</title>
         <link>https://jwangl5.github.io/categories/</link>
         <description>Categories - 分类 - Cell · Brain</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://jwangl5.github.io/categories/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>生物信息</title>
+    <link>https://jwangl5.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</link>
+    <pubDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://jwangl5.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>前端技术</title>
+    <link>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
+    <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>图像处理</title>
+    <link>https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+    <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>

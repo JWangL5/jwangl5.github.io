@@ -3,13 +3,31 @@
         <title>Cell · Brain</title>
         <link>https://jwangl5.github.io/</link>
         <description>Cell · Brain</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
+    <link>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</link>
+    <pubDate>Wed, 27 Sep 2023 16:58:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</guid>
+    <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
+</item><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
-    <link>https://jwangl5.github.io/posts/bolgsetupbyhudoandgithubpage/</link>
+    <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/bolgsetupbyhudoandgithubpage/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</guid>
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
+</item><item>
+    <title>视频的编码与封装</title>
+    <link>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</link>
+    <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</guid>
+    <description><![CDATA[容器——封装格式 avi——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编]]></description>
+</item><item>
+    <title>视频中常出现的参数解释</title>
+    <link>https://jwangl5.github.io/posts/explanation_of_parameters_commonly_seen_in_videos/</link>
+    <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri></author><guid>https://jwangl5.github.io/posts/explanation_of_parameters_commonly_seen_in_videos/</guid>
+    <description><![CDATA[帧 Frame 帧速率（FPS，frame per second 帧率）：每秒钟出现的帧数由胶片概念的产生而出现，把静态的连续画面进行播放以达到动态影像需要每秒出现8格，要]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>视频的编码与封装 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="视频的编码与封装" />
+<meta property="og:description" content="容器——封装格式 avi——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/encoding_and_packaging_of_video/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-06-16T00:00:00+08:00" />
+<meta property="article:modified_time" content="2018-06-16T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="视频的编码与封装"/>
+<meta name="twitter:description" content="容器——封装格式 avi——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/encoding_and_packaging_of_video/" /><link rel="prev" href="https://jwangl5.github.io/posts/explanation_of_parameters_commonly_seen_in_videos/" /><link rel="next" href="https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "视频的编码与封装",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/encoding_and_packaging_of_video\/"
+        },"genre": "posts","wordcount":  2114 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/encoding_and_packaging_of_video\/","datePublished": "2018-06-16T00:00:00+08:00","dateModified": "2018-06-16T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">视频的编码与封装</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-06-16">2018-06-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-06-16">2018-06-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2114 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h1 id="容器封装格式" class="headerLink">
+    <a href="#%e5%ae%b9%e5%99%a8%e5%b0%81%e8%a3%85%e6%a0%bc%e5%bc%8f" class="header-mark"></a>容器——封装格式</h1><ul>
+<li>
+<p><strong>avi</strong>——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编码（对DIVX编码方式的复仇）【所谓的a片画质，画质差体积大，基本不用！</p>
+</li>
+<li>
+<p><strong>rmvb与rm</strong>——都是较早使用的格式，其两者的区别仅仅在与VB，即动态码率（都是real Networks公司出的，realplayer哈哈哈），用到的话使用RV40这样的编码方式会相较avi体积小很多！但对于超过1080p的视频来讲画质损失可能较严重</p>
+</li>
+<li>
+<p><strong>wmv</strong>（微软）——兼容性相对较低，只支持微软自己的编码，在其他操作系统上播放困难；编码一般就用VC-1就行，其体积相对较小，但是不及RMVB；有DRM即数字版权加密，供特殊需求</p>
+</li>
+<li>
+<p><strong>mov</strong>（苹果）——兼容所有的编码格式，在所有的设备上都可以通过quicktime播放，其最大的特点在于其可以包含透明通道，也包含H.264编码方式</p>
+</li>
+<li>
+<p><strong>flv</strong>——flash video的简称，随着flash mx延伸出来的视频格式，优酷土豆会自动转码为这个格式QAQ……其有点在于可以用H.264编码（不过名字变成了f4v），体积也特别小</p>
+</li>
+<li>
+<p><strong>mkv/ogg</strong>（开源）——对编码兼容很好，但是由于不是名门出身不同软件对他们的兼容不同（也没见到那个视频公司出视频用这个格式的，民间到不少），MKV是Matroska媒体系列下的一种文件格式，它能封装的内容及其广泛，高品质的x264或是DST都可以，其画质效果也都差不多；相较与mp4，其优势在于可以封装多达16条音轨，在封装后的字母和视频还可以二次提取；但是不能直接导入AE进行编辑</p>
+</li>
+<li>
+<p><strong>AVCHD</strong>（松下/索尼）——专为消费级的摄像机设计，与普通封装不同（文件夹封装），其结构复杂，损坏后就不能播放</p>
+</li>
+<li>
+<p><strong>mp4</strong>（动态图像专家组，moving picture experts group4，MPEG标准的第4部分）——跨平台性，也兼容现代的编码格式</p>
+</li>
+</ul>
+<h1 id="装箱方式编码" class="headerLink">
+    <a href="#%e8%a3%85%e7%ae%b1%e6%96%b9%e5%bc%8f%e7%bc%96%e7%a0%81" class="header-mark"></a>装箱方式——编码</h1><p>视频编码格式——为了在低码率下保留更多是视频信息，从而减小视频文件的大小（1080p的未压缩视频在1小时能产生500GB的大小）</p>
+<p>音频的编码相比视频不是很重要，主要的无损编码格式有wav和aiff，有损的主要有mp3和aac，其常规设置为48khz/192kbps</p>
+<p><strong>视频编码可以分为无损格式和有损压缩</strong>，有损压缩的效果远远好于无损压缩，因为主要常用的都是有损的压缩格式。</p>
+<p>有损压缩格式主要有两类，第一类是<strong>帧内压缩（Intraframe）</strong>，即对每一帧单独压缩，例如对帧内相同色彩的像素进行只能压缩，规避重复存储，压缩率远不如帧间压缩，但其播放能大大减少电脑的负荷，第二类是<strong>帧间压缩（Interframe）</strong>，即多帧画面在比较之下进行压缩，可以理解为视频仅仅存储关键帧，在播放时通过运算重新求取关键帧之间的画面_其缺点在于画质较低，并且在解码时需要较多的电脑资源，因而编码适合于最终输出，而并不适用于剪辑；</p>
+<h3 id="帧间压缩" class="headerLink">
+    <a href="#%e5%b8%a7%e9%97%b4%e5%8e%8b%e7%bc%a9" class="header-mark"></a>帧间压缩：</h3><ul>
+<li>
+<p>H.264（mepg4）——网络普及最佳！</p>
+</li>
+<li>
+<p>mpeg2（DVD）——已经过时</p>
+</li>
+<li>
+<p>H.265（HEVC）——高效视频编码，现在来讲还没有完全普及，但其优越性十分强，相同画质降低一半的带宽，差不所就是手机看4k都不卡的</p>
+</li>
+</ul>
+<h3 id="帧内压缩" class="headerLink">
+    <a href="#%e5%b8%a7%e5%86%85%e5%8e%8b%e7%bc%a9" class="header-mark"></a>帧内压缩：</h3><ul>
+<li>
+<p>Prores（苹果）——高效&amp;优良，但是在windows平台上有困难</p>
+</li>
+<li>
+<p>DNxHD/HR（Avid）——win支持更佳</p>
+</li>
+<li>
+<p>Cineform（GoPro收购）——最佳！（显卡加速，支持alpha通道视频）</p>
+</li>
+</ul>
+<p>最后推荐两个编码较优的软件来处理这些编码的播放问题</p>
+<ul>
+<li>
+<p>完美解码（PotPlayer的）一个超多编码的播放器</p>
+</li>
+<li>
+<p>K-Lite Mega Codec Pack是一个解码包！</p>
+</li>
+</ul>
+<h1 id="关于h264" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8eh264" class="header-mark"></a>关于H.264</h1><p>MEPG下有很多标准，包括MEPG-1是VCD标准，DAT格式、mpg格式文件；MEPG-2是DVD标准，VOB格式的文件；MEPG-3由于没有MEPG-2那样优秀就夭折了，然后就是现在的MEPG-4；后来也出现了MEPG-7（5和8折中的产物）</p>
+<p>其MEPG-1中分了3层，即MEPG-1 Audio Layer3，即为所说的mp3</p>
+<p>MEPG-4有27个子标准，但其中第十个（又称MPEG4 P10）就是<strong>H.264</strong>，它是mp4的一种特殊的高清编码，该编码在同等条件下比起其他编码，在压缩率、画质、体积等方面都非常可观，因而被广泛应用！由于其是由两个团队合作完成，在不同的团队中叫法不一样，因而又称之为AVC（Advanced Video Coding）</p>
+<p>该编码虽然是mepg-4出的，但是由于其高效性在其他的封装格式中也被广泛应用（就像好的打包方式在不同的箱子里都可以运用这样的），在flv、mov等格式中也常常出现。</p>
+<p>在H.264下又有不同是算法（fourCC，four character code，四字符代码），包括x264、AVCI、H264等，其中H264是商用的，不公开，收费的；而x264相比H264能力差不多，但却开源的。</p>
+<p>关于H.264在输出时还有3中Profile，其为Baseline Profile、Main Profile、High Profile三种，越往后压缩比越高，但由于High在手机等播放器兼容性不是很好，所以现在很多都还是main profile；至于level和profile差不多的一个衡量数值。</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2018-06-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/explanation_of_parameters_commonly_seen_in_videos/" class="prev" rel="prev" title="视频中常出现的参数解释"><i class="fas fa-angle-left fa-fw"></i>视频中常出现的参数解释</a>
+            <a href="/posts/bolg_set_up_by_hudo_and_github_pages/" class="next" rel="next" title="Hugo&#43;GitHub Pages搭建博客">Hugo&#43;GitHub Pages搭建博客<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
