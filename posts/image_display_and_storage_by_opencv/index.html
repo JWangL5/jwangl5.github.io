@@ -21,7 +21,7 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/" /><link rel="prev" href="https://jwangl5.github.io/posts/encoding_and_packaging_of_video/" /><link rel="next" href="https://jwangl5.github.io/posts/image_basic_processing_by_opencv/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/" /><link rel="prev" href="https://jwangl5.github.io/posts/encoding_and_packaging_of_video/" /><link rel="next" href="https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,7 +35,7 @@
         },"genre": "posts","wordcount":  2500 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/image_display_and_storage_by_opencv\/","datePublished": "2020-02-23T00:00:00+08:00","dateModified": "2020-02-23T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "作者"},"authors": [{
+            "name": "卢旺"},"authors": [{
                         "@type": "Person",
                         "name": "卢旺"                    
                     }],"description": ""
@@ -118,8 +118,8 @@
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2500 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h3 id="一python-opencv的安装" class="headerLink">
-    <a href="#%e4%b8%80python-opencv%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>一、python-opencv的安装</h3><p><strong>方法一</strong>：使用pip命令</p>
+        </div><div class="content" id="content"><h1 id="一python-opencv的安装" class="headerLink">
+    <a href="#%e4%b8%80python-opencv%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>一、python-opencv的安装</h1><p><strong>方法一</strong>：使用pip命令</p>
 <ul>
 <li>opencv依赖于Numpy和wheel两个包，需要提前安装</li>
 <li>若下载很慢可以使用 -i 设置使用清华源镜像</li>
@@ -130,17 +130,17 @@
 </span></span><span class="line"><span class="cl">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-contrib-python
 </span></span></code></pre></div><p><strong>方法二</strong>：去官网下载安装包，后手动安装</p>
 <p>下载链接： <a href="https://sourceforge.net/projects/opencvlibrary/files/" target="_blank" rel="noopener noreferrer">https://sourceforge.net/projects/opencvlibrary/files/</a></p>
-<h3 id="二图像的读取显示与保存" class="headerLink">
-    <a href="#%e4%ba%8c%e5%9b%be%e5%83%8f%e7%9a%84%e8%af%bb%e5%8f%96%e6%98%be%e7%a4%ba%e4%b8%8e%e4%bf%9d%e5%ad%98" class="header-mark"></a>二、图像的读取、显示与保存</h3><h4 id="图像读取" class="headerLink">
-    <a href="#%e5%9b%be%e5%83%8f%e8%af%bb%e5%8f%96" class="header-mark"></a>图像读取</h4><p>​	使用函数 <code>cv2.imread()</code> 读入图像，该函数包含两个参数
-<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223121923591.png" title="imread" data-thumbnail="https://img-blog.csdnimg.cn/20200223121923591.png">
+<h1 id="二图像的读取显示与保存" class="headerLink">
+    <a href="#%e4%ba%8c%e5%9b%be%e5%83%8f%e7%9a%84%e8%af%bb%e5%8f%96%e6%98%be%e7%a4%ba%e4%b8%8e%e4%bf%9d%e5%ad%98" class="header-mark"></a>二、图像的读取、显示与保存</h1><h3 id="图像读取" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e8%af%bb%e5%8f%96" class="header-mark"></a>图像读取</h3><p>​	使用函数 <code>cv2.imread()</code> 读入图像，该函数包含两个参数
+<figure><a class="lightgallery" href="/image/CSDN-20200223121923591.png" title="imread" data-thumbnail="/image/CSDN-20200223121923591.png">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223121923591.png"
-            srcset="https://img-blog.csdnimg.cn/20200223121923591.png, https://img-blog.csdnimg.cn/20200223121923591.png 1.5x, https://img-blog.csdnimg.cn/20200223121923591.png 2x"
+            src="/image/CSDN-20200223121923591.png"
+            srcset="/image/CSDN-20200223121923591.png, /image/CSDN-20200223121923591.png 1.5x, /image/CSDN-20200223121923591.png 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223121923591.png">
+            alt="/image/CSDN-20200223121923591.png" height="53"  width="262" >
     </a></figure></p>
 <ul>
 <li>
@@ -163,8 +163,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 读入图像</span>
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</span></span></code></pre></div><h4 id="图像显示" class="headerLink">
-    <a href="#%e5%9b%be%e5%83%8f%e6%98%be%e7%a4%ba" class="header-mark"></a>图像显示</h4><p><strong>方法一</strong>：使用Matplotlib显示图像</p>
+</span></span></code></pre></div><h3 id="图像显示" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e6%98%be%e7%a4%ba" class="header-mark"></a>图像显示</h3><p><strong>方法一</strong>：使用Matplotlib显示图像</p>
 <p>​	Matplotib是python的一个绘图库，其中包含各种各样的绘图方法，可以借助Matplotib编排、显示图像</p>
 <p>​	这里使用<code>plt.imshow()</code>的方法来显示图像，</p>
 <ul>
@@ -176,14 +176,14 @@
 </li>
 <li>
 <p>对于彩色图像，由于opencv的读取是按照BGR的顺序读入并存放数据，但matplotlib则以RGB的顺序显示，因而需要在显示时手动修改顺序，即<code>plt.imshow(img[,,::-1])</code>
-<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+<figure><a class="lightgallery" href="/image/CSDN-20200223122210169.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122210169.png">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
-            srcset="https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            src="/image/CSDN-20200223122210169.png"
+            srcset="/image/CSDN-20200223122210169.png, /image/CSDN-20200223122210169.png 1.5x, /image/CSDN-20200223122210169.png 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223122210169.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+            alt="/image/CSDN-20200223122210169.png" height="497"  width="963" >
     </a></figure></p>
 </li>
 <li>
@@ -221,23 +221,23 @@
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span></span></code></pre></div><h4 id="图像的保存" class="headerLink">
-    <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e4%bf%9d%e5%ad%98" class="header-mark"></a>图像的保存</h4><p>​	使用<code>cv2.imwrite()</code>方法保存图像，其第一个参数为保存文件的路径和命名（包括后缀和格式），第二个参数为需要保存的图像</p>
+</span></span></code></pre></div><h3 id="图像的保存" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e4%bf%9d%e5%ad%98" class="header-mark"></a>图像的保存</h3><p>​	使用<code>cv2.imwrite()</code>方法保存图像，其第一个参数为保存文件的路径和命名（包括后缀和格式），第二个参数为需要保存的图像</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="三颜色空间的转换与通道的拆合" class="headerLink">
-    <a href="#%e4%b8%89%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e8%bd%ac%e6%8d%a2%e4%b8%8e%e9%80%9a%e9%81%93%e7%9a%84%e6%8b%86%e5%90%88" class="header-mark"></a>三、颜色空间的转换与通道的拆合</h3><h4 id="颜色空间的概念与相互转换" class="headerLink">
-    <a href="#%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e6%a6%82%e5%bf%b5%e4%b8%8e%e7%9b%b8%e4%ba%92%e8%bd%ac%e6%8d%a2" class="header-mark"></a>颜色空间的概念与相互转换</h4><p>颜色空间，是在某些标准下用通常可接受的方式对彩色加以说明的方式，常用的颜色空间有RGB、CMYK、HSV、EG</p>
+</span></span></code></pre></div><h1 id="三颜色空间的转换与通道的拆合" class="headerLink">
+    <a href="#%e4%b8%89%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e8%bd%ac%e6%8d%a2%e4%b8%8e%e9%80%9a%e9%81%93%e7%9a%84%e6%8b%86%e5%90%88" class="header-mark"></a>三、颜色空间的转换与通道的拆合</h1><h3 id="颜色空间的概念与相互转换" class="headerLink">
+    <a href="#%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e6%a6%82%e5%bf%b5%e4%b8%8e%e7%9b%b8%e4%ba%92%e8%bd%ac%e6%8d%a2" class="header-mark"></a>颜色空间的概念与相互转换</h3><p>颜色空间，是在某些标准下用通常可接受的方式对彩色加以说明的方式，常用的颜色空间有RGB、CMYK、HSV、EG</p>
 <ul>
 <li>
 <p>RGB 颜色空间为<strong>加法混色</strong>，常用于彩色显示器上，图像包含3个通道（RGB），一个像素包含3个值，值的取值范围为[0, 255]
-<figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+<figure><a class="lightgallery" href="/image/CSDN-20200223122255174.jpg" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122255174.jpg">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
-            srcset="https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            src="/image/CSDN-20200223122255174.jpg"
+            srcset="/image/CSDN-20200223122255174.jpg, /image/CSDN-20200223122255174.jpg 1.5x, /image/CSDN-20200223122255174.jpg 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223122255174.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+            alt="/image/CSDN-20200223122255174.jpg" height="288"  width="748" >
     </a></figure></p>
 </li>
 <li>
@@ -247,14 +247,14 @@
 <p>HSV颜色空间依据人类视觉概念，由3个要素组成（H/Hue：色调，颜色种类、S/Saturation：饱和度、V/Value：明度，颜色明亮度），一个像素有3个值，构成了一个圆锥形的空间</p>
 </li>
 </ul>
-<p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_4,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_4,color_FFFFFF,t_70">
+<p><figure><a class="lightgallery" href="/image/CSDN-20200223122331232.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122331232.png">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_4,color_FFFFFF,t_70"
-            srcset="https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_4%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_4%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_4%2ccolor_FFFFFF%2ct_70 2x"
+            src="/image/CSDN-20200223122331232.png"
+            srcset="/image/CSDN-20200223122331232.png, /image/CSDN-20200223122331232.png 1.5x, /image/CSDN-20200223122331232.png 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223122331232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_4,color_FFFFFF,t_70">
+            alt="/image/CSDN-20200223122331232.png" height="280"  width="385" >
     </a></figure></p>
 <ul>
 <li>CIE-XYZ颜色空间是人类颜色视觉的直接测定的颜色系统</li>
@@ -270,8 +270,8 @@
 </span></span><span class="line"><span class="cl"><span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;COLOR_&#39;</span><span class="p">)]</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
 </span></span></code></pre></div><p>​		当然，这里的转化也可以手工操作，如RGB图像灰度化的常用公式为$ Gray=R<em>0.3+G</em>0.59+B*0.11$</p>
-<h4 id="图像的存储与像素值的提取" class="headerLink">
-    <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e5%ad%98%e5%82%a8%e4%b8%8e%e5%83%8f%e7%b4%a0%e5%80%bc%e7%9a%84%e6%8f%90%e5%8f%96" class="header-mark"></a>图像的存储与像素值的提取</h4><ul>
+<h3 id="图像的存储与像素值的提取" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e5%ad%98%e5%82%a8%e4%b8%8e%e5%83%8f%e7%b4%a0%e5%80%bc%e7%9a%84%e6%8f%90%e5%8f%96" class="header-mark"></a>图像的存储与像素值的提取</h3><ul>
 <li>
 <p>RGB三通道图以三维矩阵的形式存储，其shape为[width，height，channel]，注意channel的顺序为B、G、R</p>
 </li>
@@ -311,17 +311,17 @@
 </span></span><span class="line"><span class="cl"><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">150</span><span class="p">,</span><span class="mi">300</span><span class="p">:</span><span class="mi">410</span><span class="p">]</span><span class="o">=</span><span class="n">hat</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122608123.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122608123.png">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70"
-            srcset="https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70, https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 1.5x, https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==%2csize_16%2ccolor_FFFFFF%2ct_70 2x"
+            src="/image/CSDN-20200223122608123.png"
+            srcset="/image/CSDN-20200223122608123.png, /image/CSDN-20200223122608123.png 1.5x, /image/CSDN-20200223122608123.png 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223122608123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzA2NTg1NQ==,size_16,color_FFFFFF,t_70">
+            alt="/image/CSDN-20200223122608123.png" height="249"  width="714" >
     </a></figure></p>
-<h4 id="图像通道的拆合" class="headerLink">
-    <a href="#%e5%9b%be%e5%83%8f%e9%80%9a%e9%81%93%e7%9a%84%e6%8b%86%e5%90%88" class="header-mark"></a>图像通道的拆合</h4><p>​		有时我们需要对BGR三个通道分别进行操作，需要将其拆分成单个通道，有两种方法可以实现该目的</p>
+<h3 id="图像通道的拆合" class="headerLink">
+    <a href="#%e5%9b%be%e5%83%8f%e9%80%9a%e9%81%93%e7%9a%84%e6%8b%86%e5%90%88" class="header-mark"></a>图像通道的拆合</h3><p>​		有时我们需要对BGR三个通道分别进行操作，需要将其拆分成单个通道，有两种方法可以实现该目的</p>
 <ul>
 <li>一种是利用Numpy的索引<code>b = img[:,:,:,0]</code></li>
 <li>一种是利用<code>b,g,r = cv1.split(img)</code></li>
@@ -344,20 +344,31 @@
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;bicubic&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="https://img-blog.csdnimg.cn/20200223122635217.png" title="在这里插入图片描述" data-thumbnail="https://img-blog.csdnimg.cn/20200223122635217.png">
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122635217.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122635217.png">
         <img
             
             loading="lazy"
-            src="https://img-blog.csdnimg.cn/20200223122635217.png"
-            srcset="https://img-blog.csdnimg.cn/20200223122635217.png, https://img-blog.csdnimg.cn/20200223122635217.png 1.5x, https://img-blog.csdnimg.cn/20200223122635217.png 2x"
+            src="/image/CSDN-20200223122635217.png"
+            srcset="/image/CSDN-20200223122635217.png, /image/CSDN-20200223122635217.png 1.5x, /image/CSDN-20200223122635217.png 2x"
             sizes="auto"
-            alt="https://img-blog.csdnimg.cn/20200223122635217.png">
+            alt="/image/CSDN-20200223122635217.png" height="195"  width="848" >
     </a></figure></p>
 <p><strong>提示：</strong><code>cv2.split()</code> 是一个比较耗时的操作，若非必要尽可能使用Numpy 索引完成对图像的操作！</p>
 <p>2020年2月23日 本性之初</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -381,11 +392,11 @@
     </div>
 
     <div class="post-nav"><a href="/posts/encoding_and_packaging_of_video/" class="prev" rel="prev" title="视频的编码与封装"><i class="fas fa-angle-left fa-fw"></i>视频的编码与封装</a>
-            <a href="/posts/image_basic_processing_by_opencv/" class="next" rel="next" title="OpenCV | 空间域处理之邻域操作/几何变换/形态学操作">OpenCV | 空间域处理之邻域操作/几何变换/形态学操作<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/image_point_operations_in_spatial_domain_by_opencv/" class="next" rel="next" title="OpenCV | 图像的空间域处理之点运算">OpenCV | 图像的空间域处理之点运算<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -396,7 +407,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 </body>
 
 </html>
