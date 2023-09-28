@@ -7,15 +7,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET） - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET）" />
-<meta property="og:description" content="首先简单说明一下这个实验的做法： 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有" />
+    <title>荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET） - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）" />
+<meta property="og:description" content="首先简单说明荧光寿命 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-13T00:00:00+08:00" />
 <meta property="article:modified_time" content="2022-10-13T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET）"/>
-<meta name="twitter:description" content="首先简单说明一下这个实验的做法： 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有"/>
+<meta name="twitter:title" content="荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）"/>
+<meta name="twitter:description" content="首先简单说明荧光寿命 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在"/>
 <meta name="application-name" content="Cell · Brain">
 <meta name="apple-mobile-web-app-title" content="Cell · Brain">
 
@@ -27,12 +27,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET）",
+        "headline": "荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/flim_fret_phasor_plot_by_python\/"
-        },"genre": "posts","wordcount":  327 ,
+        },"genre": "posts","wordcount":  1732 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/flim_fret_phasor_plot_by_python\/","datePublished": "2022-10-13T00:00:00+08:00","dateModified": "2022-10-13T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -112,20 +112,62 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET）</h1><div class="post-meta">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"><i class="far fa-folder fa-fw"></i>生物信息</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-13">2022-10-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-10-13">2022-10-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 327 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
-        </div><div class="content" id="content"><p>首先简单说明一下这个实验的做法：</p>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-10-13">2022-10-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-10-13">2022-10-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1732 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="首先简单说明荧光寿命" class="headerLink">
+    <a href="#%e9%a6%96%e5%85%88%e7%ae%80%e5%8d%95%e8%af%b4%e6%98%8e%e8%8d%a7%e5%85%89%e5%af%bf%e5%91%bd" class="header-mark"></a>首先简单说明荧光寿命</h3><ul>
+<li>荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在没有其他因素干扰时，通常是一个常数），是荧光分子除了在波长、偏振、强度之外的另一可以用以挖掘的角度</li>
+</ul>
+<center> <image src="/image/FLIM-lifetime.png" style="zoom:40%" /> </center>
+<ul>
+<li>荧光寿命的测量需要使用荧光寿命显微镜（FLIM），目前最常用的测量方法是<strong>时间相关单光子记数法</strong>（Time-Correlated Single-Photon Counting ，TCSPC），该方法是在短时间激活荧光分子后，连续一段时间测量光强（光子个数），从而绘制出荧光强度的衰减曲线，并在此基础上拟合指数函数</li>
+</ul>
+<center> <image src="/image/FLIM-TCSPC.png" style="zoom:70%" /> </center>
 <ul>
 <li>
-<p>荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在没有其他因素干扰时，通常是一个常数）</p>
+<p>激活的频率是需要适应测量荧光分子的寿命，因为需要等待一段时间进行测量，这个时间太长和太短都不好，生物荧光分子的寿命通常在12ns以下，因而<strong>多使用80MHz的频闪激光</strong>作为光源</p>
 </li>
-<li></li>
+<li>
+<p>在实际的图像采集过程中，是在每个像素格子内激活进行测量，为了得到足够的光子数进行数据拟合，通常会<strong>Frame Repetitiors 10次</strong></p>
+</li>
 </ul>
-<p>1、引包，需要引入FLIM标准格式<code>.ptu</code>读取模块、计算模块<code>numpy</code>、绘图模块<code>matplotlib</code>和<code>seaborn</code></p>
+<center> <image src="/image/FLIM-TCSPCResult.png" style="zoom:65%" /> </center>
+<ul>
+<li>对数据的拟合使用指数衰减的模型，其中$\tau$为荧光寿命，$i$是为了区分不同像素位置，$n$指代10次重复，$A$是最大强度，$Bkgr$是背景强度，$IRF$是仪器响应函数
+$$
+y(t) = ( \sum_{i=0}^{n} A[i] e^{-\frac{t}{\tau[i]}} + Bkgr ) ※ IRF
+$$
+最后，数据拟合后得到的效果如下图所示，每个像素点都有一个对应的寿命值，需要划定一个信号区域（ROI）求取平均来得到最终的寿命值，该值需要通过卡方检测</li>
+</ul>
+<p><figure><a class="lightgallery" href="/image/FLIM-lifetimeResult.png" title="/image/FLIM-lifetimeResult.png" data-thumbnail="/image/FLIM-lifetimeResult.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-lifetimeResult.png"
+            srcset="/image/FLIM-lifetimeResult.png, /image/FLIM-lifetimeResult.png 1.5x, /image/FLIM-lifetimeResult.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-lifetimeResult.png" height="184"  width="339" >
+    </a></figure></p>
+<ul>
+<li>如果生物样品中含有多种荧光分子（混合着不同的荧光寿命），也可以修改模型为多个指数衰减，拟合多个寿命值</li>
+</ul>
+<h3 id="关于相图phasor-plot" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8e%e7%9b%b8%e5%9b%bephasor-plot" class="header-mark"></a>关于相图（Phasor Plot）</h3><p>简单说，相图就是对荧光寿命的数据做傅里叶变换，拆分出频域空间的信号，然后将每一个点的频率信号值画在单位圆上。假设其衰减曲线的信号为指数函数，则可以推到出其在频域空间中横纵轴的计算公式为：</p>
+<p>$$ g_{i,j}(\omega) = \frac {\int_0^\infty I_{i,j}(t) cos(\omega t) dt}{\int_0^\infty I_{i,j}(t)dt}  $$</p>
+<p>$$ s_{i,j}(\omega) = \frac {\int_0^\infty I_{i,j}(t) sin(\omega t) dt}{\int_0^\infty I_{i,j}(t)dt} $$</p>
+<p>两者间也必然存在如下关系，说明标准的样品，其荧光信号应该落在这个半圆上</p>
+<p>$$ s_{i,j}^2 + (g_{i,j} - \frac12)^2 = \frac14 $$</p>
+<center> <image src="/image/FLIM-phasorexample.png" style="zoom:65%" /> </center>
+<p>在频域空间，信号的叠加符合向量加法。因而当荧光拍摄出多个组分时，其信号可能落在单位半圆内部，此时可以将其做向量分解，找到组成其信号的可能组分。</p>
+<h3 id="使用python手绘荧光寿命的phasor-plot" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8python%e6%89%8b%e7%bb%98%e8%8d%a7%e5%85%89%e5%af%bf%e5%91%bd%e7%9a%84phasor-plot" class="header-mark"></a>使用Python手绘荧光寿命的Phasor Plot</h3><blockquote>
+<p>因为FLIM的数据分析会占据获取有效数据的一多半时间，而显微镜配套的分析处理软件是商业化不公开的，为了节省机时，故将FLIM采集的数据导出为标准格式<code>.ptu</code>，自己回来处理数据；通过指数拟合获得寿命的代码网络上已经有很多了，甚至有<code>imageJ</code>插件直接使用，但更为合理的Phasor分析方法却没有可行的方案，看着算法并不是很困难就自己动手了</p>
+</blockquote>
+<p>1、引包，需要引入FLIM标准格式<code>.ptu</code>读取模块、计算模块<code>numpy</code>、绘图模块<code>matplotlib</code>和<code>seaborn</code>，<code>PTUreader</code>是来自于<a href="https://github.com/SumeetRohilla/readPTU_FLIM" target="_blank" rel="noopener noreferrer">Github上pull下来的库</a>后微调得到的（原代码也可以直接使用）</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">readPTU_FLIM</span> <span class="kn">import</span> <span class="n">PTUreader</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">fft</span>
@@ -133,56 +175,97 @@
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 </span></span><span class="line"><span class="cl"><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;muted&#39;</span><span class="p">,</span> <span class="n">color_codes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span></code></pre></div><p>2、读入<code>.ptu</code>格式文件</p>
+</span></span></code></pre></div><p>2、读入<code>.ptu</code>格式文件，并展示图像；</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">fpath</span> <span class="o">=</span> <span class="s1">&#39;211015Image007.ptu&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">f</span>  <span class="o">=</span> <span class="n">PTUreader</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">print_header_data</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">flim_data_stack</span><span class="p">,</span> <span class="n">intensity_image</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flim_data_stack</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">intensity_image</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">phasor</span><span class="p">(</span><span class="n">fpath</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">	<span class="n">f</span>  <span class="o">=</span> <span class="n">PTUreader</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ptu3/</span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">print_header_data</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">flim_data_stack</span><span class="p">,</span> <span class="n">intensity_image</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_flim_data_stack</span><span class="p">()</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/FLIM-intensityMap.png" title="/image/FLIM-intensityMap.png" data-thumbnail="/image/FLIM-intensityMap.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-intensityMap.png"
+            srcset="/image/FLIM-intensityMap.png, /image/FLIM-intensityMap.png 1.5x, /image/FLIM-intensityMap.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-intensityMap.png" height="255"  width="315" >
+    </a></figure></p>
+<p>使用<code>flim_data_stack.shape</code>可以看到数据的结构，本次数据为<code>(512, 512, 2, 138)</code>，即图像采集尺寸为<code>512×512</code>，包含两个通道（mNG和DAPI），以及在两次脉冲激活间记录了138个时间点信息（80MHz的激光脉冲理论上应该间隔12.5ns，在数据的头文件中<code>f.head['MeasDesc_Resolution']</code>会包含这一数值）</p>
+<p>3、可以将所有像素的光子数加起来，观察这个指数衰减图像</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">flim_data_stack</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/FLIM-decayplot.png" title="/image/FLIM-decayplot.png" data-thumbnail="/image/FLIM-decayplot.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-decayplot.png"
+            srcset="/image/FLIM-decayplot.png, /image/FLIM-decayplot.png 1.5x, /image/FLIM-decayplot.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-decayplot.png" height="360"  width="897" >
+    </a></figure></p>
+<p>4、通过快速傅里叶变换，计算绘制Phasor图</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">K</span> <span class="o">=</span> <span class="n">flim_data_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">head</span><span class="p">[</span><span class="s1">&#39;MeasDesc_Resolution&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">K</span> <span class="o">=</span> <span class="n">flim_data_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="n">T</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">head</span><span class="p">[</span><span class="s1">&#39;MeasDesc_Resolution&#39;</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="n">omega</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">semicircle</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">	<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>  <span class="n">K</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">flim_data_stack</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">			<span class="n">d</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">				<span class="k">continue</span>
-</span></span><span class="line"><span class="cl">			<span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">omega</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))]</span>
-</span></span><span class="line"><span class="cl">			<span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">omega</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))]</span>
-</span></span><span class="line"><span class="cl">			<span class="n">vg</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">			<span class="n">vs</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">			<span class="n">vd</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">			<span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">vg</span><span class="o">/</span><span class="n">vd</span><span class="p">,</span> <span class="n">vs</span><span class="o">/</span><span class="n">vd</span><span class="p">,</span> <span class="n">intensity_image</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">flim_data_stack</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">d</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">20</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dd</span> <span class="o">=</span> <span class="n">d</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">100</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ft</span><span class="o">.</span><span class="n">real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">ft</span><span class="o">.</span><span class="n">imag</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">intensity_image</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># plt.scatter(result[:,0], result[:,1], c=result[:,2], cmap=&#39;jet&#39;, s=0.1)</span>
-</span></span><span class="line"><span class="cl">	<span class="c1"># plt.colorbar(use_gridspec=False)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;output3/</span><span class="si">{</span><span class="n">fpath</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">step</span> <span class="o">=</span> <span class="n">flim_data_stack</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">step</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">	<span class="n">semicircle</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">		<span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">ruler</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">tau</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span><span class="o">*</span><span class="mf">1e-9</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">tau</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ynorm</span> <span class="o">=</span> <span class="n">y</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">ynorm</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ruler</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">ft</span><span class="o">.</span><span class="n">real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ft</span><span class="o">.</span><span class="n">imag</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="n">dirs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;ptu3&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dirs</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">		<span class="n">phasor</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span></span></code></pre></div></div>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gr</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ruler</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">sr</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ruler</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># plt.xlim([0,1])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># plt.ylim([0,1])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/FLIM-phasorplot1.png" title="/image/FLIM-phasorplot1.png" data-thumbnail="/image/FLIM-phasorplot1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-phasorplot1.png"
+            srcset="/image/FLIM-phasorplot1.png, /image/FLIM-phasorplot1.png 1.5x, /image/FLIM-phasorplot1.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-phasorplot1.png" height="246"  width="374" >
+    </a></figure></p>
+<p>使用<code>seaborn</code>绘制出的、好看一点的密度图，看起来和软件输出的有点像了</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><center> <image src="/image/FLIM-phasorplot2.png" style="zoom:70%" /> </center>
+<p>PS：关于这个图上通过FFT得到的刻度点和通过解析几何计算得到的标准半圆之间存在位移，老实说还没来得及去探究太多，初步推测是因为使用了高精度浮点数计算导致结果不准确，之后需要正式用这个图了再想办法解决</p>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img

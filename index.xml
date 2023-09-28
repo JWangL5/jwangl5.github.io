@@ -29,7 +29,7 @@
     <link>https://jwangl5.github.io/posts/flow_cytometry_mapping_by_python/</link>
     <pubDate>Sat, 22 Apr 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/flow_cytometry_mapping_by_python/</guid>
-    <description><![CDATA[import cytoflow as flow from matplotlib import pyplot as plt plt.style.use(&#39;default&#39;) import seaborn as sns import numpy as np from scipy.stats import gaussian_kde]]></description>
+    <description><![CDATA[实验原理荧光流式细胞术是根据荧光信号分离单细胞的技术，其识别的荧光可以是活细胞内表达的，也可以是固定细胞上体外标记的。因为在细胞分裂过程中遗]]></description>
 </item><item>
     <title>数独求解的高级技巧</title>
     <link>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</link>
@@ -37,11 +37,11 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</guid>
     <description><![CDATA[本文档参照Hodoku官方的教程和我的系统性梳理 一、Singles Full house / Last digit （就是整行列宫的最后一个位置和数字） Hidden single （行列宫中只有一个位置可]]></description>
 </item><item>
-    <title>荧光寿命显微镜相图的Python绘制和解析（Phasor Plot for FLIM-FRET）</title>
+    <title>荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）</title>
     <link>https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/</link>
     <pubDate>Thu, 13 Oct 2022 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/</guid>
-    <description><![CDATA[首先简单说明一下这个实验的做法： 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有]]></description>
+    <description><![CDATA[首先简单说明荧光寿命 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在]]></description>
 </item><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
     <link>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</link>
