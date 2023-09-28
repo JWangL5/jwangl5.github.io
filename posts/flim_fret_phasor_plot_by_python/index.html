@@ -122,11 +122,31 @@
     <a href="#%e9%a6%96%e5%85%88%e7%ae%80%e5%8d%95%e8%af%b4%e6%98%8e%e8%8d%a7%e5%85%89%e5%af%bf%e5%91%bd" class="header-mark"></a>首先简单说明荧光寿命</h3><ul>
 <li>荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在没有其他因素干扰时，通常是一个常数），是荧光分子除了在波长、偏振、强度之外的另一可以用以挖掘的角度</li>
 </ul>
-<center> <image src="/image/FLIM-lifetime.png" style="zoom:40%" /> </center>
+<center>
+<a class="lightgallery" href="/image/FLIM-lifetime.png" title="/image/FLIM-lifetime.png" data-thumbnail="/image/FLIM-lifetime.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-lifetime.png"
+            srcset="/image/FLIM-lifetime.png, /image/FLIM-lifetime.png 1.5x, /image/FLIM-lifetime.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-lifetime.png" height="40%"  width="40%" >
+    </a>
+</center>
 <ul>
 <li>荧光寿命的测量需要使用荧光寿命显微镜（FLIM），目前最常用的测量方法是<strong>时间相关单光子记数法</strong>（Time-Correlated Single-Photon Counting ，TCSPC），该方法是在短时间激活荧光分子后，连续一段时间测量光强（光子个数），从而绘制出荧光强度的衰减曲线，并在此基础上拟合指数函数</li>
 </ul>
-<center> <image src="/image/FLIM-TCSPC.png" style="zoom:70%" /> </center>
+<center>
+<a class="lightgallery" href="/image/FLIM-TCSPC.png" title="/image/FLIM-TCSPC.png" data-thumbnail="/image/FLIM-TCSPC.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-TCSPC.png"
+            srcset="/image/FLIM-TCSPC.png, /image/FLIM-TCSPC.png 1.5x, /image/FLIM-TCSPC.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-TCSPC.png" height="70%"  width="70%" >
+    </a>
+</center>
 <ul>
 <li>
 <p>激活的频率是需要适应测量荧光分子的寿命，因为需要等待一段时间进行测量，这个时间太长和太短都不好，生物荧光分子的寿命通常在12ns以下，因而<strong>多使用80MHz的频闪激光</strong>作为光源</p>
@@ -135,7 +155,17 @@
 <p>在实际的图像采集过程中，是在每个像素格子内激活进行测量，为了得到足够的光子数进行数据拟合，通常会<strong>Frame Repetitiors 10次</strong></p>
 </li>
 </ul>
-<center> <image src="/image/FLIM-TCSPCResult.png" style="zoom:65%" /> </center>
+<center>
+<a class="lightgallery" href="/image/FLIM-TCSPCResult.png" title="/image/FLIM-TCSPCResult.png" data-thumbnail="/image/FLIM-TCSPCResult.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-TCSPCResult.png"
+            srcset="/image/FLIM-TCSPCResult.png, /image/FLIM-TCSPCResult.png 1.5x, /image/FLIM-TCSPCResult.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-TCSPCResult.png" height="65%"  width="65%" >
+    </a>
+</center>
 <ul>
 <li>对数据的拟合使用指数衰减的模型，其中$\tau$为荧光寿命，$i$是为了区分不同像素位置，$n$指代10次重复，$A$是最大强度，$Bkgr$是背景强度，$IRF$是仪器响应函数
 $$
@@ -161,7 +191,17 @@ $$
 <p>$$ s_{i,j}(\omega) = \frac {\int_0^\infty I_{i,j}(t) sin(\omega t) dt}{\int_0^\infty I_{i,j}(t)dt} $$</p>
 <p>两者间也必然存在如下关系，说明标准的样品，其荧光信号应该落在这个半圆上</p>
 <p>$$ s_{i,j}^2 + (g_{i,j} - \frac12)^2 = \frac14 $$</p>
-<center> <image src="/image/FLIM-phasorexample.png" style="zoom:65%" /> </center>
+<center>
+<a class="lightgallery" href="/image/FLIM-phasorexample.png" title="/image/FLIM-phasorexample.png" data-thumbnail="/image/FLIM-phasorexample.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-phasorexample.png"
+            srcset="/image/FLIM-phasorexample.png, /image/FLIM-phasorexample.png 1.5x, /image/FLIM-phasorexample.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-phasorexample.png" height="40%"  width="40%" >
+    </a>
+</center>
 <p>在频域空间，信号的叠加符合向量加法。因而当荧光拍摄出多个组分时，其信号可能落在单位半圆内部，此时可以将其做向量分解，找到组成其信号的可能组分。</p>
 <h3 id="使用python手绘荧光寿命的phasor-plot" class="headerLink">
     <a href="#%e4%bd%bf%e7%94%a8python%e6%89%8b%e7%bb%98%e8%8d%a7%e5%85%89%e5%af%bf%e5%91%bd%e7%9a%84phasor-plot" class="header-mark"></a>使用Python手绘荧光寿命的Phasor Plot</h3><blockquote>
@@ -263,7 +303,17 @@ $$
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">semicircle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">semicircle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">result</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">sr</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><center> <image src="/image/FLIM-phasorplot2.png" style="zoom:70%" /> </center>
+</span></span></code></pre></div><center>
+<a class="lightgallery" href="/image/FLIM-phasorplot2.png" title="/image/FLIM-phasorplot2.png" data-thumbnail="/image/FLIM-phasorplot2.png">
+        <img
+            
+            loading="lazy"
+            src="/image/FLIM-phasorplot2.png"
+            srcset="/image/FLIM-phasorplot2.png, /image/FLIM-phasorplot2.png 1.5x, /image/FLIM-phasorplot2.png 2x"
+            sizes="auto"
+            alt="/image/FLIM-phasorplot2.png" height="70%"  width="70%" >
+    </a>
+</center>
 <p>PS：关于这个图上通过FFT得到的刻度点和通过解析几何计算得到的标准半圆之间存在位移，老实说还没来得及去探究太多，初步推测是因为使用了高精度浮点数计算导致结果不准确，之后需要正式用这个图了再想办法解决</p>
 </div>
 
