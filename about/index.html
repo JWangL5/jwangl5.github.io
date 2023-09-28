@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/about\/"
-        },"genre": "page","wordcount":  78 ,
+        },"genre": "page","wordcount":  1284 ,
         "url": "https:\/\/jwangl5.github.io\/about\/","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": {
@@ -162,6 +162,7 @@
 	display: flex;
 	align-items: center;
 	font-weight: bold;
+	padding-bottom: 10px;
 }
 
 .time{
@@ -169,17 +170,48 @@
 	color: white;
 	radius: 10px;
 	padding: 5px;
-	margin-right: 50px;
+	margin-right: 30px;
 	width: 10%;
 	text-align: center;
 }
 
+.school{
+	font-size: 20px;
+}
+.school a{
+	color: black;
+}
 .expDetails{
 	text-indent: 2em;
+	padding-bottom: 10px;
+}
+.expDetails p{
+	/* text-indent: 2em; */
+	padding-left: 2em;
 }
 .expDetails li{
-	padding-top: 10px;
+	/* padding-top: 10px; */
 }
+
+.u {
+	text-indent: 0;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.u::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 8px;
+	background-color: #ffcc00;
+	transform: translateY(-50%);
+	z-index: -1;
+}
+
 </style>
 <div class="Resume">
 	<div class="BasicInfo">
@@ -205,24 +237,34 @@
 			<div class='school'>本科 · 中国农业大学 · 生物科学</div>
 		</div>
 		<div class='expDetails'>
-			<li>项目1</li>
-			<p>入学</p>
+			<li>课程学习</li>
+			<p>大学四年全部课程GPA 3.48/4.00，修读课程包含动物、植物、微生物课程，生物化学，分子生物学，遗传学，细胞生物学，生物信息学，发育生物学，神经生物学等，曾多次获得校级学习优秀二等奖学金，获北京市大学生生物学知识竞赛三等奖、北京市大学生生物学竞赛实验设计比赛三等奖，毕业时获校级优秀毕业生。</p>
+			<li>科研训练</li>
+			<p>2019年7月加入生物学院<a href="https://sites.google.com/view/jingyan-fu-lab-cau/">傅静雁教授课题组</a>，申请到国家级大学生创新项目《间期染色质凝集的探究》，该项目使用3D-SIM超分辨显微镜采集DAPI染色的间期细胞核图像，使用机器学习图像分类算法(CNN)、荧光图像表面建模(TANGO)、FLIM-FRET等方法，建立定量化描述染色质凝集的指标。该项目是当年学院同类项目中唯一以“优”结题的项目。期间以共一身份发表中文核心期刊文章1篇。科研训练期间掌握实验室常规实验操作，包括质粒构建、蛋白质纯化、细胞培养、免疫荧光制样及显微镜观察等基础实验操作。</p>
+			<li>社团、学生工作</li>
+			<p>在校期间积极参与校园活动，曾在校园电视台工作两年半，参与拍摄过包含开学典礼、元旦晚会、MOOC等多种活动。在院学生会工作三年，曾任职宣传部部长带领团队运营公众号等新媒体，服务同学的同时丰富了校园文化生活。大学期间积极参与社会志愿服务，总服务时长超过250小时。</p>
 		</div>
 		<div class='experience'>
 			<div class='time'>2019-2021</div>
-			<div class='school'>双学位 · 中国农业大学 · 数据科学与大数据技术</div>
+			<div class='school'>本科双学位 · 中国农业大学 · 数据科学与大数据技术</div>
 		</div>
 		<div class='expDetails'>
-			<li>项目1</li>
-			<p>入学</p>
+			<li>课程学习</li>
+			<p>双学位课程全部13门课程种，6门课成绩评定为A+，6门课成绩评定为A。双学位修读课程包含数据库技术、Linux应用、Python编程、Web技术基础、Hadoop集群、数据挖掘、数据可视化、人工智能技术等。曾获得华北地区大数据技能竞赛二等奖。</p>
+			<li>综合课程设计</li>
+			<p>双学位毕业设计考核，选题为《基于图数据库的文献评价分析研究》，该课程设计通过Python数据爬虫、数据清洗获取特定关键词下的文章及作者信息，存储于Neo4j图数据库中，使用Pageranke等算法指标综合计算某文献对特定领域的贡献，项目配套开发了Django服务器开发，并通过JS静态网页、Python服务器接口等方法实现了数据的前端可视化，实现了从数据获取、清洗、统计、挖掘、可视化的数据科学分析闭环。</p>
 		</div>
 		<div class='experience'>
-			<div class='time'>2021-2023</div>
-			<div class='school'>硕士 · 中国农业大学 · 细胞生物学</div>
+			<div class='time'>2021-2024</div>
+			<div class='school'>硕士 · 中国农业大学 · 细胞生物学 · 傅静雁教授课题组</div>
 		</div>
 		<div class='expDetails'>
-			<li>项目1</li>
-			<p>入学</p>
+			<li>动粒的邻近标记蛋白组</li>
+			<p>该课题将邻近标记技术应用到动粒结构，旨在系统地捕获不同动粒状态下的蛋白质组及其翻译后修饰组的变化。该项目获得学校研究生自主创新项目基金支持，使用APEX2酶作为邻近标记酶，筛选了动粒不同复合体中的多个蛋白作为诱饵蛋白，并且已优化邻近标记的诱导条件。</p>
+			<!-- <li>细胞器互作全景</li>
+			<p>入学</p> -->
+			<li>实验技能</li>
+			<p>硕士学习期间，充分发挥自身优势，广泛与实验室同门合作，探索并学习组学数据分析流程（ATAC-seq实验流程与数据分析、RNA-seq数据解读与可视化）、质谱数据挖掘（IP-MS实验设计与数据分析）、AlphaFold蛋白结构预测、针对特定样品的EMSA实验条件优化、洗包涵体纯化沉淀蛋白等。新学习了cDNA文库构建、慢病毒包装与细胞侵染、稳转细胞系构建、活细胞流式筛选、果蝇饲养与遗传学筛选等实验技能。</p>
 		</div>
 	</div>
 </div>
