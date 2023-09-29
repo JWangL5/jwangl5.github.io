@@ -4,5 +4,12 @@
         <link>https://jwangl5.github.io/series/</link>
         <description>Series - 系列 - Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /></channel>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /><item>
+    <title>MDF</title>
+    <link>https://jwangl5.github.io/series/mdf/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>卢旺</name>
+    </author><guid>https://jwangl5.github.io/series/mdf/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>

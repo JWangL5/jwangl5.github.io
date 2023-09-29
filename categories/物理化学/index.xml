@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>物理化学 - 分类 - Cell · Brain</title>
+        <link>https://jwangl5.github.io/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/</link>
+        <description>物理化学 - 分类 - Cell · Brain</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/" rel="self" type="application/rss+xml" /><item>
+    <title>MDF | 01. 概率是热力学的基础</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
+    <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
+</item><item>
+    <title>MDF | 02. 极致原理与平衡状态</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+    <description><![CDATA[极值原理 什么是极值 怎么求解极值 自由度与限制条件 平衡态（State of Equilibrium） 极值原理1：最大化多样性可以预测最可能发生的结果 扔]]></description>
+</item><item>
+    <title>MDF | 03. 热，功和能量</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</guid>
+    <description><![CDATA[功和热是能量变换和转移的两种形式 一些遵循物理法则的性质 动量守恒 动能守恒 势能 力和功 场力 热与热流 极值原理2：热力学第二定理]]></description>
+</item><item>
+    <title>MDF | 04. 多元函数微积分</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

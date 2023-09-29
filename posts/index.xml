@@ -4,7 +4,31 @@
         <link>https://jwangl5.github.io/posts/</link>
         <description>所有文章 | Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>MDF | 01. 概率是热力学的基础</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
+    <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
+</item><item>
+    <title>MDF | 02. 极致原理与平衡状态</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+    <description><![CDATA[极值原理 什么是极值 怎么求解极值 自由度与限制条件 平衡态（State of Equilibrium） 极值原理1：最大化多样性可以预测最可能发生的结果 扔]]></description>
+</item><item>
+    <title>MDF | 03. 热，功和能量</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</guid>
+    <description><![CDATA[功和热是能量变换和转移的两种形式 一些遵循物理法则的性质 动量守恒 动能守恒 势能 力和功 场力 热与热流 极值原理2：热力学第二定理]]></description>
+</item><item>
+    <title>MDF | 04. 多元函数微积分</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</link>
+    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
     <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
@@ -40,29 +64,5 @@
     <pubDate>Thu, 13 Oct 2022 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/</guid>
     <description><![CDATA[首先简单说明荧光寿命 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在]]></description>
-</item><item>
-    <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
-    <link>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</link>
-    <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/image_basic_processing_by_opencv/</guid>
-    <description><![CDATA[在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处理]]></description>
-</item><item>
-    <title>OpenCV | 图像的空间域处理之点运算</title>
-    <link>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</link>
-    <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/image_point_operations_in_spatial_domain_by_opencv/</guid>
-    <description><![CDATA[​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处]]></description>
-</item><item>
-    <title>OpenCV | 图像的显示与存储</title>
-    <link>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</link>
-    <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/image_display_and_storage_by_opencv/</guid>
-    <description><![CDATA[一、python-opencv的安装方法一：使用pip命令 opencv依赖于Numpy和wheel两个包，需要提前安装 若下载很慢可以使用 -i 设]]></description>
-</item><item>
-    <title>视频的编码与封装</title>
-    <link>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</link>
-    <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</guid>
-    <description><![CDATA[容器——封装格式 avi——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编]]></description>
 </item></channel>
 </rss>
