@@ -11,8 +11,8 @@
 <meta property="og:description" content="对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-09-29T00:00:00+08:00" />
-<meta property="article:modified_time" content="2023-09-29T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+<meta property="article:published_time" content="2023-09-30T00:00:00+08:00" />
+<meta property="article:modified_time" content="2023-09-30T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
 <meta property="og:see_also" content="https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/" />
 
 <meta name="twitter:card" content="summary"/>
@@ -34,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_01_principles_of_probability\/"
-        },"genre": "posts","wordcount":  710 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_01_principles_of_probability\/","datePublished": "2023-09-29T00:00:00+08:00","dateModified": "2023-09-29T00:00:00+08:00","publisher": {
+        },"genre": "posts","wordcount":  2793 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_01_principles_of_probability\/","datePublished": "2023-09-30T00:00:00+08:00","dateModified": "2023-09-30T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
                         "@type": "Person",
@@ -118,8 +118,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/mdf/"><i class="far fa-list-alt fa-fw"></i>MDF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-29">2023-09-29</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-29">2023-09-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 710 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2793 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="content" id="content"><p><figure><a class="lightgallery" href="/image/MDF-banner.png" title="/image/MDF-banner.png" data-thumbnail="/image/MDF-banner.png">
         <img
             
@@ -141,8 +141,8 @@
 <p>熵是统计热力学中最为基础的一个概念，它描述了物质趋于混乱的程度</p>
 </li>
 </ul>
-<h3 id="概率" class="headerLink">
-    <a href="#%e6%a6%82%e7%8e%87" class="header-mark"></a>概率</h3><ul>
+<h3 id="概率高中数学" class="headerLink">
+    <a href="#%e6%a6%82%e7%8e%87%e9%ab%98%e4%b8%ad%e6%95%b0%e5%ad%a6" class="header-mark"></a>概率（高中数学）</h3><ul>
 <li>概率的定义需要一个事件主体以及事件可能的所有结果，在对结果进行<strong>分类</strong>后，便可以定义出特定结果出现的概率：</li>
 </ul>
 <p>$$ p_A = \frac{n_A}{N} $$</p>
@@ -168,51 +168,155 @@
 </ul>
 </li>
 <li>
-<p>概率的计算</p>
+<p>基本事件的概率的计算（Elementary Event）</p>
+<ul>
+<li>加法原则：如果事件结果互斥，则多个事件的概率之间可以相加</li>
+</ul>
+<p>$$
+p(A\ or\ B\ or\ &hellip;\ or\ E) = \frac{n_A+n_B+&hellip;+n_E}{N} =p_A+p_B+&hellip;+p_E
+$$</p>
+<ul>
+<li>乘法原则：两件事同时发生的概率用乘法（并没有要求两事件之间相互独立）</li>
+</ul>
+<p>$$
+p(A\ and\ B\ and\ &hellip;\ and\ E)=(\frac{n_A}{N})(\frac{n_B}{N})&hellip;(\frac{n_C}{N})=p_A \cdot p_B \cdot &hellip; \cdot p_E
+$$</p>
+</li>
+<li>
+<p>复合事件的概率计算（Composite Event）</p>
 <ul>
 <li>
-<p>加法原则：</p>
+<p>复合事件是对基本事件分类后，得到的具有相对复杂的关系的多个结果，通常不能直接用加法或乘法计算，比如下面这个例子</p>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.7：两次骰子结果出现1或4<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 计算投两次骰子，结果中出现第一次为1或第二次为4的概率？</p>
+<p><strong>A1（直接计数）：</strong> 两次投掷结果是相互独立的，因而将两次投掷认定为一个基本事件时，一共有36种结果。在这36种结果中，出现第一次为1或第二次为4的情况有11种，因而这个问题的答案是$\frac{11}{36}$</p>
+<p><strong>A2（拆解事件）：</strong> 思考时也可以该符合事件拆分成可以用乘法加法运算几部分：</p>
+<p>事件A：第一次结果为1 AND 第二次结果不为4
+$$ p_A = (\frac16)(\frac56) $$
+事件B: 第一次结果不为1 AND 第二次结果为4
+$$ p_A = (\frac56)(\frac16) $$
+事件C：第一次结果为1 AND 第二次结果为4
+$$ p_A = (\frac16)(\frac16) $$</p>
+<p>三部分互斥，组成了问题事件的结果，因而只需再将三部分加起来即可</p>
+<p><strong>A3（找反面事件）：</strong> 也可以直接思考这个问题的反面，即“第一次不是1 AND 第二次不是4”，随后用1减去该概率</p>
+</div>
+        </div>
+    </div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="条件概率大学概率论基础" class="headerLink">
+    <a href="#%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87%e5%a4%a7%e5%ad%a6%e6%a6%82%e7%8e%87%e8%ae%ba%e5%9f%ba%e7%a1%80" class="header-mark"></a>条件概率（大学概率论基础）</h3><ul>
+<li>
+<p>当一件事A的发生依赖于另一事件B，则对事件A的描述可以是对其的直接观察$p(AB)$，也可以是在B一定发生时再观察A的概率$p(A|B)$</p>
 </li>
 <li>
-<p>乘法原则：</p>
+<p>前者被成为联合概率（Joint probability），指代事件A和B同时发生的概率，$p(AB)$是对$p(A\ and\ B)$的简写</p>
 </li>
+<li>
+<p>后者被称为<strong>条件概率</strong>，其中“B一定发生”是条件</p>
+</li>
+<li>
+<p>对这两个事件A和B使用乘法法则，可以得出联合概率和条件概率的计算关系，这一关系被称为<strong>贝叶斯法则</strong>。其原理是依据事件A发生时，事件B一定发生，即是有关系$ p(A|B)=p(A) $</p>
+</li>
+</ul>
+<p>$$ p(AB) = p(A\cap B) = p(A|B)\cdot p(B) = p(B|A)\cdot p(A) $$</p>
+<ul>
+<li>
+<p>在上式表述的关系中，$p(B)$被称为<strong>先验概率</strong> （priori probability），条件概率$p(A|B)$被称为<strong>后验概率</strong> （posteriori probability）</p>
+</li>
+<li>
+<p>另外，还有一个加法原则的基本关系式</p>
+</li>
+</ul>
+<p>$$ p(A\cup B) = p(A)+p(B)-p(A\cap B) $$</p>
+<ul>
+<li>
+<p>当事件A和B互斥，$p(A\cap B) = 0$，此时该式子就变为了上面说的加法原则的关系式</p>
+</li>
+<li>
+<p>定义如下式子为相关度，用以描述B影响A的程度
+$$ g=\frac{p(A|B)}{P(A)} = \frac{p(AB)}{p(A)P(B)} $$</p>
+<ul>
+<li>当$g=1$时，说明B不影响A</li>
+<li>当$g=0$时，说明B发生时，A一定不发生</li>
+<li>当$0 \lt g \lt 1$，说明B的发生使A发生概率降低了，是负影响</li>
+<li>当$g \gt 1$，说明B使A概率增高，是正影响</li>
 </ul>
 </li>
 <li>
-<p>基本事件与复合事件</p>
+<p>联合概率相加也可以用于求解特定事件发生的概率，其中$\bar A$表示事件A不发生，公式也可以用贝叶斯关系式展开</p>
+<p>$$ p(B) = p(BA) + p(B\bar A) = p(B|A)p(A) + p(B|\bar A)p(\bar A)$$</p>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.11：贝叶斯方法预测蛋白性质（Just a toy example）<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 假设你发现了一种特殊的蛋白结构叫做<code>heli-coil h</code>，这种结构很稀有，你在5000个蛋白结构中才找到20个类似的结构，即$p(h)=0.004$。同时，在找到的20个序列中，你发现有19个结构都带有一种氨基酸序列特征（motif）叫做<code>sf</code>，即$ p(sf|h)=0.95$。现在你认为这个序列特征<code>sf</code>是导致<code>heli-coil h</code>出现的关键因素，你应该如何证明你的观点？</p>
+<p><strong>A：</strong> 在这个问题中，需要计算的关键数字应该是在序列<code>sf</code>出现时<code>h</code>也同时出现的概率，即$p(h|sf)$。根据贝叶斯公式，</p>
+<p>$$
+p(h|sf) = \frac{p(sf|h)p(h)}{p(sf)} = \frac{p(sf|h)p(h)}{p(sf|h)p(h)+p(sf|\bar h)p(\bar h)}
+$$</p>
+<p>还需要知道$p(sf|\bar h)$的概率，即不存在这个<code>heli-coil h</code>结构的蛋白中，有多少蛋白是含有<code>sf</code>序列特征的，假设这个数字是$p(sf|\bar h)=0.001$，可以得到</p>
+<p>$$
+p(h|sf) = \frac{(0.95)(0.004)}{(0.95)(0.004)+(0.001)(0.996)}=0.79
+$$</p>
+<p>于是可以得出结论，在含有<code>sf</code>序列特征的所有蛋白中，有约80%都可以形成<code>heli-coil h</code>结构</p>
+</div>
+        </div>
+    </div>
 </li>
 </ul>
-<h3 id="条件概率" class="headerLink">
-    <a href="#%e6%9d%a1%e4%bb%b6%e6%a6%82%e7%8e%87" class="header-mark"></a>条件概率</h3><ul>
+<h3 id="排列组合高中数学" class="headerLink">
+    <a href="#%e6%8e%92%e5%88%97%e7%bb%84%e5%90%88%e9%ab%98%e4%b8%ad%e6%95%b0%e5%ad%a6" class="header-mark"></a>排列组合（高中数学）</h3><ul>
 <li>
-<p>联合概率</p>
+<p>排列组合是一种快速计算事件总结果数的一种方法，其包含有两个问题：排列问题和组合问题</p>
+<ul>
+<li>
+<p>阶乘$N! = 1\cdot 2\cdot 3 \cdot &hellip; \cdot N$，定义$0!=1$</p>
 </li>
 <li>
-<p>贝叶斯法则</p>
-</li>
-<li>
-<p>加法法则</p>
-</li>
-<li>
-<p>关系的度</p>
+<p>排列数：从m个物品中选择n个进行排序，可以得到的$A_m^n$种结果</p>
 </li>
 </ul>
-<h3 id="排列组合" class="headerLink">
-    <a href="#%e6%8e%92%e5%88%97%e7%bb%84%e5%90%88" class="header-mark"></a>排列组合</h3><ul>
-<li>
-<p>阶乘运算</p>
-</li>
-<li>
-<p>排列数</p>
-</li>
-<li>
-<p>组合数</p>
+<p>$$ A_m^n = \frac{m!}{(m-n)!} = m\cdot (m-1) \cdot (m-2) \cdot &hellip; \cdot (m-n+1)$$</p>
+<ul>
+<li>组合数：从m个物品中选择n个时，可以得到$C_m^n$种结果</li>
+</ul>
+<p>$$ C_m^n = \frac{A_m^n}{A_n^n} = \frac{m!}{n!(m-n)!} = \frac{m\cdot (m-1) \cdot (m-2) \cdot &hellip; \cdot (m-n+1)}{n\cdot (n-1) \cdot (n-2) \cdot &hellip; \cdot 1}$$</p>
 </li>
 </ul>
-<h3 id="概率分布函数" class="headerLink">
-    <a href="#%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83%e5%87%bd%e6%95%b0" class="header-mark"></a>概率分布函数</h3><ul>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.16：组合数的逻辑原理<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 单词$cheese$是有6个字母组成的，如果将6个字母随机打乱重新排序，有多少种排序方法仍旧可以得到正确拼写？</p>
+<p><strong>A：</strong> 一共有$A_6^6=720$种可能，但其中有3个字母e是不需要排序的，因而需要再除以$A_3^3=6$，一共120种可能可以得到正确拼写</p>
+</div>
+        </div>
+    </div>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.20：Bose-Einstein模型<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 将n个没有区别的小球放进M个盒子中，有多少种方法？</p>
+<p><strong>Ref：</strong> Bosons是一种特殊的粒子（玻色子），爱因斯坦模型是说有n个玻色子可能归属于M个能级（可以有多个相同的粒子处于同一能级）</p>
+<p><strong>A：</strong> 高中时很经典的问题，可以用<strong>插板法</strong> 来解决，即可以把装入M个盒子看成是在n个元素的序列上插入(M-1)块板，将其分隔成M块，于是问题就转变为了n个球连同(M-1)块板的排序问题，综合利用排列组合，答案为
+$$ W(n,M) = \frac{A_{n+M-1}^{n+M-1}}{A_n^n\cdot A_{M-1}^{M-1}} = \frac{(n+M-1)!}{n!\cdot (M-1)!}$$</p>
+</div>
+        </div>
+    </div>
+<h3 id="概率分布函数大学概率论内容" class="headerLink">
+    <a href="#%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83%e5%87%bd%e6%95%b0%e5%a4%a7%e5%ad%a6%e6%a6%82%e7%8e%87%e8%ae%ba%e5%86%85%e5%ae%b9" class="header-mark"></a>概率分布函数（大学概率论内容）</h3><ul>
 <li>
-<p>连续的概率分布函数</p>
+<p>在明确选择出随机变量后，可以找到概率值和随机变量之间的关系，这一关系被称作<strong>概率分布函数</strong> ，</p>
 </li>
 <li>
 <p>二项分布与多项分布</p>
@@ -243,7 +347,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-09-29</span>
+                <span>更新于 2023-09-30</span>
             </div>
             <div class="post-info-license"></div>
         </div>

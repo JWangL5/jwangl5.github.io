@@ -4,10 +4,10 @@
         <link>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</link>
         <description>卢旺 - 作者 - Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
     <title>MDF | 01. 概率是热力学的基础</title>
     <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
-    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+    <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
 </item><item>
@@ -36,9 +36,9 @@
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
 </item><item>
     <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
-    <link>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</link>
     <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/dynamic_volcanic_plot_in_rna_seq/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</guid>
     <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
 </item><item>
     <title>原神圣遗物角色适用表（4.0版本 附含下载链接）</title>
@@ -47,22 +47,22 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
     <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
 </item><item>
-    <title>荧光流式细胞实验检测细胞周期并使用Python绘图</title>
-    <link>https://jwangl5.github.io/posts/flow_cytometry_mapping_by_python/</link>
-    <pubDate>Sat, 22 Apr 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/flow_cytometry_mapping_by_python/</guid>
-    <description><![CDATA[实验原理荧光流式细胞术是根据荧光信号分离单细胞的技术，其识别的荧光可以是活细胞内表达的，也可以是固定细胞上体外标记的。因为在细胞分裂过程中遗]]></description>
+    <title>用TypeScript写的贪吃蛇小游戏</title>
+    <link>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</link>
+    <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</guid>
+    <description><![CDATA[]]></description>
 </item><item>
-    <title>数独求解的高级技巧</title>
-    <link>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</link>
-    <pubDate>Fri, 10 Feb 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</guid>
-    <description><![CDATA[本文档参照Hodoku官方的教程和我的系统性梳理 一、Singles Full house / Last digit （就是整行列宫的最后一个位置和数字） Hidden single （行列宫中只有一个位置可]]></description>
+    <title>用ODEs建模细胞周期（Julia代码）</title>
+    <link>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</link>
+    <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</guid>
+    <description><![CDATA[最近读到的一篇文章]]></description>
 </item><item>
-    <title>荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）</title>
-    <link>https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/</link>
-    <pubDate>Thu, 13 Oct 2022 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/flim_fret_phasor_plot_by_python/</guid>
-    <description><![CDATA[首先简单说明荧光寿命 荧光寿命是指荧光分子在被激发后，能量从激发态回落至基态所需时间的一半（$t_{1/2}$），是荧光分子的固有物理性质（在]]></description>
+    <title>一个将pdf转化为图像的Python脚本（含代码下载）</title>
+    <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</link>
+    <pubDate>Tue, 30 May 2023 21:11:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</guid>
+    <description><![CDATA[写这个脚本的起因是最近发现了一个用Rust编写的、很神奇的文字排版工具叫做Typst，在调整排版格式的时候用PDF文件很难做到完全还原，于是]]></description>
 </item></channel>
 </rss>
