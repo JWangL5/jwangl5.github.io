@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_01_principles_of_probability\/"
-        },"genre": "posts","wordcount":  2793 ,
+        },"genre": "posts","wordcount":  4541 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_01_principles_of_probability\/","datePublished": "2023-09-30T00:00:00+08:00","dateModified": "2023-09-30T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,8 +118,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/mdf/"><i class="far fa-list-alt fa-fw"></i>MDF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2793 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-30">2023-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4541 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
         </div><div class="content" id="content"><p><figure><a class="lightgallery" href="/image/MDF-banner.png" title="/image/MDF-banner.png" data-thumbnail="/image/MDF-banner.png">
         <img
             
@@ -163,7 +163,7 @@
 <p>独立（independent），事件结果A和另一事件结果B之间不存在任何相互影响的关系</p>
 </li>
 <li>
-<p>多样性（multiplicity），事物的结果是具有多个性质的，不同方面可能有几种可能，那么将这些方面综合来看就有着相乘的关系。比如说有两种不同形状、三种不同颜色的小汽车，那么最终一共就有2×3=6种小汽车</p>
+<p>多样性（重数，multiplicity），事物的结果是具有多个性质的，不同方面可能有几种可能，那么将这些方面综合来看就有着相乘的关系。比如说有两种不同形状、三种不同颜色的小汽车，那么最终一共就有2×3=6种小汽车</p>
 </li>
 </ul>
 </li>
@@ -316,20 +316,231 @@ $$ W(n,M) = \frac{A_{n+M-1}^{n+M-1}}{A_n^n\cdot A_{M-1}^{M-1}} = \frac{(n+M-1)!}
 <h3 id="概率分布函数大学概率论内容" class="headerLink">
     <a href="#%e6%a6%82%e7%8e%87%e5%88%86%e5%b8%83%e5%87%bd%e6%95%b0%e5%a4%a7%e5%ad%a6%e6%a6%82%e7%8e%87%e8%ae%ba%e5%86%85%e5%ae%b9" class="header-mark"></a>概率分布函数（大学概率论内容）</h3><ul>
 <li>
-<p>在明确选择出随机变量后，可以找到概率值和随机变量之间的关系，这一关系被称作<strong>概率分布函数</strong> ，</p>
+<p>在特定的事件中，可以在明确一些变量作为随机变量，其可以是具有特定物理含义的量，也可以仅仅只是一个编号标识。在选定随机变量后，可以找到概率值和随机变量之间的关系，这一关系被称作<strong>概率分布函数</strong> ，其包含了该概率问题的全部信息</p>
 </li>
 <li>
-<p>二项分布与多项分布</p>
+<p>根据随机变量的类型，可以分为离散型概率分布和连续型连续型</p>
 </li>
 <li>
-<p>分布的期望值（均值）</p>
-</li>
-<li>
-<p>分布的方差</p>
+<p>在连续型分布函数中，p(x)被称为概率密度，其并不对应真正的概率值，只有在对随机变量进行积分后，才可以被称为概率，即当随机变量取值为$x+dx$的概率，使用如下公式计算随机变量$x$取值在范围$[a,b]$的概率：</p>
 </li>
 </ul>
+<p>$$p(a\le x \le b) = \int_a^b p(x)dx $$</p>
+<ul>
+<li>
+<p>有时候分布函数在全x范围积分后并不等于0，需要再进行一步标准化（归一化，normalized）</p>
+</li>
+<li>
+<p>有一些概率分布在自然界中高频出现，这里主要先提两个，因为这是“熵”概念引出的基础</p>
+<ul>
+<li><strong>二项分布</strong>：每一次实验相互独立，且仅具有两个互斥的结果，这种事件被称为<strong>伯努利事件</strong>。假设有两互斥的结果成功和失败，其中成功的概率为$p$，失败则为$1-p$，现实验N次，有n次成功的概率符合二项分布，其公式为</li>
+</ul>
+<p>$$ p(n,N) = C_N^n \cdot p^n\cdot (1-p)^{N-n} = \frac{N!}{n!(N-n)!}\cdot p^n \cdot (1-p)^{N-n} $$</p>
+<ul>
+<li>
+<p>其中$\frac{N!}{n!(N-n)!}$是二项式系数，该公式可以理解为将$p$和$1-p$带入二项式定理得到的；根据N的不同上下排列，绘制出的图形为杨辉三角</p>
+</li>
+<li>
+<p><strong>多项式分布</strong>：当事件有$t$种互斥的结果，N次实验中，每种结果出现的次数为$n_1$，$n_2$，……，$n_t$（全部相加即为$N$）的概率为：</p>
+</li>
+</ul>
+<p>$$ p(n_1, n_2, &hellip;, n_t, N)=(\frac{N!}{n_1!n_2!&hellip;n_t!})p_1^{n_1}\cdot p_2^{n_2}\cdot &hellip; \cdot p_t^{n_t} $$</p>
+</li>
+<li>
+<p>概率分布函数$p(x)$的$n$阶矩为</p>
+<p>$$ &lt;x^n&gt; = \int_a^b x^n p(x)dx = \frac{\int_a^b x^n g(x) dx}{\int_a^b g(x)dx} $$</p>
+<p>计算$n$阶矩时，可以使用标准化后的概率分布函数$p(x)$带入左边式子计算；但当分布函$g(x)$数并未标准化时，也可以使用右边的式子</p>
+</li>
+<li>
+<p>当$n=0$时，$&lt;x^0&gt;=\int_a^b p(x) dx=1$，即任何概率分布函数的零阶矩等于0</p>
+</li>
+<li>
+<p>当$n=1$时，$&lt;x^1&gt;=\int_a^b x\cdot p(x) dx$，该数值被称为随机变量的<strong>均值</strong>、<strong>期望</strong>、一阶矩</p>
+</li>
+<li>
+<p>对于矩的计算，不仅仅可以针对随机变量$x$进行计算，也可以针对以$x$针对自变量为$x$的函数$f(x)$进行计算，例如：</p>
+</li>
+</ul>
+<p>$$ &lt;f(x)&gt;=\int_a^b f(x)p(x)dx = \frac{\int_a^b f(x)g(x)dx}{\int_a^b g(x)dx} $$</p>
+<ul>
+<li>还有两个很有用的、关于计算均值的式子</li>
+</ul>
+<p>$$ &lt;af(x)&gt;=\int af(x)p(x)dx = a\int f(x)p(x)dx = a&lt;f(x)&gt; $$
+$$ &lt;f(x)+g(x)&gt; = \int [f(x)+g(x)] p(x)dx = \int f(x)p(x)dx + \int g(x)p(x)dx = &lt;f(x)&gt;+&lt;g(x)&gt; $$</p>
+<ul>
+<li><strong>方差</strong>被定义为距离均值的离散程度，其中$a=&lt;x&gt;$，即$a$是均值（一阶矩），是一个常数；根据下面式子的推导，方差也等于二阶矩减去一阶矩的平方</li>
+</ul>
+<p>$$ \sigma^2 = &lt;(x-a)^2&gt; = &lt;x^2-2ax+a^2&gt; = &lt;x^2&gt; -2a&lt;x&gt; + a^2 = &lt;x^2&gt; - &lt;x&gt;^2  $$</p>
+<ul>
+<li>
+<p>对方差开平方得到的值被称作<strong>标准差</strong></p>
+</li>
+<li>
+<p>更高阶的矩描述概率分布函数的不对称性</p>
+</li>
+</ul>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.25：指数分布的均值计算<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 对于在$0\le x \le \infty $上的分布函数$g(x)=e^{-ax}$（$a \gt 0$），求解均值</p>
+<p><strong>A：</strong> 首先标准化该函数，然后再计算一阶矩</p>
+<p>$$ g_0=\int_0^\infty e^{-ax}dx = \left. -(\frac1a)e^{-ax} \right \vert _0^\infty = \frac1a $$</p>
+<p>$$ &lt;x&gt;=\frac{\int_a^b x^ne^{-ax}dx}{1/a} = a \int_a^b x^n e^{-ax} dx = \left.-[e^{-ax}(x+\frac1a)]\right \vert_0^\infty = \frac1a $$</p>
+</div>
+        </div>
+    </div>
+<div class="details admonition example open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-list-ol fa-fw"></i>例1.26：向量取向的均值<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p><strong>Q：</strong> 假设你有一个空间三维矢量，它可以在所有可能的角度$\theta$上自由地均匀定向，计算该矢量在特定轴（比如z轴）向上投影的平均长度</p>
+<p><figure><a class="lightgallery" href="/image/MDF-01-vectorOrient.png" title="/image/MDF-01-vectorOrient.png" data-thumbnail="/image/MDF-01-vectorOrient.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-vectorOrient.png"
+            srcset="/image/MDF-01-vectorOrient.png, /image/MDF-01-vectorOrient.png 1.5x, /image/MDF-01-vectorOrient.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-vectorOrient.png" height="201"  width="237" >
+    </a></figure></p>
+<p><strong>A：</strong> 对投影的描述可以用类似$\cos \theta$，$\cos^2 \theta$的量来描述。因为角度指向是均匀的，所以其指向的各个角度是与球面成比例的。围绕z轴的这个条带面积为$(rd\theta)(2\pi l)$，而$l=r\sin\theta$，因而该面积为$S=2\pi r^2 \sin\theta d\theta$。在0-90°时，当角度$\theta$变小一点儿时，面积也会变小一点。这个条带的面积占整个球面的面积，即是在$\theta$角度的概率</p>
+<p>$$ p(\theta)=\frac{2\pi r^2 \sin \theta d\theta}{\int_0^\pi 2\pi r^2 \sin\theta d\theta} = \frac{\sin\theta d\theta}{\int_0^\pi \sin\theta d\theta} $$</p>
+<p>因而$&lt;\cos \theta&gt;$的均值是</p>
+<p>$$ &lt;\cos\theta&gt;=\int_0^\pi \cos\theta p(\theta) d\theta = \frac{\int_0^\pi \cos\theta \sin\theta d\theta}{\int_0^\pi \sin\theta d\theta} = \frac{\int_0^\pi \cos\theta \cdot -d\cos\theta}{\int_0^\pi -d\cos\theta} = \frac{\int_1^{-1} xdx}{\int_1^{-1}dx} = \frac{\left. \frac12 x^2 \right \vert_1^{-1}}{x\vert_1^{-1}} = 0 $$</p>
+<p>各个方向会相互抵消，所以$&lt;\cos \theta&gt;$表现为0，为了更好表述该性质，可以使用$&lt;\cos^2\theta&gt;$的均值（类似均方根速度）</p>
+<p>$$&lt;\cos^2\theta&gt; = \int_0^\pi \cos^2\theta p(\theta) d\theta = \frac{\int_0^\pi \cos^2\theta \sin\theta d\theta}{\int_0^\pi \sin\theta d\theta} = \frac{\left. \frac13 x^3 \right \vert_1^{-1}}{x\vert_1^{-1}} = \frac 13$$</p>
+</div>
+        </div>
+    </div>
 <h3 id="常见分布举例" class="headerLink">
-    <a href="#%e5%b8%b8%e8%a7%81%e5%88%86%e5%b8%83%e4%b8%be%e4%be%8b" class="header-mark"></a>常见分布举例</h3><h3 id="练习题" class="headerLink">
+    <a href="#%e5%b8%b8%e8%a7%81%e5%88%86%e5%b8%83%e4%b8%be%e4%be%8b" class="header-mark"></a>常见分布举例</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"><div style="width:100px"></div>分布</th>
+<th>描述</th>
+<th><div style="width:250px"></div>公式</th>
+<th>图像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">伯努利分布</td>
+<td>伯努利事件概率为$p$，1次实验成功的概率</td>
+<td>$$g(n)=p^n\cdot (1-p)^{1-n} \\ \\ n=0, 1$$</td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Bernoulli.png" title="/image/MDF-01-Bernoulli.png" data-thumbnail="/image/MDF-01-Bernoulli.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Bernoulli.png"
+            srcset="/image/MDF-01-Bernoulli.png, /image/MDF-01-Bernoulli.png 1.5x, /image/MDF-01-Bernoulli.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Bernoulli.png" height="172"  width="228" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">二项分布</td>
+<td>伯努利事件概率为$p$，$N$次实验成功$n$次的概率</td>
+<td>$$ p(n)=C_N^n p^n \cdot (1-p)^{N-n} \\ \\ n=1,2,&hellip;,N $$</td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Binomial.png" title="/image/MDF-01-Binomial.png" data-thumbnail="/image/MDF-01-Binomial.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Binomial.png"
+            srcset="/image/MDF-01-Binomial.png, /image/MDF-01-Binomial.png 1.5x, /image/MDF-01-Binomial.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Binomial.png" height="173"  width="225" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">均匀分布</td>
+<td></td>
+<td></td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Flat.png" title="/image/MDF-01-Flat.png" data-thumbnail="/image/MDF-01-Flat.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Flat.png"
+            srcset="/image/MDF-01-Flat.png, /image/MDF-01-Flat.png 1.5x, /image/MDF-01-Flat.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Flat.png" height="337"  width="447" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">泊松分布</td>
+<td>伯努利事件成功的概率是$a$，$n$次简单随机实验事件成功发生a次的概率，假设每次随机实验，</td>
+<td>$$p(n)=\frac{a^n\cdot e^{-a}}{n!}$$</td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Poisson.png" title="/image/MDF-01-Poisson.png" data-thumbnail="/image/MDF-01-Poisson.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Poisson.png"
+            srcset="/image/MDF-01-Poisson.png, /image/MDF-01-Poisson.png 1.5x, /image/MDF-01-Poisson.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Poisson.png" height="170"  width="226" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">高斯分布</td>
+<td>ss</td>
+<td>$$ p(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-x^2/2\sigma^2} $$</td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Gaussian.png" title="/image/MDF-01-Gaussian.png" data-thumbnail="/image/MDF-01-Gaussian.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Gaussian.png"
+            srcset="/image/MDF-01-Gaussian.png, /image/MDF-01-Gaussian.png 1.5x, /image/MDF-01-Gaussian.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Gaussian.png" height="339"  width="442" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">指数分布 <br> 玻尔兹曼分布</td>
+<td></td>
+<td>$$ p(x)=ae^{-ax} \\ x\ge 0 $$</td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Exponential.png" title="/image/MDF-01-Exponential.png" data-thumbnail="/image/MDF-01-Exponential.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Exponential.png"
+            srcset="/image/MDF-01-Exponential.png, /image/MDF-01-Exponential.png 1.5x, /image/MDF-01-Exponential.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Exponential.png" height="354"  width="438" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">柯西分布</td>
+<td></td>
+<td></td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-Lorentzian.png" title="/image/MDF-01-Lorentzian.png" data-thumbnail="/image/MDF-01-Lorentzian.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-Lorentzian.png"
+            srcset="/image/MDF-01-Lorentzian.png, /image/MDF-01-Lorentzian.png 1.5x, /image/MDF-01-Lorentzian.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-Lorentzian.png" height="318"  width="457" >
+    </a></figure></td>
+</tr>
+<tr>
+<td style="text-align:center">幂律分布</td>
+<td></td>
+<td></td>
+<td><figure><a class="lightgallery" href="/image/MDF-01-PowerLaw.png" title="/image/MDF-01-PowerLaw.png" data-thumbnail="/image/MDF-01-PowerLaw.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-01-PowerLaw.png"
+            srcset="/image/MDF-01-PowerLaw.png, /image/MDF-01-PowerLaw.png 1.5x, /image/MDF-01-PowerLaw.png 2x"
+            sizes="auto"
+            alt="/image/MDF-01-PowerLaw.png" height="324"  width="420" >
+    </a></figure></td>
+</tr>
+</tbody>
+</table>
+<h3 id="练习题" class="headerLink">
     <a href="#%e7%bb%83%e4%b9%a0%e9%a2%98" class="header-mark"></a>练习题</h3></div>
 
         <div class="sponsor">
@@ -382,7 +593,7 @@ $$ W(n,M) = \frac{A_{n+M-1}^{n+M-1}}{A_n^n\cdot A_{M-1}^{M-1}} = \frac{(n+M-1)!}
             <i class="fas fa-comment fa-fw"></i>
         </a>
     </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 </body>
 
 </html>
