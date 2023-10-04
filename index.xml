@@ -4,20 +4,20 @@
         <link>https://jwangl5.github.io/</link>
         <description>Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</lastBuildDate>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>MDF | 02. 极值原理与平衡状态</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <pubDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+    <description><![CDATA[极值原理（Extremum Principles） 分子会通过构象变化、物理化学反应来改变两个关键的参数，一个是使得能量最低，另一个是熵最大。反]]></description>
+</item><item>
     <title>MDF | 01. 概率是热力学的基础</title>
     <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
     <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
-</item><item>
-    <title>MDF | 02. 极致原理与平衡状态</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
-    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
-    <description><![CDATA[极值原理 什么是极值 怎么求解极值 自由度与限制条件 平衡态（State of Equilibrium） 极值原理1：最大化多样性可以预测最可能发生的结果 扔]]></description>
 </item><item>
     <title>MDF | 03. 热，功和能量</title>
     <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
@@ -48,6 +48,12 @@
     <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
     <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
+</item><item>
+    <title>一点对泊松分布的理解</title>
+    <link>https://jwangl5.github.io/posts/understanding_poisson_distribution/</link>
+    <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/understanding_poisson_distribution/</guid>
+    <description><![CDATA[]]></description>
 </item><item>
     <title>用TypeScript写的贪吃蛇小游戏</title>
     <link>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</link>
@@ -109,22 +115,16 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</guid>
     <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新。]]></description>
 </item><item>
+    <title>DHB Sensor</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</link>
+    <pubDate>Wed, 10 Feb 2021 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
     <link>https://jwangl5.github.io/posts/opencv/image_basic_processing_by_opencv/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/opencv/image_basic_processing_by_opencv/</guid>
     <description><![CDATA[在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处理]]></description>
-</item><item>
-    <title>OpenCV | 图像的空间域处理之点运算</title>
-    <link>https://jwangl5.github.io/posts/opencv/image_point_operations_in_spatial_domain_by_opencv/</link>
-    <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/opencv/image_point_operations_in_spatial_domain_by_opencv/</guid>
-    <description><![CDATA[​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处]]></description>
-</item><item>
-    <title>OpenCV | 图像的显示与存储</title>
-    <link>https://jwangl5.github.io/posts/opencv/image_display_and_storage_by_opencv/</link>
-    <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/opencv/image_display_and_storage_by_opencv/</guid>
-    <description><![CDATA[一、python-opencv的安装方法一：使用pip命令 opencv依赖于Numpy和wheel两个包，需要提前安装 若下载很慢可以使用 -i 设]]></description>
 </item></channel>
 </rss>

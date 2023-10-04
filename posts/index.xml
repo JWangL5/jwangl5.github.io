@@ -4,18 +4,18 @@
         <link>https://jwangl5.github.io/posts/</link>
         <description>所有文章 | Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>MDF | 02. 极值原理与平衡状态</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <pubDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+    <description><![CDATA[极值原理（Extremum Principles） 分子会通过构象变化、物理化学反应来改变两个关键的参数，一个是使得能量最低，另一个是熵最大。反]]></description>
+</item><item>
     <title>MDF | 01. 概率是热力学的基础</title>
     <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
     <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
-</item><item>
-    <title>MDF | 02. 极致原理与平衡状态</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
-    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
-    <description><![CDATA[极值原理 什么是极值 怎么求解极值 自由度与限制条件 平衡态（State of Equilibrium） 极值原理1：最大化多样性可以预测最可能发生的结果 扔]]></description>
 </item><item>
     <title>MDF | 03. 热，功和能量</title>
     <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
@@ -47,6 +47,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
     <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
 </item><item>
+    <title>一点对泊松分布的理解</title>
+    <link>https://jwangl5.github.io/posts/understanding_poisson_distribution/</link>
+    <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/understanding_poisson_distribution/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>用TypeScript写的贪吃蛇小游戏</title>
     <link>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</link>
     <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</guid>
     <description><![CDATA[最近读到的一篇文章 using SciMLBase using OrdinaryDiffEq using Plots GF = 1. k = [1. 2. 1. 0.02 1.5 5. 0.18 0.025 1. 50. 1. 2. 10. 20. 10. 1. 100. 1. 1.5 2. 2. 0.1 1. 1. 10. 2. 1. 50. 50. 2. 2. 1.] n = [5. 5. 5. 5. 5. 5. 5. 5.] C = [0.25 0.1 0.25 1. 0.1 0.1]]></description>
-</item><item>
-    <title>一个将pdf转化为图像的Python脚本（含代码下载）</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</link>
-    <pubDate>Tue, 30 May 2023 21:11:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</guid>
-    <description><![CDATA[写这个脚本的起因是最近发现了一个用Rust编写的、很神奇的文字排版工具叫做Typst，在调整排版格式的时候用PDF文件很难做到完全还原，于是]]></description>
 </item></channel>
 </rss>
