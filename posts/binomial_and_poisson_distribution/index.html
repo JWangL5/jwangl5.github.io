@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>BioModel | 对二项分布与泊松分布的理解 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="BioModel | 对二项分布与泊松分布的理解" />
+<meta property="og:description" content="二项分布（生物建模书71页）二项分布是一种包含两个参数的离散分布。可以用如下案例引入：单位时间发生的次数为随机变量 $X$ ，平均次数为 $\lamb" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-04T00:17:49+08:00" />
+<meta property="article:modified_time" content="2023-08-04T00:17:49+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="BioModel | 对二项分布与泊松分布的理解"/>
+<meta name="twitter:description" content="二项分布（生物建模书71页）二项分布是一种包含两个参数的离散分布。可以用如下案例引入：单位时间发生的次数为随机变量 $X$ ，平均次数为 $\lamb"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" /><link rel="prev" href="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/" /><link rel="next" href="https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "BioModel | 对二项分布与泊松分布的理解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/binomial_and_poisson_distribution\/"
+        },"genre": "posts","wordcount":  1890 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/binomial_and_poisson_distribution\/","datePublished": "2023-08-04T00:17:49+08:00","dateModified": "2023-08-04T00:17:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">BioModel | 对二项分布与泊松分布的理解</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/biomodel/"><i class="far fa-list-alt fa-fw"></i>BioModel</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1890 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="二项分布生物建模书71页" class="headerLink">
+    <a href="#%e4%ba%8c%e9%a1%b9%e5%88%86%e5%b8%83%e7%94%9f%e7%89%a9%e5%bb%ba%e6%a8%a1%e4%b9%a671%e9%a1%b5" class="header-mark"></a>二项分布（生物建模书71页）</h3><p>二项分布是一种<mark class='yellow'>包含两个参数的离散分布</mark>。可以用如下案例引入：<strong>单位时间</strong>发生的次数为随机变量 $X$ ，平均次数为 $\lambda$，设所观察的这段时间为 $[0,1)$ ，取一个很大的自然数 $N$ ，把时间段 $[0,1)$ 分为等长的 $n$ 段：</p>
+<p>$$[0, \frac1N], [\frac1N, \frac2N] &hellip; [\frac{N-1}N, 1]$$</p>
+<p>我们做如下两个假定:</p>
+<ul>
+<li>
+<p>在每段时间内, 恰发生事件的概率，近似的与这段时间的长 $\frac1N$ 成正比，可设为 $\frac\lambda N$ ，也可以标记为 $p$</p>
+<ul>
+<li>
+<p>当 $N$ 很大时， $\frac1N$ 就很小，即在这么短暂的一段时间内，要发生两次或者更多次事故是不可能的</p>
+</li>
+<li>
+<p>因此在特定的一段时间内不发生该事件的概率为 $1-\frac{\lambda}N$</p>
+</li>
+</ul>
+</li>
+<li>
+<p>各段是否发生该事件是相互独立的，把在 $[0,1)$ 时段内发生事件的次数 $X$ ，在一定程度上可以等同为 $n$ 个划分的小时段内有事故的时段数</p>
+</li>
+</ul>
+<p>按照上述两个假定， $X$ 应服从二项分布 $B(n, \frac{\lambda}N)$ ，事件 $X$ 发生 $n$ 次的概率可计算为：</p>
+<p>$$P(X=n)=\left(\begin{array}{l}N \ n\end{array}\right)\left(\frac{\lambda}{N}\right)^{n}\left(1-\frac{\lambda}{N}\right)^{N-n} = \frac{N!}{n!(N-n)!}p^n \cdot (1-p)^{N-n}$$</p>
+<p>本质上是多次伯努利试验的总和（即每次实验会有两种结果）， <mark class='yellow'>随机变量是实验成功的次数</mark></p>
+<ul>
+<li>
+<p>若记结果A的概率为 $p$ ，结果B为 $p&rsquo;$ ，实验 $N$ 次，则会有 $(p+p&rsquo;)^M=1$</p>
+</li>
+<li>
+<p>这个式子是一个二项式，将其展开，就可以对应不同的结果</p>
+</li>
+<li>
+<p>如果要计算发生 $n$ 次结果A，则其概率为：</p>
+<p>$$P_{binom}(n; p, N) = \frac{N!}{n!(N-n)!}p^n \cdot p&rsquo;^{N-n}$$</p>
+</li>
+<li>
+<p>二项分布的期望是 $np$ ，方差是 $np(1-p)$</p>
+</li>
+</ul>
+<h3 id="二项分布的应用场景" class="headerLink">
+    <a href="#%e4%ba%8c%e9%a1%b9%e5%88%86%e5%b8%83%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" class="header-mark"></a>二项分布的应用场景</h3><p>二项分布主要用于不放回抽取问题中，通常用于如下问题场景：</p>
+<ul>
+<li>
+<p>抛硬币M次，正面朝上的次数为l（抛硬币M次之间相互独立且随机，每次抛硬币可视为伯努利事件）</p>
+</li>
+<li>
+<p>10mL液体中有4个荧光分子，随机吸取1mL液体，能得到多少个荧光分子。针对该问题，在抽取样本前，4个荧光分子独立且随机；而在取样的一瞬间，荧光分子被分为了两类：被取样或未被取样，而单个荧光分子被取样的概率为：</p>
+<p>$$p=\frac{取样体积}{总体积}=0.1$$</p>
+<p>因而可以将该问题视为二项分布进行估计</p>
+</li>
+<li>
+<p>应用：如何计算细胞中的荧光分子数？荧光强度在一定程度上是可以反应分子数量的，但是仅仅是成正比的关系，而并不是准确的定量关系，可以使用分配方差来衡量分子数与荧光强度间的比例系数（生物建模书74页）</p>
+</li>
+</ul>
+<p>在一定的方法下，是可以把二项分布扩展到多个结果的高维空间中（而不仅仅是两种结果），这个分布叫做伯努利分布（multinoulli）</p>
+<h3 id="二项分布的一些测试代码" class="headerLink">
+    <a href="#%e4%ba%8c%e9%a1%b9%e5%88%86%e5%b8%83%e7%9a%84%e4%b8%80%e4%ba%9b%e6%b5%8b%e8%af%95%e4%bb%a3%e7%a0%81" class="header-mark"></a>二项分布的一些测试代码</h3><p>获取二项分布的随机变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># p是伯努利事件成功的概率，n是实验的次数，size是抽样多少次，可以需求数据的shape</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回值是随机变量（事件成功的次数）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></div><p>计算二项分布相关的概率值，<code>scipy</code>提供了两个函数来进行计算，一个是<code>pmf</code>概率分布函数f(x)，另一个是<code>cdf</code>累计概率值F(x)，可以使用这两个函数灵活地去计算各种各样的概率值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># n是实验次数，p是实验成功概率，k是成功的次数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个代码计算值可以理解为：投篮成功概率为0.6, 投球12次，有10次成功的概率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个代码计算的值可以理解为：投篮成功概率为0.6，投球12次，成功次数不超过10次的概率</span>
+</span></span></code></pre></div><h3 id="泊松分布生物建模书76页" class="headerLink">
+    <a href="#%e6%b3%8a%e6%9d%be%e5%88%86%e5%b8%83%e7%94%9f%e7%89%a9%e5%bb%ba%e6%a8%a1%e4%b9%a676%e9%a1%b5" class="header-mark"></a>泊松分布（生物建模书76页）</h3><p>假设已知事件在单位时间 (或者单位面积) 内发生的平均次数为 $p$ ，则泊松分布描述了：事件在单位时间 (或者单位面积) 内发生的具体次数为 $n$ 的概率（<a href="https://cloud.tencent.com/developer/article/2066851" target="_blank" rel="noopener noreferrer">参考一份不错的资料</a>）</p>
+<p>🚩<strong>泊松分布可以理解为二项分布的极限</strong>：即当事件的次数、分子个数、时间的分段很大（ $N\rightarrow \infty$ ），且单次时间发生的概率很小时，可以得到如下的近似</p>
+<p>$$\begin{split}
+P(X=n)
+&amp;= \frac{N!}{n!(N-n)!} \times p^n \cdot (1-p)^{N-n}  \\[2ex]
+&amp;= \frac{N(N-1)&hellip;(N-n+1)}{n!} \times (\frac{\lambda}N)^n(1-\frac{\lambda}N)^{N-n} \\[2ex]
+&amp;= \frac{N(N-1)&hellip;(N-n+1)}{N^n} \lambda^n \frac{1}{n!} (1-\frac{\lambda}N)^{N-n} \\[2ex]
+&amp;= 1(1-\frac1N)(1-\frac2N)&hellip;(1-\frac{n-1}N) \lambda^n \frac{1}{n!}
+\frac{(1-\frac{\lambda}N)^N}{(1-\frac{\lambda}N)^n} \\[2ex]
+\end{split}
+$$</p>
+<p>此时， $N$ 很大，而 $n$ 相对小，故：</p>
+<p>$$ \lim_{N \rightarrow \infty}1(1-\frac1N)(1-\frac2N)&hellip;(1-\frac{n-1}N)=1$$</p>
+<p>$$\lim_{N \rightarrow \infty}(1-\frac{\lambda}N)^n = 1^n = 1$$</p>
+<p>而分子，则是满足<strong>复利极限</strong></p>
+<p>$$\lim_{N \rightarrow \infty} (1-\frac{\lambda}N)^N=(1+\frac{-\lambda}N)^N = e^{-\lambda}$$</p>
+<p>因而，可以把</p>
+<p>$$P(X=n)= \textcolor{red} {1(1-\frac1N)(1-\frac2N)&hellip;(1-\frac{n-1}N)}
+\lambda^n \frac{1}{n!}
+\frac
+{ \textcolor{blue}{(1-\frac{\lambda}N)^N } }
+{\textcolor{green}{(1-\frac{\lambda}N)^n} }
+=\textcolor{red}1  \frac{\lambda^n}{n!}  \frac{\textcolor{blue}{e^{-\lambda}}}{\textcolor{green}1}
+$$</p>
+<p>即是说，泊松分布是二项分布低概率实验次数趋向于无穷时所表现的结果，是包含<strong>一个参数的离散分布</strong>，或者说，低概率的伯努利试验之和服从泊松分布</p>
+<h3 id="泊松分布的应用案例" class="headerLink">
+    <a href="#%e6%b3%8a%e6%9d%be%e5%88%86%e5%b8%83%e7%9a%84%e5%ba%94%e7%94%a8%e6%a1%88%e4%be%8b" class="header-mark"></a>泊松分布的应用案例</h3><p>在1L水中加入500万个荧光分子，然后提取1立方毫米，可以提取多少个荧光分子？在1立方米水中加入5亿个荧光分子，提取1立方毫米，可以提取多少个荧光分子？</p>
+<p>针对这两个问题，可以使用二项分布的期望值来回答这个问题</p>
+<p>$$ \lambda=(5\times10^6)\cdot \frac{1mm^3}{10^6 mm^3}=5 $$</p>
+<ul>
+<li>
+<p>针对这两个问题在分析时，可以合理地认为，这两个分布是大致相同的</p>
+</li>
+<li>
+<p>也就是说，可以认为存在某一个分布：在荧光分子浓度为5e6个/L的溶液中，任何足够大的不同库会产生相同的分布结果</p>
+</li>
+</ul>
+<p>泊松分布的参数 $\lambda=Np$ ，是二项分布的期望值，可以<strong>理解为在当前的抽样方法下事件平均发生的次数</strong>，更合理的理解为上面案例中说的<strong>抽取样本中荧光分子的个数</strong></p>
+<ul>
+<li>泊松分布的方程在对 $N$ 取极限后，得到</li>
+</ul>
+<p>$$P_{Pois} (X=n, \lambda) = \frac{\lambda^n e^{-\lambda}}{n!} $$</p>
+<ul>
+<li>方差为 $p$ ，期望为 $p$</li>
+</ul>
+<p>泊松分布的代码和其他分布类似：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># lambda=120的泊松分布，发生次数小于等于100时的概率</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mu是分布的参数，size是产生的数量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># random_state相当于是R随机数中的seed，设置后每次产生的随机数一样</span>
+</span></span></code></pre></div></div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/greedysnake_game_code_in_typescript/" class="prev" rel="prev" title="用TypeScript写的贪吃蛇小游戏"><i class="fas fa-angle-left fa-fw"></i>用TypeScript写的贪吃蛇小游戏</a>
+            <a href="/posts/genshin-impact/genshin-impact_artifacts/" class="next" rel="next" title="原神圣遗物角色适用表（4.0版本 附含下载链接）">原神圣遗物角色适用表（4.0版本 附含下载链接）<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

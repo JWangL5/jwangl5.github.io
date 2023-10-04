@@ -15,7 +15,7 @@
     <link>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</link>
     <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</guid>
-    <description><![CDATA[最近读到的一篇文章 using SciMLBase using OrdinaryDiffEq using Plots GF = 1. k = [1. 2. 1. 0.02 1.5 5. 0.18 0.025 1. 50. 1. 2. 10. 20. 10. 1. 100. 1. 1.5 2. 2. 0.1 1. 1. 10. 2. 1. 50. 50. 2. 2. 1.] n = [5. 5. 5. 5. 5. 5. 5. 5.] C = [0.25 0.1 0.25 1. 0.1 0.1]]></description>
+    <description><![CDATA[最近PubMed推送的一篇文章，正正好是我大二刚进实验室想要做的东西，当时苦于自身能力和知识的不足，就没有实践出结果。但着却一直是我想要解决]]></description>
 </item><item>
     <title>荧光流式细胞实验检测细胞周期并使用Python绘图</title>
     <link>https://jwangl5.github.io/posts/python-scripts/flow_cytometry_mapping_by_python/</link>
@@ -39,6 +39,6 @@
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</link>
     <pubDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</guid>
-    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新。]]></description>
+    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照最新的API重写调整的数据批量下载代码]]></description>
 </item></channel>
 </rss>

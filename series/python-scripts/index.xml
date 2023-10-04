@@ -24,16 +24,16 @@
     <description><![CDATA[实验原理荧光流式细胞术是根据荧光信号分离单细胞的技术，其识别的荧光可以是活细胞内表达的，也可以是固定细胞上体外标记的。因为在细胞分裂过程中遗]]></description>
 </item><item>
     <title>从米游社爬取原神wiki数据</title>
-    <link>https://jwangl5.github.io/posts/genshin-impact/data_crawling_from_miyoushe/</link>
-    <pubDate>Thu, 23 Feb 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/data_crawling_from_miyoushe/</guid>
-    <description><![CDATA[]]></description>
+    <link>https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/</guid>
+    <description><![CDATA[最近上头了一个尘歌壶套装，但是前期统计材料需求、收集材料是很痛苦的过程，如果计算出错就需要来回捯饬，很是费时间。于是乎就想要收集一个全素材的]]></description>
 </item><item>
     <title>Venn和Upset Diagram的绘制</title>
     <link>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</link>
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成： 黑白框的Venn图绘制工具·最多4组数据 jvenn绘图工]]></description>
 </item><item>
     <title>荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）</title>
     <link>https://jwangl5.github.io/posts/python-scripts/flim_fret_phasor_plot_by_python/</link>
@@ -51,6 +51,6 @@
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</link>
     <pubDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</guid>
-    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新。]]></description>
+    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照最新的API重写调整的数据批量下载代码]]></description>
 </item></channel>
 </rss>

@@ -49,11 +49,11 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
     <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
 </item><item>
-    <title>一点对泊松分布的理解</title>
-    <link>https://jwangl5.github.io/posts/understanding_poisson_distribution/</link>
+    <title>BioModel | 对二项分布与泊松分布的理解</title>
+    <link>https://jwangl5.github.io/posts/binomial_and_poisson_distribution/</link>
     <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/understanding_poisson_distribution/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/binomial_and_poisson_distribution/</guid>
+    <description><![CDATA[二项分布（生物建模书71页）二项分布是一种包含两个参数的离散分布。可以用如下案例引入：单位时间发生的次数为随机变量 $X$ ，平均次数为 $\lamb]]></description>
 </item><item>
     <title>用TypeScript写的贪吃蛇小游戏</title>
     <link>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</link>
@@ -65,7 +65,7 @@
     <link>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</link>
     <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/</guid>
-    <description><![CDATA[最近读到的一篇文章 using SciMLBase using OrdinaryDiffEq using Plots GF = 1. k = [1. 2. 1. 0.02 1.5 5. 0.18 0.025 1. 50. 1. 2. 10. 20. 10. 1. 100. 1. 1.5 2. 2. 0.1 1. 1. 10. 2. 1. 50. 50. 2. 2. 1.] n = [5. 5. 5. 5. 5. 5. 5. 5.] C = [0.25 0.1 0.25 1. 0.1 0.1]]></description>
+    <description><![CDATA[最近PubMed推送的一篇文章，正正好是我大二刚进实验室想要做的东西，当时苦于自身能力和知识的不足，就没有实践出结果。但着却一直是我想要解决]]></description>
 </item><item>
     <title>一个将pdf转化为图像的Python脚本（含代码下载）</title>
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</link>
@@ -80,10 +80,10 @@
     <description><![CDATA[实验原理荧光流式细胞术是根据荧光信号分离单细胞的技术，其识别的荧光可以是活细胞内表达的，也可以是固定细胞上体外标记的。因为在细胞分裂过程中遗]]></description>
 </item><item>
     <title>从米游社爬取原神wiki数据</title>
-    <link>https://jwangl5.github.io/posts/genshin-impact/data_crawling_from_miyoushe/</link>
-    <pubDate>Thu, 23 Feb 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/data_crawling_from_miyoushe/</guid>
-    <description><![CDATA[]]></description>
+    <link>https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/</guid>
+    <description><![CDATA[最近上头了一个尘歌壶套装，但是前期统计材料需求、收集材料是很痛苦的过程，如果计算出错就需要来回捯饬，很是费时间。于是乎就想要收集一个全素材的]]></description>
 </item><item>
     <title>数独求解的高级技巧</title>
     <link>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</link>
@@ -95,7 +95,7 @@
     <link>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</link>
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成： 黑白框的Venn图绘制工具·最多4组数据 jvenn绘图工]]></description>
 </item><item>
     <title>荧光寿命显微镜的原理及其相图的Python绘制（Phasor Plot for FLIM-FRET）</title>
     <link>https://jwangl5.github.io/posts/python-scripts/flim_fret_phasor_plot_by_python/</link>
@@ -113,13 +113,13 @@
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</link>
     <pubDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</guid>
-    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新。]]></description>
+    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照最新的API重写调整的数据批量下载代码]]></description>
 </item><item>
-    <title>DHB Sensor</title>
+    <title>Life-cell sensor for G1/S transition DHB-Ven</title>
     <link>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</link>
-    <pubDate>Wed, 10 Feb 2021 00:00:00 &#43;0800</pubDate><author>
+    <pubDate>Fri, 15 Oct 2021 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[构建：The sensor includes amino acids 994–1087 of human DNA helicase B fused to the yellow fluorescent protein mVenus (DHB-Ven), and contains four CDK consensus phosphorylation sites, a nuclear localization signal, and a nuclear export signal. DHB是DNA解旋酶B的片段，该片段上包含CD]]></description>
 </item><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
     <link>https://jwangl5.github.io/posts/opencv/image_basic_processing_by_opencv/</link>
