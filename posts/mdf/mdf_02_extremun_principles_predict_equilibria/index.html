@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_02_extremun_principles_predict_equilibria\/"
-        },"genre": "posts","wordcount":  1847 ,
+        },"genre": "posts","wordcount":  2904 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/mdf\/mdf_02_extremun_principles_predict_equilibria\/","datePublished": "2023-10-04T00:00:00+08:00","dateModified": "2023-10-04T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,8 +118,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/mdf/"><i class="far fa-list-alt fa-fw"></i>MDF</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-04">2023-10-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-04">2023-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1847 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-04">2023-10-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-04">2023-10-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2904 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="content" id="content"><p><figure><a class="lightgallery" href="/image/MDF-banner.png" title="/image/MDF-banner.png" data-thumbnail="/image/MDF-banner.png">
         <img
             
@@ -264,7 +264,21 @@
 </ul>
 </li>
 <li>
-<p>在接下来的几个例子中，为了简化问题，使用晶格模型（lattice modle）作为底层的思路，在该模型中：</p>
+<p>借着上面案例，明确几个概念（专有名词）：</p>
+<ul>
+<li>
+<p>微观状态（microstate）：指代某一次实验的具体结果，也就是上面说的“每种情况”，重数（Multiplicity）也因此被称为“微观状态数”。每一种微观状态都是等概率的。</p>
+</li>
+<li>
+<p>宏观状态（macrostate）：宏观状态是微观状态的集合，是可统计、可观测、可控制的，如只出现1次Head（$n=1$）的情况。</p>
+</li>
+<li>
+<p>在随后章节介绍的熵（Entropy）就是基于重数给出定义的，$S=constant \times \ln W$，熵的最大化就是对重数的最大化。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>在接下来的几个例子中，为了简化问题，使用**晶格模型（lattice modle）**作为底层的思路，在该模型中：</p>
 <ul>
 <li>原子或分子被认为是硬质的小球</li>
 <li>空间被分割为了连续的格子（lattice sites），并且每个格子只能放下零个或一个小球</li>
@@ -272,18 +286,40 @@
 </ul>
 <div class="details admonition example open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw"></i>例2.2：气体施压的案例<i class="details-icon fas fa-angle-right fa-fw"></i>
+            <i class="icon fas fa-list-ol fa-fw"></i>例2.2：气体施压的案例 --&gt; 气压<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"></div>
+            <div class="admonition-content"><p><strong>Q</strong>：现有$N$个粒子占据了$M$体积的空间，如何考虑气压的形成？</p>
+<p><strong>A</strong>：气体具有自发扩散的趋势，从而形成了气压。对气压的认识，可以从机械力的角度理解（气体分子对器壁的碰撞形成了气压），也可以在使用晶格模型简化问题后从最大多样性的角度理解（粒子为了最大化分布趋势）。现在假设有固定个数$N$的粒子，而容器的体积$M$不固定（即自由度），考虑如何最大化Multiplicity。该问题在本质上和抛硬币是一致的，对于连续的空间，每一个空间格子都会有两种状态，即被粒子占据或空着，其结果也是表现为一个状态的连续序列，如[vacant, occupied, occupied, &hellip;]</p>
+<p>因而，计算$N$个粒子占据了$M$体积的空间，可以有$W$种情况</p>
+<p>$$ W(N,M) = C_M^N = \frac{M!}{N!(M-N)!}$$</p>
+<p>假设现在有3个粒子，当$M=3$时，$W(3,3)=1$；当$M=4$时，$W(3,4)=4$；当$M=5$时，$W(3,5)=5$。发现当体积膨大时，重数也在对应的增大。即是说，如果当体系的体积具有一定选择时，膨大体积是顺应重数最大化趋势的一个策略。后面的章节会进一步深入该模型，去理解理想气体方程的原理。</p>
+</div>
         </div>
     </div>
 <div class="details admonition example open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw"></i>例2.3：分子一维扩散的案例<i class="details-icon fas fa-angle-right fa-fw"></i>
+            <i class="icon fas fa-list-ol fa-fw"></i>例2.3：分子一维扩散的案例 --&gt; 化学势<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"></div>
+            <div class="admonition-content"><p><strong>Q</strong>：假设现在有4个●和4个○充斥在有8个格子的空间中，在空间的正中间有一假想的透过屏障，统计在屏障两侧不同种小球的的可能情况？</p>
+<p><strong>A</strong>：考虑3种情况：</p>
+<ul>
+<li>
+<p>情况A：左右两边都是2黑2白</p>
+<p>$$ W_A = W(Left)\cdot W(Right) = C_4^2 C_4^2 = 36 $$</p>
+</li>
+<li>
+<p>情况B：左侧3黑1白，右侧3白1黑</p>
+<p>$$ W_B = W(Left)\cdot W(Right) = C_4^3 C_4^1 = 16 $$</p>
+</li>
+<li>
+<p>情况C：左侧全为黑球，右侧全为白球</p>
+<p>$$ W_C = W(Left)\cdot W(Right) = C_4^4 C_4^0 = 1 $$</p>
+</li>
+</ul>
+<p>经过计算发现，最平均分配的情况A具有最高的重数，即是最有可能出现的情况；而情况C具有最强的不均匀分布则具有最小的出现概率。如果自由度是允许粒子在和格子间相互交换，那么重数就会趋于最大，不同粒子分布均匀。</p>
+</div>
         </div>
     </div>
 <div class="details admonition example open">
@@ -291,7 +327,18 @@
             <i class="icon fas fa-list-ol fa-fw"></i>例2.4：橡皮弹性的案例<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"></div>
+            <div class="admonition-content"><p><strong>Q</strong>：用最大化重数的原理，解释弹簧弹力的形成</p>
+<p><strong>A</strong>：弹簧的伸缩问题可以看作是一个多聚体的折叠问题，可以想象将弹簧的一端固定在墙壁上，认为弹簧另一端所处的位置是自由度，有如下几种情况（configuration）</p>
+<p><figure><a class="lightgallery" href="/image/MDF-02-rubber.png" title="/image/MDF-02-rubber.png" data-thumbnail="/image/MDF-02-rubber.png">
+        <img
+            
+            loading="lazy"
+            src="/image/MDF-02-rubber.png"
+            srcset="/image/MDF-02-rubber.png, /image/MDF-02-rubber.png 1.5x, /image/MDF-02-rubber.png 2x"
+            sizes="auto"
+            alt="/image/MDF-02-rubber.png" height="361"  width="229" >
+    </a></figure></p>
+</div>
         </div>
     </div>
 </li>
