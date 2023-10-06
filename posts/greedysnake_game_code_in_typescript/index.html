@@ -7,33 +7,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>用TypeScript写的贪吃蛇小游戏 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="用TypeScript写的贪吃蛇小游戏" />
-<meta property="og:description" content="最近在学习TypeScript的时候，跟着B站课写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！ 这里分享关键代码以及编译后的文件" />
+    <title>用TypeScript写的贪吃蛇小游戏（可直接游戏） - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="用TypeScript写的贪吃蛇小游戏（可直接游戏）" />
+<meta property="og:description" content="最近在学习TypeScript的时候，跟着B站课写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！ 游戏体验下面是编译后程序，可以使" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-08-04T00:17:49+08:00" />
 <meta property="article:modified_time" content="2023-08-04T00:17:49+08:00" /><meta property="og:site_name" content="Cell · Brain" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="用TypeScript写的贪吃蛇小游戏"/>
-<meta name="twitter:description" content="最近在学习TypeScript的时候，跟着B站课写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！ 这里分享关键代码以及编译后的文件"/>
+<meta name="twitter:title" content="用TypeScript写的贪吃蛇小游戏（可直接游戏）"/>
+<meta name="twitter:description" content="最近在学习TypeScript的时候，跟着B站课写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！ 游戏体验下面是编译后程序，可以使"/>
 <meta name="application-name" content="Cell · Brain">
 <meta name="apple-mobile-web-app-title" content="Cell · Brain">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/odes_model_for_cell_cycle/" /><link rel="next" href="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/" /><link rel="prev" href="https://jwangl5.github.io/posts/cell-biology/odes_model_for_cell_cycle/" /><link rel="next" href="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "用TypeScript写的贪吃蛇小游戏",
+        "headline": "用TypeScript写的贪吃蛇小游戏（可直接游戏）",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/greedysnake_game_code_in_typescript\/"
-        },"genre": "posts","wordcount":  1160 ,
+        },"genre": "posts","wordcount":  1212 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/greedysnake_game_code_in_typescript\/","datePublished": "2023-08-04T00:17:49+08:00","dateModified": "2023-08-04T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -59,7 +59,7 @@
             <a href="/" title="Cell · Brain">Cell · Brain</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
@@ -101,7 +101,7 @@
                     <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -113,33 +113,36 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">用TypeScript写的贪吃蛇小游戏</h1><div class="post-meta">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">用TypeScript写的贪吃蛇小游戏（可直接游戏）</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>前端技术</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1160 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-08-04">2023-08-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1212 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>最近在学习<code>TypeScript</code>的时候，跟着<a href="https://www.bilibili.com/video/BV1Xy4y1v7S2" target="_blank" rel="noopener noreferrer">B站课</a>写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！</p>
-<p>这里分享关键代码以及编译后的文件</p>
-<a target="_blank" href="https://www.aliyundrive.com/s/mErEg5jF6mV" title="编译后代码下载" class="friend-link" rel="noopener noreferrer">
-    <div class="friend-link-div">
-        <div class="friend-link-avatar"><img
-        
-        loading="lazy"
-        src="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG"
-        srcset="https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG, https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG 1.5x, https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG 2x"
-        sizes="auto"
-        alt="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG"
-        title="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG" ></div>
-        <div class="friend-link-info">
-            <div class="friend-name-div">
-                <i class="fas fa-user-circle fa-fw"></i>
-                <i class="friend-name">编译后代码下载</i>
+<h3 id="游戏体验" class="headerLink">
+    <a href="#%e6%b8%b8%e6%88%8f%e4%bd%93%e9%aa%8c" class="header-mark"></a>游戏体验</h3><p>下面是编译后程序，可以使用W、A、S、D控制移动蛇身体，速度会逐渐加快，避免碰壁</p>
+<div id="gamebody">
+    <script defer type="text/javascript" src="/jscode/GreedySnake.js"></script>
+    <div id="game">
+        <div id="stage">
+            <div id="snake">
+                <div></div>
             </div>
-            <p class="friend-bio">dist目录下文件，点击html即可运行</p>
+            <div id="food">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div id="score-panel">
+            <div>SCORE: <span id="score">0</span></div>
+            <div>LEVEL: <span id="level">1</span></div>
         </div>
     </div>
-</a>
+</div>
+<hr>
 <p>下面是关键的源码</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt; tree
 </span></span><span class="line"><span class="cl">    │   package-lock.json
@@ -174,7 +177,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;greedysnake&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;game&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack&#34;</span><span class="p">,</span>
@@ -289,7 +292,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;game&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;stage&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;snake&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -552,7 +555,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">font</span><span class="p">:</span> <span class="kc">bold</span> <span class="mi">20</span><span class="kt">px</span> <span class="s2">&#34;Courier&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">main</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">game</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">360</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">420</span><span class="kt">px</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="o">@</span><span class="n">bg-color</span><span class="p">;</span>
@@ -607,7 +610,28 @@
 </span></span><span class="line"><span class="cl">        <span class="k">justify-content</span><span class="p">:</span> <span class="kc">space-between</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="err">}</span>
-</span></span></code></pre></div></div>
+</span></span></code></pre></div><h3 id="源码下载" class="headerLink">
+    <a href="#%e6%ba%90%e7%a0%81%e4%b8%8b%e8%bd%bd" class="header-mark"></a>源码下载</h3><p>这里分享关键代码以及编译后的文件</p>
+<a target="_blank" href="https://www.aliyundrive.com/s/mErEg5jF6mV" title="编译后代码下载" class="friend-link" rel="noopener noreferrer">
+    <div class="friend-link-div">
+        <div class="friend-link-avatar"><img
+        
+        loading="lazy"
+        src="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG"
+        srcset="https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG, https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG 1.5x, https://img1.baidu.com/it/u=1066628558%2c2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG 2x"
+        sizes="auto"
+        alt="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG"
+        title="https://img1.baidu.com/it/u=1066628558,2923141466&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG" ></div>
+        <div class="friend-link-info">
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">编译后代码下载</i>
+            </div>
+            <p class="friend-bio">dist目录下文件，点击html即可运行</p>
+        </div>
+    </div>
+</a>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
@@ -643,7 +667,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/python-scripts/odes_model_for_cell_cycle/" class="prev" rel="prev" title="用ODEs建模细胞周期（Julia代码）"><i class="fas fa-angle-left fa-fw"></i>用ODEs建模细胞周期（Julia代码）</a>
+    <div class="post-nav"><a href="/posts/cell-biology/odes_model_for_cell_cycle/" class="prev" rel="prev" title="用ODEs建模细胞周期（Julia代码）"><i class="fas fa-angle-left fa-fw"></i>用ODEs建模细胞周期（Julia代码）</a>
             <a href="/posts/binomial_and_poisson_distribution/" class="next" rel="next" title="BioModel | 对二项分布与泊松分布的理解">BioModel | 对二项分布与泊松分布的理解<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
