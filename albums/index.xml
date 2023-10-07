@@ -9,24 +9,5 @@
     <managingEditor>l392537594@163.com (卢旺)</managingEditor>
     <webMaster>l392537594@163.com (卢旺)</webMaster>
     <lastBuildDate>Thu, 23 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://jwangl5.github.io/albums/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>My Go Journey</title>
-      <link>https://jwangl5.github.io/albums/test/</link>
-      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
-      <author>l392537594@163.com (卢旺)</author>
-      <guid>https://jwangl5.github.io/albums/test/</guid>
-      <description>I decided to start learning Go in March 2017.
-Follow my journey through this new blog.</description>
-    </item>
-    
-    <item>
-      <title>植物图鉴</title>
-      <link>https://jwangl5.github.io/albums/plant-atlas/plant_atlas/</link>
-      <pubDate>Thu, 23 Mar 2017 00:00:00 +0000</pubDate>
-      <author>l392537594@163.com (卢旺)</author>
-      <guid>https://jwangl5.github.io/albums/plant-atlas/plant_atlas/</guid>
-      <description>测试内容</description>
-    </item>
-    
   </channel>
 </rss>
