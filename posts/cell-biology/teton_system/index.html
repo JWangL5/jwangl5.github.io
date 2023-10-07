@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/teton_system\/"
-        },"genre": "posts","wordcount":  142 ,
+        },"genre": "posts","wordcount":  587 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/teton_system\/","datePublished": "2023-10-06T15:56:00+08:00","dateModified": "2023-10-06T15:56:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -117,20 +117,96 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>分子细胞生物学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-06">2023-10-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-06">2023-10-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 142 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-06">2023-10-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-06">2023-10-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 587 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="content" id="content"><blockquote>
 <p>很早就听闻Tet-On诱导表达系统了，但一直没有很好的机会去用，最近正好想要用Tet-On系统来做一个诱导表达细胞系，就来查查这个系统，主要参考这篇文章。</p>
 <ul>
 <li>Das, A. T., Tenenbaum, L. &amp; Berkhout, B. Tet-On Systems For Doxycycline-inducible Gene Expression. Curr Gene Ther 16, 156–167 (2016).</li>
 </ul>
 </blockquote>
-<h3 id="细菌中的诱导表达系统" class="headerLink">
-    <a href="#%e7%bb%86%e8%8f%8c%e4%b8%ad%e7%9a%84%e8%af%b1%e5%af%bc%e8%a1%a8%e8%be%be%e7%b3%bb%e7%bb%9f" class="header-mark"></a>细菌中的诱导表达系统</h3><ul>
-<li>核心组分：TetR、TetO、四环素</li>
+<h3 id="基本诱导表达系统元件" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e8%af%b1%e5%af%bc%e8%a1%a8%e8%be%be%e7%b3%bb%e7%bb%9f%e5%85%83%e4%bb%b6" class="header-mark"></a>基本诱导表达系统元件</h3><p>该系统的核心组分为：</p>
+<ul>
+<li>
+<p>TetR：一个转录抑制因子，可以结合DNA和四环素</p>
+</li>
+<li>
+<p>TetO：Tet操纵子，19个核苷酸长的DNA序列，可以结合TetR蛋白调控基因表达</p>
+</li>
+<li>
+<p>四环素：该体系同的化学信号小分子，其常用的形式是四环素的衍生物多西环素（Doxycycline）</p>
+</li>
 </ul>
-<h3 id="真核生物的诱导表达系统" class="headerLink">
-    <a href="#%e7%9c%9f%e6%a0%b8%e7%94%9f%e7%89%a9%e7%9a%84%e8%af%b1%e5%af%bc%e8%a1%a8%e8%be%be%e7%b3%bb%e7%bb%9f" class="header-mark"></a>真核生物的诱导表达系统</h3></div>
+<hr>
+<p>目前，经过长期的发展，Tet诱导体系已经发生了足够多的改造，正正反反的全部情况都已经凑齐。具体如下：</p>
+<ul>
+<li>
+<p>转录抑制因子，结合Dox后从DNA上释放（Tet-On）</p>
+<p>Thermo的pcDNA6/TR质粒所构建的Tet-On（<a href="https://www.thermofisher.cn/cn/zh/home/references/protocols/proteins-expression-isolation-and-analysis/protein-expression-protocol/inducible-protein-expression-using-the-trex-system.html" target="_blank" rel="noopener noreferrer">T-REx系列细胞系</a>）就是该系统</p>
+</li>
+</ul>
+<center>
+<a class="lightgallery" href="/image/TetOn-1.png" title="/image/TetOn-1.png" data-thumbnail="/image/TetOn-1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/TetOn-1.png"
+            srcset="/image/TetOn-1.png, /image/TetOn-1.png 1.5x, /image/TetOn-1.png 2x"
+            sizes="auto"
+            alt="/image/TetOn-1.png" height="45%"  width="45%" >
+    </a>
+</center>
+<ul>
+<li>转录抑制因子，结合Dox后可以结合DNA（Tet-Off）</li>
+</ul>
+<center>
+<a class="lightgallery" href="/image/TetOn-2.png" title="/image/TetOn-2.png" data-thumbnail="/image/TetOn-2.png">
+        <img
+            
+            loading="lazy"
+            src="/image/TetOn-2.png"
+            srcset="/image/TetOn-2.png, /image/TetOn-2.png 1.5x, /image/TetOn-2.png 2x"
+            sizes="auto"
+            alt="/image/TetOn-2.png" height="45%"  width="45%" >
+    </a>
+</center>
+<ul>
+<li>
+<p>转录激活因子，结合Dox后从DNA上释放（Tet-Off）</p>
+<p>此时所使用的转录激活因子是tetR与herpes simplex virus VP16 protein（真核生物中一个强转录激活结构域）融合表达的蛋白</p>
+</li>
+</ul>
+<center>
+<a class="lightgallery" href="/image/TetOn-3.png" title="/image/TetOn-3.png" data-thumbnail="/image/TetOn-3.png">
+        <img
+            
+            loading="lazy"
+            src="/image/TetOn-3.png"
+            srcset="/image/TetOn-3.png, /image/TetOn-3.png 1.5x, /image/TetOn-3.png 2x"
+            sizes="auto"
+            alt="/image/TetOn-3.png" height="55%"  width="55%" >
+    </a>
+</center>
+<ul>
+<li>
+<p>转录激活因子，结合Dox后可以结合DNA（Tet-On）</p>
+<p>此时所使用的转录激活因子是tetR的点突变体，其可以逆转转录的抑制效果的蛋白</p>
+<p>当下市面上所说的最小的、一个质粒即可完成的Tet-On系统<a href="https://www.takarabio.com/learning-centers/gene-function/inducible-systems/tet-inducible-systems/tet-systems-overview" target="_blank" rel="noopener noreferrer">Tet-On 3G</a>即是基于此原理</p>
+</li>
+</ul>
+<center>
+<a class="lightgallery" href="/image/TetOn-4.png" title="/image/TetOn-4.png" data-thumbnail="/image/TetOn-4.png">
+        <img
+            
+            loading="lazy"
+            src="/image/TetOn-4.png"
+            srcset="/image/TetOn-4.png, /image/TetOn-4.png 1.5x, /image/TetOn-4.png 2x"
+            sizes="auto"
+            alt="/image/TetOn-4.png" height="55%"  width="55%" >
+    </a>
+</center>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
@@ -170,7 +246,7 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>

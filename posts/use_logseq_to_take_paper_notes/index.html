@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>logseq、zotero和坚果云的相互关联配制 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="logseq、zotero和坚果云的相互关联配制" />
+<meta property="og:description" content="最近在BioBit暑期学校认识了很多新朋友，有朋友在见识了我用的Logseq后在问复刻过程，这里就写了一点文字来说明这个事情 该体系的优势 Zo" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-25T15:56:00+08:00" />
+<meta property="article:modified_time" content="2023-08-25T15:56:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="logseq、zotero和坚果云的相互关联配制"/>
+<meta name="twitter:description" content="最近在BioBit暑期学校认识了很多新朋友，有朋友在见识了我用的Logseq后在问复刻过程，这里就写了一点文字来说明这个事情 该体系的优势 Zo"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/" /><link rel="prev" href="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" /><link rel="next" href="https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "logseq、zotero和坚果云的相互关联配制",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/use_logseq_to_take_paper_notes\/"
+        },"genre": "posts","wordcount":  1693 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/use_logseq_to_take_paper_notes\/","datePublished": "2023-08-25T15:56:00+08:00","dateModified": "2023-08-25T15:56:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">logseq、zotero和坚果云的相互关联配制</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/"><i class="far fa-folder fa-fw"></i>工具分享</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-25">2023-08-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-08-25">2023-08-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1693 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="content" id="content"><blockquote>
+<p>最近在BioBit暑期学校认识了很多新朋友，有朋友在见识了我用的Logseq后在问复刻过程，这里就写了一点文字来说明这个事情</p>
+</blockquote>
+<h3 id="该体系的优势" class="headerLink">
+    <a href="#%e8%af%a5%e4%bd%93%e7%b3%bb%e7%9a%84%e4%bc%98%e5%8a%bf" class="header-mark"></a>该体系的优势</h3><ul>
+<li>
+<p>Zotero是我认为目前最好用的文献管理软件，有很多种插件</p>
+</li>
+<li>
+<p>Logseq是双向链接笔记，可以标注pdf，一个基因一个页面，一篇文章一个页面，一个概念一个页面，信息很整合很好用</p>
+<p><figure><a class="lightgallery" href="/image/Logseq-Graph.png" title="/image/Logseq-Graph.png" data-thumbnail="/image/Logseq-Graph.png">
+        <img
+            
+            loading="lazy"
+            src="/image/Logseq-Graph.png"
+            srcset="/image/Logseq-Graph.png, /image/Logseq-Graph.png 1.5x, /image/Logseq-Graph.png 2x"
+            sizes="auto"
+            alt="/image/Logseq-Graph.png" height="1659"  width="2880" >
+    </a></figure></p>
+</li>
+<li>
+<p>坚果云（Nutstore）可以实现多端同步，很好用</p>
+</li>
+</ul>
+<h3 id="zotero" class="headerLink">
+    <a href="#zotero" class="header-mark"></a>Zotero</h3><ul>
+<li>
+<p>zotero的文献管理是有云空间的，注册账号后可以自动保存记录，logseq官方本身已经提供了一个与zotero云的协作方案，可以直接在logseq的设置中找到（右上角的三个点图标 &gt; 设置 &gt; 更多功能 &gt; zotero &gt; 设置）</p>
+</li>
+<li>
+<p>但是因为该方案不是本地的，可能有安全性问题，所以我自己重新找了一个插件做本地的配制</p>
+</li>
+<li>
+<p>首先是zotero的配置</p>
+<ul>
+<li>
+<p>需要打破zotero原有的文件管理策略，用<code>zotFile</code>插件将pdf附件组织在同一个文件夹下，我是在Logseq数据目录中加了一个文件夹（D:\LogseqData\assets\PaperPDFs）</p>
+<ul>
+<li>
+<p>在zotero的官网下载插件，安装后在设置中配置</p>
+</li>
+<li>
+<p>在General Settings选项卡中把Source folder和Custom Location的路径改为上面那个文件夹</p>
+</li>
+<li>
+<p>在Rename Rules中可以把Format的格式修改为<code>{%y}{(%s|%T)}{%t}</code>，这样下载的文章文件名自动改为<code>年份(期刊简写)标题</code> （对于联动是不必要的），有时候下载之后不会自动改，可以右键这个term，在Mange Attachment中手动改一下</p>
+</li>
+</ul>
+</li>
+<li>
+<p>使用<code>Better BibTex</code>插件做zotero和logseq之间的联动，这个插件可以将zotero文章的信息自动导出到一个json文件中，logseq使用插件读取该文件即可完成联动</p>
+<ul>
+<li>
+<p>官网下载插件安装后，在编辑 &gt; 首选项 &gt; Better BibTex中修改</p>
+</li>
+<li>
+<p>在Automatic export中配置，选择On change时自动导出，导出的Library范围可以选择部分zotero文件夹或整个文库，Format选择<code>BetterBibTex Json</code>，导出的文件也直接放在LogseqData目录下</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="logseq" class="headerLink">
+    <a href="#logseq" class="header-mark"></a>Logseq</h3><ul>
+<li>
+<p>然后是logseq的配置，用到的插件叫做<code>Logtero</code></p>
+<ul>
+<li>
+<p>这个插件没有在Logseq官方库发布，需要在Github上下载，手动配置加载进Logseq中</p>
+</li>
+<li>
+<p>在logseq设置 &gt; 插件设置 &gt; logtero 中进行配置</p>
+</li>
+<li>
+<p>PathToBBT选择那个自动导出的json文件</p>
+</li>
+<li>
+<p>PageTitleTemplate，我填写的是<code>@{{authors}} ({{year}}) {{title}}</code>，这样每篇文章标题都带有@符号，然后是<code>作者(年份)标题</code>，这里可以查Github文档自定义</p>
+</li>
+<li>
+<p>PagePropertiesTemplate，是说logseq页面拥有的属性（可以用于图数据库的查询），我写的是<code>{{authors}}, {{journal}}, {{doi}},{{url}},{{year}},{{pdf}},{{filePath}},{{localLibrary}}</code></p>
+</li>
+<li>
+<p>这里的pdf是默认给出绝对路径，之前旧版本可以直接被logseq识别出来，新版本logseq需要在添加后手动修改为相对路径</p>
+</li>
+<li>
+<p>使用的时候，可以直接使用<code>/logseq</code>命令或自定义的快捷键，直接查出来文章</p>
+</li>
+<li>
+<p>可以使用如下命令在logseq中查询出所有以@开头的页面</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gh">#+BEGIN_QUERY
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>{
+</span></span><span class="line"><span class="cl">:title [:p &#34;Pages that start with @&#34;]
+</span></span><span class="line"><span class="cl">:query 
+</span></span><span class="line"><span class="cl">[
+</span></span><span class="line"><span class="cl">    :find (pull ?p [*])
+</span></span><span class="line"><span class="cl">    :where 
+</span></span><span class="line"><span class="cl">        [?p :block/name ?name]
+</span></span><span class="line"><span class="cl">        [(clojure.string/starts-with? ?name &#34;@&#34;)]
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl"><span class="gh">#+END_QUERY
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>一些Logseq的小功能，插件在右上角小点 &gt; 插件 &gt; 插件市场（有时候下载会失败，可以试一下VPN或手动安装）</p>
+<ul>
+<li>
+<p>flashcard可以用于背单词或者隐藏一些信息</p>
+</li>
+<li>
+<p>新版本logseq支持白板工具了，比电脑自带的画图好看一点</p>
+</li>
+<li>
+<p>皮肤主题可以自己在官方市场上下载测试，我使用的<code>Dev theme</code></p>
+</li>
+<li>
+<p>todo命令可以管理日程，使用官方商店<code>Todo list</code>可以做汇总</p>
+</li>
+<li>
+<p><code>Journals Calender</code>可以在主页加上一个小日历，方便跳转到之前的日志中</p>
+</li>
+<li>
+<p><code>Banners</code>可以在页面上面加一个图，可以好看一点点</p>
+</li>
+<li>
+<p><code>Text Wrapper</code>可以扩展markdown的颜色，多颜色标记</p>
+</li>
+<li>
+<p><code>Music Notation</code>可以绘制五线谱</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="坚果云" class="headerLink">
+    <a href="#%e5%9d%9a%e6%9e%9c%e4%ba%91" class="header-mark"></a>坚果云</h3><ul>
+<li>
+<p>可以直接将Logseq数据文件夹同步进坚果云，在新电脑上直接同步该文件夹到相同的位置，加载进logse即可</p>
+</li>
+<li>
+<p>在另外一台电脑上，直接运行坚果云，并将整个Logseq数据文件夹同步到本地并加载进Logseq即可（注意插件）</p>
+</li>
+</ul>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-25</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/binomial_and_poisson_distribution/" class="prev" rel="prev" title="BioModel | 对二项分布与泊松分布的理解"><i class="fas fa-angle-left fa-fw"></i>BioModel | 对二项分布与泊松分布的理解</a>
+            <a href="/posts/genshin-impact/genshin-impact_artifacts/" class="next" rel="next" title="原神圣遗物角色适用表（4.0版本 附含下载链接）">原神圣遗物角色适用表（4.0版本 附含下载链接）<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

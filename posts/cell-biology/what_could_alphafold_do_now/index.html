@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>AlphaFold可以做什么？ - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="AlphaFold可以做什么？" />
+<meta property="og:description" content="我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-10T00:04:00+08:00" />
+<meta property="article:modified_time" content="2021-10-10T00:04:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AlphaFold可以做什么？"/>
+<meta name="twitter:description" content="我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/" /><link rel="prev" href="https://jwangl5.github.io/posts/opencv/image_basic_processing_by_opencv/" /><link rel="next" href="https://jwangl5.github.io/posts/cell-biology/dhb_sensor/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AlphaFold可以做什么？",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/what_could_alphafold_do_now\/"
+        },"genre": "posts","wordcount":  872 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/what_could_alphafold_do_now\/","datePublished": "2021-10-10T00:04:00+08:00","dateModified": "2021-10-10T00:04:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AlphaFold可以做什么？</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>分子细胞生物学</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-10">2021-10-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-10-10">2021-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 872 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="content" id="content"><blockquote>
+<p>我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实验室非计算机背景的同门写下的一些自己在应用层面的理解，时隔两年整理时再次读起，发现<strong>本文一些观点已经不再正确了</strong>（比如AlphaFold官方已经开发了复合体的预测模型），但作为对当年学习的记录，这里标注了文章时间，就不再更正原文</p>
+</blockquote>
+<p>AlphaFold官方说法是可以高精度地预测自然发生的、单链的蛋白结构，其原理主要依赖于多序列比对，部分依赖于数据库中的已知结构，得到的结果在结构域层面是具有较高精度的，但其构象所处的状态以及该状态下的分子活性仍需要进一步地判断，根据官方的说法对于以下几种情况，AplhaFold并不十分适用（但也有一些民间方法来解决这些问题）：</p>
+<ol>
+<li>
+<p>AlphaFold不适用于复合体的预测，在机器学习模型的设计上数据输入格式就仅含有一条序列的输入；因AlphaFold更多是在模仿自然规律来得到最优结构，因而在输入复合体中一部分的蛋白序列时得到的结果可能是与复合体相同的，但也有可能因缺少互作而与其不相似。</p>
+<p><a href="https://www.biorxiv.org/content/10.1101/2021.07.27.453972v2.full" target="_blank" rel="noopener noreferrer">(Ko and Lee, 2021)</a> 这篇文章里在测试复合体结构时，使用了30个Gly的Linker将两个蛋白连起来，发现效果还不错，不过只是小规模测试，不能保证具有普遍性</p>
+</li>
+<li>
+<p>对于连续的无序区域（disordered or unstructured），AlphaFold的预测效果也会明显变差；对于结构中的非蛋白成分（比如一些配体）不能给出预测，但蛋白的部分官方说效果还不错</p>
+</li>
+<li>
+<p>突变体蛋白因为不是自然发生的，因而不能保证结果的正确性</p>
+</li>
+<li>
+<p>对于蛋白质的构象问题，AlphaFold给出的蛋白质结构可能是自然构象之一，这个过程不可控；</p>
+<p><a href="https://onlinelibrary.wiley.com/doi/10.1002/mrd.23538" target="_blank" rel="noopener noreferrer">最近这篇文章</a>将一个可以聚合的蛋白C段的抑制序列删除后再预测，AlphaFold给出的构象竟然预测出了聚合状态下的构象，似乎说明了AlphaFold在预测蛋白质构象变化中具有一定的潜力</p>
+</li>
+</ol>
+<hr>
+<p>在拿到AlphaFold的假定结构后，对于非结构生物学领域来说也可以利用结构做一些互作和功能上的预测，但具体的做法还需要进一步地摸索</p>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-10-10</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/opencv/image_basic_processing_by_opencv/" class="prev" rel="prev" title="OpenCV | 空间域处理之邻域操作/几何变换/形态学操作"><i class="fas fa-angle-left fa-fw"></i>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</a>
+            <a href="/posts/cell-biology/dhb_sensor/" class="next" rel="next" title="Life-cell sensor for G1/S transition DHB-Ven">Life-cell sensor for G1/S transition DHB-Ven<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

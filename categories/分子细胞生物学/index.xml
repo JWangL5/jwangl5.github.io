@@ -22,5 +22,11 @@
     <pubDate>Fri, 15 Oct 2021 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</guid>
     <description><![CDATA[构建：The sensor includes amino acids 994–1087 of human DNA helicase B fused to the yellow fluorescent protein mVenus (DHB-Ven), and contains four CDK consensus phosphorylation sites, a nuclear localization signal, and a nuclear export signal. DHB是DNA解旋酶B的片段，该片段上包含CD]]></description>
+</item><item>
+    <title>AlphaFold可以做什么？</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/</link>
+    <pubDate>Sun, 10 Oct 2021 00:04:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/</guid>
+    <description><![CDATA[我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实]]></description>
 </item></channel>
 </rss>
