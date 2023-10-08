@@ -11,6 +11,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/teton_system/</guid>
     <description><![CDATA[很早就听闻Tet-On诱导表达系统了，但一直没有很好的机会去用，最近正好想要用Tet-On系统来做一个诱导表达细胞系，就来查查这个系统，主要]]></description>
 </item><item>
+    <title>2023年BioBit暑期学校课程笔记（生物计算/合成生物学）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</link>
+    <pubDate>Fri, 25 Aug 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
     <title>用ODEs建模细胞周期（Julia代码）</title>
     <link>https://jwangl5.github.io/posts/cell-biology/odes_model_for_cell_cycle/</link>
     <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>

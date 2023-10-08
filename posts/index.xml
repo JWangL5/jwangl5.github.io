@@ -59,10 +59,10 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/</guid>
     <description><![CDATA[最近在BioBit暑期学校认识了很多新朋友，有朋友在见识了我用的Logseq后在问复刻过程，这里就写了一点文字来说明这个事情 该体系的优势 Zo]]></description>
 </item><item>
-    <title>BioModel | 对二项分布与泊松分布的理解</title>
-    <link>https://jwangl5.github.io/posts/binomial_and_poisson_distribution/</link>
-    <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/binomial_and_poisson_distribution/</guid>
-    <description><![CDATA[二项分布（生物建模书71页）二项分布是一种包含两个参数的离散分布。可以用如下案例引入：单位时间发生的次数为随机变量 $X$ ，平均次数为 $\lamb]]></description>
+    <title>2023年BioBit暑期学校课程笔记（生物计算/合成生物学）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</link>
+    <pubDate>Fri, 25 Aug 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
 </item></channel>
 </rss>
