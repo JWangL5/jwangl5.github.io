@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/venn_and_upset_diagram\/"
-        },"genre": "posts","wordcount":  84 ,
+        },"genre": "posts","wordcount":  845 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/venn_and_upset_diagram\/","datePublished": "2023-01-28T00:00:00+08:00","dateModified": "2023-01-28T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,8 +118,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/"><i class="far fa-folder fa-fw"></i>工具分享</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/python-scripts/"><i class="far fa-list-alt fa-fw"></i>Python Scripts</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-01-28">2023-01-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-01-28">2023-01-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 84 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-01-28">2023-01-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-01-28">2023-01-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 845 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成：</p>
 <ul>
 <li>
@@ -129,7 +129,108 @@
 <p><a href="http://jvenn.toulouse.inra.fr/app/example.html" target="_blank" rel="noopener noreferrer">jvenn绘图工具·彩色·动态·最多6组数据</a></p>
 </li>
 </ul>
-</div>
+<hr>
+<p>本次任务中，是希望利用已经公开发布的Apex2质谱数据，在完全不相关的实验中，找到一些共有的因子，从而建立BlackList。网页工具数据集有点少，并且对数据挖掘不够，这里就自己尝试了一些韦恩图工具。任务前期已经通过数据收集和整理，构建了表格<code>apex2col.csv</code>，表格中每一列是一个数据集，一共8列，需要找到并可视化这8个数据集的交叉情况</p>
+<h3 id="使用python绘制韦恩图" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8python%e7%bb%98%e5%88%b6%e9%9f%a6%e6%81%a9%e5%9b%be" class="header-mark"></a>使用Python绘制韦恩图</h3><p>引包和数据整理</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">venn</span> <span class="kn">import</span> <span class="n">venn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">venn</span> <span class="kn">import</span> <span class="n">pseudovenn</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Rscript/apex2col.csv&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</span></span></code></pre></div><p>绘图</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pseudovenn</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="mi">6</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&#34;plasma&#34;</span><span class="p">,</span> <span class="n">hint_hidden</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&#34;best&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><center>
+<a class="lightgallery" href="/image/Venn-Apex2-01.png" title="/image/Venn-Apex2-01.png" data-thumbnail="/image/Venn-Apex2-01.png">
+        <img
+            
+            loading="lazy"
+            src="/image/Venn-Apex2-01.png"
+            srcset="/image/Venn-Apex2-01.png, /image/Venn-Apex2-01.png 1.5x, /image/Venn-Apex2-01.png 2x"
+            sizes="auto"
+            alt="/image/Venn-Apex2-01.png" height="50%"  width="50%" >
+    </a>
+</center>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">venn</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="mi">5</span><span class="p">)),</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&#34;best&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><center>
+<a class="lightgallery" href="/image/Venn-Apex2-02.png" title="/image/Venn-Apex2-02.png" data-thumbnail="/image/Venn-Apex2-02.png">
+        <img
+            
+            loading="lazy"
+            src="/image/Venn-Apex2-02.png"
+            srcset="/image/Venn-Apex2-02.png, /image/Venn-Apex2-02.png 1.5x, /image/Venn-Apex2-02.png 2x"
+            sizes="auto"
+            alt="/image/Venn-Apex2-02.png" height="50%"  width="50%" >
+    </a>
+</center>
+<h3 id="使js工具绘制交互式upset-diagram" class="headerLink">
+    <a href="#%e4%bd%bfjs%e5%b7%a5%e5%85%b7%e7%bb%98%e5%88%b6%e4%ba%a4%e4%ba%92%e5%bc%8fupset-diagram" class="header-mark"></a>使JS工具绘制交互式Upset Diagram</h3><p><a href="https://upset.app/" target="_blank" rel="noopener noreferrer">Upset Diagram</a>是多组数据相互比较的一种柱状图，能够清楚地看到数据集之间的交集。</p>
+<p><a href="http://vcg.github.io/upset/" target="_blank" rel="noopener noreferrer">这个Github仓库</a>提供了一个可交互的JS绘图工具，很好用，很漂亮。但是它要求提供零一值的表格，并使用<a href="https://github.com/VCG/upset/wiki/Data-Import" target="_blank" rel="noopener noreferrer">Json格式</a>提供数据集基本信息和绘图配置，下面的Python代码是将原csv格式文件转化为目标数据格式的脚本。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Rscript/apex2col.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">set</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">v</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">genes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">row</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">j</span> <span class="k">else</span> <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">colname</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gene&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">resdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">colname</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">resdata</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Apex2colUpsetDigarmData.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>将如下文件上传至服务器并获取原数据获取链接（我这里直接放到了一个github仓库中），并将其按照格式填充进如下的json文件中，并加载进该工具</p>
+<p>PS：似乎不能将数据放在本地，必须使用网络的url；但是绘图的程序代码可以直接下载到本地，然后将json数据加载进程序就可以</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;file&#34;</span><span class="p">:</span> <span class="s2">&#34;https://raw.githubusercontent.com/l392537594/proteinanno/main/XXX.csv&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Test&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;header&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;separator&#34;</span><span class="p">:</span> <span class="s2">&#34;,&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;skip&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;meta&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span> <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;gene_id&#34;</span><span class="p">,</span> <span class="nt">&#34;index&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Gene_ID&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">],</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;sets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span> <span class="nt">&#34;format&#34;</span><span class="p">:</span> <span class="s2">&#34;binary&#34;</span><span class="p">,</span> <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nt">&#34;end&#34;</span><span class="p">:</span> <span class="mi">7</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这个是最后的效果，很有利于进一步的数据挖掘</p>
+<p><figure><a class="lightgallery" href="/image/Upset-01.png" title="/image/Upset-01.png" data-thumbnail="/image/Upset-01.png">
+        <img
+            
+            loading="lazy"
+            src="/image/Upset-01.png"
+            srcset="/image/Upset-01.png, /image/Upset-01.png 1.5x, /image/Upset-01.png 2x"
+            sizes="auto"
+            alt="/image/Upset-01.png" height="1550"  width="2880" >
+    </a></figure></p>
+<h3 id="使用r绘制韦恩图" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8r%e7%bb%98%e5%88%b6%e9%9f%a6%e6%81%a9%e5%9b%be" class="header-mark"></a>使用R绘制韦恩图</h3><p>效果很一般，并且同时绘制的数据组个数有限</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;VennDiagram&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">VennDiagram</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;Rscript/apex2col.csv&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;,&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">header</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">na.strings</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">A</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">AT1R.APEX2.AngII.</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">B</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">AT1R.APEX2.TRV027.</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">C</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">`β2AR.APEX2.BI167107.`</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">D</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">Endosomal.APEX2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">E</span> <span class="o">&lt;-</span> <span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">DOR.APEX2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="bp">F</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">CCDC68</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">G</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">as.list</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">a</span><span class="o">$</span><span class="n">CCDC120</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">venn.diagram</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="bp">F</span><span class="p">,</span><span class="n">G</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">filename</span> <span class="o">=</span> <span class="s">&#39;Rscript/tets2.png&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="n">category.names</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;F&#34;</span><span class="p">,</span><span class="s">&#34;G&#34;</span><span class="p">))</span>
+</span></span></code></pre></div></div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img

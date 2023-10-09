@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/genshin-impact\/data_collecting_from_miyoushe\/"
-        },"genre": "posts","wordcount":  1132 ,
+        },"genre": "posts","wordcount":  1156 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/genshin-impact\/data_collecting_from_miyoushe\/","datePublished": "2023-02-22T00:00:00+08:00","dateModified": "2023-02-22T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/"><i class="far fa-folder fa-fw"></i>游戏经验</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/genshin-impact/"><i class="far fa-list-alt fa-fw"></i>Genshin Impact</a>&nbsp;<a href="/series/python-scripts/"><i class="far fa-list-alt fa-fw"></i>Python Scripts</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-02-22">2023-02-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-02-22">2023-02-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1132 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-02-22">2023-02-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-02-22">2023-02-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1156 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>最近上头了一个尘歌壶套装，但是前期统计材料需求、收集材料是很痛苦的过程，如果计算出错就需要来回捯饬，很是费时间。于是乎就想要收集一个全素材的材料表，找到找去还是从米游社官方去爬数据最简单。大概思路是登陆之后，在浏览器控制台找到对数据的请求链接，然后用Python请求到数据，用<code>BeautifulSoup</code>解析html，用<code>json</code>模块解析数据，用<code>pandas</code>整理数据并输出。下面是一些抓数据的代码：</p>
 <h3 id="引包" class="headerLink">
@@ -133,7 +133,10 @@
 </span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span> 
 </span></span><span class="line"><span class="cl"><span class="n">rep</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </span></span></code></pre></div><h3 id="数据整理" class="headerLink">
-    <a href="#%e6%95%b0%e6%8d%ae%e6%95%b4%e7%90%86" class="header-mark"></a>数据整理</h3><p>不同家具的情况不一样，有些位置会空缺数据，需要用try/catch识别，并且出错后报告</p>
+    <a href="#%e6%95%b0%e6%8d%ae%e6%95%b4%e7%90%86" class="header-mark"></a>数据整理</h3><p>可以从该json中解析出所需要的数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">datadb</span> <span class="o">=</span> <span class="n">rep</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;list&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;children&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">fur</span> <span class="o">=</span> <span class="n">datadb</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+</span></span></code></pre></div><p>不同家具的情况不一样，有些位置会空缺数据，需要用try/catch识别，并且出错后报告</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="n">n</span><span class="o">=</span><span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fur</span><span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">]:</span>
