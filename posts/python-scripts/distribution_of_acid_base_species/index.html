@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>分析化学 | 酸碱形体分布和pH关系 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="分析化学 | 酸碱形体分布和pH关系" />
+<meta property="og:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 import numpy as np from matplotlib import pyplot as plt 一元酸解离分配$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-18T16:58:00+08:00" />
+<meta property="article:modified_time" content="2021-09-18T16:58:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+<meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/hamming_code/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/flow_cytometry_mapping_by_python/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="分析化学 | 酸碱形体分布和pH关系"/>
+<meta name="twitter:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 import numpy as np from matplotlib import pyplot as plt 一元酸解离分配$"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/" /><link rel="next" href="https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "分析化学 | 酸碱形体分布和pH关系",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/distribution_of_acid_base_species\/"
+        },"genre": "posts","wordcount":  375 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/distribution_of_acid_base_species\/","datePublished": "2021-09-18T16:58:00+08:00","dateModified": "2021-09-18T16:58:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">分析化学 | 酸碱形体分布和pH关系</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/python-scripts/"><i class="far fa-list-alt fa-fw"></i>Python Scripts</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 375 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="content" id="content"><blockquote>
+<p>分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数
+$$ \delta = \frac{[c_i]}{c_0}$$
+分布曲线：不同pH值溶液中酸碱存在形式的分布</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</span></span></code></pre></div><h2 id="一元酸解离分配" class="headerLink">
+    <a href="#%e4%b8%80%e5%85%83%e9%85%b8%e8%a7%a3%e7%a6%bb%e5%88%86%e9%85%8d" class="header-mark"></a>一元酸解离分配</h2><p>$$ HA \longrightarrow H^+ + A^- , K^\Theta_a=\frac{[H^+][A^-]}{[HA]}$$</p>
+<p>对于$HA$,其分布系数为：
+$$\delta_{HA}
+=\frac{[HA]}{[HA]+[A^-]}
+=\frac{1}{1+\frac{[A^-]}{[HA]}}
+=\frac{1}{1+\frac{K^\Theta_a}{[H^+]}}
+=\frac{[H^+]}{[H^+]+K^\Theta_a}$$</p>
+<p>对于$[A^-]$，其分布系数为：
+$$\delta_{A^-}
+=\frac{[A^-]}{[HA]+[A^-]}
+=\frac{1}{1+\frac{[HA]}{[A^-]}}
+=\frac{1}{1+\frac{[H^+]}{K^\Theta_a}}
+=\frac{K^\Theta_a}{[H^+]+K^\Theta_a}$$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Ka = float(input(&#39;输入Ka：&#39;))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ka</span> <span class="o">=</span> <span class="mf">1.6e-5</span> <span class="c1"># 默认数据为醋酸</span>
+</span></span><span class="line"><span class="cl"><span class="n">pH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dHA</span><span class="p">,</span> <span class="n">dA</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pH</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**-</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dHA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="o">/</span><span class="p">(</span><span class="n">H</span><span class="o">+</span><span class="n">Ka</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ka</span><span class="o">/</span><span class="p">(</span><span class="n">H</span><span class="o">+</span><span class="n">Ka</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span> <span class="n">dHA</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;HA&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span> <span class="n">dA</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;$A^-$&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;pH&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-01.png" title="/image/AcidBase-Species-Distribution-01.png" data-thumbnail="/image/AcidBase-Species-Distribution-01.png" data-sub-html="<h2>醋酸（一元弱酸）的型体分布图</h2>">
+        <img
+            
+            loading="lazy"
+            src="/image/AcidBase-Species-Distribution-01.png"
+            srcset="/image/AcidBase-Species-Distribution-01.png, /image/AcidBase-Species-Distribution-01.png 1.5x, /image/AcidBase-Species-Distribution-01.png 2x"
+            sizes="auto"
+            alt="/image/AcidBase-Species-Distribution-01.png" height="321"  width="505" >
+    </a><figcaption class="image-caption">醋酸（一元弱酸）的型体分布图</figcaption>
+    </figure>
+<h2 id="二元酸解离分配" class="headerLink">
+    <a href="#%e4%ba%8c%e5%85%83%e9%85%b8%e8%a7%a3%e7%a6%bb%e5%88%86%e9%85%8d" class="header-mark"></a>二元酸解离分配</h2><p>$$ H_2A \longrightarrow H^+ + HA^- , K^\Theta_{a1}=\frac{[H^+][HA^-]}{[H_2A]}$$
+$$ HA^- \longrightarrow H^+ + A^{2-} , K^\Theta_{a2}=\frac{[H^+][A^{2-}]}{[HA^-]}$$</p>
+<p>对于$HA$,其分布系数为：
+$$
+\delta_{H_2A}
+=\frac{[H_2A]}{[H_2A]+[HA^-]+[A^{2-}]}
+=\frac{1}{1+\frac{[HA^-]}{[H_2A]}+\frac{[A^{2-}]}{[H_2A]}}
+=\frac{1}{1+\frac{K^\Theta_{a1}}{[H^+]}+\frac{K^\Theta_{a1}K^\Theta_{a2}}{[H^+]^2}}
+=\frac{[H^+]^2}{[H^+]^2 + [H^+]K^\Theta_{a1} + K^\Theta_{a1}K^\Theta_{a2}}
+$$</p>
+<p>对于$[A^-]$，其分布系数为：
+$$\delta_{HA^-}
+=\frac{[H^+]K^\Theta_{a1}}{[H^+]^2 + [H^+]K^\Theta_{a1} + K^\Theta_{a1}K^\Theta_{a2}}$$</p>
+<p>对于$[A^{2-}]$，其分布系数为：
+$$\delta_{A^{2-}}
+=\frac{K^\Theta_{a1}K^\Theta_{a2}}{[H^+]^2 + [H^+]K^\Theta_{a1} + K^\Theta_{a1}K^\Theta_{a2}}
+$$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Ka1</span><span class="p">,</span> <span class="n">Ka2</span> <span class="o">=</span> <span class="mf">5.9e-2</span><span class="p">,</span> <span class="mf">6.5e-5</span> <span class="c1"># 默认数据是草酸</span>
+</span></span><span class="line"><span class="cl"><span class="n">pH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dH2A</span><span class="p">,</span> <span class="n">dHA</span><span class="p">,</span> <span class="n">dA</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pH</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**-</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">div</span> <span class="o">=</span> <span class="n">H</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">H</span><span class="o">*</span><span class="n">Ka1</span> <span class="o">+</span> <span class="n">Ka1</span><span class="o">*</span><span class="n">Ka2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dH2A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dHA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">H</span><span class="o">*</span><span class="n">Ka1</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ka1</span><span class="o">*</span><span class="n">Ka2</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span> <span class="n">dH2A</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$H_2A$&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span> <span class="n">dHA</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$HA$&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pH</span><span class="p">,</span> <span class="n">dA</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;$A^-$&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;pH&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-02.png" title="/image/AcidBase-Species-Distribution-02.png" data-thumbnail="/image/AcidBase-Species-Distribution-02.png" data-sub-html="<h2>草酸（二元弱酸）的型体分布图</h2>">
+        <img
+            
+            loading="lazy"
+            src="/image/AcidBase-Species-Distribution-02.png"
+            srcset="/image/AcidBase-Species-Distribution-02.png, /image/AcidBase-Species-Distribution-02.png 1.5x, /image/AcidBase-Species-Distribution-02.png 2x"
+            sizes="auto"
+            alt="/image/AcidBase-Species-Distribution-02.png" height="321"  width="505" >
+    </a><figcaption class="image-caption">草酸（二元弱酸）的型体分布图</figcaption>
+    </figure>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-09-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/python-scripts/python_script_for_bilibili_danmu/" class="prev" rel="prev" title="Python脚本爬取B站弹幕（已失效）"><i class="fas fa-angle-left fa-fw"></i>Python脚本爬取B站弹幕（已失效）</a>
+            <a href="/posts/cell-biology/what_could_alphafold_do_now/" class="next" rel="next" title="AlphaFold可以做什么？">AlphaFold可以做什么？<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

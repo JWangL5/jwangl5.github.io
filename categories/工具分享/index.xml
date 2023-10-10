@@ -22,5 +22,11 @@
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
     <description><![CDATA[对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成： 黑白框的Venn图绘制工具·最多4组数据 jvenn绘图工]]></description>
+</item><item>
+    <title>Python脚本爬取B站弹幕（已失效）</title>
+    <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</link>
+    <pubDate>Fri, 11 Dec 2020 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</guid>
+    <description><![CDATA[20年底用于爬取B站弹幕的代码，最近在整理博客时测试，发现该代码已经失效了，应该是B站修改了API 这里先贴出来，之后具体需要用了再维护 😳 import requests]]></description>
 </item></channel>
 </rss>
