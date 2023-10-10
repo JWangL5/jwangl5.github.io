@@ -39,6 +39,6 @@
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</link>
     <pubDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</guid>
-    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照最新的API重写调整的数据批量下载代码]]></description>
+    <description><![CDATA[最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照最新的API说明重写调整的数据批量下载代码 import urllib from io import StringIO import pandas as pd import requests from]]></description>
 </item></channel>
 </rss>
