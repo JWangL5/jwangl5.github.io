@@ -4,9 +4,15 @@
         <link>https://jwangl5.github.io/</link>
         <description>Cell · Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</lastBuildDate>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>英语听写播放器工具</title>
+    <link>https://jwangl5.github.io/posts/english_listening_tool/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/english_listening_tool/</guid>
+    <description><![CDATA[为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对） ctrl+Q 播放/暂停 ctrl+ArrowLeft 回退5秒 点击按钮打开音频 00:00 / 00:00]]></description>
+</item><item>
     <title>哺乳动物细胞诱导表达系统(Tet-On/Off)</title>
     <link>https://jwangl5.github.io/posts/cell-biology/teton_system/</link>
     <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>
@@ -30,12 +36,6 @@
     <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
-</item><item>
-    <title>MDF | 04. 多元函数微积分</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</link>
-    <pubDate>Fri, 29 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_04_mathtools_multivariate_calculus/</guid>
-    <description><![CDATA[]]></description>
 </item><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
     <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
