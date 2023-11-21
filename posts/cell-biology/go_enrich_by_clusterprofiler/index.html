@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>使用clusterProfiler完成GO富集（含R脚本） - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="使用clusterProfiler完成GO富集（含R脚本）" />
+<meta property="og:description" content="关于GO富集的原理 这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分 R脚本1、使用R中最经典的方法clusterProfiler进" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-21T00:00:00+08:00" />
+<meta property="article:modified_time" content="2021-12-21T00:00:00+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用clusterProfiler完成GO富集（含R脚本）"/>
+<meta name="twitter:description" content="关于GO富集的原理 这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分 R脚本1、使用R中最经典的方法clusterProfiler进"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/" /><link rel="next" href="https://jwangl5.github.io/posts/python-scripts/python_script_fot_co_location_analysis/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用clusterProfiler完成GO富集（含R脚本）",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/go_enrich_by_clusterprofiler\/"
+        },"genre": "posts","wordcount":  650 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/go_enrich_by_clusterprofiler\/","datePublished": "2021-12-21T00:00:00+08:00","dateModified": "2021-12-21T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用clusterProfiler完成GO富集（含R脚本）</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"><i class="far fa-folder fa-fw"></i>生物信息</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/r-scripts/"><i class="far fa-list-alt fa-fw"></i>R Scripts</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 650 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h2 id="关于go富集的原理" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8ego%e5%af%8c%e9%9b%86%e7%9a%84%e5%8e%9f%e7%90%86" class="header-mark"></a>关于GO富集的原理</h2><blockquote>
+<p>这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分</p>
+</blockquote>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+#embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+#loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+#loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style>
+
+<div id="embed-pdf-container">
+  <div id="loadingWrapper">
+    <div id="loading"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/GO_enrich_by_clusterprofiler.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+
+
+var url = "https:\/\/jwangl5.github.io" + '\/files\/GO_enrich_by_clusterprofiler.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-' + num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+}
+
+</script>
+
+
+<h2 id="r脚本" class="headerLink">
+    <a href="#r%e8%84%9a%e6%9c%ac" class="header-mark"></a>R脚本</h2><p>1、使用<code>R</code>中最经典的方法<code>clusterProfiler</code>进行GO富集分析并可视化绘图，首先下载、引包，并且下载基因组，设定数据路径</p>
+<ul>
+<li><code>org.At.tair.db</code>是拟南芥基因组</li>
+<li><code>org.Dm.eg.db</code>是果蝇基因组</li>
+<li><code>org.Hs.eg.db</code>是Human基因组</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.12&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;clusterProfiler&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;org.At.tair.db&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">org.At.tair.db</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">clusterProfiler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;F:/Rcode/GO-term/LJW&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>2、使用<code>enrichGO</code>函数进行GO注释和富集：</p>
+<ul>
+<li><code>gene</code>参数传入一个读取基因的list</li>
+<li><code>db</code>参数传入指定的基因组数据库，<code>keyType</code>参数传入基因ID的类型（可以使用<code>keytypes(org.At.tair.db)</code>命令可以查看基因组支持的ID类型）</li>
+<li><code>ont</code>参数指定GO富集的词条，其中GO分为生物学过程（BP）、细胞组分（CC）、分子功能（MF）三部分，可以合并在一起（<code>ont=&quot;ALL&quot;</code>）进行注释富集，也可以像下面案例代码分开</li>
+<li><code>pAdjustMethod</code>、<code>pvalueCutoff</code>、<code>qvalueCutoff</code>、<code>readable</code>参数一般不改（通常只有在富集出词条特别少时会调大）</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;GO-genelist.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">d1[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">keytypes</span><span class="p">(</span><span class="n">org.At.tair.db</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BP.params</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="o">=</span><span class="n">d1</span> <span class="p">,</span><span class="s">&#39;org.At.tair.db&#39;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;BP&#34;</span><span class="p">,</span> <span class="n">keyType</span> <span class="o">=</span> <span class="s">&#34;TAIR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">pAdjustMethod</span><span class="o">=</span><span class="s">&#34;BH&#34;</span><span class="p">,</span> <span class="n">pvalueCutoff</span><span class="o">=</span><span class="m">0.01</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">readable</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">CC.params</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="o">=</span><span class="n">d1</span> <span class="p">,</span><span class="s">&#39;org.At.tair.db&#39;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;CC&#34;</span><span class="p">,</span> <span class="n">keyType</span> <span class="o">=</span> <span class="s">&#34;TAIR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">pAdjustMethod</span><span class="o">=</span><span class="s">&#34;BH&#34;</span><span class="p">,</span> <span class="n">pvalueCutoff</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">readable</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">MF.params</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="o">=</span><span class="n">d1</span> <span class="p">,</span><span class="s">&#39;org.At.tair.db&#39;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;MF&#34;</span><span class="p">,</span> <span class="n">keyType</span> <span class="o">=</span> <span class="s">&#34;TAIR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">pAdjustMethod</span><span class="o">=</span><span class="s">&#34;BH&#34;</span><span class="p">,</span> <span class="n">pvalueCutoff</span><span class="o">=</span><span class="m">0.01</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">readable</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><p>3、<code>clusterProfiler</code>支持3种方法可视化富集结果，其中<code>barplot</code>和<code>dotplot</code>具有相同的信息，<code>cnetplot</code>展示被富集词条的相关基因</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">barplot</span><span class="p">(</span><span class="n">BP.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_BP SZ20213020178 LJW&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">barplot</span><span class="p">(</span><span class="n">CC.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_CC SZ20213020178 LJW p=0.05&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">dotplot</span><span class="p">(</span><span class="n">MF.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_MF&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cnetplot</span><span class="p">(</span><span class="n">MF.params</span><span class="p">,</span> <span class="n">categorySize</span><span class="o">=</span><span class="s">&#34;pvalue&#34;</span><span class="p">,</span> <span class="n">foldChange</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_MF&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/GO_BP_bar.png" title="/image/GO_BP_bar.png" data-thumbnail="/image/GO_BP_bar.png">
+        <img
+            
+            loading="lazy"
+            src="/image/GO_BP_bar.png"
+            srcset="/image/GO_BP_bar.png, /image/GO_BP_bar.png 1.5x, /image/GO_BP_bar.png 2x"
+            sizes="auto"
+            alt="/image/GO_BP_bar.png" height="976"  width="1920" >
+    </a></figure>
+<a class="lightgallery" href="/image/GO_MF_dot.png" title="/image/GO_MF_dot.png" data-thumbnail="/image/GO_MF_dot.png">
+        <img
+            
+            loading="lazy"
+            src="/image/GO_MF_dot.png"
+            srcset="/image/GO_MF_dot.png, /image/GO_MF_dot.png 1.5x, /image/GO_MF_dot.png 2x"
+            sizes="auto"
+            alt="/image/GO_MF_dot.png" height="59%"  width="59%" >
+    </a> <a class="lightgallery" href="/image/GO_MF_net.png" title="/image/GO_MF_net.png" data-thumbnail="/image/GO_MF_net.png">
+         <img
+             
+             loading="lazy"
+             src="/image/GO_MF_net.png"
+             srcset="/image/GO_MF_net.png, /image/GO_MF_net.png 1.5x, /image/GO_MF_net.png 2x"
+             sizes="auto"
+             alt="/image/GO_MF_net.png" height="35%"  width="35%" >
+     </a></p>
+<p>4、GO富集的结果可以直接保存出来，选择合适的词条部分绘图</p>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/python-scripts/python_script_for_uniprot_data/" class="prev" rel="prev" title="利用Uniport数据接口批量下载信息"><i class="fas fa-angle-left fa-fw"></i>利用Uniport数据接口批量下载信息</a>
+            <a href="/posts/python-scripts/python_script_fot_co_location_analysis/" class="next" rel="next" title="荧光显微镜的共定位分析及绘图的Python脚本（含代码下载链接）">荧光显微镜的共定位分析及绘图的Python脚本（含代码下载链接）<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

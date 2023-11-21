@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>R Scripts - 系列 - Cell · Brain</title>
+        <link>https://jwangl5.github.io/series/r-scripts/</link>
+        <description>R Scripts - 系列 - Cell · Brain</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/r-scripts/" rel="self" type="application/rss+xml" /><item>
+    <title>使用clusterProfiler完成GO富集（含R脚本）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</link>
+    <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</guid>
+    <description><![CDATA[关于GO富集的原理 这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分 R脚本1、使用R中最经典的方法clusterProfiler进]]></description>
+</item></channel>
+</rss>

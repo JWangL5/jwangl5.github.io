@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>蛋白质质谱鉴定技术学习笔记 - Cell · Brain</title><meta name="Description" content=""><meta property="og:title" content="蛋白质质谱鉴定技术学习笔记" />
+<meta property="og:description" content="早年间学习质谱鉴定的笔记，现在看起来算是比较全面了，但是还缺少很多细节，只有需要了再补充吧 质谱仪：用来测定气态离子质荷比（m/z）的仪器 质谱" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/protein_mass_spectrometry/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-04T00:17:49+08:00" />
+<meta property="article:modified_time" content="2021-04-04T00:17:49+08:00" /><meta property="og:site_name" content="Cell · Brain" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="蛋白质质谱鉴定技术学习笔记"/>
+<meta name="twitter:description" content="早年间学习质谱鉴定的笔记，现在看起来算是比较全面了，但是还缺少很多细节，只有需要了再补充吧 质谱仪：用来测定气态离子质荷比（m/z）的仪器 质谱"/>
+<meta name="application-name" content="Cell · Brain">
+<meta name="apple-mobile-web-app-title" content="Cell · Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/protein_mass_spectrometry/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/" /><link rel="next" href="https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "蛋白质质谱鉴定技术学习笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/protein_mass_spectrometry\/"
+        },"genre": "posts","wordcount":  4111 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/protein_mass_spectrometry\/","datePublished": "2021-04-04T00:17:49+08:00","dateModified": "2021-04-04T00:17:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell · Brain">Cell · Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell · Brain">Cell · Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">蛋白质质谱鉴定技术学习笔记</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/"><i class="far fa-folder fa-fw"></i>实验方法</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-04">2021-04-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-04-04">2021-04-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4111 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="content" id="content"><blockquote>
+<p>早年间学习质谱鉴定的笔记，现在看起来算是比较全面了，但是还缺少很多细节，只有需要了再补充吧</p>
+</blockquote>
+<ul>
+<li>质谱仪：用来测定气态离子质荷比（m/z）的仪器</li>
+<li>质谱仪的基本组成结构
+<ul>
+<li>质谱联用技术（色谱）
+<ul>
+<li>色谱分离技术
+<ul>
+<li>利用被分离物质在两相中吸附或者分配系数的微小差异而达到分离目的。</li>
+<li>当被测物在不相混溶的两相作相对移动时，被分离物质在两相之间反复多次质量交换。</li>
+<li>从而实现对复杂混合物的分离。吸附能力弱的组分先流出。</li>
+</ul>
+</li>
+<li>气相色谱
+<ul>
+<li>气态或液态样品通过进样器进入气化室气化，然后进入色谱柱</li>
+<li>样品溶解到固定相中（相似相溶），色谱柱放在一个精确控温的炉子里（柱温箱）</li>
+<li>柱温箱温度逐渐提高，样品依据沸点差异，从固定相中依次气化析出，并被载气携带离开色谱柱</li>
+</ul>
+</li>
+<li>液相色谱-Liquid Chromatography（LC）
+<ul>
+<li>基于样品在固定相和流动相中溶解性的差异
+<ul>
+<li>正相色谱 (Normal Phase)
+<ul>
+<li>流动相的极性小于固定相，纯硅胶做固定相，有机溶剂，如己烷做流动相</li>
+<li>适用于非极性物质的分离</li>
+</ul>
+</li>
+<li>反相色谱 (Reversed Phase - RPLC)
+<ul>
+<li>流动相的极性大于固定相，键合硅胶固定相（ODS，Phenyl）</li>
+<li>水，乙腈，甲醇的混合物做流动相</li>
+<li>色谱柱的参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg" title="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg" data-thumbnail="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg"
+            srcset="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg, https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg 1.5x, https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg 2x"
+            sizes="auto"
+            alt="https://api2.mubu.com/v3/document_image/df787d36-3cdb-41d0-92d6-28fc074f1eec-2867247.jpg">
+    </a></figure></p>
+<ul>
+<li>几个常见的质谱仪公司
+<ul>
+<li>Thermofisher（赛默飞世尔）:蓝边白底</li>
+<li>AB SCIEX（美国应用生物系统公司）:大面积蓝白</li>
+<li>Agilent Technologies（安捷伦）：黑白</li>
+<li>Waters（沃特世）：多为蓝</li>
+<li>BRUKER（布鲁克）：白黑蓝都有，有个大棺材的TOF</li>
+<li>SHIMADZU（岛津）：黑白，最好看的</li>
+</ul>
+</li>
+<li>质谱检测常见现象
+<ul>
+<li>基质效应
+<ul>
+<li>样品提取液含有的内源性干扰物质对待测分子质谱信号响应的影响</li>
+<li>基质效应可以增强信号也可以抑制信号</li>
+<li>使用复杂的样品前处理过程可以减少基质效应，但是很难根除</li>
+<li>解决方案
+<ul>
+<li>使用基质匹配的标准溶液
+<ul>
+<li>使用确认不含待测物质的空白样品的提取液配置标准溶液，测定工作曲线</li>
+<li>测定内源性物质时“空白”样品无法获得</li>
+</ul>
+</li>
+<li>添加稳定同位素内标 (Internal Standard)
+<ul>
+<li>稳定同位素标记的外源性内标</li>
+<li>提取前加入样品中</li>
+<li>待测化合物和内标的色谱保留性质相同，在质谱上质量有差异</li>
+<li>内标可以校正提取过程中的样品损失（校正回收率）</li>
+<li>回收率（recovery） = 实测信号强度/理论信号强度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>靶标检测方法的评价
+<ul>
+<li>灵敏度：LOD和LOQ</li>
+<li>线性范围：linear range</li>
+<li>回收率：recovery</li>
+<li>重现性：批次内和批次间重现性</li>
+<li>方法的可操作性</li>
+</ul>
+</li>
+<li>批次效应
+<ul>
+<li>质谱仪连续分析样品时，离子传输系统会受到污染导致仪器灵敏度下降（Robustness）</li>
+<li>后期分析的样品的信号强度会低于前期样品</li>
+<li>定期分析质控样品和清洗离子传输系统</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于质谱的蛋白组学研究方法
+<ul>
+<li>整体策略
+<ul>
+<li>Top-down
+<ul>
+<li>自上而下，从完整蛋白开始，利用高分辨质谱仪获得蛋白精确分子量，再将蛋白在质谱仪中碎裂</li>
+<li>分析碎片离子质荷比，确定碎片的氨基酸序列，最后将碎片离子组装成完整蛋白</li>
+</ul>
+</li>
+<li>Bottom-up (shot-gun)
+<ul>
+<li>先用蛋白酶将蛋白酶解，再质谱分析酶解得到的多肽片段（5-30 AAs）</li>
+<li>然后利用数据处理软件进行数据库搜索获得蛋白序列信息</li>
+<li>蛋白酶解：特异性蛋白内切酶（Site-specific endoproteinase）
+<ul>
+<li>特异性水解和切断蛋白氨基酸长链上指定氨基酸位点的蛋白酶</li>
+<li>酶解得到的肽段大小适中：5-25个AA，分子量500-3 kDa，适于质谱检测</li>
+<li>肽段过短会与多个蛋白匹配，肽段过长分离和检测难度大</li>
+</ul>
+</li>
+<li>Trypsin：胰蛋白酶，选择性的切断蛋白序列中的赖氨酸和精氨酸的羧基侧</li>
+<li>Tryptic Peptides: 结合两个以上质子，带有两个以上正电荷</li>
+</ul>
+</li>
+<li>Middle-down
+<ul>
+<li>用特殊的蛋白酶（OmpT）进行酶解获得较长的肽段（6.5 kDa, ~60 AAs）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>碎裂</li>
+</ul>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg" title="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg" data-thumbnail="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg">
+        <img
+            
+            loading="lazy"
+            src="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg"
+            srcset="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg, https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg 1.5x, https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg 2x"
+            sizes="auto"
+            alt="https://api2.mubu.com/v3/document_image/c8425a39-f9f9-4e37-9807-1a4ce48d79e1-2867247.jpg">
+    </a></figure></p>
+<ul>
+<li>LC与GC的本质区别：流动相分别是液体和气体，GC需要在高温下运行，LC可在室温运行，流动相也参与分离。</li>
+<li>电离源：将目标分子气化，电离后导入质谱仪
+<ul>
+<li>作用：去溶剂，离子化，真空过渡</li>
+<li>常见的种类
+<ul>
+<li>大气压电离源(API)
+<ul>
+<li>ESI - Electrospray Ionization 电喷雾电离（溶液样品）
+<ul>
+<li>适用于极性样品分析，大分子也能电离，如肽，蛋白质，糖等</li>
+<li>产生的离子可以带有多个电荷</li>
+<li>在喷雾气外增加一路加热的鞘气，加速溶剂挥发</li>
+<li>从质谱仪离子入口处反吹氮气，阻止未电离溶剂分子进入质谱</li>
+</ul>
+</li>
+<li>大气压化学离子化 （atmospheric pressure chemical ionization, APCI)</li>
+<li>大气压光离子化 （atmospheric pressure photo ionization, APPI)</li>
+<li>DESI 解吸附电喷雾离子源——&gt; 实现了复杂样品在大气常压环境下的原位实时分析</li>
+</ul>
+</li>
+<li>EI – Electron impact ionization 电子轰击电离（气态样品）（电子电离）
+<ul>
+<li>是可使分子引起相当大的碎裂，电离效率高；</li>
+<li>所得分子离子峰往往并不很强甚至不能识别；</li>
+<li>利于结构鉴定和解析，但不利于混合组分的分析和药物纯度检查；</li>
+<li>不能分析热不稳定、难挥収、极性大化合物；</li>
+</ul>
+</li>
+<li>MALDI – Matrix-assisted laser desorption ionization 基质辅助激光解吸电离
+<ul>
+<li>MALDI获得的多肽离子通常只带一个正电荷</li>
+</ul>
+</li>
+<li>Fast Atomic Bombardment, FAB 快原子轰击
+<ul>
+<li>将样品溶解于低挥发性的液体基质中，用高速的中性粒子，如氩、氙等原子来轰击而解吸</li>
+<li>可直接进行分析，毋需做成衍生物</li>
+<li>适用于较大分子的质谱分析</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>真空系统（真空泵）：维持质谱仪真空度
+<ul>
+<li>低真空：机械泵（油泵）提供初级（粗）真空（1-3 mbar）</li>
+<li>高（超高）真空：涡轮泵（10 -5 -10 -10 mbar）</li>
+<li>离子的平均自由程（Mean Free Path）</li>
+</ul>
+</li>
+<li>质量分析器：分离和检测不同质荷比离子
+<ul>
+<li>常见种类
+<ul>
+<li>飞行时间质谱 Time-of-flight——高分辨量检测器</li>
+<li>四级杆质量过滤器 Quadrupole——过滤器/低分辨量检测器
+<ul>
+<li>由四根截面呈双曲面的平行电极所组成</li>
+</ul>
+</li>
+<li>离子阱质谱仪 Ion trap——过滤器/低分辨量检测器
+<ul>
+<li>一个环形电极和两个端盖电极（三维四级杆）</li>
+<li>通过改变环形电极上交变电压的振幅和频率可以选择性的将离子射出“ejection” 和检测</li>
+<li>可以选择性的“trap”离子，对离子进行富集和其他操作（manipulation）</li>
+</ul>
+</li>
+<li>傅立叶发换质谱 FT-ICR（分辨率高 稳定性好）高端科学</li>
+<li>Orbitrap——高分辨量检测器
+<ul>
+<li>离子在静电场和磁场中作回旋运动</li>
+<li>其回旋共振频率与其质荷比有关</li>
+<li>通过测定振荡频率并进行傅里叶变换处理，就可以测定离子的质荷比</li>
+<li>该类仪器具有极高的分辨率和价格</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单同位素峰和精确分子量的计算
+<ul>
+<li>氯元素的 (3:1) 比例很经典
+<ul>
+<li>35 Cl 34.96885 0.7576</li>
+<li>37 Cl 36.96590 0.2424</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>质谱仪的性能参数
+<ul>
+<li>分辨率（resolution）= 质量/半峰宽</li>
+<li>质量准确度 （mass accuracy， ppm） = (测量值 - 理论值)/测量值</li>
+<li>检测限（Detection Limit）</li>
+<li>线性范围（Linear range）</li>
+<li>灵敏度（Sensitivity）</li>
+</ul>
+</li>
+<li>Tandem MS 串级质谱
+<ul>
+<li>Triple Quad：串联四级杆（实现二级质谱）</li>
+<li>Q-TOF：四级杆飞行时间（提高质谱分辨率，解决TOF分析样品时的ion batch问题）</li>
+<li>Q-Trap：四级杆离子阱</li>
+<li>Ion Trap + Orbitrap</li>
+<li>Quad + Orbitrap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据采集和控制系统：计算机
+<ul>
+<li>Full scan和SIM模式
+<ul>
+<li>质谱仪采集一定质量（质荷比）范围内所有的离子信号</li>
+<li>当扫描范围低于10 a.m.u.的即为SIM模式（selected ion monitoring）</li>
+<li>SIM模式可以显著提高检测灵敏度（more focused scan）</li>
+<li>四级杆和离子阱质谱仪在全扫模式下灵敏度下降严重</li>
+<li>TOF和Oribtrap等不具备质量过滤功能的质谱仪无法独立实现SIM模式，需要与四级杆等质量过滤器串联使用</li>
+</ul>
+</li>
+<li>DDA &amp; DIA
+<ul>
+<li>DDA模式
+<ul>
+<li>质谱仪在数据采集期间判断采集的每张高分辨full scan谱图中的质谱信号</li>
+<li>然后选择符合设定条件的若干个母离子继续进行二级碎裂</li>
+<li>并分别采集这些母离子的二级谱图（TopN模式）</li>
+</ul>
+</li>
+<li>DIA模式
+<ul>
+<li>DIA模式下，质谱仪先采集一张高分辨full scan谱图，然后将一定质量范围内的全部离子全都碎裂（窗口20-40 amu）</li>
+<li>该碎裂窗口是连续变化的，直到一定范围内的所有离子都被碎裂为止（350-1200 amu）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MRM（multiple reaction monitoring）和PRM（parallel reaction monitoring）模式
+<ul>
+<li>仅适用于串联质谱仪</li>
+<li>第一级质谱选择母离子（mass filter），母离子在碰撞池（第二级质谱）中与N2 等惰性气体碰撞发生碎裂</li>
+<li>第三级质谱检测生成的碎片离子（MRM仅检测特定质荷比的碎片，PRM检测全部的碎片）</li>
+<li>通过选择特定质荷比的母离子提高检测的特异性</li>
+<li>MRM模式下通过延长对特定碎片离子的监测时间，提高灵敏度</li>
+<li>PRM又称为product ion scan，子离子扫描</li>
+<li>Duty cycle（占空比）问题</li>
+</ul>
+</li>
+<li>母离子扫描模式（Parent Ion Scan）
+<ul>
+<li>四级杆和离子阱均可实现</li>
+<li>一号四级杆扫描所有进入质谱仪的离子信号</li>
+<li>二号四级杆对通过一号四级杆的母离子进行碎裂</li>
+<li>三号四级杆仅检测特定质荷比的碎片离子</li>
+<li>可以得到能产生特定碎片离子的母离子的质谱图（aka都有哪些母离子可以产生我们正在监测的那个子离子）</li>
+<li>可以用于药物代谢产物的检测</li>
+</ul>
+</li>
+<li>中性丢失扫描（Neutral Loss Scan）
+<ul>
+<li>四级杆和离子阱均可实现</li>
+<li>一号四级杆和三号四级杆协同/同步扫描，扫描步伐上相差特定质荷比</li>
+<li>二号四级杆对一号四级杆选择的母离子进行碎裂，三号四级杆扫描与母离子有特定质量差值的碎片离子</li>
+<li>如果设定的质量差是18，则一号四级杆扫描50的时候，三号四级杆扫描32，以此类推，可以发现哪些母离子会失去特定的基团（比如脱水或者其他分子）</li>
+</ul>
+</li>
+<li>高端应用：decision tree based data acquisition</li>
+<li>得到的色谱图和质谱图
+<ul>
+<li>Total Ion Chromatogram (TIC) 总离子流图
+<ul>
+<li>TIC包含二维信息，每个时间点都包含一张完整的质谱图</li>
+</ul>
+</li>
+<li>Base Peak Chromatogram (BPC) 基峰图
+<ul>
+<li>基峰：选取质谱图中信号最强的离子作为该谱图的代表用于y轴</li>
+<li>TIC的y轴是所有质谱信号的加和，BPC的y轴仅包含信号最强离子的信号强度</li>
+</ul>
+</li>
+<li>Extract Ion Chromatogram (EIC) 提取离子色谱图 ——&gt; 特定质荷比离子的信号强度图
+<ul>
+<li>横轴是时间，纵轴是相对丰度</li>
+<li>不同时间关注的峰并不相同（植物激素检测）</li>
+</ul>
+</li>
+<li>某一时刻的质谱图</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>供电和供气系统</li>
+<li>二级质谱与多肽序列的匹配
+<ul>
+<li>正向匹配
+<ul>
+<li>分析二级质谱图中的碎片离子，将碎片离子拼接成多肽片段（de novo sequencing）</li>
+<li>李老师说这个技术很可能只是玄学 QAQ</li>
+</ul>
+</li>
+<li>逆向匹配
+<ul>
+<li>将蛋白组进行理论酶解（in silico)：必须预先知道蛋白组序列信息</li>
+<li>将理论酶解得到的肽段进行理论碎裂</li>
+<li>将实验得到的谱图与理论碎裂得到碎片离子峰进行比较和匹配</li>
+<li>常用的搜库引擎：MASCOT、X!Tandem、SEQUEST等</li>
+<li>质控：FDR</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>蛋白定量技术
+<ul>
+<li>Label Free Quantitation-非标记定量（基于样本重复和统计学）
+<ul>
+<li>比较同一肽段在不同样本中的母离子色谱峰面积</li>
+<li>通过统计学方法比较蛋白相对含量差异，每个样本需要若干技术重复和生物学重复（replicates），需要大量分析机时</li>
+<li>对液相色谱仪（保留时间稳定性）和质谱仪（质量准确性和信号响应）要求较高</li>
+</ul>
+</li>
+<li>iTRAQ：isobaric tag for absolute and relative quantitation</li>
+</ul>
+</li>
+</ul>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/python-scripts/python_script_for_bilibili_danmu/" class="prev" rel="prev" title="Python脚本爬取B站弹幕（已失效）"><i class="fas fa-angle-left fa-fw"></i>Python脚本爬取B站弹幕（已失效）</a>
+            <a href="/posts/python-scripts/distribution_of_acid_base_species/" class="next" rel="next" title="分析化学 | 酸碱形体分布和pH关系">分析化学 | 酸碱形体分布和pH关系<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
