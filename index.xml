@@ -1,12 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Cell · Brain</title>
+        <title>Cell × Brain</title>
         <link>https://jwangl5.github.io/</link>
-        <description>Cell · Brain</description>
+        <description>Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</lastBuildDate>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 16 Nov 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>My Curriculum Vitae</title>
+    <link>https://jwangl5.github.io/posts/curriculum_vitae/</link>
+    <pubDate>Thu, 16 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/curriculum_vitae/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>英语听写播放器工具</title>
     <link>https://jwangl5.github.io/posts/english_listening_tool/</link>
     <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
@@ -119,12 +125,6 @@
     <link>https://jwangl5.github.io/posts/method/competent_cell_for_ecoil/</link>
     <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/competent_cell_for_ecoil/</guid>
-    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
-</item><item>
-    <title>Protocol | 蛋白质透析除盐</title>
-    <link>https://jwangl5.github.io/posts/method/protein_dialysis_desalination/</link>
-    <pubDate>Sun, 02 Jul 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/protein_dialysis_desalination/</guid>
     <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
 </item></channel>
 </rss>

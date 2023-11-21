@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>前端技术 - 分类 - Cell · Brain</title>
+        <title>前端技术 - 分类 - Cell × Brain</title>
         <link>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
-        <description>前端技术 - 分类 - Cell · Brain</description>
+        <description>前端技术 - 分类 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" rel="self" type="application/rss+xml" /><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>

@@ -1,10 +1,16 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>R Scripts - 系列 - Cell · Brain</title>
+        <title>R Scripts - 系列 - Cell × Brain</title>
         <link>https://jwangl5.github.io/series/r-scripts/</link>
-        <description>R Scripts - 系列 - Cell · Brain</description>
+        <description>R Scripts - 系列 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/r-scripts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/r-scripts/" rel="self" type="application/rss+xml" /><item>
+    <title>Venn和Upset Diagram的绘制</title>
+    <link>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</link>
+    <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
+    <description><![CDATA[对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成： 黑白框的Venn图绘制工具·最多4组数据 jvenn绘图工]]></description>
+</item><item>
     <title>使用clusterProfiler完成GO富集（含R脚本）</title>
     <link>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</link>
     <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</pubDate><author>

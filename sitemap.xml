@@ -2,12 +2,13 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://jwangl5.github.io/authors/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/authors/</loc><lastmod>2023-11-16T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/</loc><lastmod>2023-11-16T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/posts/curriculum_vitae/</loc><lastmod>2023-11-16T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/posts/</loc><lastmod>2023-11-16T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</loc><lastmod>2023-11-16T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/posts/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/english_listening_tool/</loc><lastmod>2023-10-23T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/cell-biology/teton_system/</loc><lastmod>2023-10-06T15:56:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</loc><lastmod>2023-10-06T15:56:00&#43;08:00</lastmod></url><url>
@@ -48,10 +49,10 @@
             <loc>https://jwangl5.github.io/posts/python-scripts/flow_cytometry_mapping_by_python/</loc><lastmod>2023-04-22T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/genshin-impact/data_collecting_from_miyoushe/</loc><lastmod>2023-02-22T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/advanced_techniques_for_sudoku_solving/</loc><lastmod>2023-02-10T00:00:00&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/series/r-scripts/</loc><lastmod>2023-01-28T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</loc><lastmod>2023-01-28T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/python-scripts/flim_fret_phasor_plot_by_python/</loc><lastmod>2022-10-13T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/python-scripts/python_script_fot_co_location_analysis/</loc><lastmod>2022-10-13T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/series/r-scripts/</loc><lastmod>2021-12-21T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</loc><lastmod>2021-12-21T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/python-scripts/python_script_for_uniprot_data/</loc><lastmod>2021-10-30T21:11:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</loc><lastmod>2021-10-15T00:00:00&#43;08:00</lastmod></url><url>
