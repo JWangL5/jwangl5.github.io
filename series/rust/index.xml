@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Rust - 系列 - Cell × Brain</title>
+        <title>Rust语言编程笔记 - 系列 - Cell × Brain</title>
         <link>https://jwangl5.github.io/series/rust/</link>
-        <description>Rust - 系列 - Cell × Brain</description>
+        <description>Rust语言编程笔记 - 系列 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/rust/" rel="self" type="application/rss+xml" /><item>
-    <title>Rust 02 | 包管理、复合类型、Trait、生命周期</title>
-    <link>https://jwangl5.github.io/posts/programimgnote/rust_note_02/</link>
+    <title>Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型</title>
+    <link>https://jwangl5.github.io/posts/rust/rust_note_02/</link>
     <pubDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/programimgnote/rust_note_02/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_02/</guid>
     <description><![CDATA[240108 Package, Crate, Module 代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下： Packa]]></description>
 </item><item>
-    <title>Rust 01 | 安装、基础、所有权、结构体、枚举</title>
-    <link>https://jwangl5.github.io/posts/programimgnote/rust_note_01/</link>
+    <title>Rust | 01. 安装、基础、所有权、结构体、枚举</title>
+    <link>https://jwangl5.github.io/posts/rust/rust_note_01/</link>
     <pubDate>Sun, 07 Jan 2024 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/programimgnote/rust_note_01/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_01/</guid>
     <description><![CDATA[240105 安装和简单上手 安装官网直接下载安装即可，有如下命令行可以使用： rustup updat更新版本 rustup self uninstall卸载 使用 rustc &ndash;versi]]></description>
 </item></channel>
 </rss>

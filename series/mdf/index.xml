@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>MDF - 系列 - Cell × Brain</title>
+        <title>Molecular Driving Forces精读笔记 - 系列 - Cell × Brain</title>
         <link>https://jwangl5.github.io/series/mdf/</link>
-        <description>MDF - 系列 - Cell × Brain</description>
+        <description>Molecular Driving Forces精读笔记 - 系列 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/mdf/" rel="self" type="application/rss+xml" /><item>
     <title>MDF | 03. 热，功和能量</title>
