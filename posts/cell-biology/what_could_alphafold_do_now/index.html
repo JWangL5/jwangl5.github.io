@@ -113,13 +113,19 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AlphaFold可以做什么？</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AlphaFold可以做什么？</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>分子细胞生物学</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-10">2021-10-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-10-10">2021-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 859 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
-        </div><div class="content" id="content"><blockquote>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实验室非计算机背景的同门写下的一些自己在应用层面的理解，时隔两年再次读起，发现<strong>本文一些观点已经不再正确了</strong>（比如AlphaFold官方已经开发了复合体的预测模型），但作为对当年学习的记录，就不再更正原文</p>
 </blockquote>
 <p>AlphaFold官方说法是可以高精度地预测自然发生的、单链的蛋白结构，其原理主要依赖于多序列比对，部分依赖于数据库中的已知结构，得到的结果在结构域层面是具有较高精度的，但其构象所处的状态以及该状态下的分子活性仍需要进一步地判断，根据官方的说法对于以下几种情况，AplhaFold并不十分适用（但也有一些民间方法来解决这些问题）：</p>

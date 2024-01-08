@@ -4,7 +4,19 @@
         <link>https://jwangl5.github.io/posts/</link>
         <description>所有文章 | Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Dec 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Rust 02 | 包管理、复合类型、Trait、生命周期</title>
+    <link>https://jwangl5.github.io/posts/programimgnote/rust_note_02/</link>
+    <pubDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/programimgnote/rust_note_02/</guid>
+    <description><![CDATA[240108 Package, Crate, Module 代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下： Packa]]></description>
+</item><item>
+    <title>Rust 01 | 安装、基础、所有权、结构体、枚举</title>
+    <link>https://jwangl5.github.io/posts/programimgnote/rust_note_01/</link>
+    <pubDate>Sun, 07 Jan 2024 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/programimgnote/rust_note_01/</guid>
+    <description><![CDATA[240105 安装和简单上手 安装官网直接下载安装即可，有如下命令行可以使用： rustup updat更新版本 rustup self uninstall卸载 使用 rustc &ndash;versi]]></description>
+</item><item>
     <title>关于打印机的一些知识</title>
     <link>https://jwangl5.github.io/posts/hp_printer/</link>
     <pubDate>Thu, 28 Dec 2023 00:00:00 &#43;0800</pubDate><author>
@@ -48,21 +60,9 @@
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
 </item><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
-    <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
+    <link>https://jwangl5.github.io/posts/programimgnote/bolg_set_up_by_hudo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/programimgnote/bolg_set_up_by_hudo_and_github_pages/</guid>
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
-</item><item>
-    <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</link>
-    <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</guid>
-    <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
-</item><item>
-    <title>原神圣遗物角色适用表（4.0版本 附含下载链接）</title>
-    <link>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</link>
-    <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
-    <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
 </item></channel>
 </rss>

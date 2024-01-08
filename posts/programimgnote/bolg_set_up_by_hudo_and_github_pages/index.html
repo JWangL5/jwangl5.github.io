@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Hugo&#43;GitHub Pages搭建博客 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="Hugo&#43;GitHub Pages搭建博客" />
+<meta property="og:description" content="前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/programimgnote/bolg_set_up_by_hudo_and_github_pages/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-27T00:17:49+08:00" />
+<meta property="article:modified_time" content="2023-09-27T00:17:49+08:00" /><meta property="og:site_name" content="Cell × Brain" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo&#43;GitHub Pages搭建博客"/>
+<meta name="twitter:description" content="前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的"/>
+<meta name="application-name" content="Cell × Brain">
+<meta name="apple-mobile-web-app-title" content="Cell × Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/programimgnote/bolg_set_up_by_hudo_and_github_pages/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/" /><link rel="next" href="https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo+GitHub Pages搭建博客",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/programimgnote\/bolg_set_up_by_hudo_and_github_pages\/"
+        },"genre": "posts","wordcount":  1669 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/programimgnote\/bolg_set_up_by_hudo_and_github_pages\/","datePublished": "2023-09-27T00:17:49+08:00","dateModified": "2023-09-27T00:17:49+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell × Brain">Cell × Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell × Brain">Cell × Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Hugo&#43;GitHub Pages搭建博客</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>前端技术</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1669 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#建站原理">建站原理</a></li>
+    <li><a href="#关于hugo建站">关于Hugo建站</a></li>
+    <li><a href="#调整样式">调整样式</a></li>
+    <li><a href="#创建并上传github-pages">创建并上传Github Pages</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="前言" class="headerLink">
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h2><p>自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的是，把长段的文字写出来或是把之前不理解的东西搞明白并输出，哪怕没有别人看也会是一件能够让自己高兴、甚至自豪的事情。这段时间想要重新再次学习<code>《Molecular driving forces》</code>一书，希望能够借着这个博客，把系统梳理的笔记做出来。</p>
+<h2 id="建站原理" class="headerLink">
+    <a href="#%e5%bb%ba%e7%ab%99%e5%8e%9f%e7%90%86" class="header-mark"></a>建站原理</h2><p>传统的博客建立都比较麻烦，前端需要自己写网页代码，后端还需要自己调配服务器；为了低成本、高效率地完成这件事，选择了相对不那么麻烦但<strong>性能还不错</strong>、<strong>识别Markdown</strong>的<strong>静态</strong>网页<code>Hugo</code>模板，其可以在本地下载、安装并按照特定模板样式将md文件渲染为html网页，最后只需要将其上传、托管到<code>Github Pages</code>上。</p>
+<p>这里是一些参考资料：</p>
+<ul>
+<li><a href="https://medium.com/@magstherdev/github-pages-hugo-86ae6bcbadd" target="_blank" rel="noopener noreferrer">最开始参考的一篇第三方教程</a></li>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/" target="_blank" rel="noopener noreferrer">Hugo官方对该过程的说明</a></li>
+<li><a href="https://app.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify是另一个静态网页托管平台</a></li>
+<li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site" target="_blank" rel="noopener noreferrer">Github官方的创建Pages流程</a></li>
+</ul>
+<h2 id="关于hugo建站" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8ehugo%e5%bb%ba%e7%ab%99" class="header-mark"></a>关于Hugo建站</h2><p>下载和安装步骤可以直接参照官方说明，这里仅记录几点经验：</p>
+<ul>
+<li>
+<p>可以直接在Github上下载编译好的Hugo_extend版本，下载解压后得到的exe文件是一个命令行工具，直接配置环境变量即可使用（还需要根据官网下载GO和一个插件确保高级功能也能顺利运行）</p>
+</li>
+<li>
+<p>在特定目录输入命令<code>hugo new site site_name</code>即可自动生成一个文件夹，作为博客站点的目录；其中<code>content</code>是存放md文件的地方，<code>asserts</code>是图片等附件的存储路径，<code>themes</code>是主题的下载目录，<code>hugo.toml</code>是站点的配置文件</p>
+</li>
+<li>
+<p>主题的下载可以从<a href="https://themes.gohugo.io/" target="_blank" rel="noopener noreferrer">官方主题市场</a>中挑选，随后在Github上将其下载到<code>themes</code>文件夹下即可（<code>themes/主题名/下载解压出来的文件</code>）</p>
+</li>
+<li>
+<p>随后只需要根据主题的说明文档完成配置即可（即主页的头像、栏目、Logo等等）</p>
+</li>
+<li>
+<p><code>Hugo</code>会识别<code>content</code>目录下的内容并渲染，需要将blog正文的md文件放在<code>centent/posts</code>目录下，文件命名需要正常一点（英文数字下划线），否则无法转化为网址链接；文件内容也按照正确格式写，比如开头是这篇博文的配置数据，需要用TOML格式书写</p>
+<p>（参考<a href="https://hugodoit.pages.dev/zh-cn/theme-documentation-content/" target="_blank" rel="noopener noreferrer">这个主题对头文件的说明</a>）</p>
+<p>（先去搬运一点之前写相对有价值的文章进来，别看起来太空旷哈哈哈哈）</p>
+</li>
+<li>
+<p>使用<code>hugo serve -D</code>命令可以在本地运行出服务器，观察并调整配置效果；其中，<code>-D</code>参数是渲染Draft草稿的含义</p>
+</li>
+</ul>
+<h2 id="调整样式" class="headerLink">
+    <a href="#%e8%b0%83%e6%95%b4%e6%a0%b7%e5%bc%8f" class="header-mark"></a>调整样式</h2><p>本博客使用了DoIt主题，整体都很满意，但正文有点窄、且行距较密有点不舒服，这里进行了手动的修改。对样式的修改在本质上是修改或覆盖原主题的scss文件，可以使用浏览器的调试工具，来判断需要修改哪一个<code>class</code>或<code>id</code>标签，也可以直接观察修改后效果测试参数。如下是本博客的修改内容：</p>
+<ul>
+<li>
+<p>在<code>/themes/DoIt/assets/css/_page/_index.scss</code>中做如下修改</p>
+<p>（在<code>_core/_media.scss</code>文件中也需要同步修改）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.pages</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="na">max-width</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">72</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在<code>/themes/DoIt/assets/css/_custom.scss</code>中加上一行<code>.content{ line-height: 2rem; }</code>来增大行距</p>
+</li>
+<li>
+<p>在<code>/theme/DoIt/assets/css/_page/_single.scssz</code>的第111行，去掉h4、h5、h6，让它们只加粗，不显示前面的蓝线</p>
+</li>
+</ul>
+<h2 id="创建并上传github-pages" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%ba%e5%b9%b6%e4%b8%8a%e4%bc%a0github-pages" class="header-mark"></a>创建并上传Github Pages</h2><ul>
+<li>
+<p>首先，安装Git工具到本地；并且在Github上新建一个仓库，需要注意的是仓库名必须叫做<code>用户名.github.io</code>，并且选择公开权限</p>
+</li>
+<li>
+<p>将打开需要发布的博客目录，输入命令<code>hugo --baseURL=&quot;https://用户名.github.io/&quot;</code></p>
+<p>（<code>baseURL</code>如果配置进<code>hugo.toml</code>就可以不再每次都输入了）</p>
+</li>
+<li>
+<p>进入<code>public</code>文件夹，开始构建Git仓库并上传（最后一步需要输入密码登陆）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;博客更新&#34;</span>
+</span></span><span class="line"><span class="cl">git remote add origin https://github.com/用户名/用户名.github.io.git
+</span></span><span class="line"><span class="cl">git push -u origin master
+</span></span></code></pre></div></li>
+<li>
+<p>随后就可以在<code>用户名.github.io</code>上访问啦~</p>
+</li>
+</ul>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-09-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/" class="prev" rel="prev" title="分享一套用Pyecharts绘制RNA Seq火山图的代码"><i class="fas fa-angle-left fa-fw"></i>分享一套用Pyecharts绘制RNA Seq火山图的代码</a>
+            <a href="/posts/mdf/mdf_01_principles_of_probability/" class="next" rel="next" title="MDF | 01. 概率是热力学的基础">MDF | 01. 概率是热力学的基础<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
