@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型" />
+    <title>Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型" />
 <meta property="og:description" content="240108 Package, Crate, Module 代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下： Packa" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_02/" /><meta property="article:section" content="posts" />
@@ -16,7 +16,7 @@
 <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型"/>
+<meta name="twitter:title" content="Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型"/>
 <meta name="twitter:description" content="240108 Package, Crate, Module 代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下： Packa"/>
 <meta name="application-name" content="Cell × Brain">
 <meta name="apple-mobile-web-app-title" content="Cell × Brain">
@@ -29,12 +29,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型",
+        "headline": "Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_02\/"
-        },"genre": "posts","wordcount":  2794 ,
+        },"genre": "posts","wordcount":  5108 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_02\/","datePublished": "2024-01-08T00:17:49+08:00","dateModified": "2024-01-08T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -114,12 +114,12 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Rust | 02. 包管理、复合类型（String、Vector、HashMap）、泛型</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-08">2024-01-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-08">2024-01-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2794 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-08">2024-01-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-08">2024-01-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5108 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -139,9 +139,11 @@
             <li><a href="#模块拆分到不同文件">模块拆分到不同文件</a></li>
           </ul>
         </li>
-        <li><a href="#240109-复合类型">240109 复合类型</a>
+        <li><a href="#240109-常用集合">240109 常用集合</a>
           <ul>
             <li><a href="#vector">Vector</a></li>
+            <li><a href="#字符串-string">字符串 String</a></li>
+            <li><a href="#hushmap">HushMap</a></li>
           </ul>
         </li>
       </ul>
@@ -396,10 +398,189 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">add_to_waitlist</span><span class="p">(){</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div></li>
 </ul>
-<h3 id="240109-复合类型" class="headerLink">
-    <a href="#240109-%e5%a4%8d%e5%90%88%e7%b1%bb%e5%9e%8b" class="header-mark"></a>240109 复合类型</h3><h4 id="vector" class="headerLink">
+<h3 id="240109-常用集合" class="headerLink">
+    <a href="#240109-%e5%b8%b8%e7%94%a8%e9%9b%86%e5%90%88" class="header-mark"></a>240109 常用集合</h3><h4 id="vector" class="headerLink">
     <a href="#vector" class="header-mark"></a>Vector</h4><ul>
-<li>可以使用Vector类型存储多个值</li>
+<li>
+<p>可以使用Vector类型存储类型相同的多个值，写作Vec&lt;T&gt;，其由标准库提供</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 因为初始化时为空，编译器无法推断类型，需要手动标注i32类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 使用宏vec!直接初始化，此时不需要显式指定类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>使用<code>push()</code>函数向其中添加元素</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 由于向其中添加了值，此时编译器可以推断类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>使用索引或<code>get()</code>方法获得其中的元素，索引从0开始，超出索引范围后会引发程序崩溃，而get方法返回Option枚举类型，需要手动处理</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">third</span>: <span class="kp">&amp;</span><span class="kt">i32</span> <span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The third element is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">third</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="n">third</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The third element is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">third</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;There is no third elemrnt&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>所有权和借用规则要求，不能在同一作用域内同时拥有可变和不可变引用，该规则仍旧适合vector；因为Vector的其元素成集合统一存储在heap上，因而不能只考虑一个元素是否可变，而需要关注整个vector是否可变</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span><span class="w"> </span><span class="c1">// 因为前一行定义为不可变引用，这一行会报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The first element is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 需要修改时，需要界定为可变引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">v</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">v</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>在Vector中只能存放相同类型的数据，当有需求存储不同类型数据时，可以基于枚举的如下特性，利用附加数据的枚举类型来完成</p>
+<ul>
+<li>
+<p>枚举的变体可以附加不同类型的数据</p>
+</li>
+<li>
+<p>枚举变体的定义在同一个枚举类型下</p>
+</li>
+<li>
+<p>PS：在使用该方法定义Vector时，需要知道详尽的数据类型，不能存在类型未知的情况；<strong>Trait对象</strong>对于解决该问题有帮助</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">enum</span> <span class="nc">SpreadsheetCell</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Int</span><span class="p">(</span><span class="kt">i32</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Float</span><span class="p">(</span><span class="kt">f64</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="nb">String</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SpreadsheetCell</span>::<span class="n">Int</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SpreadsheetCell</span>::<span class="n">Text</span><span class="p">(</span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;blue&#34;</span><span class="p">)),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SpreadsheetCell</span>::<span class="n">Float</span><span class="p">(</span><span class="mf">3.5</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="字符串-string" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2-string" class="header-mark"></a>字符串 String</h4><ul>
+<li>
+<p>字符串是Byte的集合，能够提供一些方法将byte解析为文本的类型，在Rust中，通常意义上所说的字符串是指String类型或&amp;str类型；此外，标准库中也还提供了许多其他的字符串类型，如OsString、OsStr、CString、CStr等</p>
+</li>
+<li>
+<p>据说Rust的字符串很劝退，原因可能在于字符串本身的复杂性、Rust倾向于暴露可能的错误、Rust使用utf-8编码</p>
+</li>
+<li>
+<p>在Rust的核心语法层面，只有一个字符串类型，是字符串切片（str或&amp;str），其是对储存在其他地方、utf-8编码的字符串的<strong>引用</strong></p>
+</li>
+<li>
+<p>而字符串String是来自标准库，是可增长、可修改、可拥有的类型；由于其本身就是Byte的集合，因而许多Vec&lt;T&gt;的操作也都可用于String，可以使用String::new()创建字符串，也可以直接使用<code>to_string()</code>方法（该方法可用于实现了Display trait的类型，包含字符串字面值）或<code>String::from()</code>函数创建初始化一个字符串</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;initial contents ⭐&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">to_string</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;initial contents&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>String的大小是可以增减的，其内容也可以更改</p>
+<ul>
+<li>
+<p>使用<code>push_str()</code>方法可以向字符串尾部添加内容，该方法的参数是字符串切片（因而可以直接填写字面值），因为是传入引用，是借用字符串，不获取其所有权，因而修改后的字符串仍旧可以正常使用</p>
+</li>
+<li>
+<p>使用<code>push()</code>方法，可以把单个字符添加到字符串尾部</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;foo&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">push_str</span><span class="p">(</span><span class="s">&#34;bar&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="sc">&#39;x&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>使用<code>+</code>运算符直接拼接字符串，其相当于使用了类似签名<code>fn add(self, s:&amp;str) -&gt; String {...}</code>这样的方法（实际上是一个泛型，会更复杂），因而需要加号前为字符串，加号后为字符串切片，在相加后前面的变量所有权移交到add内部，离开后会失效，而后面的变量则可以继续保留所有权而可以继续使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Hello, &#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;World!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s2</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s3</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>PS：在该例子中，加号后面使用<code>&amp;s2</code>是字符串引用类型，并不是上面要求的字符串切片，这是因为Rust存在一个<strong>解引用强制转换</strong>（deref coercion）的机制</p>
+</li>
+<li>
+<p>也可以使用<code>format!</code>宏来完成字符串的拼接，其更灵活也不会取得任何参数的所有权</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;tic&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;tac&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;toe&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">-</span><span class="si">{}</span><span class="s">-</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">,</span><span class="w"> </span><span class="n">s3</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>按照索引语法访问String的某部分时会报错，即是说Rust字符串不支持索引语法访问；实际上，String是对Vec&lt;u8&gt;的包装，可以使用<code>len()</code>方法返回其<strong>字节长度</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">len1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;abcdefg&#34;</span><span class="p">).</span><span class="n">len</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">len2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;æɑðɜɣʝʪ&#34;</span><span class="p">).</span><span class="n">len</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">, </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">len1</span><span class="p">,</span><span class="w"> </span><span class="n">len2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 输出为7, 14
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>之所以输出24，是因为里面的每个字母占用了2字节；这里所谓的字母称之为Unicode标量值，即是说，rust中不是所有的字节索引都能对应到一个有效的Unicode标量值，因而Rust在开发早期就为了杜绝此类错误，直接拒绝了使用索引值访问</p>
+</li>
+<li>
+<p>Rust有三种看待字符串的方式：字节Bytes、标量值Scalar values和字形簇Grapheme cluster；其中字形簇才是最接近我们所理解的“字母”；可以使用<code>bytes()</code>、<code>chars()</code>方法获得其字节和标量值的迭代器，用于遍历字符串；对于字形簇的获取，其很复杂，标准库为提供</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;æɑðɜɣʝʪ&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">bytes</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">chars</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>此外，Rust不允许对String进行索引，还因为每次索引操作都消耗一个常量时间O(l)，而String无法保证这个时间，因为要确认这个时间需要遍历整个字符串来计算有多少个合法字符</p>
+</li>
+<li>
+<p>可以使用[]和一个范围来创建字符串的切片（切割字符串），但是需要谨慎使用，如果切割时跨越了字符边界，程序就会panic</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;æɑðɜɣʝʪ&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">4</span><span class="p">];</span><span class="w"> </span><span class="c1">//可以切割出两个字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="p">];</span><span class="w"> </span><span class="c1">//编译不会报错，运行会报错，说索引3不是一个字符的边界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div></li>
+<li>
+<p>小结，Rust选择将正确处理String作为程序员的默认行为，要求程序员必须在处理utf-8数据之前投入更多精力，从而防止在开发后期处理涉及非ASCII字符时的错误</p>
+</li>
+</ul>
+<h4 id="hushmap" class="headerLink">
+    <a href="#hushmap" class="header-mark"></a>HushMap</h4><ul>
+<li>哈希表（HashMap）是以键值对的形式存储数据的一种方式，相当于python或C#中的字典</li>
 </ul>
 </div>
 
