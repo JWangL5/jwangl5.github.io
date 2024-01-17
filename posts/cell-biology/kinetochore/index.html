@@ -1,0 +1,1391 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>对动粒蛋白组分的整理 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="对动粒蛋白组分的整理" />
+<meta property="og:description" content="近期读到最新的Science文章，解析了酵母外层动粒与微管互作界面的冷冻电镜结构，太漂亮了！之前一直觉得top-view的动粒是存在超微结构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/cell-biology/kinetochore/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-16T00:00:00+08:00" />
+<meta property="article:modified_time" content="2024-01-16T00:00:00+08:00" /><meta property="og:site_name" content="Cell × Brain" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="对动粒蛋白组分的整理"/>
+<meta name="twitter:description" content="近期读到最新的Science文章，解析了酵母外层动粒与微管互作界面的冷冻电镜结构，太漂亮了！之前一直觉得top-view的动粒是存在超微结构"/>
+<meta name="application-name" content="Cell × Brain">
+<meta name="apple-mobile-web-app-title" content="Cell × Brain">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/cell-biology/kinetochore/" /><link rel="prev" href="https://jwangl5.github.io/posts/rust/rust_note_02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "对动粒蛋白组分的整理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/kinetochore\/"
+        },"genre": "posts","wordcount":  904 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/kinetochore\/","datePublished": "2024-01-16T00:00:00+08:00","dateModified": "2024-01-16T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Cell × Brain">Cell × Brain</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Cell × Brain">Cell × Brain</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">对动粒蛋白组分的整理</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>分子细胞生物学</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-16">2024-01-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-16">2024-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 904 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="content" id="content"><blockquote>
+<p>近期读到最新的Science文章，<a href="https://www.science.org/doi/abs/10.1126/science.adj8736" target="_blank" rel="noopener noreferrer">解析了酵母外层动粒与微管互作界面的冷冻电镜结构</a>，太漂亮了！之前一直觉得top-view的动粒是存在超微结构的，只可惜没有合适的方法去做。也因此想起来之前从事动粒蛋白互作组相关课题时，写过一些对动粒组分的总结，趁着对动粒结构还有热情再整理一下。</p>
+</blockquote>
+
+
+
+<div class="goat svg-container ">
+  
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      font-family="Menlo,Lucida Console,monospace"
+      
+        viewBox="0 0 568 377"
+      >
+      <g transform='translate(8,16)'>
+<path d='M 264,0 L 288,0' fill='none' stroke='currentColor'></path>
+<path d='M 264,16 L 288,16' fill='none' stroke='currentColor'></path>
+<path d='M 104,32 L 128,32' fill='none' stroke='currentColor'></path>
+<path d='M 248,32 L 264,32' fill='none' stroke='currentColor'></path>
+<path d='M 264,32 L 288,32' fill='none' stroke='currentColor'></path>
+<path d='M 264,48 L 288,48' fill='none' stroke='currentColor'></path>
+<path d='M 264,64 L 288,64' fill='none' stroke='currentColor'></path>
+<path d='M 416,80 L 440,80' fill='none' stroke='currentColor'></path>
+<path d='M 256,96 L 280,96' fill='none' stroke='currentColor'></path>
+<path d='M 400,96 L 416,96' fill='none' stroke='currentColor'></path>
+<path d='M 416,112 L 440,112' fill='none' stroke='currentColor'></path>
+<path d='M 424,144 L 448,144' fill='none' stroke='currentColor'></path>
+<path d='M 104,160 L 128,160' fill='none' stroke='currentColor'></path>
+<path d='M 240,160 L 256,160' fill='none' stroke='currentColor'></path>
+<path d='M 256,160 L 280,160' fill='none' stroke='currentColor'></path>
+<path d='M 408,160 L 424,160' fill='none' stroke='currentColor'></path>
+<path d='M 424,160 L 448,160' fill='none' stroke='currentColor'></path>
+<path d='M 424,176 L 448,176' fill='none' stroke='currentColor'></path>
+<path d='M 424,192 L 448,192' fill='none' stroke='currentColor'></path>
+<path d='M 424,224 L 448,224' fill='none' stroke='currentColor'></path>
+<path d='M 256,240 L 280,240' fill='none' stroke='currentColor'></path>
+<path d='M 408,240 L 424,240' fill='none' stroke='currentColor'></path>
+<path d='M 424,240 L 448,240' fill='none' stroke='currentColor'></path>
+<path d='M 424,256 L 448,256' fill='none' stroke='currentColor'></path>
+<path d='M 424,272 L 448,272' fill='none' stroke='currentColor'></path>
+<path d='M 288,288 L 312,288' fill='none' stroke='currentColor'></path>
+<path d='M 288,304 L 312,304' fill='none' stroke='currentColor'></path>
+<path d='M 104,320 L 128,320' fill='none' stroke='currentColor'></path>
+<path d='M 272,320 L 288,320' fill='none' stroke='currentColor'></path>
+<path d='M 288,320 L 312,320' fill='none' stroke='currentColor'></path>
+<path d='M 288,336 L 312,336' fill='none' stroke='currentColor'></path>
+<path d='M 288,352 L 312,352' fill='none' stroke='currentColor'></path>
+<path d='M 104,32 L 104,160' fill='none' stroke='currentColor'></path>
+<path d='M 104,160 L 104,320' fill='none' stroke='currentColor'></path>
+<path d='M 256,96 L 256,160' fill='none' stroke='currentColor'></path>
+<path d='M 256,160 L 256,240' fill='none' stroke='currentColor'></path>
+<path d='M 264,0 L 264,16' fill='none' stroke='currentColor'></path>
+<path d='M 264,16 L 264,32' fill='none' stroke='currentColor'></path>
+<path d='M 264,32 L 264,48' fill='none' stroke='currentColor'></path>
+<path d='M 264,48 L 264,64' fill='none' stroke='currentColor'></path>
+<path d='M 288,288 L 288,304' fill='none' stroke='currentColor'></path>
+<path d='M 288,304 L 288,320' fill='none' stroke='currentColor'></path>
+<path d='M 288,320 L 288,336' fill='none' stroke='currentColor'></path>
+<path d='M 288,336 L 288,352' fill='none' stroke='currentColor'></path>
+<path d='M 416,80 L 416,96' fill='none' stroke='currentColor'></path>
+<path d='M 416,96 L 416,112' fill='none' stroke='currentColor'></path>
+<path d='M 424,144 L 424,160' fill='none' stroke='currentColor'></path>
+<path d='M 424,160 L 424,176' fill='none' stroke='currentColor'></path>
+<path d='M 424,176 L 424,192' fill='none' stroke='currentColor'></path>
+<path d='M 424,224 L 424,240' fill='none' stroke='currentColor'></path>
+<path d='M 424,240 L 424,256' fill='none' stroke='currentColor'></path>
+<path d='M 424,256 L 424,272' fill='none' stroke='currentColor'></path>
+<text text-anchor='middle' x='0' y='164' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='8' y='164' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='16' y='164' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='24' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='32' y='164' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='40' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='48' y='164' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='56' y='164' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='64' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='72' y='164' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='80' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='144' y='36' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='144' y='164' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='144' y='324' fill='currentColor' style='font-size:1em'>5</text>
+<text text-anchor='middle' x='152' y='36' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='152' y='164' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='160' y='36' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='160' y='164' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='160' y='324' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='168' y='36' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='168' y='324' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='176' y='164' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='176' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='184' y='36' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='184' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='184' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='192' y='36' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='192' y='164' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='200' y='36' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='200' y='164' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='200' y='324' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='208' y='36' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='208' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='208' y='324' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='216' y='36' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='216' y='164' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='216' y='324' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='224' y='36' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='224' y='164' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='224' y='324' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='232' y='36' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='232' y='324' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='240' y='324' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='248' y='324' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='256' y='324' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='296' y='164' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='296' y='244' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='304' y='4' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='304' y='20' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='304' y='36' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='304' y='52' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='304' y='68' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='304' y='100' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='304' y='164' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='304' y='244' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='312' y='4' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='312' y='20' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='312' y='36' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='312' y='52' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='312' y='68' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='312' y='100' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='312' y='164' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='312' y='244' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='320' y='4' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='20' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='36' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='52' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='68' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='320' y='100' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='320' y='164' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='320' y='244' fill='currentColor' style='font-size:1em'>8</text>
+<text text-anchor='middle' x='328' y='4' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='328' y='20' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='328' y='36' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='328' y='52' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='328' y='68' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='328' y='164' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='328' y='244' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='328' y='292' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='328' y='308' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='328' y='324' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='328' y='340' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='328' y='356' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='336' y='4' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='336' y='20' fill='currentColor' style='font-size:1em'>H</text>
+<text text-anchor='middle' x='336' y='36' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='336' y='52' fill='currentColor' style='font-size:1em'>O</text>
+<text text-anchor='middle' x='336' y='68' fill='currentColor' style='font-size:1em'>T</text>
+<text text-anchor='middle' x='336' y='100' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='336' y='292' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='336' y='308' fill='currentColor' style='font-size:1em'>Z</text>
+<text text-anchor='middle' x='336' y='324' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='336' y='340' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='336' y='356' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='344' y='20' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='344' y='36' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='344' y='52' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='344' y='68' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='344' y='100' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='344' y='164' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='344' y='244' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='344' y='292' fill='currentColor' style='font-size:1em'>C</text>
+<text text-anchor='middle' x='344' y='308' fill='currentColor' style='font-size:1em'>Z</text>
+<text text-anchor='middle' x='344' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='344' y='340' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='344' y='356' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='352' y='20' fill='currentColor' style='font-size:1em'>I</text>
+<text text-anchor='middle' x='352' y='36' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='352' y='52' fill='currentColor' style='font-size:1em'>P</text>
+<text text-anchor='middle' x='352' y='68' fill='currentColor' style='font-size:1em'>W</text>
+<text text-anchor='middle' x='352' y='100' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='352' y='164' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='352' y='244' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='352' y='324' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='352' y='356' fill='currentColor' style='font-size:1em'>r</text>
+<text text-anchor='middle' x='360' y='20' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='360' y='52' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='360' y='68' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='360' y='100' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='360' y='164' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='360' y='244' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='360' y='292' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='360' y='308' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='360' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='360' y='340' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='360' y='356' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='368' y='20' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='368' y='52' fill='currentColor' style='font-size:1em'>Q</text>
+<text text-anchor='middle' x='368' y='68' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='368' y='100' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='368' y='164' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='368' y='244' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='368' y='292' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='368' y='308' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='368' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='368' y='340' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='368' y='356' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='376' y='20' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='376' y='52' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='376' y='68' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='376' y='100' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='376' y='164' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='376' y='244' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='376' y='292' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='376' y='308' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='376' y='324' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='376' y='340' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='376' y='356' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='384' y='20' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='384' y='52' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='384' y='68' fill='currentColor' style='font-size:1em'>X</text>
+<text text-anchor='middle' x='384' y='100' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='384' y='164' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='384' y='244' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='384' y='292' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='384' y='308' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='384' y='324' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='384' y='340' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='384' y='356' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='392' y='52' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='392' y='164' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='392' y='244' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='392' y='292' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='392' y='308' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='392' y='324' fill='currentColor' style='font-size:1em'>y</text>
+<text text-anchor='middle' x='392' y='340' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='392' y='356' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='400' y='52' fill='currentColor' style='font-size:1em'>U</text>
+<text text-anchor='middle' x='400' y='292' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='400' y='308' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='400' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='400' y='340' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='400' y='356' fill='currentColor' style='font-size:1em'>A</text>
+<text text-anchor='middle' x='408' y='292' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='408' y='308' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='408' y='324' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='408' y='340' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='408' y='356' fill='currentColor' style='font-size:1em'>P</text>
+<text text-anchor='middle' x='416' y='324' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='424' y='308' fill='currentColor' style='font-size:1em'>(</text>
+<text text-anchor='middle' x='424' y='324' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='424' y='340' fill='currentColor' style='font-size:1em'>(</text>
+<text text-anchor='middle' x='424' y='356' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='432' y='308' fill='currentColor' style='font-size:1em'>R</text>
+<text text-anchor='middle' x='432' y='324' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='432' y='340' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='432' y='356' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='440' y='308' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='440' y='324' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='440' y='340' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='440' y='356' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='448' y='308' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='448' y='340' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='448' y='356' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='456' y='84' fill='currentColor' style='font-size:1em'>K</text>
+<text text-anchor='middle' x='456' y='116' fill='currentColor' style='font-size:1em'>Z</text>
+<text text-anchor='middle' x='456' y='308' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='456' y='324' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='456' y='340' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='456' y='356' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='464' y='84' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='464' y='116' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='464' y='148' fill='currentColor' style='font-size:1em'>M</text>
+<text text-anchor='middle' x='464' y='164' fill='currentColor' style='font-size:1em'>P</text>
+<text text-anchor='middle' x='464' y='180' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='464' y='196' fill='currentColor' style='font-size:1em'>D</text>
+<text text-anchor='middle' x='464' y='228' fill='currentColor' style='font-size:1em'>H</text>
+<text text-anchor='middle' x='464' y='244' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='464' y='260' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='464' y='276' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='464' y='308' fill='currentColor' style='font-size:1em'>Z</text>
+<text text-anchor='middle' x='464' y='324' fill='currentColor' style='font-size:1em'>o</text>
+<text text-anchor='middle' x='464' y='340' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='464' y='356' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='472' y='84' fill='currentColor' style='font-size:1em'>L</text>
+<text text-anchor='middle' x='472' y='116' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='472' y='148' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='472' y='164' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='472' y='180' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='472' y='196' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='472' y='228' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='472' y='244' fill='currentColor' style='font-size:1em'>u</text>
+<text text-anchor='middle' x='472' y='260' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='472' y='276' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='472' y='308' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='472' y='324' fill='currentColor' style='font-size:1em'>m</text>
+<text text-anchor='middle' x='472' y='340' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='472' y='356' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='480' y='84' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='480' y='116' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='480' y='148' fill='currentColor' style='font-size:1em'>s</text>
+<text text-anchor='middle' x='480' y='164' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='480' y='180' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='480' y='196' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='480' y='228' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='480' y='244' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='480' y='260' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='480' y='276' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='480' y='308' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='480' y='324' fill='currentColor' style='font-size:1em'>p</text>
+<text text-anchor='middle' x='480' y='340' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='488' y='116' fill='currentColor' style='font-size:1em'>t</text>
+<text text-anchor='middle' x='488' y='148' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='488' y='164' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='488' y='180' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='488' y='196' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='488' y='228' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='488' y='244' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='488' y='260' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='488' y='276' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='488' y='308' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='488' y='324' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='488' y='340' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='496' y='116' fill='currentColor' style='font-size:1em'>-</text>
+<text text-anchor='middle' x='496' y='148' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='496' y='164' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='496' y='228' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='496' y='260' fill='currentColor' style='font-size:1em'>4</text>
+<text text-anchor='middle' x='496' y='276' fill='currentColor' style='font-size:1em'>5</text>
+<text text-anchor='middle' x='496' y='308' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='496' y='324' fill='currentColor' style='font-size:1em'>e</text>
+<text text-anchor='middle' x='496' y='340' fill='currentColor' style='font-size:1em'>2</text>
+<text text-anchor='middle' x='504' y='116' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='504' y='164' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='504' y='228' fill='currentColor' style='font-size:1em'>N</text>
+<text text-anchor='middle' x='504' y='308' fill='currentColor' style='font-size:1em'>Z</text>
+<text text-anchor='middle' x='504' y='324' fill='currentColor' style='font-size:1em'>x</text>
+<text text-anchor='middle' x='504' y='340' fill='currentColor' style='font-size:1em'>/</text>
+<text text-anchor='middle' x='512' y='164' fill='currentColor' style='font-size:1em'>n</text>
+<text text-anchor='middle' x='512' y='228' fill='currentColor' style='font-size:1em'>d</text>
+<text text-anchor='middle' x='512' y='308' fill='currentColor' style='font-size:1em'>w</text>
+<text text-anchor='middle' x='512' y='340' fill='currentColor' style='font-size:1em'>S</text>
+<text text-anchor='middle' x='520' y='164' fill='currentColor' style='font-size:1em'>f</text>
+<text text-anchor='middle' x='520' y='228' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='520' y='308' fill='currentColor' style='font-size:1em'>i</text>
+<text text-anchor='middle' x='520' y='340' fill='currentColor' style='font-size:1em'>k</text>
+<text text-anchor='middle' x='528' y='164' fill='currentColor' style='font-size:1em'>1</text>
+<text text-anchor='middle' x='528' y='228' fill='currentColor' style='font-size:1em'>8</text>
+<text text-anchor='middle' x='528' y='308' fill='currentColor' style='font-size:1em'>l</text>
+<text text-anchor='middle' x='528' y='340' fill='currentColor' style='font-size:1em'>a</text>
+<text text-anchor='middle' x='536' y='228' fill='currentColor' style='font-size:1em'>0</text>
+<text text-anchor='middle' x='536' y='308' fill='currentColor' style='font-size:1em'>c</text>
+<text text-anchor='middle' x='536' y='340' fill='currentColor' style='font-size:1em'>3</text>
+<text text-anchor='middle' x='544' y='308' fill='currentColor' style='font-size:1em'>h</text>
+<text text-anchor='middle' x='544' y='340' fill='currentColor' style='font-size:1em'>)</text>
+<text text-anchor='middle' x='552' y='308' fill='currentColor' style='font-size:1em'>)</text>
+</g>
+
+    </svg>
+  
+</div>
+<p><figure><a class="lightgallery" href="/image/Kinetochore.jpeg" title="/image/Kinetochore.jpeg" data-thumbnail="/image/Kinetochore.jpeg">
+        <img
+            
+            loading="lazy"
+            src="/image/Kinetochore.jpeg"
+            srcset="/image/Kinetochore.jpeg, /image/Kinetochore.jpeg 1.5x, /image/Kinetochore.jpeg 2x"
+            sizes="auto"
+            alt="/image/Kinetochore.jpeg" height="4481"  width="3641" >
+    </a></figure></p>
+<table>
+<thead>
+<tr>
+<th>Complex</th>
+<th>Human</th>
+<th>Alternate names</th>
+<th>S.pombe</th>
+<th>S.cerevisiae</th>
+<th>C.elegans</th>
+<th>D.melanogaster</th>
+<th>A.thaliana</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nucleosome</td>
+<td>CENP-A</td>
+<td>CENH3</td>
+<td>Cnp1</td>
+<td>Cse4</td>
+<td>HCP-3/ CENP-A</td>
+<td>CID</td>
+<td>CENH3/ HTR12</td>
+</tr>
+<tr>
+<td></td>
+<td>CENP-B</td>
+<td></td>
+<td>Abp1, Cbh1, Cbh2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-C</td>
+<td></td>
+<td>Cnp3</td>
+<td>Mif2</td>
+<td>HCP-4/ CENP-C</td>
+<td>Cenp-C/CG31258</td>
+<td>CENP-C</td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-H</td>
+<td></td>
+<td>Fta3</td>
+<td>Mcm16</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-I</td>
+<td>MIS6; LRPR1</td>
+<td>Mis6</td>
+<td>Ctf3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-K</td>
+<td>Solt; AF-5α; FKSG14; ICEN37</td>
+<td>Sim4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-50</td>
+<td>CENP-U; MLF1IP; PBIP1; ICEN24</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-O</td>
+<td>MCM21R; MGC11266; ICEN36</td>
+<td>Mal2</td>
+<td>Mcm21</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-P</td>
+<td>LOC401541</td>
+<td>Fta2</td>
+<td>Ctf19</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-Q</td>
+<td>FLJ10545</td>
+<td>Mis17</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-R</td>
+<td>ITGB3BP</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-L</td>
+<td>FTA1R; dJ383J4.3; ICEN33</td>
+<td>Fta1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-M</td>
+<td>PANE1; ICEN39</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-N</td>
+<td>Chl4R; BM039</td>
+<td>Mis15</td>
+<td>Chl4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-T</td>
+<td>FLJ1311; ICEN22</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CCAN</td>
+<td>CENP-S</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mis18-HJURP complex</td>
+<td>MIS18α</td>
+<td>C21orf45</td>
+<td>Mis18</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mis18-HJURP complex</td>
+<td>MIS18β</td>
+<td>Opa-interacting protein 5</td>
+<td>Mis18</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mis18-HJURP complex</td>
+<td>KNL2</td>
+<td>M18BP1; C14orf106</td>
+<td></td>
+<td></td>
+<td>KNL-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HJURP</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Scm3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mis12 complex</td>
+<td>MIS12</td>
+<td></td>
+<td>Mis12</td>
+<td>Mtw1</td>
+<td>MIS-12</td>
+<td>CG18156</td>
+<td>Mis12</td>
+</tr>
+<tr>
+<td>Mis12 complex</td>
+<td>DSN1</td>
+<td>Q9H410; C20orf172</td>
+<td>Mis13/Dsn1</td>
+<td>Dsn1</td>
+<td>KNL-3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mis12 complex</td>
+<td>NNF1</td>
+<td>PMF1</td>
+<td>Nnf1</td>
+<td>Nnf1</td>
+<td>KBP-1</td>
+<td>CG13434/CG31658</td>
+<td></td>
+</tr>
+<tr>
+<td>Mis12 complex</td>
+<td>NSL1</td>
+<td>DC31</td>
+<td>Mis14/Nsl1</td>
+<td>Nsl1</td>
+<td>KBP-2</td>
+<td>CG1558</td>
+<td></td>
+</tr>
+<tr>
+<td>Ndc80 complex</td>
+<td>NDC80</td>
+<td>HEC1</td>
+<td>Ndc80</td>
+<td>Ndc80</td>
+<td>NDC-80</td>
+<td>CG9938-PA</td>
+<td></td>
+</tr>
+<tr>
+<td>Ndc80 complex</td>
+<td>NUF2</td>
+<td></td>
+<td>Nuf2</td>
+<td>Nuf2</td>
+<td>HIM-10</td>
+<td>CG8902</td>
+<td>Nuf2</td>
+</tr>
+<tr>
+<td>Ndc80 complex</td>
+<td>SPC24</td>
+<td></td>
+<td>Spc24</td>
+<td>Spc24</td>
+<td>KBP-4</td>
+<td>CG7242</td>
+<td></td>
+</tr>
+<tr>
+<td>Ndc80 complex</td>
+<td>SPC25</td>
+<td></td>
+<td>Spc25</td>
+<td>Spc25</td>
+<td>KBP-3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>KNL1</td>
+<td>AF15q14; CASC5; D40</td>
+<td>Spc7</td>
+<td>Spc105</td>
+<td>KNL-1</td>
+<td>CG11451</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Zwint</td>
+<td></td>
+<td></td>
+<td></td>
+<td>KBP-5?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RZZ  complex</td>
+<td>ROD</td>
+<td></td>
+<td>-</td>
+<td>-</td>
+<td>ROD-1</td>
+<td>ROD</td>
+<td></td>
+</tr>
+<tr>
+<td>RZZ  complex</td>
+<td>ZW10</td>
+<td></td>
+<td>-</td>
+<td>-</td>
+<td>CZW-1</td>
+<td>ZW10</td>
+<td>ZW10</td>
+</tr>
+<tr>
+<td>RZZ  complex</td>
+<td>Zwilch</td>
+<td></td>
+<td>-</td>
+<td>-</td>
+<td>ZWL-1</td>
+<td>Zwilch</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CENP-F</td>
+<td>Mitosin</td>
+<td></td>
+<td></td>
+<td>HCP-1/2?</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Spindly</td>
+<td>Coiled-coil domain-containing 99</td>
+<td></td>
+<td></td>
+<td>C06A8.5</td>
+<td>Spindly/CG15415</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Dynein</td>
+<td></td>
+<td></td>
+<td>Not at kinetochores</td>
+<td>DHC-1</td>
+<td>Several DHCs</td>
+<td>Absent</td>
+</tr>
+<tr>
+<td></td>
+<td>NDE1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NUD-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>NDEL1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NUD-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>NUDC</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NUD-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>LIS1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>LIS-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>SKA1</td>
+<td>C18orf24</td>
+<td></td>
+<td></td>
+<td>Y106G6H.15</td>
+<td></td>
+<td>AT3G60660</td>
+</tr>
+<tr>
+<td></td>
+<td>SKA2</td>
+<td>Fam33A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CLASP1, CLASP2</td>
+<td></td>
+<td>Peg1</td>
+<td>Stu1</td>
+<td>CLS-2</td>
+<td>MAST/Orbit</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CLIP170</td>
+<td>Restin</td>
+<td>Tip1</td>
+<td>Bik1</td>
+<td>M01A8.2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>EB1</td>
+<td></td>
+<td>Mal3</td>
+<td>Bim1</td>
+<td>EBP-1 and EBP-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>TOG</td>
+<td>XMAP215</td>
+<td>Dis1, Alp14</td>
+<td>Stu2</td>
+<td>ZYG-9</td>
+<td>Msps</td>
+<td>MOR1</td>
+</tr>
+<tr>
+<td></td>
+<td>Kif2A, Kif2B, Kif2C/MCAK</td>
+<td>Kinesin-13; XKCM1</td>
+<td></td>
+<td></td>
+<td>KLP-7</td>
+<td>KLP10A, KLP59C</td>
+<td>KINESIN- 13A; MSL1.9</td>
+</tr>
+<tr>
+<td></td>
+<td>ICIS</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>KIF18A</td>
+<td>Kinesin-8</td>
+<td>Klp5/6</td>
+<td>Kip3</td>
+<td>KLP-13</td>
+<td>KLP67A</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CENP-E</td>
+<td></td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>CENP-meta/CENP-ana</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>MAD1</td>
+<td></td>
+<td>Mad1</td>
+<td>Mad1</td>
+<td>MDF-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>BUB1</td>
+<td></td>
+<td>Bub1</td>
+<td>Bub1</td>
+<td>BUB-1</td>
+<td>Bub1</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>BUB3</td>
+<td></td>
+<td>Bub3</td>
+<td>Bub3</td>
+<td>BUB-3</td>
+<td>Bub3</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>BUBR1</td>
+<td></td>
+<td>Mad3</td>
+<td>Mad3</td>
+<td>SAN-1</td>
+<td>BubR1</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>MAD2</td>
+<td></td>
+<td>Mad2</td>
+<td>Mad2</td>
+<td>MDF-2</td>
+<td>Mad2</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>CDC20</td>
+<td></td>
+<td>Slp1</td>
+<td>Cdc20</td>
+<td>FZY-1</td>
+<td>Fzy</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>MPS1</td>
+<td>TTK</td>
+<td>Mph1</td>
+<td>Mps1</td>
+<td>-</td>
+<td>Mps1/ald</td>
+<td></td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>PICH</td>
+<td>FLJ20105</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>AT5G63950</td>
+</tr>
+<tr>
+<td>Mitotic checkpoint</td>
+<td>TAO1</td>
+<td>MARKK</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chromosome passenger complex</td>
+<td>Aurora B</td>
+<td></td>
+<td>Ark1</td>
+<td>Ipl1</td>
+<td>AIR-2</td>
+<td>Aurora B</td>
+<td></td>
+</tr>
+<tr>
+<td>Chromosome passenger complex</td>
+<td>INCENP</td>
+<td></td>
+<td>Plc1</td>
+<td>Sli15</td>
+<td>ICP-1</td>
+<td>INCENP</td>
+<td></td>
+</tr>
+<tr>
+<td>Chromosome passenger complex</td>
+<td>Survivin</td>
+<td></td>
+<td>Bir1/Cut7</td>
+<td>Bir1</td>
+<td>BIR-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chromosome passenger complex</td>
+<td>Borealin</td>
+<td>Dasra</td>
+<td></td>
+<td></td>
+<td>CSC-1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>TD60</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>SGO1</td>
+<td>SGOL1</td>
+<td>Sgo1</td>
+<td>Sgo1</td>
+<td>C33H5.15</td>
+<td>MEI-S332</td>
+<td>AT3G10440.1</td>
+</tr>
+<tr>
+<td></td>
+<td>SGO2</td>
+<td>SGOL2/TRIPI N</td>
+<td>Sgo2</td>
+<td></td>
+<td></td>
+<td></td>
+<td>AT5G04420.1</td>
+</tr>
+<tr>
+<td></td>
+<td>PP2A</td>
+<td></td>
+<td></td>
+<td></td>
+<td>PPH-5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>PP1γ</td>
+<td></td>
+<td></td>
+<td>Glc7</td>
+<td>GSP-1/2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Polo-like kinase 1</td>
+<td>PLK1</td>
+<td>Plo1</td>
+<td>Cdc5</td>
+<td>PLK-1</td>
+<td>Polo</td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP107</td>
+<td></td>
+<td>Not at kinetochores</td>
+<td>Not at Kinetochores</td>
+<td>NPP-5</td>
+<td>Nup107</td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP85</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP133</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP160</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP96</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-10</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP120</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>Nup37</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>NUP43</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>SEC13</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-20</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Nup107-160  complex</td>
+<td>SEH1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>NPP-18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>ELYS</td>
+<td></td>
+<td></td>
+<td></td>
+<td>MEL-28</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CRM1</td>
+<td></td>
+<td>CRM1</td>
+<td></td>
+<td>IMB-4</td>
+<td>emb</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>RanBP2</td>
+<td>NUP358</td>
+<td></td>
+<td></td>
+<td>NPP-9</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>RanGAP1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>RAN-2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2024-01-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/rust/rust_note_02/" class="prev" rel="prev" title="Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型"><i class="fas fa-angle-left fa-fw"></i>Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型</a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2024</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
