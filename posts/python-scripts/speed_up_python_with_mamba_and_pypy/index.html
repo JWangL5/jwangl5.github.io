@@ -7,34 +7,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>英语听写播放器工具 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="英语听写播放器工具" />
-<meta property="og:description" content="为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对） ctrl&#43;Q 播放/暂停 ctrl&#43;ArrowLeft 回退5秒 点击按钮打开音频 00:00 / 00:00" />
+    <title>Python | 用mamba替换conda、使用PyPy技术加速 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="Python | 用mamba替换conda、使用PyPy技术加速" />
+<meta property="og:description" content="长期以来，受苦于conda在安装、更新时的缓慢，最近听好朋友yyx介绍说了mamba，完全是conda的上位替代，做了一些探索； 另外，前几天" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/english_listening_tool/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-10-23T00:00:00+08:00" />
-<meta property="article:modified_time" content="2023-10-23T00:00:00+08:00" /><meta property="og:site_name" content="Cell × Brain" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/speed_up_python_with_mamba_and_pypy/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-26T00:17:49+08:00" />
+<meta property="article:modified_time" content="2024-01-26T00:17:49+08:00" /><meta property="og:site_name" content="Cell × Brain" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="英语听写播放器工具"/>
-<meta name="twitter:description" content="为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对） ctrl&#43;Q 播放/暂停 ctrl&#43;ArrowLeft 回退5秒 点击按钮打开音频 00:00 / 00:00"/>
+<meta name="twitter:title" content="Python | 用mamba替换conda、使用PyPy技术加速"/>
+<meta name="twitter:description" content="长期以来，受苦于conda在安装、更新时的缓慢，最近听好朋友yyx介绍说了mamba，完全是conda的上位替代，做了一些探索； 另外，前几天"/>
 <meta name="application-name" content="Cell × Brain">
 <meta name="apple-mobile-web-app-title" content="Cell × Brain">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/english_listening_tool/" /><link rel="prev" href="https://jwangl5.github.io/posts/cell-biology/teton_system/" /><link rel="next" href="https://jwangl5.github.io/posts/curriculum_vitae/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/python-scripts/speed_up_python_with_mamba_and_pypy/" /><link rel="prev" href="https://jwangl5.github.io/posts/basic_calculus/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "英语听写播放器工具",
+        "headline": "Python | 用mamba替换conda、使用PyPy技术加速",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/english_listening_tool\/"
-        },"genre": "posts","wordcount":  67 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/english_listening_tool\/","datePublished": "2023-10-23T00:00:00+08:00","dateModified": "2023-10-23T00:00:00+08:00","publisher": {
+            "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/speed_up_python_with_mamba_and_pypy\/"
+        },"genre": "posts","wordcount":  708 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/speed_up_python_with_mamba_and_pypy\/","datePublished": "2024-01-26T00:17:49+08:00","dateModified": "2024-01-26T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
                         "@type": "Person",
@@ -113,52 +113,42 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">英语听写播放器工具</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python | 用mamba替换conda、使用PyPy技术加速</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/"><i class="far fa-folder fa-fw"></i>工具分享</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-10-23">2023-10-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-10-23">2023-10-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 67 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-26">2024-01-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-26">2024-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 708 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="content" id="content"><blockquote>
-<p>为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对）</p>
-<p>ctrl+Q 播放/暂停</p>
-<p>ctrl+ArrowLeft 回退5秒</p>
+<p>长期以来，受苦于conda在安装、更新时的缓慢，最近听好朋友yyx介绍说了mamba，完全是conda的上位替代，做了一些探索；</p>
+<p>另外，前几天B站也刷到了对PyPy加速策略的介绍视频，感觉可以做一些尝试</p>
 </blockquote>
-<script defer type="text/javascript" src="/js/EngListen.js"></script>
-
-<div class="player-container">
-    <audio id="audio"></audio>
-    <div class="audio-player">
-        <div class="info">
-            <h3 id="player-title">点击按钮打开音频</h3>
-            <div id="timebar">
-                <div class="time"><span id="current-time">00:00</span> <span>/</span> <span
-                        id="total-time">00:00</span></div>
-                <div class="progressbar">
-                    <div class="progressbar_slide">
-                        <div id="progressbar_range"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="controls"><input type="file" id="file-input" accept=".mp3" />
-            <div class="controls_plays"><span id="play-pause-button"><svg id="plays_btn" viewBox="0 0 24.5 30.9">
-                        <g id="play_btn">
-                            <path d="M0,30.9L0,0l24.5,15.4L0,30.9z" />
-                        </g>
-                        <g id="pause_btn">
-                            <rect x="0" y="0" width="8.2" height="30.9" />
-                            <rect x="16.2" y="0" width="8.2" height="30.9" />
-                        </g>
-                    </svg> </span><span id="prev_button"><svg id="prev_btn" viewBox="0 0 1024 1024">
-                        <path
-                            d="M567.466667 59.733333a17.066667 17.066667 0 0 1 16.725333 13.610667l0.341333 3.456v57.344C785.621333 168.576 938.666667 343.765333 938.666667 554.666667c0 235.648-191.018667 426.666667-426.666667 426.666666S85.333333 790.314667 85.333333 554.666667a42.666667 42.666667 0 0 1 85.333334 0 341.333333 341.333333 0 1 0 413.866666-333.610667V264.533333a17.066667 17.066667 0 0 1-24.362666 15.445334l-2.944-1.792-125.141334-93.866667a18.474667 18.474667 0 0 1-5.461333-6.912L426.666667 264.533333a17.066667 17.066667 0 0 1-24.362667 15.445334L399.36 278.186667l-125.141333-93.866667a17.066667 17.066667 0 0 1-2.56-24.96l2.56-2.346667 125.141333-93.866666a17.066667 17.066667 0 0 1 26.965333 10.197333L426.666667 76.8l-0.042667 87.168a16.768 16.768 0 0 1 3.2-4.906667l2.261333-2.048 125.141334-93.866666a16.981333 16.981333 0 0 1 10.24-3.413334z m40.533333 360.96v40.96h-145.92l-8.96 87.893334h1.28c9.386667-9.813333 20.053333-16.64 32.426667-20.906667 11.093333-4.693333 23.893333-6.826667 37.546666-6.826667 28.586667 0 52.053333 9.386667 69.973334 28.16 17.92 18.773333 27.306667 44.373333 27.306666 77.226667 0 31.573333-11.946667 57.173333-34.986666 77.226667-21.76 17.92-47.786667 26.88-78.08 26.88-27.306667 0-50.773333-7.68-70.4-22.613334-21.76-16.213333-33.706667-38.826667-35.84-66.986666h45.653333c1.706667 17.066667 8.533333 30.293333 20.053333 38.826666 10.24 7.68 23.893333 11.52 40.96 11.52 18.773333 0 34.56-5.973333 47.36-17.493333 12.8-11.946667 19.2-27.306667 19.2-46.933333 0-21.333333-5.546667-37.973333-16.64-49.92-11.093333-11.946667-26.453333-17.92-46.933333-17.92-13.653333 0-25.173333 2.133333-35.413333 7.253333-11.093333 5.12-19.2 13.226667-25.173334 24.32H407.893333l16.64-170.666667h183.466667z">
-                        </path>
-                    </svg></span></div>
-        </div>
-    </div>
-</div>
-<div class="writingBox"><textarea id="wbox"></textarea></div>
+<h3 id="一些相关概念和名词" class="headerLink">
+    <a href="#%e4%b8%80%e4%ba%9b%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5%e5%92%8c%e5%90%8d%e8%af%8d" class="header-mark"></a>一些相关概念和名词</h3><p>在接触mamba时，有很多名词，导致概念之间很混乱。所以第一步就是搞清楚这些词是在说什么</p>
+<ul>
+<li>conda：本质上是一个包管理工具，可以实现环境管理、依赖检索、包下载更新</li>
+<li>Anaconda：一个Python的发行版本，安装后包含conda和一些常见的数据科学工具包</li>
+<li>miniconda：纯净的conda，不带有额外工具包</li>
+<li>conda-forge：本质上是一个仓库，</li>
+<li>mamba：</li>
+<li>micromamba：</li>
+<li>mini-forge：</li>
+</ul>
+<h3 id="在windows上安装和使用mamba" class="headerLink">
+    <a href="#%e5%9c%a8windows%e4%b8%8a%e5%ae%89%e8%a3%85%e5%92%8c%e4%bd%bf%e7%94%a8mamba" class="header-mark"></a>在windows上安装和使用mamba</h3><p>根据官方给出的安装策略，分为如下几个步骤：</p>
+<ol>
+<li>备份并卸载原本的miniconda，下面是导出卸载时的命令</li>
+<li>下载binary的mamba安装包</li>
+<li>设置环境变量/配置命令行工具到cmd工具（可以不做，没必要）
+PS：个人觉得直接使用mini-forge的命令行工具就可以了，不需要配置到默认的命令行工具里</li>
+</ol>
+<h3 id="什么是pypy" class="headerLink">
+    <a href="#%e4%bb%80%e4%b9%88%e6%98%afpypy" class="header-mark"></a>什么是PyPy</h3><p>看起来，PyPy在本质上就是JIT技术（Just-in-time）。第一次听说这个技术是在<code>julia</code>语言学习时，当时的理解就是一种预编译，即在运行前对代码进行编译得到机器码，然后再执行时就能够快很多。再次去回顾了下julia的文档，</p>
+<h3 id="使用mamba安装和配置pypy环境" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8mamba%e5%ae%89%e8%a3%85%e5%92%8c%e9%85%8d%e7%bd%aepypy%e7%8e%af%e5%a2%83" class="header-mark"></a>使用mamba安装和配置PyPy环境</h3><p>可以直接使用如下的命令行进行安装和下载</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mamba install pypy
+</span></span></code></pre></div><h3 id="关于mamba环境在pycharmvscode中的使用" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8emamba%e7%8e%af%e5%a2%83%e5%9c%a8pycharmvscode%e4%b8%ad%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>关于mamba环境在Pycharm/vscode中的使用</h3><p>前段时间pycharm在检测mamba环境是会报错，不能准确加载出其python环境</p>
 </div>
 
         <div class="sponsor">
@@ -176,7 +166,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-10-23</span>
+                <span>更新于 2024-01-26</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -195,8 +185,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/cell-biology/teton_system/" class="prev" rel="prev" title="哺乳动物细胞诱导表达系统(Tet-On/Off)"><i class="fas fa-angle-left fa-fw"></i>哺乳动物细胞诱导表达系统(Tet-On/Off)</a>
-            <a href="/posts/curriculum_vitae/" class="next" rel="next" title="My Curriculum Vitae (2023)">My Curriculum Vitae (2023)<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/basic_calculus/" class="prev" rel="prev" title="数学 | 《普林斯顿微积分读本》笔记精要（速查用、无案例）"><i class="fas fa-angle-left fa-fw"></i>数学 | 《普林斯顿微积分读本》笔记精要（速查用、无案例）</a></div>
 </div>
 </article></div>
         </main><footer class="footer">
