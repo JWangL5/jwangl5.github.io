@@ -11,12 +11,6 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/speed_up_python_with_mamba_and_pypy/</guid>
     <description><![CDATA[长期以来，受苦于conda在安装、更新时的缓慢，最近听好朋友yyx介绍说了mamba，完全是conda的上位替代，做了一些探索； 另外，前几天]]></description>
 </item><item>
-    <title>数学 | 《普林斯顿微积分读本》笔记精要（速查用、无案例）</title>
-    <link>https://jwangl5.github.io/posts/basic_calculus/</link>
-    <pubDate>Mon, 22 Jan 2024 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/basic_calculus/</guid>
-    <description><![CDATA[这段时间在微信读书上重读微积分，收获很多原理，原本只靠记忆的信息现在有了支撑；这里记录一些重要的思路，嗯，今天开坑长期更新直至全部写完 极限与]]></description>
-</item><item>
     <title>对动粒蛋白组分的整理</title>
     <link>https://jwangl5.github.io/posts/cell-biology/kinetochore/</link>
     <pubDate>Tue, 16 Jan 2024 00:00:00 &#43;0800</pubDate><author>
@@ -64,5 +58,11 @@
     <pubDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</guid>
     <description><![CDATA[能量与机械力 能量是表征系统做功能力的物理量，其是守恒的，不会凭空消失或出现，只能转移到其他物体或转化为其他形式（热力学第一定律） 能量有多种计]]></description>
+</item><item>
+    <title>MDF | 02. 极值原理与平衡状态</title>
+    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <pubDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+    <description><![CDATA[极值原理（Extremum Principles） 分子会通过构象变化、物理化学反应来改变两个关键的参数，一个是使得能量最低，另一个是熵最大。反]]></description>
 </item></channel>
 </rss>
