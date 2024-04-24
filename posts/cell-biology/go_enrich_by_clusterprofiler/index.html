@@ -128,7 +128,7 @@
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
-#embed-pdf-container {
+.embed-pdf-container {
   position: relative;
   width: 100%;
   height: auto;
@@ -143,7 +143,7 @@
   display: none;
 }
 
-#loadingWrapper {
+.loadingWrapper {
   display: none;
   justify-content: center;
   align-items: center;
@@ -151,7 +151,7 @@
   height: 350px;
 }
 
-#loading {
+.loading {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -179,11 +179,9 @@
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
-</style>
-
-<div id="embed-pdf-container">
-  <div id="loadingWrapper">
-    <div id="loading"></div>
+</style><div class="embed-pdf-container" id="embed-pdf-container-6da2e3da">
+  <div class="loadingWrapper" id="loadingWrapper-6da2e3da">
+    <div class="loading" id="loading-6da2e3da"></div>
   </div>
   <div id="overlayText">
     <a href='/files/GO_enrich_by_clusterprofiler.pdf' download>
@@ -194,7 +192,7 @@
 </div>
 
 <script type="text/javascript">
-window.onload = function() {
+(function() {
 
 
 var url = "https:\/\/jwangl5.github.io" + '\/files\/GO_enrich_by_clusterprofiler.pdf';
@@ -211,7 +209,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper');
+    loadingWrapper = document.getElementById('loadingWrapper-6da2e3da');
 
 
 
@@ -223,7 +221,7 @@ function renderPage(num) {
   pageRendering = true;
   
   pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container');
+    var pdf_cont = document.getElementById('embed-pdf-container-6da2e3da');
     var canvas = getCanvas(num);
     pdf_cont.appendChild(canvas);
 
@@ -288,7 +286,7 @@ function queueRenderPage(num) {
 
 
 function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-' + num;
+  var canvasId = 'embed-pdf-container-6da2e3da-'+num;
   var canvas = document.createElement("canvas");
   canvas.id = canvasId;
   canvas.className = 'pdf-canvas';
@@ -301,7 +299,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
   pdfDoc = pdfDoc_;
   renderAllPages();
 });
-}
+})()
 
 </script>
 

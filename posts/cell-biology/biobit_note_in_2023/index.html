@@ -172,7 +172,7 @@
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
-#embed-pdf-container {
+.embed-pdf-container {
   position: relative;
   width: 100%;
   height: auto;
@@ -187,7 +187,7 @@
   display: none;
 }
 
-#loadingWrapper {
+.loadingWrapper {
   display: none;
   justify-content: center;
   align-items: center;
@@ -195,7 +195,7 @@
   height: 350px;
 }
 
-#loading {
+.loading {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -223,11 +223,9 @@
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
-</style>
-
-<div id="embed-pdf-container">
-  <div id="loadingWrapper">
-    <div id="loading"></div>
+</style><div class="embed-pdf-container" id="embed-pdf-container-80ee9c1e">
+  <div class="loadingWrapper" id="loadingWrapper-80ee9c1e">
+    <div class="loading" id="loading-80ee9c1e"></div>
   </div>
   <div id="overlayText">
     <a href='/files/230825_BioBit%e7%ac%94%e8%ae%b0_LJW.pdf' download>
@@ -238,7 +236,7 @@
 </div>
 
 <script type="text/javascript">
-window.onload = function() {
+(function() {
 
 
 var url = "https:\/\/jwangl5.github.io" + '\/files\/230825_BioBit笔记_LJW.pdf';
@@ -255,7 +253,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper');
+    loadingWrapper = document.getElementById('loadingWrapper-80ee9c1e');
 
 
 
@@ -267,7 +265,7 @@ function renderPage(num) {
   pageRendering = true;
   
   pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container');
+    var pdf_cont = document.getElementById('embed-pdf-container-80ee9c1e');
     var canvas = getCanvas(num);
     pdf_cont.appendChild(canvas);
 
@@ -332,7 +330,7 @@ function queueRenderPage(num) {
 
 
 function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-' + num;
+  var canvasId = 'embed-pdf-container-80ee9c1e-'+num;
   var canvas = document.createElement("canvas");
   canvas.id = canvasId;
   canvas.className = 'pdf-canvas';
@@ -345,7 +343,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
   pdfDoc = pdfDoc_;
   renderAllPages();
 });
-}
+})()
 
 </script>
 

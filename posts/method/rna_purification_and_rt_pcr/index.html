@@ -148,7 +148,7 @@
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
-#embed-pdf-container {
+.embed-pdf-container {
   position: relative;
   width: 100%;
   height: auto;
@@ -163,7 +163,7 @@
   display: none;
 }
 
-#loadingWrapper {
+.loadingWrapper {
   display: none;
   justify-content: center;
   align-items: center;
@@ -171,7 +171,7 @@
   height: 350px;
 }
 
-#loading {
+.loading {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -199,11 +199,9 @@
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
-</style>
-
-<div id="embed-pdf-container">
-  <div id="loadingWrapper">
-    <div id="loading"></div>
+</style><div class="embed-pdf-container" id="embed-pdf-container-899eadfd">
+  <div class="loadingWrapper" id="loadingWrapper-899eadfd">
+    <div class="loading" id="loading-899eadfd"></div>
   </div>
   <div id="overlayText">
     <a href='/files/protocol/230704%20RNA%e6%8f%90%e5%8f%96.pdf' download>
@@ -214,7 +212,7 @@
 </div>
 
 <script type="text/javascript">
-window.onload = function() {
+(function() {
 
 
 var url = "https:\/\/jwangl5.github.io" + '\/files\/protocol\/230704 RNA提取.pdf';
@@ -231,7 +229,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper');
+    loadingWrapper = document.getElementById('loadingWrapper-899eadfd');
 
 
 
@@ -243,7 +241,7 @@ function renderPage(num) {
   pageRendering = true;
   
   pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container');
+    var pdf_cont = document.getElementById('embed-pdf-container-899eadfd');
     var canvas = getCanvas(num);
     pdf_cont.appendChild(canvas);
 
@@ -308,7 +306,7 @@ function queueRenderPage(num) {
 
 
 function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-' + num;
+  var canvasId = 'embed-pdf-container-899eadfd-'+num;
   var canvas = document.createElement("canvas");
   canvas.id = canvasId;
   canvas.className = 'pdf-canvas';
@@ -321,71 +319,14 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
   pdfDoc = pdfDoc_;
   renderAllPages();
 });
-}
+})()
 
 </script>
 
 
-<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
-<link href="/css/pdf-js.css" rel="stylesheet">
-
-<style>
-#embed-pdf-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-   
-}
-
-.pdf-canvas {
-  border: 1px solid black;
-  direction: ltr;
-  width: 100%;
-  height: auto;
-  display: none;
-}
-
-#loadingWrapper {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 350px;
-}
-
-#loading {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border: 3px solid #d2d0d0;;
-  border-radius: 50%;
-  border-top-color: #383838;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-#overlayText > a:link{
-  color: steelblue;
-}
-
-#overlayText {
-  position: absolute;
-  word-wrap: break-word;
-  right: 5px;
-  top: 5px;
-}
-
-@keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-</style>
-
-<div id="embed-pdf-container">
-  <div id="loadingWrapper">
-    <div id="loading"></div>
+<div class="embed-pdf-container" id="embed-pdf-container-e5d60119">
+  <div class="loadingWrapper" id="loadingWrapper-e5d60119">
+    <div class="loading" id="loading-e5d60119"></div>
   </div>
   <div id="overlayText">
     <a href='/files/protocol/230704%20RT-PCR.pdf' download>
@@ -396,7 +337,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </div>
 
 <script type="text/javascript">
-window.onload = function() {
+(function() {
 
 
 var url = "https:\/\/jwangl5.github.io" + '\/files\/protocol\/230704 RT-PCR.pdf';
@@ -413,7 +354,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper');
+    loadingWrapper = document.getElementById('loadingWrapper-e5d60119');
 
 
 
@@ -425,7 +366,7 @@ function renderPage(num) {
   pageRendering = true;
   
   pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container');
+    var pdf_cont = document.getElementById('embed-pdf-container-e5d60119');
     var canvas = getCanvas(num);
     pdf_cont.appendChild(canvas);
 
@@ -490,7 +431,7 @@ function queueRenderPage(num) {
 
 
 function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-' + num;
+  var canvasId = 'embed-pdf-container-e5d60119-'+num;
   var canvas = document.createElement("canvas");
   canvas.id = canvasId;
   canvas.className = 'pdf-canvas';
@@ -503,7 +444,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
   pdfDoc = pdfDoc_;
   renderAllPages();
 });
-}
+})()
 
 </script>
 
