@@ -36,11 +36,11 @@
 	margin: 200px 23px 25px 8px;
 }
 .item_box .li1 .fold .img { background:url(../img/img10.png); background-size: 70% 70%;}
-.item_box .li2 .fold .img { background:url(../img/img42.png); background-size: 100% 100%;}
-.item_box .li3 .fold .img { background:url(../img/img49.png); background-size: 100% 100%;}
-.item_box .li4 .fold .img { background:url(../img/img50.png); background-size: 100% 100%;}
-.item_box .li5 .fold .img { background:url(../img/img51.png); background-size: 100% 100%;}
-.item_box .li6 .fold .img { background:url(../img/img52.png); background-size: 100% 100%;}
+.item_box .li2 .fold .img { background:url(../img/img42.png); background-size: 70% 70%;}
+.item_box .li3 .fold .img { background:url(../img/img49.png); background-size: 70% 70%;}
+.item_box .li4 .fold .img { background:url(../img/img50.png); background-size: 70% 70%;}
+.item_box .li5 .fold .img { background:url(../img/img51.png); background-size: 70% 70%;}
+.item_box .li6 .fold .img { background:url(../img/img52.png); background-size: 70% 70%;}
 .item_box .fold .txt { 
 	font-size: 24px; 
 	display: block; 
