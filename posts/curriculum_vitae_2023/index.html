@@ -59,7 +59,7 @@
             <a href="/" title="Cell × Brain">Cell × Brain</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/plant-atlas/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/albums/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
@@ -101,7 +101,7 @@
                     <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/plant-atlas/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/albums/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -329,12 +329,12 @@
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
-</style><div class="embed-pdf-container" id="embed-pdf-container-2525bf43">
-  <div class="loadingWrapper" id="loadingWrapper-2525bf43">
-    <div class="loading" id="loading-2525bf43"></div>
+</style><div class="embed-pdf-container" id="embed-pdf-container-57155a97">
+  <div class="loadingWrapper" id="loadingWrapper-57155a97">
+    <div class="loading" id="loading-57155a97"></div>
   </div>
   <div id="overlayText">
-    <a href='/files/CV_Jinwang%20Lu.pdf' download>
+    <a href='/files/CV_Jinwang%20Lu_2023.pdf' download>
       <i class="fas fa-download fa-2x"></i>
     </a>
   </div>
@@ -345,7 +345,7 @@
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io" + '\/files\/CV_Jinwang Lu.pdf';
+var url = "https:\/\/jwangl5.github.io" + '\/files\/CV_Jinwang Lu_2023.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -359,7 +359,7 @@ var pdfDoc = null,
     pageRendering = false,
     pageNumPending = null,
     scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper-2525bf43');
+    loadingWrapper = document.getElementById('loadingWrapper-57155a97');
 
 
 
@@ -371,7 +371,7 @@ function renderPage(num) {
   pageRendering = true;
   
   pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container-2525bf43');
+    var pdf_cont = document.getElementById('embed-pdf-container-57155a97');
     var canvas = getCanvas(num);
     pdf_cont.appendChild(canvas);
 
@@ -436,7 +436,7 @@ function queueRenderPage(num) {
 
 
 function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-2525bf43-'+num;
+  var canvasId = 'embed-pdf-container-57155a97-'+num;
   var canvas = document.createElement("canvas");
   canvas.id = canvasId;
   canvas.className = 'pdf-canvas';
