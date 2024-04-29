@@ -1,0 +1,30 @@
+#photo{
+	height: 18.75rem;
+	width: 18.75rem;
+	background-color: #F5F5DC;
+	border: black dashed 0.125rem;
+    margin: auto
+}
+
+.eye_wrapper{
+	width:141px;
+	height:185px;
+	margin:0px auto;
+	position:relative;
+}
+
+.eye_wrapper .head{
+	z-index:1px;
+}
+
+.eye_wrapper .eye-left{
+	position:absolute;
+	top:82px;
+	left:30px;
+}
+
+.eye_wrapper .eye-right{
+	position:absolute;
+	top:80px;
+	left:96px;
+}
