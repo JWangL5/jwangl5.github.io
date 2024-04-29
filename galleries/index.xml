@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Galleries on Cell × Brain</title>
+    <title>所有相册 on Cell × Brain</title>
     <link>https://jwangl5.github.io/galleries/</link>
-    <description>Recent content in Galleries on Cell × Brain</description>
+    <description>Recent content in 所有相册 on Cell × Brain</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>l392537594@163.com (卢旺)</managingEditor>
-    <webMaster>l392537594@163.com (卢旺)</webMaster>
-    <lastBuildDate>Tue, 01 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://jwangl5.github.io/galleries/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language><atom:link href="https://jwangl5.github.io/galleries/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>植物图鉴</title>
+      <link>https://jwangl5.github.io/galleries/plant-atlas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jwangl5.github.io/galleries/plant-atlas/</guid><media:content url="https://jwangl5.github.io/galleries/plant-atlas/%E8%8A%AD%E8%95%89%E7%A7%91-%E5%9C%B0%E6%B6%8C%E9%87%91%E8%8E%B2_hu8d262454e71845224d2f0fbfebabb68c_176217_900x600_fill_q75_box_smart1.jpg" type="image/jpeg"/>
+        <description>
+          &lt;img src=&quot;https://jwangl5.github.io/galleries/plant-atlas/%E8%8A%AD%E8%95%89%E7%A7%91-%E5%9C%B0%E6%B6%8C%E9%87%91%E8%8E%B2_hu8d262454e71845224d2f0fbfebabb68c_176217_900x600_fill_q75_box_smart1.jpg&quot; /&gt;
+          &lt;p&gt;&lt;no value&gt;&lt;/p&gt;
+        </description></item>
   </channel>
 </rss>
