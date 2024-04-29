@@ -79,12 +79,6 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/curriculum_vitae_2023/</guid>
     <description><![CDATA[About Page 2023: 卢旺 l392537594@163.com 农大硕士生在读 简历下载 2017-2021 本科 · 中国农业大学 · 生物科学 课程学习 大学四年全部课程GPA 3.48/4.00 (排名10/80)，修读课程包含动物、植物、]]></description>
 </item><item>
-    <title>英语听写播放器工具</title>
-    <link>https://jwangl5.github.io/posts/english_listening_tool/</link>
-    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/english_listening_tool/</guid>
-    <description><![CDATA[为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对） ctrl+Q 播放/暂停 ctrl+ArrowLeft 回退5秒 点击按钮打开音频 00:00 / 00:00]]></description>
-</item><item>
     <title>哺乳动物细胞诱导表达系统(Tet-On/Off)</title>
     <link>https://jwangl5.github.io/posts/cell-biology/teton_system/</link>
     <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>
@@ -126,5 +120,11 @@
     <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/genshin-impact/genshin-impact_artifacts/</guid>
     <description><![CDATA[圣遗物背包整理太麻烦了，每次看到一个似乎还不错的胚子，又不确定有没有角色有需求。于是整理了这个表格，在按照圣遗物套装聚合排序后，就可以立刻查]]></description>
+</item><item>
+    <title>Protocol | 转基因果蝇的遗传学筛选与建系</title>
+    <link>https://jwangl5.github.io/posts/method/genetic_screening_and_line_establishment_for_transgenic_fly/</link>
+    <pubDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/genetic_screening_and_line_establishment_for_transgenic_fly/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
 </item></channel>
 </rss>

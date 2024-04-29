@@ -4,13 +4,7 @@
         <link>https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</link>
         <description>工具分享 - 分类 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" rel="self" type="application/rss+xml" /><item>
-    <title>英语听写播放器工具</title>
-    <link>https://jwangl5.github.io/posts/english_listening_tool/</link>
-    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/english_listening_tool/</guid>
-    <description><![CDATA[为了方便练习英文精听，写了一个带快捷键的前端脚本来播放本地材料（未来有时间了更新听写校对） ctrl+Q 播放/暂停 ctrl+ArrowLeft 回退5秒 点击按钮打开音频 00:00 / 00:00]]></description>
-</item><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 25 Aug 2023 15:56:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" rel="self" type="application/rss+xml" /><item>
     <title>logseq、zotero和坚果云的相互关联配制</title>
     <link>https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/</link>
     <pubDate>Fri, 25 Aug 2023 15:56:00 &#43;0800</pubDate><author>
