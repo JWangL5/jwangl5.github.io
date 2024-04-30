@@ -59,7 +59,7 @@
 }
 
 .item_box .unfold dl { margin: 30px 20px 10px 10px; }
-.item_box .unfold dt { width: 100%; text-align: center; margin-bottom: 40px; }
+.item_box .unfold dt { width: 180px; height: 180px; text-align: center; margin: auto; margin-bottom: 40px; }
 .item_box .unfold dd { line-height: 35px; }
 .item_box .unfold dd b { font-size: 30px; font-weight: normal; }
 .item_box .unfold dd b a { 
