@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Opencv - 系列 - Cell × Brain</title>
+        <title>opencv - 系列 - Cell × Brain</title>
         <link>https://jwangl5.github.io/series/opencv/</link>
-        <description>Opencv - 系列 - Cell × Brain</description>
+        <description>opencv - 系列 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/opencv/" rel="self" type="application/rss+xml" /><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>

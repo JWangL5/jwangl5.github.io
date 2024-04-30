@@ -7,20 +7,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>OpenCV | 图像的空间域处理之点运算 - Cell × Brain</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/">
-  <meta property="og:site_name" content="Cell × Brain">
-  <meta property="og:title" content="OpenCV | 图像的空间域处理之点运算">
-  <meta property="og:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处">
-  <meta property="og:locale" content="zh-CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-02-25T00:00:00+08:00">
-    <meta property="article:modified_time" content="2020-02-25T00:00:00+08:00">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/">
-<meta name="twitter:card" content="summary"><meta name="twitter:title" content="OpenCV | 图像的空间域处理之点运算">
-<meta name="twitter:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处">
-      <meta name="twitter:site" content="@JWangL5">
+    <title>OpenCV | 图像的空间域处理之点运算 - Cell × Brain</title><meta name="Description" content=""><meta property="og:title" content="OpenCV | 图像的空间域处理之点运算" />
+<meta property="og:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-02-25T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-02-25T00:00:00+08:00" /><meta property="og:site_name" content="Cell × Brain" />
+<meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="OpenCV | 图像的空间域处理之点运算"/>
+<meta name="twitter:description" content="​ 在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为： 单像素操作（点运算）：即对单个像素点进行处"/>
+<meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="Cell × Brain">
 <meta name="apple-mobile-web-app-title" content="Cell × Brain">
 
@@ -120,7 +118,7 @@
             <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">OpenCV | 图像的空间域处理之点运算</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/opencv/"><i class="far fa-list-alt fa-fw"></i>Opencv</a></span></div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/opencv/"><i class="far fa-list-alt fa-fw"></i>opencv</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4617 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>​		在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>
