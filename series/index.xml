@@ -5,7 +5,7 @@
         <description>Series - 系列 - Cell × Brain</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sun, 21 Apr 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /><item>
-    <title>TOEFL</title>
+    <title>托福备考学习材料</title>
     <link>https://jwangl5.github.io/series/toefl/</link>
     <pubDate>Sun, 21 Apr 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
@@ -38,6 +38,13 @@
     <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
     </author><guid>https://jwangl5.github.io/series/genshin-impact/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>实验Protocol下载</title>
+    <link>https://jwangl5.github.io/series/protocol/</link>
+    <pubDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+        <name>卢旺</name>
+    </author><guid>https://jwangl5.github.io/series/protocol/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>BioModel</title>

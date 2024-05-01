@@ -104,9 +104,9 @@
     <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
 </item><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
-    <link>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</link>
+    <link>https://jwangl5.github.io/posts/bolg_set_up_by_hugo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hudo_and_github_pages/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hugo_and_github_pages/</guid>
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
 </item><item>
     <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>

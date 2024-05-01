@@ -1,0 +1,68 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>实验Protocol下载 - 系列 - Cell × Brain</title>
+        <link>https://jwangl5.github.io/series/protocol/</link>
+        <description>实验Protocol下载 - 系列 - Cell × Brain</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/protocol/" rel="self" type="application/rss+xml" /><item>
+    <title>Protocol | 转基因果蝇的遗传学筛选与建系</title>
+    <link>https://jwangl5.github.io/posts/method/genetic_screening_and_line_establishment_for_transgenic_fly/</link>
+    <pubDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/genetic_screening_and_line_establishment_for_transgenic_fly/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | DNA分子克隆</title>
+    <link>https://jwangl5.github.io/posts/method/dna_clone/</link>
+    <pubDate>Fri, 07 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/dna_clone/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | 慢病毒侵染法构建稳转细胞系</title>
+    <link>https://jwangl5.github.io/posts/method/stable_transgenic_cell_lines_by_lentivirus/</link>
+    <pubDate>Wed, 05 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/stable_transgenic_cell_lines_by_lentivirus/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | 细胞电转</title>
+    <link>https://jwangl5.github.io/posts/method/electroporation/</link>
+    <pubDate>Wed, 05 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/electroporation/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | 细胞固定与免疫荧光</title>
+    <link>https://jwangl5.github.io/posts/method/cell_fixation_and_immunofluorescence/</link>
+    <pubDate>Wed, 05 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/cell_fixation_and_immunofluorescence/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | RNA提取与RT-PCR</title>
+    <link>https://jwangl5.github.io/posts/method/rna_purification_and_rt_pcr/</link>
+    <pubDate>Tue, 04 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/rna_purification_and_rt_pcr/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | His-tag蛋白的镍柱亲和纯化</title>
+    <link>https://jwangl5.github.io/posts/method/his_tag_protein_purification/</link>
+    <pubDate>Mon, 03 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/his_tag_protein_purification/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款 PS：在小量诱导阶段，为方便检测，]]></description>
+</item><item>
+    <title>Protocol | IgG抗体纯化</title>
+    <link>https://jwangl5.github.io/posts/method/igg_purification/</link>
+    <pubDate>Mon, 03 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/igg_purification/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | 琼脂糖凝胶电泳</title>
+    <link>https://jwangl5.github.io/posts/method/agarose_gel_electrophoresis/</link>
+    <pubDate>Mon, 03 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/agarose_gel_electrophoresis/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item><item>
+    <title>Protocol | 使用EdU做细胞增殖检测（点击化学）</title>
+    <link>https://jwangl5.github.io/posts/method/click_chemistry_for_edu/</link>
+    <pubDate>Mon, 03 Jul 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/method/click_chemistry_for_edu/</guid>
+    <description><![CDATA[CC BY-NC-ND 4.0 Deed 感谢您的阅读, 欢迎分享！ 引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款]]></description>
+</item></channel>
+</rss>
