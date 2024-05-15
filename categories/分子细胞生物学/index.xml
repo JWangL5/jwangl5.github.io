@@ -11,6 +11,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/kinetochore/</guid>
     <description><![CDATA[近期读到最新的Science文章，解析了酵母外层动粒与微管互作界面的冷冻电镜结构，太漂亮了！之前一直觉得top-view的动粒是存在超微结构]]></description>
 </item><item>
+    <title>hTERT-RPE1细胞与Puromycin抗性筛选</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</link>
+    <pubDate>Thu, 14 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</guid>
+    <description><![CDATA[在用pCDH载体构建细胞器的RPE1细胞系的时候就明显感受到常规的Puromycin浓度（1mg/mL，1000×）似乎并不能有效杀死细胞，]]></description>
+</item><item>
     <title>哺乳动物细胞诱导表达系统(Tet-On/Off)</title>
     <link>https://jwangl5.github.io/posts/cell-biology/teton_system/</link>
     <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>

@@ -85,6 +85,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/hp_printer/</guid>
     <description><![CDATA[前段时间在实验室修理打印机，加之了解到纸模这种游戏，就导致最近很上头打印机，于是做了一些调研工作，对于打印机大致的技术原理总结如下 喷墨打印机]]></description>
 </item><item>
+    <title>hTERT-RPE1细胞与Puromycin抗性筛选</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</link>
+    <pubDate>Thu, 14 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</guid>
+    <description><![CDATA[在用pCDH载体构建细胞器的RPE1细胞系的时候就明显感受到常规的Puromycin浓度（1mg/mL，1000×）似乎并不能有效杀死细胞，]]></description>
+</item><item>
     <title>My Curriculum Vitae (2023)</title>
     <link>https://jwangl5.github.io/posts/curriculum_vitae_2023/</link>
     <pubDate>Thu, 16 Nov 2023 00:00:00 &#43;0000</pubDate><author>
@@ -120,11 +126,5 @@
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hugo_and_github_pages/</guid>
     <description><![CDATA[前言自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的]]></description>
-</item><item>
-    <title>分享一套用Pyecharts绘制RNA Seq火山图的代码</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</link>
-    <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/dynamic_volcanic_plot_in_rna_seq/</guid>
-    <description><![CDATA[一直以来都比较习惯使用matplotlib绘制各种图像，但是在RNA Seq数据的展示中，静态图像实在是无法将信息全部有效展示。之前偶然间遇到]]></description>
 </item></channel>
 </rss>
