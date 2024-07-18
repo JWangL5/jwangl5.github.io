@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/bolg_set_up_by_hugo_and_github_pages\/"
-        },"genre": "posts","wordcount":  1849 ,
+        },"genre": "posts","wordcount":  1988 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/bolg_set_up_by_hugo_and_github_pages\/","datePublished": "2023-09-27T00:17:49+08:00","dateModified": "2023-09-27T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,7 +118,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><i class="far fa-folder fa-fw"></i>前端技术</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1849 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-09-27">2023-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1988 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="content" id="content"><h2 id="前言" class="headerLink">
     <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h2><p>自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的是，把长段的文字写出来或是把之前不理解的东西搞明白并输出，哪怕没有别人看也会是一件能够让自己高兴、甚至自豪的事情。这段时间想要重新再次学习<code>《Molecular driving forces》</code>一书，希望能够借着这个博客，把系统梳理的笔记做出来。</p>
@@ -189,6 +189,9 @@
 </span></span><span class="line"><span class="cl">{{- end -}}
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;margin-top: 50px;&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div></li>
+<li>
+<p>在<code>/theme/DoIt/layouts/plugin/image.html</code>的第41行，将<code>sizes=&quot;auto&quot;</code>属性注释掉，从而来适配新版本chrome（121.0.6167.85）下<code>contain-intrinsic-size: 300px 150px</code>属性的默认内容</p>
+</li>
 </ul>
 <h2 id="创建并上传github-pages" class="headerLink">
     <a href="#%e5%88%9b%e5%bb%ba%e5%b9%b6%e4%b8%8a%e4%bc%a0github-pages" class="header-mark"></a>创建并上传Github Pages</h2><ul>
