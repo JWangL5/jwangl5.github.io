@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>图像处理 - 分类 - Cell × Brain</title>
+        <title>图像处理 - 分类 - JWangL5&#39;s Blog</title>
         <link>https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
-        <description>图像处理 - 分类 - Cell × Brain</description>
+        <description>图像处理 - 分类 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="self" type="application/rss+xml" /><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>

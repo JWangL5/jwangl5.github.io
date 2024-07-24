@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>BioModel - 系列 - Cell × Brain</title>
+        <title>BioModel - 系列 - JWangL5&#39;s Blog</title>
         <link>https://jwangl5.github.io/series/biomodel/</link>
-        <description>BioModel - 系列 - Cell × Brain</description>
+        <description>BioModel - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/biomodel/" rel="self" type="application/rss+xml" /><item>
     <title>BioModel | 对二项分布与泊松分布的理解</title>

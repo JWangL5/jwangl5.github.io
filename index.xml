@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Cell × Brain</title>
+        <title>JWangL5&#39;s Blog</title>
         <link>https://jwangl5.github.io/</link>
-        <description>Cell × Brain</description>
+        <description>JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
             <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 17 May 2024 00:00:00 &#43;0800</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -103,6 +103,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/curriculum_vitae_2023/</guid>
     <description><![CDATA[About Page 2023: 卢旺 l392537594@163.com 农大硕士生在读 简历下载 2017-2021 本科 · 中国农业大学 · 生物科学 课程学习 大学四年全部课程GPA 3.48/4.00 (排名10/80)，修读课程包含动物、植物、]]></description>
 </item><item>
+    <title>强烈推荐❗英语听写工具🪶（Developed by JWangL5🎉）</title>
+    <link>https://jwangl5.github.io/posts/languages/english_dictation_tool/</link>
+    <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/languages/english_dictation_tool/</guid>
+    <description><![CDATA[使用说明方法（请务必读一下） 本工具是一个语言学习工具，用于锻炼听音和拼写能力，可以直接在本页面上运行和使用。该工具完全由新手程序员开发，很可]]></description>
+</item><item>
     <title>哺乳动物细胞诱导表达系统(Tet-On/Off)</title>
     <link>https://jwangl5.github.io/posts/cell-biology/teton_system/</link>
     <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>
@@ -120,11 +126,5 @@
     <pubDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
     <description><![CDATA[极值原理（Extremum Principles） 分子会通过构象变化、物理化学反应来改变两个关键的参数，一个是使得能量最低，另一个是熵最大。反]]></description>
-</item><item>
-    <title>MDF | 01. 概率是热力学的基础</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
-    <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
-    <description><![CDATA[对统计热力学的基本认识 很多现象，例如物质相变、油水分离、晶体生长、化学反应（酶促反应）、弹簧收缩或反弹等等，这些过程之所以可以发生，其本质上]]></description>
 </item></channel>
 </rss>
