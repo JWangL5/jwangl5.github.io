@@ -4,7 +4,14 @@
         <link>https://jwangl5.github.io/series/</link>
         <description>Series - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 15 May 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /><item>
+    <title>读书笔记</title>
+    <link>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</pubDate><author>
+        <name>卢旺</name>
+    </author><guid>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>托福备考学习材料</title>
     <link>https://jwangl5.github.io/series/toefl/</link>
     <pubDate>Wed, 15 May 2024 00:00:00 &#43;0800</pubDate><author>
@@ -66,13 +73,6 @@
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
     </author><guid>https://jwangl5.github.io/series/r-scripts/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>opencv</title>
-    <link>https://jwangl5.github.io/series/opencv/</link>
-    <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
-        <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/opencv/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
