@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>分析化学 | 酸碱形体分布和pH关系 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="分析化学 | 酸碱形体分布和pH关系" />
-<meta property="og:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 import numpy as np from matplotlib import pyplot as plt 一元酸解离分配$" />
+<meta property="og:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 1 2 import numpy as np from matplotlib import pyplot as plt 一元酸解离分" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-18T16:58:00+08:00" />
@@ -17,7 +17,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="分析化学 | 酸碱形体分布和pH关系"/>
-<meta name="twitter:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 import numpy as np from matplotlib import pyplot as plt 一元酸解离分配$"/>
+<meta name="twitter:description" content="分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 1 2 import numpy as np from matplotlib import pyplot as plt 一元酸解离分"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/distribution_of_acid_base_species\/"
-        },"genre": "posts","wordcount":  375 ,
+        },"genre": "posts","wordcount":  408 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/distribution_of_acid_base_species\/","datePublished": "2021-09-18T16:58:00+08:00","dateModified": "2021-09-18T16:58:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,16 +119,24 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>数学物理化学</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/python-scripts/"><i class="far fa-list-alt fa-fw"></i>Python Scripts</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 375 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-18">2021-09-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 408 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="content" id="content"><blockquote>
 <p>分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数
 $$ \delta = \frac{[c_i]}{c_0}$$
 分布曲线：不同pH值溶液中酸碱存在形式的分布</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-</span></span></code></pre></div><h2 id="一元酸解离分配" class="headerLink">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="一元酸解离分配" class="headerLink">
     <a href="#%e4%b8%80%e5%85%83%e9%85%b8%e8%a7%a3%e7%a6%bb%e5%88%86%e9%85%8d" class="header-mark"></a>一元酸解离分配</h2><p>$$ HA \longrightarrow H^+ + A^- , K^\Theta_a=\frac{[H^+][A^-]}{[HA]}$$</p>
 <p>对于$HA$,其分布系数为：
 $$\delta_{HA}
@@ -142,7 +150,25 @@ $$\delta_{A^-}
 =\frac{1}{1+\frac{[HA]}{[A^-]}}
 =\frac{1}{1+\frac{[H^+]}{K^\Theta_a}}
 =\frac{K^\Theta_a}{[H^+]+K^\Theta_a}$$</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Ka = float(input(&#39;输入Ka：&#39;))</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Ka = float(input(&#39;输入Ka：&#39;))</span>
 </span></span><span class="line"><span class="cl"><span class="n">Ka</span> <span class="o">=</span> <span class="mf">1.6e-5</span> <span class="c1"># 默认数据为醋酸</span>
 </span></span><span class="line"><span class="cl"><span class="n">pH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">dHA</span><span class="p">,</span> <span class="n">dA</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -156,7 +182,9 @@ $$\delta_{A^-}
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;pH&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-01.png" title="/image/AcidBase-Species-Distribution-01.png" data-thumbnail="/image/AcidBase-Species-Distribution-01.png" data-sub-html="<h2>醋酸（一元弱酸）的型体分布图</h2>">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-01.png" title="/image/AcidBase-Species-Distribution-01.png" data-thumbnail="/image/AcidBase-Species-Distribution-01.png" data-sub-html="<h2>醋酸（一元弱酸）的型体分布图</h2>">
         <img
             
             loading="lazy"
@@ -184,7 +212,28 @@ $$\delta_{HA^-}
 $$\delta_{A^{2-}}
 =\frac{K^\Theta_{a1}K^\Theta_{a2}}{[H^+]^2 + [H^+]K^\Theta_{a1} + K^\Theta_{a1}K^\Theta_{a2}}
 $$</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Ka1</span><span class="p">,</span> <span class="n">Ka2</span> <span class="o">=</span> <span class="mf">5.9e-2</span><span class="p">,</span> <span class="mf">6.5e-5</span> <span class="c1"># 默认数据是草酸</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Ka1</span><span class="p">,</span> <span class="n">Ka2</span> <span class="o">=</span> <span class="mf">5.9e-2</span><span class="p">,</span> <span class="mf">6.5e-5</span> <span class="c1"># 默认数据是草酸</span>
 </span></span><span class="line"><span class="cl"><span class="n">pH</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">dH2A</span><span class="p">,</span> <span class="n">dHA</span><span class="p">,</span> <span class="n">dA</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pH</span><span class="p">:</span>
@@ -201,7 +250,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;pH&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\delta$&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-02.png" title="/image/AcidBase-Species-Distribution-02.png" data-thumbnail="/image/AcidBase-Species-Distribution-02.png" data-sub-html="<h2>草酸（二元弱酸）的型体分布图</h2>">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><figure><a class="lightgallery" href="/image/AcidBase-Species-Distribution-02.png" title="/image/AcidBase-Species-Distribution-02.png" data-thumbnail="/image/AcidBase-Species-Distribution-02.png" data-sub-html="<h2>草酸（二元弱酸）的型体分布图</h2>">
         <img
             
             loading="lazy"

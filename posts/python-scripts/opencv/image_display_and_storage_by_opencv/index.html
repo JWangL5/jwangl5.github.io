@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/opencv\/image_display_and_storage_by_opencv\/"
-        },"genre": "posts","wordcount":  2500 ,
+        },"genre": "posts","wordcount":  2572 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/opencv\/image_display_and_storage_by_opencv\/","datePublished": "2020-02-23T00:00:00+08:00","dateModified": "2020-02-23T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,8 +119,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/opencv/"><i class="far fa-list-alt fa-fw"></i>opencv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2500 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2572 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="content" id="content"><h1 id="一python-opencv的安装" class="headerLink">
     <a href="#%e4%b8%80python-opencv%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>一、python-opencv的安装</h1><p><strong>方法一</strong>：使用pip命令</p>
 <ul>
@@ -128,10 +128,19 @@
 <li>若下载很慢可以使用 -i 设置使用清华源镜像</li>
 <li>opencv-python为基础包，opencv-contrib-python则包含额外的模块</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install wheel
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install wheel
 </span></span><span class="line"><span class="cl">pip install numpy
 </span></span><span class="line"><span class="cl">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-contrib-python
-</span></span></code></pre></div><p><strong>方法二</strong>：去官网下载安装包，后手动安装</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方法二</strong>：去官网下载安装包，后手动安装</p>
 <p>下载链接： <a href="https://sourceforge.net/projects/opencvlibrary/files/" target="_blank" rel="noopener noreferrer">https://sourceforge.net/projects/opencvlibrary/files/</a></p>
 <h1 id="二图像的读取显示与保存" class="headerLink">
     <a href="#%e4%ba%8c%e5%9b%be%e5%83%8f%e7%9a%84%e8%af%bb%e5%8f%96%e6%98%be%e7%a4%ba%e4%b8%8e%e4%bf%9d%e5%ad%98" class="header-mark"></a>二、图像的读取、显示与保存</h1><h3 id="图像读取" class="headerLink">
@@ -159,14 +168,27 @@
 <p><strong>注意：</strong> OpenCV 也不会提醒你路径是否错的，但是使用命令print img时得到的结果为None</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 引包</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 引包</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 读入图像</span>
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</span></span></code></pre></div><h3 id="图像显示" class="headerLink">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图像显示" class="headerLink">
     <a href="#%e5%9b%be%e5%83%8f%e6%98%be%e7%a4%ba" class="header-mark"></a>图像显示</h3><p><strong>方法一</strong>：使用Matplotlib显示图像</p>
 <p>​	Matplotib是python的一个绘图库，其中包含各种各样的绘图方法，可以借助Matplotib编排、显示图像</p>
 <p>​	这里使用<code>plt.imshow()</code>的方法来显示图像，</p>
@@ -196,7 +218,19 @@
 <p>默认显示图片含有坐标轴标签，使用<code>plt.xticks([])</code>和<code>plt.yticks([])</code>取消</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -204,7 +238,9 @@
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;bicubic&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><strong>方法二</strong>：使用opencv内置引擎</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方法二</strong>：使用opencv内置引擎</p>
 <p>​	使用函数 <code>cv2.imshow()</code> 显示图像，返回结果为一个自动调整为图像大小的窗体</p>
 <ul>
 <li>
@@ -220,14 +256,31 @@
 <p>在服务器端没有安装X Serve，因而图片使用<code>cv2.imshow(img)</code>无法直接调用图形界面显示，可以直接使用Matplotlib来返回显示结果</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span></span></code></pre></div><h3 id="图像的保存" class="headerLink">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图像的保存" class="headerLink">
     <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e4%bf%9d%e5%ad%98" class="header-mark"></a>图像的保存</h3><p>​	使用<code>cv2.imwrite()</code>方法保存图像，其第一个参数为保存文件的路径和命名（包括后缀和格式），第二个参数为需要保存的图像</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
-</span></span></code></pre></div><h1 id="三颜色空间的转换与通道的拆合" class="headerLink">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="三颜色空间的转换与通道的拆合" class="headerLink">
     <a href="#%e4%b8%89%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e8%bd%ac%e6%8d%a2%e4%b8%8e%e9%80%9a%e9%81%93%e7%9a%84%e6%8b%86%e5%90%88" class="header-mark"></a>三、颜色空间的转换与通道的拆合</h1><h3 id="颜色空间的概念与相互转换" class="headerLink">
     <a href="#%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4%e7%9a%84%e6%a6%82%e5%bf%b5%e4%b8%8e%e7%9b%b8%e4%ba%92%e8%bd%ac%e6%8d%a2" class="header-mark"></a>颜色空间的概念与相互转换</h3><p>颜色空间，是在某些标准下用通常可接受的方式对彩色加以说明的方式，常用的颜色空间有RGB、CMYK、HSV、EG</p>
 <ul>
@@ -269,10 +322,19 @@
 </ul>
 <p>​		官网教程额外提醒了， 不同的软件使用的值可能不同，所以当需要拿OpenCV的HSV值与其他软件的HSV值进行对比时，一定要记得<strong>归一化</strong>！</p>
 <p>​		可以通过如下代码查看opencv所提供的全部与颜色转换相关的 flag：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">cv2</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;COLOR_&#39;</span><span class="p">)]</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
-</span></span></code></pre></div><p>​		当然，这里的转化也可以手工操作，如RGB图像灰度化的常用公式为$ Gray=R<em>0.3+G</em>0.59+B*0.11$</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​		当然，这里的转化也可以手工操作，如RGB图像灰度化的常用公式为$ Gray=R<em>0.3+G</em>0.59+B*0.11$</p>
 <h3 id="图像的存储与像素值的提取" class="headerLink">
     <a href="#%e5%9b%be%e5%83%8f%e7%9a%84%e5%ad%98%e5%82%a8%e4%b8%8e%e5%83%8f%e7%b4%a0%e5%80%bc%e7%9a%84%e6%8f%90%e5%8f%96" class="header-mark"></a>图像的存储与像素值的提取</h3><ul>
 <li>
@@ -283,13 +345,40 @@
 <p>可以通过<code>img.shape</code>参数查看图片的大小和通道数量（元组），<code>img.size</code>获知像素的个数，<code>img.dtype</code>每个像素的获知数据类型，即位深（一般为8位uint8，即2^8范围内）</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="n">img</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.png&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-</span></span></code></pre></div><p>​	因而，可以直接使用Numpy结合下标<strong>访问或修改</strong>一张图片的某一像素值，甚至可以通过切片得到某一区域的图像</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 访问100，100位置处的颜色</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	因而，可以直接使用Numpy结合下标<strong>访问或修改</strong>一张图片的某一像素值，甚至可以通过切片得到某一区域的图像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 访问100，100位置处的颜色</span>
 </span></span><span class="line"><span class="cl"><span class="n">px</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">px</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mi">175</span> <span class="mi">175</span> <span class="mi">175</span><span class="p">]</span>
@@ -301,8 +390,26 @@
 </span></span><span class="line"><span class="cl"><span class="n">img</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="p">[</span><span class="mi">255</span> <span class="mi">255</span> <span class="mi">255</span><span class="p">]</span>
-</span></span></code></pre></div><p>​	如下操作是通过切片将图像上的区域复制到另一个位置上</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​	如下操作是通过切片将图像上的区域复制到另一个位置上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -314,7 +421,9 @@
 </span></span><span class="line"><span class="cl"><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">150</span><span class="p">,</span><span class="mi">300</span><span class="p">:</span><span class="mi">410</span><span class="p">]</span><span class="o">=</span><span class="n">hat</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122608123.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122608123.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122608123.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122608123.png">
         <img
             
             loading="lazy"
@@ -330,7 +439,28 @@
 <li>一种是利用<code>b,g,r = cv1.split(img)</code></li>
 </ul>
 <p>​		相应的，也可以使用<code>cv2.merge([b,g,r])</code>将三层通道合并</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
@@ -347,7 +477,9 @@
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">interpolation</span> <span class="o">=</span> <span class="s1">&#39;bicubic&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122635217.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122635217.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200223122635217.png" title="在这里插入图片描述" data-thumbnail="/image/CSDN-20200223122635217.png">
         <img
             
             loading="lazy"

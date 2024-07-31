@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/flow_cytometry_mapping_by_python\/"
-        },"genre": "posts","wordcount":  1999 ,
+        },"genre": "posts","wordcount":  2032 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/flow_cytometry_mapping_by_python\/","datePublished": "2023-04-22T00:00:00+08:00","dateModified": "2023-04-22T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,8 +119,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"><i class="far fa-folder fa-fw"></i>生物信息</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/python-scripts/"><i class="far fa-list-alt fa-fw"></i>Python Scripts</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-04-22">2023-04-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-04-22">2023-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1999 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-04-22">2023-04-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-04-22">2023-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2032 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="content" id="content"><h3 id="实验原理" class="headerLink">
     <a href="#%e5%ae%9e%e9%aa%8c%e5%8e%9f%e7%90%86" class="header-mark"></a>实验原理</h3><p>荧光流式细胞术是根据荧光信号分离单细胞的技术，其识别的荧光可以是活细胞内表达的，也可以是固定细胞上体外标记的。因为在细胞分裂过程中遗传物种会翻倍，可以使用DNA染料染色固定细胞的方法观察细胞周期。其通常使用乙醇固定、PI染色（有可以使用DAPI）后即可上机流式细胞仪，得到<code>.fcs</code>文件。</p>
 <p>无论流式筛选还是流式检测，其实验成功最最关键的点是对荧光信号的准确识别，需要通过多个通道的信号参数，成功过滤掉细胞碎片、粘连体细胞以及阴性细胞。需要注意的是，这一数据分析过程是在上机时需要即刻判断的。</p>
@@ -243,25 +243,59 @@
 <p>虽然流式在逻辑上可以完美排除掉粘连体，避免粘连体造成的假阳性影响。但是，如果粘连体太多，即使在分析数据时排除掉，对实验结果的影响仍然很大，对仪器管路也不利。因此<strong>在前期样本制备时预防粘连体，才是首选之策！</strong></p>
 <h3 id="使用cytoflow模块分析流式数据" class="headerLink">
     <a href="#%e4%bd%bf%e7%94%a8cytoflow%e6%a8%a1%e5%9d%97%e5%88%86%e6%9e%90%e6%b5%81%e5%bc%8f%e6%95%b0%e6%8d%ae" class="header-mark"></a>使用cytoflow模块分析流式数据</h3><p>1、引包，需要注意的是<code>cytoflow</code>需要<code>python3.8.5或3.8.12</code>，高版本或低版本或5-12中间都无法成功安装</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cytoflow</span> <span class="k">as</span> <span class="nn">flow</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cytoflow</span> <span class="k">as</span> <span class="nn">flow</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span>  <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gaussian_kde</span>
-</span></span></code></pre></div><p>2、使用<code>cytoflow</code>模块读取<code>.fcs</code>数据，并标记实验条件，得到整合后的数据<code>data</code>为pandas的<code>Dataframe</code>，可以使用类似<code>data[data['cycle']=='WT']</code>的命令筛选需要的数据。本次实验使用双Thyminde同步化的方法得到各个时期的细胞（G2R是在双Thyminde处理的基础上配合CDK1抑制剂RO3306得到的G2期细胞）</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tube1</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">Tube</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;Data001.fcs&#39;</span><span class="p">,</span> <span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;WT&#39;</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2、使用<code>cytoflow</code>模块读取<code>.fcs</code>数据，并标记实验条件，得到整合后的数据<code>data</code>为pandas的<code>Dataframe</code>，可以使用类似<code>data[data['cycle']=='WT']</code>的命令筛选需要的数据。本次实验使用双Thyminde同步化的方法得到各个时期的细胞（G2R是在双Thyminde处理的基础上配合CDK1抑制剂RO3306得到的G2期细胞）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tube1</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">Tube</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;Data001.fcs&#39;</span><span class="p">,</span> <span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;WT&#39;</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="n">tube2</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">Tube</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;Data002.fcs&#39;</span><span class="p">,</span> <span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;G1/S&#39;</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="n">tube3</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">Tube</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;Data003.fcs&#39;</span><span class="p">,</span> <span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;G2&#39;</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="n">tube4</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">Tube</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;Data004.fcs&#39;</span><span class="p">,</span> <span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;G2R&#39;</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="n">import_op</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">ImportOp</span><span class="p">(</span><span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cycle&#39;</span> <span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">},</span> <span class="n">tubes</span> <span class="o">=</span> <span class="p">[</span><span class="n">tube1</span><span class="p">,</span> <span class="n">tube2</span><span class="p">,</span> <span class="n">tube3</span><span class="p">,</span> <span class="n">tube4</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">ex</span> <span class="o">=</span> <span class="n">import_op</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">ex</span><span class="o">.</span><span class="n">data</span>
-</span></span></code></pre></div><p>3、可以使用<code>matplotlib</code>等方法可视化观察这个<code>Dataframe</code>；在<code>cytoflow</code>中提供了一个Histogram Plot的方法</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">hist</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">HistogramView</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3、可以使用<code>matplotlib</code>等方法可视化观察这个<code>Dataframe</code>；在<code>cytoflow</code>中提供了一个Histogram Plot的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">hist</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">HistogramView</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="s1">&#39;FL2-H&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/cytoflowhist.png" title="cytofloe hist" data-thumbnail="/image/cytoflowhist.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/cytoflowhist.png" title="cytofloe hist" data-thumbnail="/image/cytoflowhist.png">
         <img
             
             loading="lazy"
@@ -271,7 +305,20 @@
             alt="/image/cytoflowhist.png" height="290"  width="468" >
     </a></figure></p>
 <p>4、为了能好看一点，这里就不用<code>seaborn</code>的密度图了，自己定义一个根据密度改变颜色的散点图</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">colorscatter</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">colorscatter</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="n">xy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">xy</span><span class="p">)(</span><span class="n">xy</span><span class="p">)</span>
@@ -280,8 +327,22 @@
 </span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;FSC-H&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;SSC-H&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">r</span>
-</span></span></code></pre></div><p>5、画图；这里绘制时选择了H参数，是希望能够谨慎处理粘连体，在一些文章和软件中是使用了A参数</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5、画图；这里绘制时选择了H参数，是希望能够谨慎处理粘连体，在一些文章和软件中是使用了A参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="n">cs</span> <span class="o">=</span> <span class="n">colorscatter</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cycle&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;WT&#39;</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;FSC-H&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;SSC-H&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cycle&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;WT&#39;</span><span class="p">][</span><span class="s1">&#39;FL2-H&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -289,7 +350,9 @@
 </span></span><span class="line"><span class="cl"><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Asynchronous&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/AsynchronousCytoflowPlot.png" title="/image/AsynchronousCytoflowPlot.png" data-thumbnail="/image/AsynchronousCytoflowPlot.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/AsynchronousCytoflowPlot.png" title="/image/AsynchronousCytoflowPlot.png" data-thumbnail="/image/AsynchronousCytoflowPlot.png">
         <img
             
             loading="lazy"

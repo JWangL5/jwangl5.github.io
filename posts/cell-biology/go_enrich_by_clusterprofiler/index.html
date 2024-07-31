@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/go_enrich_by_clusterprofiler\/"
-        },"genre": "posts","wordcount":  650 ,
+        },"genre": "posts","wordcount":  676 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/go_enrich_by_clusterprofiler\/","datePublished": "2021-12-21T00:00:00+08:00","dateModified": "2021-12-21T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/"><i class="far fa-folder fa-fw"></i>生物信息</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/r-scripts/"><i class="far fa-list-alt fa-fw"></i>R Scripts</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 650 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 676 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="content" id="content"><h2 id="关于go富集的原理" class="headerLink">
     <a href="#%e5%85%b3%e4%ba%8ego%e5%af%8c%e9%9b%86%e7%9a%84%e5%8e%9f%e7%90%86" class="header-mark"></a>关于GO富集的原理</h2><blockquote>
@@ -312,7 +312,21 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 <li><code>org.Dm.eg.db</code>是果蝇基因组</li>
 <li><code>org.Hs.eg.db</code>是Human基因组</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">  <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="n">version</span> <span class="o">=</span> <span class="s">&#34;3.12&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -322,14 +336,32 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">org.At.tair.db</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">clusterProfiler</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;F:/Rcode/GO-term/LJW&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>2、使用<code>enrichGO</code>函数进行GO注释和富集：</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2、使用<code>enrichGO</code>函数进行GO注释和富集：</p>
 <ul>
 <li><code>gene</code>参数传入一个读取基因的list</li>
 <li><code>db</code>参数传入指定的基因组数据库，<code>keyType</code>参数传入基因ID的类型（可以使用<code>keytypes(org.At.tair.db)</code>命令可以查看基因组支持的ID类型）</li>
 <li><code>ont</code>参数指定GO富集的词条，其中GO分为生物学过程（BP）、细胞组分（CC）、分子功能（MF）三部分，可以合并在一起（<code>ont=&quot;ALL&quot;</code>）进行注释富集，也可以像下面案例代码分开</li>
 <li><code>pAdjustMethod</code>、<code>pvalueCutoff</code>、<code>qvalueCutoff</code>、<code>readable</code>参数一般不改（通常只有在富集出词条特别少时会调大）</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;GO-genelist.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;GO-genelist.txt&#34;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">d1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">d1[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">keytypes</span><span class="p">(</span><span class="n">org.At.tair.db</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">BP.params</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="o">=</span><span class="n">d1</span> <span class="p">,</span><span class="s">&#39;org.At.tair.db&#39;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;BP&#34;</span><span class="p">,</span> <span class="n">keyType</span> <span class="o">=</span> <span class="s">&#34;TAIR&#34;</span><span class="p">,</span>
@@ -341,12 +373,24 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </span></span><span class="line"><span class="cl"><span class="n">MF.params</span> <span class="o">&lt;-</span> <span class="nf">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="o">=</span><span class="n">d1</span> <span class="p">,</span><span class="s">&#39;org.At.tair.db&#39;</span><span class="p">,</span> <span class="n">ont</span><span class="o">=</span><span class="s">&#34;MF&#34;</span><span class="p">,</span> <span class="n">keyType</span> <span class="o">=</span> <span class="s">&#34;TAIR&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                      <span class="n">pAdjustMethod</span><span class="o">=</span><span class="s">&#34;BH&#34;</span><span class="p">,</span> <span class="n">pvalueCutoff</span><span class="o">=</span><span class="m">0.01</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="o">=</span><span class="m">0.05</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                      <span class="n">readable</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-</span></span></code></pre></div><p>3、<code>clusterProfiler</code>支持3种方法可视化富集结果，其中<code>barplot</code>和<code>dotplot</code>具有相同的信息，<code>cnetplot</code>展示被富集词条的相关基因</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">barplot</span><span class="p">(</span><span class="n">BP.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_BP SZ20213020178 LJW&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3、<code>clusterProfiler</code>支持3种方法可视化富集结果，其中<code>barplot</code>和<code>dotplot</code>具有相同的信息，<code>cnetplot</code>展示被富集词条的相关基因</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">barplot</span><span class="p">(</span><span class="n">BP.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_BP SZ20213020178 LJW&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">barplot</span><span class="p">(</span><span class="n">CC.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_CC SZ20213020178 LJW p=0.05&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">dotplot</span><span class="p">(</span><span class="n">MF.params</span><span class="p">,</span> <span class="n">showCategory</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_MF&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">cnetplot</span><span class="p">(</span><span class="n">MF.params</span><span class="p">,</span> <span class="n">categorySize</span><span class="o">=</span><span class="s">&#34;pvalue&#34;</span><span class="p">,</span> <span class="n">foldChange</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#34;EnrichmentGO_MF&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/GO_BP_bar.png" title="/image/GO_BP_bar.png" data-thumbnail="/image/GO_BP_bar.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/GO_BP_bar.png" title="/image/GO_BP_bar.png" data-thumbnail="/image/GO_BP_bar.png">
         <img
             
             loading="lazy"

@@ -33,6 +33,6 @@
     <link>https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/</link>
     <pubDate>Sat, 18 Sep 2021 16:58:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/distribution_of_acid_base_species/</guid>
-    <description><![CDATA[分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 import numpy as np from matplotlib import pyplot as plt 一元酸解离分配$]]></description>
+    <description><![CDATA[分布系数：平衡时溶液中某物种的平衡浓度占总浓度的分数 $$ \delta = \frac{[c_i]}{c_0}$$ 分布曲线：不同pH值溶液中酸碱存在形式的分布 1 2 import numpy as np from matplotlib import pyplot as plt 一元酸解离分]]></description>
 </item></channel>
 </rss>

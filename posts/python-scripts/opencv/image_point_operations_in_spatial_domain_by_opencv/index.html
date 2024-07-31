@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/opencv\/image_point_operations_in_spatial_domain_by_opencv\/"
-        },"genre": "posts","wordcount":  4617 ,
+        },"genre": "posts","wordcount":  4809 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/python-scripts\/opencv\/image_point_operations_in_spatial_domain_by_opencv\/","datePublished": "2020-02-25T00:00:00+08:00","dateModified": "2020-02-25T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><i class="far fa-folder fa-fw"></i>图像处理</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/opencv/"><i class="far fa-list-alt fa-fw"></i>opencv</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4617 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-25">2020-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4809 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
         </div><div class="content" id="content"><p>​		在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>
 <ul>
@@ -140,13 +140,25 @@
 <p>OpenCV的加法是一种饱和操作（相加超过255则等于255），而Numpy的加法是一种模操作（相加超过255之后则对255取模求余数）</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([</span><span class="mi">250</span><span class="p">])</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([</span><span class="mi">250</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="mi">255</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="mi">4</span>
-</span></span></code></pre></div><h3 id="图像混合" class="headerLink">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="图像混合" class="headerLink">
     <a href="#%e5%9b%be%e5%83%8f%e6%b7%b7%e5%90%88" class="header-mark"></a>图像混合</h3><p>相比于加法，图像混合操作可能更使用一些，其本质也是加法，但却对图片作了不同的加权，给人一种混合或者透明的感觉，其计算公式如下：
 $$
 g(x)=(1− \alpha )  f_0(x)+ \alpha f_1(x) , \alpha \in [0,1]
@@ -156,7 +168,23 @@ $$
 dst = \alpha·img1 + \beta·img2+\gamma
 $$
 如下案例即把两幅图混合在一起，第一幅图的权重是 0.4，第二幅图的权重是 0.6，γ取值为 0：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -168,7 +196,9 @@ $$
 </span></span><span class="line"><span class="cl"><span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">addWeighted</span><span class="p">(</span><span class="n">img1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">dst</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144113412.png" title="/image/CSDN-20200225144113412.png" data-thumbnail="/image/CSDN-20200225144113412.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144113412.png" title="/image/CSDN-20200225144113412.png" data-thumbnail="/image/CSDN-20200225144113412.png">
         <img
             
             loading="lazy"
@@ -202,7 +232,30 @@ $$
 <li>第二个即是阈值化之后的图像结果</li>
 </ul>
 <p>下面即是一个用不同阈值处理方法得到的图像：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -221,7 +274,9 @@ $$
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144327932.png" title="/image/CSDN-20200225144327932.png" data-thumbnail="/image/CSDN-20200225144327932.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144327932.png" title="/image/CSDN-20200225144327932.png" data-thumbnail="/image/CSDN-20200225144327932.png">
         <img
             
             loading="lazy"
@@ -238,7 +293,32 @@ $$
 <li>Ostu的算法在解决双峰图像的分割时有奇效！</li>
 </ul>
 <p>下面的案例中，输入图像是较暗，在使用127为全局阈值时效果并不好，可以通过Ostu的方法直接找到合适的阈值：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpeg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -259,7 +339,9 @@ $$
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">3</span><span class="p">),</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span> <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144401650.png" title="/image/CSDN-20200225144401650.png" data-thumbnail="/image/CSDN-20200225144401650.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144401650.png" title="/image/CSDN-20200225144401650.png" data-thumbnail="/image/CSDN-20200225144401650.png">
         <img
             
             loading="lazy"
@@ -350,7 +432,32 @@ $$</p>
 </li>
 </ul>
 <p>我们使用下面的代码来展示简单阈值与自适应阈值的差别：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -371,7 +478,9 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([]),</span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144648937.png" title="/image/CSDN-20200225144648937.png" data-thumbnail="/image/CSDN-20200225144648937.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225144648937.png" title="/image/CSDN-20200225144648937.png" data-thumbnail="/image/CSDN-20200225144648937.png">
         <img
             
             loading="lazy"
@@ -401,13 +510,25 @@ $$</p>
 <li>histSize，统计组的数目Bins，以数组格式传入，因为灰度值为[0, 255]的离散数据，其范围并不大，可以直接分为255组，即[256]</li>
 <li>ranges，像素值范围，通常为 [0, 256]</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">calcHist</span><span class="p">([</span><span class="n">img</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span><span class="kc">None</span><span class="p">,[</span><span class="mi">256</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([[</span>  <span class="mf">52.</span><span class="p">],</span> <span class="p">[</span>  <span class="mf">14.</span><span class="p">],</span><span class="o">...</span><span class="p">,</span> <span class="p">[</span><span class="mf">3470.</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
-</span></span></code></pre></div><p><strong>方法二</strong>：使用Numpy的统计函数</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方法二</strong>：使用Numpy的统计函数</p>
 <p>使用Numpy中统计直方图的函数<code>np.histogram()</code>或<code>np.bincount()</code>可以完成这项任务，</p>
 <p><code>np.histogram()</code>通常使用前三个参数，返回一个包含统计结果的数组hist和分组的范围bins：</p>
 <p><figure><a class="lightgallery" href="/image/CSDN-20200225144838978.png" title="/image/CSDN-20200225144838978.png" data-thumbnail="/image/CSDN-20200225144838978.png">
@@ -425,7 +546,25 @@ $$</p>
 <li>range是所需统计数据的范围，对整张图统计时可以直接使用[0, 256]，也可以使用更小的范围进行更精细的观察</li>
 </ul>
 <p>如下案例是将灰度值分为32组进行统计：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -439,7 +578,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([</span>  <span class="mf">0.</span><span class="p">,</span>   <span class="mf">8.</span><span class="p">,</span>  <span class="mf">16.</span><span class="p">,</span>  <span class="mf">24.</span><span class="p">,</span>  <span class="mf">32.</span><span class="p">,</span>  <span class="mf">40.</span><span class="p">,</span>  <span class="mf">48.</span><span class="p">,</span>  <span class="mf">56.</span><span class="p">,</span>  <span class="mf">64.</span><span class="p">,</span>  <span class="mf">72.</span><span class="p">,</span>  <span class="mf">80.</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="mf">88.</span><span class="p">,</span>  <span class="mf">96.</span><span class="p">,</span> <span class="mf">104.</span><span class="p">,</span> <span class="mf">112.</span><span class="p">,</span> <span class="mf">120.</span><span class="p">,</span> <span class="mf">128.</span><span class="p">,</span> <span class="mf">136.</span><span class="p">,</span> <span class="mf">144.</span><span class="p">,</span> <span class="mf">152.</span><span class="p">,</span> <span class="mf">160.</span><span class="p">,</span> <span class="mf">168.</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">       <span class="mf">176.</span><span class="p">,</span> <span class="mf">184.</span><span class="p">,</span> <span class="mf">192.</span><span class="p">,</span> <span class="mf">200.</span><span class="p">,</span> <span class="mf">208.</span><span class="p">,</span> <span class="mf">216.</span><span class="p">,</span> <span class="mf">224.</span><span class="p">,</span> <span class="mf">232.</span><span class="p">,</span> <span class="mf">240.</span><span class="p">,</span> <span class="mf">248.</span><span class="p">,</span> <span class="mf">256.</span><span class="p">])</span>
-</span></span></code></pre></div><p><code>np.bincount()</code>有3个参数，返回一个包含统计结果的数组：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>np.bincount()</code>有3个参数，返回一个包含统计结果的数组：
 <figure><a class="lightgallery" href="/image/CSDN-20200225145002545.png" title="/image/CSDN-20200225145002545.png" data-thumbnail="/image/CSDN-20200225145002545.png">
         <img
             
@@ -454,17 +595,42 @@ $$</p>
 <li>weight为与x同形状的权重值，用于调整统计的比例，在这里我们不需用</li>
 <li>minlength为最少的统计组数，这也可以不填</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">minlength</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">hist</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;</span> <span class="n">array</span><span class="p">([</span>  <span class="mi">52</span><span class="p">,</span>   <span class="mi">14</span><span class="p">,</span>   <span class="mi">18</span><span class="p">,</span>   <span class="mi">37</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>  <span class="mi">76</span><span class="p">,</span>   <span class="mi">77</span><span class="p">,</span> <span class="mi">3470</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int64</span><span class="p">)</span>
-</span></span></code></pre></div><p><strong>提示</strong>：通常，<code>np.bincount()</code>比<code>np.histogram</code>快10倍，opencv的内置方法<code>cv2.calcHist()</code>方法比<code>np.histogram()</code>快40倍，因而推荐使用opencv的内置方法进行直方图的统计</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>提示</strong>：通常，<code>np.bincount()</code>比<code>np.histogram</code>快10倍，opencv的内置方法<code>cv2.calcHist()</code>方法比<code>np.histogram()</code>快40倍，因而推荐使用opencv的内置方法进行直方图的统计</p>
 <h3 id="直方图的绘制" class="headerLink">
     <a href="#%e7%9b%b4%e6%96%b9%e5%9b%be%e7%9a%84%e7%bb%98%e5%88%b6" class="header-mark"></a>直方图的绘制</h3><p>使用Matplotlib中有直方图绘制函数：<code>matplotlib.pyplot.hist()</code>它可以直接统计并绘制直方图。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -472,7 +638,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="mi">256</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145051448.png" title="/image/CSDN-20200225145051448.png" data-thumbnail="/image/CSDN-20200225145051448.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145051448.png" title="/image/CSDN-20200225145051448.png" data-thumbnail="/image/CSDN-20200225145051448.png">
         <img
             
             loading="lazy"
@@ -482,7 +650,26 @@ $$</p>
             alt="/image/CSDN-20200225145051448.png" height="225"  width="744" >
     </a></figure></p>
 <p>当然，也可以配合<code>cv2.calcHist()</code>方法来绘制更复杂的直方图，如：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/01.jpg&#39;</span><span class="p">)</span>
@@ -497,7 +684,9 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">histr</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="n">col</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145123715.png" title="/image/CSDN-20200225145123715.png" data-thumbnail="/image/CSDN-20200225145123715.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145123715.png" title="/image/CSDN-20200225145123715.png" data-thumbnail="/image/CSDN-20200225145123715.png">
         <img
             
             loading="lazy"
@@ -511,7 +700,19 @@ $$</p>
     <a href="#%e7%9b%b4%e6%96%b9%e5%9b%be%e5%9d%87%e8%a1%a1%e5%8c%96he" class="header-mark"></a>直方图均衡化HE</h3><p>如果拿到了一副整体过亮或过暗的图片，其像素值在直方图上分布很集中，会影响视觉观察；我们可以通过直方图均衡化，将其做一个横向拉伸使其分布在直方图的各个位置上</p>
 <p>通常情况下这种操作会很大程度上地改善图像的对比度</p>
 <p>OpenCV中的直方图均衡化函数为<code>cv2.equalizeHist()</code>，该函数的输入图片仅仅是一副灰度图像，输出结果是直方图均衡化之后的图像，下边的代码是进行直方图均衡化的案例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;image/08.jpg&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -519,7 +720,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span><span class="n">equ</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145205761.png" title="/image/CSDN-20200225145205761.png" data-thumbnail="/image/CSDN-20200225145205761.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145205761.png" title="/image/CSDN-20200225145205761.png" data-thumbnail="/image/CSDN-20200225145205761.png">
         <img
             
             loading="lazy"
@@ -562,7 +765,46 @@ $$</p>
 </li>
 </ul>
 <p>如下为Numpy代码对上述过程的实现：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -597,7 +839,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;cdf&#39;</span><span class="p">,</span><span class="s1">&#39;histogram&#39;</span><span class="p">),</span> <span class="n">loc</span> <span class="o">=</span> <span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-2020022514525611.png" title="/image/CSDN-2020022514525611.png" data-thumbnail="/image/CSDN-2020022514525611.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-2020022514525611.png" title="/image/CSDN-2020022514525611.png" data-thumbnail="/image/CSDN-2020022514525611.png">
         <img
             
             loading="lazy"
@@ -615,7 +859,24 @@ $$</p>
 <li>异或运算(相同为1，不同为0) <code>cv2.bitwise_xor(img1, img2, mask)</code></li>
 </ul>
 <p>下面的案例综合运用了图像的按位运算，实现了将白色背景的Logo抠图并添加到背景图上的效果：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">cv2</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </span></span><span class="line"><span class="cl">
@@ -628,7 +889,9 @@ $$</p>
 </span></span><span class="line"><span class="cl"><span class="n">img2gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">ret</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">img2gray</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">mask_inv</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145332615.png" title="/image/CSDN-20200225145332615.png" data-thumbnail="/image/CSDN-20200225145332615.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145332615.png" title="/image/CSDN-20200225145332615.png" data-thumbnail="/image/CSDN-20200225145332615.png">
         <img
             
             loading="lazy"
@@ -637,11 +900,21 @@ $$</p>
             
             alt="/image/CSDN-20200225145332615.png" height="173"  width="851" >
     </a></figure></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 通过位运算得到不同的图像效果</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 通过位运算得到不同的图像效果</span>
 </span></span><span class="line"><span class="cl"><span class="n">img1_bg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span><span class="n">roi</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">img2_fg</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">img2</span><span class="p">,</span><span class="n">img2</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask_inv</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">dst</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">img1_bg</span><span class="p">,</span> <span class="n">img2_fg</span><span class="p">)</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145356844.png" title="/image/CSDN-20200225145356844.png" data-thumbnail="/image/CSDN-20200225145356844.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145356844.png" title="/image/CSDN-20200225145356844.png" data-thumbnail="/image/CSDN-20200225145356844.png">
         <img
             
             loading="lazy"
@@ -650,10 +923,19 @@ $$</p>
             
             alt="/image/CSDN-20200225145356844.png" height="128"  width="853" >
     </a></figure></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">img1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">rows</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">cols</span> <span class="p">]</span> <span class="o">=</span> <span class="n">dst</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">img1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">rows</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">cols</span> <span class="p">]</span> <span class="o">=</span> <span class="n">dst</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img1</span><span class="p">[:,:,::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span></span></code></pre></div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145529677.png" title="/image/CSDN-20200225145529677.png" data-thumbnail="/image/CSDN-20200225145529677.png">
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/image/CSDN-20200225145529677.png" title="/image/CSDN-20200225145529677.png" data-thumbnail="/image/CSDN-20200225145529677.png">
         <img
             
             loading="lazy"

@@ -27,6 +27,6 @@
     <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</link>
     <pubDate>Fri, 11 Dec 2020 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</guid>
-    <description><![CDATA[20年底用于爬取B站弹幕的代码，最近在整理博客时测试，发现该代码已经失效了，应该是B站修改了API 这里先贴出来，之后具体需要用了再维护 😳 import requests]]></description>
+    <description><![CDATA[20年底用于爬取B站弹幕的代码，最近在整理博客时测试，发现该代码已经失效了，应该是B站修改了API 这里先贴出来，之后具体需要用了再维护 😳 1 2]]></description>
 </item></channel>
 </rss>
