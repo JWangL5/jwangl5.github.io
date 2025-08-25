@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>网络 | 计算机网络基础绪论 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 计算机网络基础绪论" />
+<meta property="og:description" content="基本概念 基本概念：node、link、网络、互联网、因特网 网络（Network）由若干结点（Node）和连接这些结点的链路（Link）组成。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jwangl5.github.io/posts/network/n01_introduction/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-06-07T00:00:00+08:00" />
+<meta property="article:modified_time" content="2025-06-07T00:00:00+08:00" />
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 计算机网络基础绪论"/>
+<meta name="twitter:description" content="基本概念 基本概念：node、link、网络、互联网、因特网 网络（Network）由若干结点（Node）和连接这些结点的链路（Link）组成。"/>
+<meta name="twitter:site" content="@JWangL5"/>
+<meta name="application-name" content="JWangL5&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/network/n01_introduction/" /><link rel="prev" href="https://jwangl5.github.io/posts/book/being_logical/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "网络 | 计算机网络基础绪论",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/jwangl5.github.io\/posts\/network\/n01_introduction\/"
+        },"genre": "posts","wordcount":  1763 ,
+        "url": "https:\/\/jwangl5.github.io\/posts\/network\/n01_introduction\/","datePublished": "2025-06-07T00:00:00+08:00","dateModified": "2025-06-07T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"authors": [{
+                        "@type": "Person",
+                        "name": "卢旺"                    
+                    }],"description": ""
+    }
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 计算机网络基础绪论</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-07">2025-06-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-07">2025-06-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1763 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="基本概念" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h3><ul>
+<li>
+<p>基本概念：node、link、网络、互联网、因特网</p>
+<ul>
+<li>网络（Network）由若干结点（Node）和连接这些结点的链路（Link）组成。</li>
+<li>多个网络还可以通过路由器互连起来，这样就构成了一个覆盖范围更大的网络，即<strong>互联网</strong>，可以理解为，互联网是“网络的网络（Netwrok of Networks）”。</li>
+<li>因特网（Internet）是世界上最大的互连网络（用户数以亿计，互连的网络数以百万计）</li>
+</ul>
+</li>
+<li>
+<p>因特网提供商叫做ISP（internet service provide）</p>
+<ul>
+<li>目前有三层结构：
+<ul>
+<li>第一层是国际性连接的大网，主干网</li>
+<li>第二层是地区性的</li>
+<li>第三层是用户的局域网（校园网、家庭局域网等）</li>
+</ul>
+</li>
+<li>网络提供是有标准的，其制定组织叫做ISOC，有多个委员会组成的国际性组织</li>
+<li>其结构也可以区分为核心区域（路由器、通信基站）和边缘区域（用户终端）</li>
+</ul>
+</li>
+</ul>
+<h3 id="三种交换方式" class="headerLink">
+    <a href="#%e4%b8%89%e7%a7%8d%e4%ba%a4%e6%8d%a2%e6%96%b9%e5%bc%8f" class="header-mark"></a>三种交换方式</h3><ul>
+<li>电路交换（Circuit Switching）：直接用线将两个机器连接起来；电话交换机（有点像是之前说的集线器）；电信网
+<ul>
+<li><a class="lightgallery" href="/image/image-20250608025229-57615zf.png" title="/image/image-20250608025229-57615zf.png" data-thumbnail="/image/image-20250608025229-57615zf.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608025229-57615zf.png"
+            srcset="/image/image-20250608025229-57615zf.png, /image/image-20250608025229-57615zf.png 1.5x, /image/image-20250608025229-57615zf.png 2x"
+            
+            alt="/image/image-20250608025229-57615zf.png" height="80%"  width="80%" >
+    </a></li>
+<li>拨号建立连接（分配资源） -&gt; 通话（始终占用通信资源） -&gt; 释放连接（归还通信资源）</li>
+<li>计算机数据是突发式的，其使用电路交换效率会很低</li>
+</ul>
+</li>
+<li><strong>分组交换</strong>（Packet Switching）：用路由器连接的网络；
+<ul>
+<li>将数据划分为小段，加上必要的通信信息（包头）后称为“包”（构造/发送分组）</li>
+<li>根据包头中的信息找到下一个分组交换机（可以乱序或原序？）（缓存/转发分组，可以同时缓存和转发）</li>
+<li>得到数据之后再进行数据的重建（接受/还原分组）</li>
+</ul>
+</li>
+<li>报文交换（已经被时代淘汰了）：直接发送，不需要建立连接；不限制大小，需要有较大的缓存空间；可以同时发送给多个地址</li>
+<li><a class="lightgallery" href="/image/image-20250608025749-cfqo4yu.png" title="/image/image-20250608025749-cfqo4yu.png" data-thumbnail="/image/image-20250608025749-cfqo4yu.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608025749-cfqo4yu.png"
+            srcset="/image/image-20250608025749-cfqo4yu.png, /image/image-20250608025749-cfqo4yu.png 1.5x, /image/image-20250608025749-cfqo4yu.png 2x"
+            
+            alt="/image/image-20250608025749-cfqo4yu.png" height="80%"  width="80%" >
+    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608030152-tbw6xjv.png" title="/image/image-20250608030152-tbw6xjv.png" data-thumbnail="/image/image-20250608030152-tbw6xjv.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608030152-tbw6xjv.png"
+            srcset="/image/image-20250608030152-tbw6xjv.png, /image/image-20250608030152-tbw6xjv.png 1.5x, /image/image-20250608030152-tbw6xjv.png 2x"
+            
+            alt="/image/image-20250608030152-tbw6xjv.png" height="100%"  width="100%" >
+    </a></li>
+</ul>
+<h3 id="网络的定义和分类" class="headerLink">
+    <a href="#%e7%bd%91%e7%bb%9c%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e5%88%86%e7%b1%bb" class="header-mark"></a>网络的定义和分类</h3><ul>
+<li>定义：不统一；互联、自治、计算机集合
+<ul>
+<li>互联是说可以通过连接进行数据通信</li>
+<li>自治是说要求独立的计算机</li>
+<li>集合是说至少两个</li>
+</ul>
+</li>
+<li>计算机网络的较好的定义是：计算一些<strong>通用的、可可编程的硬件</strong>互连而成的，而这些硬件并非专门用来实现某一特定目的（例如，传送数信号）。这些可编程硬件可以传送多种不同类型的数据，并能支广泛的和日益增长的应用。</li>
+<li>分类
+<ul>
+<li>根据交换技术分类</li>
+<li>使用者分类：公用网/专用网（军队、铁路等）</li>
+<li>传输介质：有线/无线</li>
+<li>覆盖范围：广域网WAN（国家层面）、城域网MAN（这两年开始火起来了）、局域网LAN（学校/企业）、个域网PAN（个人区域网，打印机、鼠标、键盘之间的连接，距离很近，不严格算是网络）</li>
+<li>拓扑结果分类：总线型网络、星型网络（中央设备敏感）、环形网络（环中信号单向传输）、网状型网络；可以有复合型网络</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络性能指标8个" class="headerLink">
+    <a href="#%e7%bd%91%e7%bb%9c%e6%80%a7%e8%83%bd%e6%8c%87%e6%a0%878%e4%b8%aa" class="header-mark"></a>网络性能指标（8个）</h3><h4 id="速率" class="headerLink">
+    <a href="#%e9%80%9f%e7%8e%87" class="header-mark"></a>速率</h4><ul>
+<li>比特，数据量单位，8bit=1Byte，KB，MB，GB，TB，以2的次方来计算</li>
+<li>比特率，数据传输速度的单位，bit/s，kb/s，Mb/s，Gb/s，Tb/s，需要注意的是，速度单位中的kmgt是10的次方，且为小写b（bit）</li>
+<li><a class="lightgallery" href="/image/image-20250608031753-y7t0qf2.png" title="/image/image-20250608031753-y7t0qf2.png" data-thumbnail="/image/image-20250608031753-y7t0qf2.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608031753-y7t0qf2.png"
+            srcset="/image/image-20250608031753-y7t0qf2.png, /image/image-20250608031753-y7t0qf2.png 1.5x, /image/image-20250608031753-y7t0qf2.png 2x"
+            
+            alt="/image/image-20250608031753-y7t0qf2.png" height="100%"  width="100%" >
+    </a></li>
+<li>有一个待发送的数据块，大小为100MB，网卡的发送速率为100Mbps，则网卡发送完该数据块需要多长时间？
+<ul>
+<li>$$
+(100 \times 2^{20} \times 8) / (100 \times 10^{6})
+$$</li>
+<li>做题的时候，需要注意大小写的bB、量级字母出现在速度还是数据量上</li>
+</ul>
+</li>
+<li><a class="lightgallery" href="/image/image-20250608032047-66rkqxy.png" title="/image/image-20250608032047-66rkqxy.png" data-thumbnail="/image/image-20250608032047-66rkqxy.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608032047-66rkqxy.png"
+            srcset="/image/image-20250608032047-66rkqxy.png, /image/image-20250608032047-66rkqxy.png 1.5x, /image/image-20250608032047-66rkqxy.png 2x"
+            
+            alt="/image/image-20250608032047-66rkqxy.png" height="100%"  width="100%" >
+    </a>
+<ul>
+<li>应该是选D，没有给标答</li>
+</ul>
+</li>
+</ul>
+<h4 id="带宽" class="headerLink">
+    <a href="#%e5%b8%a6%e5%ae%bd" class="header-mark"></a>带宽</h4><ul>
+<li>所能传送数据的能力；两点间传输的最高数据率（单位和速率一致）</li>
+<li>这个概念和在模拟信号中的说法不一样</li>
+<li><a class="lightgallery" href="/image/image-20250608032724-cashneu.png" title="/image/image-20250608032724-cashneu.png" data-thumbnail="/image/image-20250608032724-cashneu.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608032724-cashneu.png"
+            srcset="/image/image-20250608032724-cashneu.png, /image/image-20250608032724-cashneu.png 1.5x, /image/image-20250608032724-cashneu.png 2x"
+            
+            alt="/image/image-20250608032724-cashneu.png" height="70%"  width="70%" >
+    </a></li>
+</ul>
+<h4 id="吞吐量" class="headerLink">
+    <a href="#%e5%90%9e%e5%90%90%e9%87%8f" class="header-mark"></a>吞吐量</h4><ul>
+<li>单位时间内，通过某个网络/信道/接口的数据量</li>
+<li>常用测量；受带宽限制，1Gb/s的以太网，其吞吐量只能达到700Mb/s</li>
+</ul>
+<h4 id="时延" class="headerLink">
+    <a href="#%e6%97%b6%e5%bb%b6" class="header-mark"></a>时延</h4><ul>
+<li>发送时延=分组长度b / 发送速率（b/s）</li>
+<li><a class="lightgallery" href="/image/image-20250608033115-tiex8dg.png" title="/image/image-20250608033115-tiex8dg.png" data-thumbnail="/image/image-20250608033115-tiex8dg.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608033115-tiex8dg.png"
+            srcset="/image/image-20250608033115-tiex8dg.png, /image/image-20250608033115-tiex8dg.png 1.5x, /image/image-20250608033115-tiex8dg.png 2x"
+            
+            alt="/image/image-20250608033115-tiex8dg.png" height="40%"  width="40%" >
+    </a></li>
+<li>（传播时延=信道长度/电磁波传输速度、处理时延不方便计算，通常忽略不计）✖️多个</li>
+<li><a class="lightgallery" href="/image/image-20250608033231-1c0nrqb.png" title="/image/image-20250608033231-1c0nrqb.png" data-thumbnail="/image/image-20250608033231-1c0nrqb.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608033231-1c0nrqb.png"
+            srcset="/image/image-20250608033231-1c0nrqb.png, /image/image-20250608033231-1c0nrqb.png 1.5x, /image/image-20250608033231-1c0nrqb.png 2x"
+            
+            alt="/image/image-20250608033231-1c0nrqb.png" height="20%"  width="20%" >
+    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608033359-f2qq2yi.png" title="/image/image-20250608033359-f2qq2yi.png" data-thumbnail="/image/image-20250608033359-f2qq2yi.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608033359-f2qq2yi.png"
+            srcset="/image/image-20250608033359-f2qq2yi.png, /image/image-20250608033359-f2qq2yi.png 1.5x, /image/image-20250608033359-f2qq2yi.png 2x"
+            
+            alt="/image/image-20250608033359-f2qq2yi.png" height="100%"  width="100%" >
+    </a></li>
+<li>大数据包，发送时延占主导；小数据包，传播时延占主导</li>
+</ul>
+<h4 id="时延带宽积" class="headerLink">
+    <a href="#%e6%97%b6%e5%bb%b6%e5%b8%a6%e5%ae%bd%e7%a7%af" class="header-mark"></a>时延带宽积</h4><ul>
+<li><a class="lightgallery" href="/image/image-20250608033534-42hf2sp.png" title="/image/image-20250608033534-42hf2sp.png" data-thumbnail="/image/image-20250608033534-42hf2sp.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608033534-42hf2sp.png"
+            srcset="/image/image-20250608033534-42hf2sp.png, /image/image-20250608033534-42hf2sp.png 1.5x, /image/image-20250608033534-42hf2sp.png 2x"
+            
+            alt="/image/image-20250608033534-42hf2sp.png" height="60%"  width="60%" >
+    </a></li>
+<li>可以理解为管道的“体积”；链路长度！</li>
+</ul>
+<h4 id="往返时间rtt-round-trip-time" class="headerLink">
+    <a href="#%e5%be%80%e8%bf%94%e6%97%b6%e9%97%b4rtt-round-trip-time" class="header-mark"></a>往返时间（RTT, round trip time）</h4><ul>
+<li>双向传输下的时间，很有用</li>
+<li>卫星链路上耗时较多，因为距离太远</li>
+</ul>
+<h4 id="利用率" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8%e7%8e%87" class="header-mark"></a>利用率</h4><ul>
+<li><a class="lightgallery" href="/image/image-20250608033900-h0qy8u6.png" title="/image/image-20250608033900-h0qy8u6.png" data-thumbnail="/image/image-20250608033900-h0qy8u6.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250608033900-h0qy8u6.png"
+            srcset="/image/image-20250608033900-h0qy8u6.png, /image/image-20250608033900-h0qy8u6.png 1.5x, /image/image-20250608033900-h0qy8u6.png 2x"
+            
+            alt="/image/image-20250608033900-h0qy8u6.png" height="100%"  width="100%" >
+    </a></li>
+<li>不宜太高或太低</li>
+</ul>
+<h4 id="丢包率" class="headerLink">
+    <a href="#%e4%b8%a2%e5%8c%85%e7%8e%87" class="header-mark"></a>丢包率</h4><ul>
+<li>丢包率即<strong>分组丢失率</strong>，是指在一定的时间范围内，传输过程中丢失的分组数量与总分组数量的处比率。</li>
+<li>丢包率具体可分为接口丢包率、结点丢包率、链路丢包率、路径丢包率、网络丢包率等。</li>
+<li>运维人员关心指标，普通用户来说通常意识不到网络丢包</li>
+<li>分组丢失主要有两种情况：
+<ul>
+<li>分组在传输过程中出现<strong>误码</strong>，被结点丢弃：</li>
+<li>分组到达一台<strong>队列已满</strong>的分组交换机时被丢弃：在通信量较大时就可能造成网络拥塞。</li>
+</ul>
+</li>
+<li>存在拥塞处理方法，在缓存未满的时候就主动丢弃分组，因而丢包率反应网络拥堵状态
+<ul>
+<li>1-4%的时候是轻度拥塞，5-15时为重度拥塞</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+<p>‍</p>
+</div>
+
+        <div class="sponsor">
+        <div class="sponsor-avatar"><img
+        
+        loading="lazy"
+        src="/avater.jpg"
+        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
+        sizes="auto"
+        alt="/avater.jpg"
+        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-06-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/book/being_logical/" class="prev" rel="prev" title="Book | 《简单逻辑学》阅读笔记（🔖Reading...） "><i class="fas fa-angle-left fa-fw"></i>Book | 《简单逻辑学》阅读笔记（🔖Reading...） </a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>
