@@ -2,15 +2,18 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://jwangl5.github.io/authors/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/categories/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/posts/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/authors/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/categories/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/posts/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/posts/rust/rust_note_03/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/series/rust/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/series/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/network/n01_introduction/</loc><lastmod>2025-06-07T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/book/being_logical/</loc><lastmod>2024-07-31T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/series/</loc><lastmod>2024-07-31T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc><lastmod>2024-07-31T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E7%9B%AE%E6%8A%AB%E6%89%8B%E6%8A%84/</loc><lastmod>2024-07-31T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/languages/toefl_speaking_templete/</loc><lastmod>2024-05-15T00:00:00&#43;08:00</lastmod></url><url>
@@ -24,11 +27,9 @@
             <loc>https://jwangl5.github.io/posts/languages/toefl_glossary_astronomy/</loc><lastmod>2024-04-21T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/languages/toefl_glossary_art/</loc><lastmod>2024-04-21T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/python-scripts/speed_up_python_with_mamba_and_pypy/</loc><lastmod>2024-01-26T00:17:49&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</loc><lastmod>2024-01-26T00:17:49&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/cell-biology/kinetochore/</loc><lastmod>2024-01-16T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</loc><lastmod>2024-01-16T00:00:00&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/posts/rust/rust_note_02/</loc><lastmod>2024-01-08T00:17:49&#43;08:00</lastmod></url><url>
-            <loc>https://jwangl5.github.io/series/rust/</loc><lastmod>2024-01-08T00:17:49&#43;08:00</lastmod></url><url>
+            <loc>https://jwangl5.github.io/posts/rust/rust_note_02/</loc><lastmod>2025-08-26T00:17:49&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/rust/rust_note_01/</loc><lastmod>2024-01-07T00:17:49&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/posts/hp_printer/</loc><lastmod>2023-12-28T00:00:00&#43;08:00</lastmod></url><url>
             <loc>https://jwangl5.github.io/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/</loc><lastmod>2024-01-14T00:00:00&#43;08:00</lastmod></url><url>

@@ -4,9 +4,15 @@
         <link>https://jwangl5.github.io/</link>
         <description>JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 07 Jun 2025 00:00:00 &#43;0800</lastBuildDate>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 26 Aug 2025 00:17:49 &#43;0800</lastBuildDate>
             <atom:link href="https://jwangl5.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Rust | 泛型、Trait、生命周期、测试</title>
+    <link>https://jwangl5.github.io/posts/rust/rust_note_03/</link>
+    <pubDate>Tue, 26 Aug 2025 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_03/</guid>
+    <description><![CDATA[泛型]]></description>
+</item><item>
     <title>网络 | 计算机网络基础绪论</title>
     <link>https://jwangl5.github.io/posts/network/n01_introduction/</link>
     <pubDate>Sat, 07 Jun 2025 00:00:00 &#43;0800</pubDate><author>
@@ -79,7 +85,7 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/kinetochore/</guid>
     <description><![CDATA[近期读到最新的Science文章，解析了酵母外层动粒与微管互作界面的冷冻电镜结构，太漂亮了！之前一直觉得top-view的动粒是存在超微结构]]></description>
 </item><item>
-    <title>Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型</title>
+    <title>Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理</title>
     <link>https://jwangl5.github.io/posts/rust/rust_note_02/</link>
     <pubDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_02/</guid>
@@ -120,11 +126,5 @@
     <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/teton_system/</guid>
     <description><![CDATA[很早就听闻Tet-On诱导表达系统了，但一直没有很好的机会去用，最近正好想要用Tet-On系统来做一个诱导表达细胞系，就来查查这个系统，主要]]></description>
-</item><item>
-    <title>MDF | 03. 热，功和能量</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
-    <pubDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</guid>
-    <description><![CDATA[能量与机械力 能量是表征系统做功能力的物理量，其是守恒的，不会凭空消失或出现，只能转移到其他物体或转化为其他形式（热力学第一定律） 能量有多种计]]></description>
 </item></channel>
 </rss>

@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_01/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-01-07T00:17:49+08:00" />
 <meta property="article:modified_time" content="2024-01-07T00:17:49+08:00" />
-<meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/" />
+<meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_03/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/" />
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 01. 安装、基础、所有权、结构体、枚举"/>
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_01\/"
-        },"genre": "posts","wordcount":  8291 ,
+        },"genre": "posts","wordcount":  8288 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_01\/","datePublished": "2024-01-07T00:17:49+08:00","dateModified": "2024-01-07T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-07">2024-01-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-07">2024-01-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8291 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-01-07">2024-01-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-01-07">2024-01-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8288 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -311,7 +311,7 @@
 <p>复合类型是多种类型在一起，Rust提供两种符合类型：</p>
 <ul>
 <li>元组Tuple：可以多个类型的多个值、长度固定、不可修改；(元素1, 元素2, ……)来定义；使用模式匹配来解构destructure元组的元素值 let (x, y, z) = tulpe；使用点标记法获取元素值，tuple.0，tuple.1……</li>
-<li>数组：多个值在一个类型里，类型相同，长度不可变；使用中括号，逗号分开；有利于栈存放或固定数量元素；但是没有Vector类型灵活（vector由标准库提供，数组由prelude提供），Vector长度可变；let a[i32, 5] = [1,2,3,4,5]来声明，注意数组的格式书写方法，let b[3,5]相当于[5,5,5,5,5]；使用中括号索引；数组访问超出索引范围，编译有时会通过，运行时报错（Rust不允许连续访问其他相应地址的内存）</li>
+<li>数组：多个值在一个类型里，类型相同，长度不可变；使用中括号，逗号分开；有利于栈存放或固定数量元素；但是没有Vector类型灵活（vector由标准库提供，数组由prelude提供），Vector长度可变；let a[i32; 5] = [1,2,3,4,5]来声明，注意数组的格式书写方法，let b[3; 5]相当于[5,5,5,5,5]；使用中括号索引；数组访问超出索引范围，编译有时会通过，运行时报错（Rust不允许连续访问其他相应地址的内存）</li>
 </ul>
 </li>
 <li>
@@ -482,7 +482,7 @@
 <p>所有权是Rust最独特的特性，他让rust无需GC（垃圾收集器）就可以保证内存安全；所有程序在运行时都需要管理他们的内存使用方式，有些语言使用垃圾收集，也有些语言需要程序员显式地声明；而Rust使用了所有权机制来进行管理</p>
 </li>
 <li>
-<p>Stack 栈内存 vs Heap 堆内存：stack和heap都是可用的内存，但其存储方式不一样，stack式先进后出（Last in first out），存储过程叫做压栈，stack必须拥有已知的固定大小（编译时大小未知或运行时大小可能变化的数据只能在Heap）；Heap的内存组织性查一点，使用时系统在内存中找到一块足够大的空间，标记为在用并返回指针，即分配内存；而指针大小是一样的，所以可以将指针放在stack；存储和访问Heap的速度都较stack慢，因为内存空间存在跳转，需要利用指针调用</p>
+<p>Stack 栈内存 vs Heap 堆内存：stack和heap都是可用的内存，但其存储方式不一样，stack式先进后出（Last in first out），存储过程叫做压栈，stack必须拥有已知的固定大小（编译时大小未知或运行时大小可能变化的数据只能在Heap）；Heap的内存组织性差一点，使用时系统在内存中找到一块足够大的空间，标记为在用并返回指针，即分配内存；而指针大小是一样的，所以可以将指针放在stack；存储和访问Heap的速度都较stack慢，因为内存空间存在跳转，需要利用指针调用</p>
 </li>
 <li>
 <p>所有权解决的问题：</p>
@@ -1357,7 +1357,7 @@
     </div>
 
     <div class="post-nav"><a href="/posts/hp_printer/" class="prev" rel="prev" title="关于打印机的一些知识"><i class="fas fa-angle-left fa-fw"></i>关于打印机的一些知识</a>
-            <a href="/posts/rust/rust_note_02/" class="next" rel="next" title="Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型">Rust | 02. 包管理、集合（String、Vector、HashMap）、泛型<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/rust/rust_note_02/" class="next" rel="next" title="Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理">Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
