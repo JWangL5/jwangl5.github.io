@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Rust | 泛型、Trait、生命周期、测试 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="Rust | 泛型、Trait、生命周期、测试" />
-<meta property="og:description" content="泛型" />
+<meta property="og:description" content="250827 代码复用 泛型 在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性 泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_03/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-08-26T00:17:49+08:00" />
@@ -17,7 +17,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 泛型、Trait、生命周期、测试"/>
-<meta name="twitter:description" content="泛型"/>
+<meta name="twitter:description" content="250827 代码复用 泛型 在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性 泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/"
-        },"genre": "posts","wordcount":  2 ,
+        },"genre": "posts","wordcount":  5992 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/","datePublished": "2025-08-26T00:17:49+08:00","dateModified": "2025-08-26T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,8 +119,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5992 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -130,13 +130,787 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#泛型">泛型</a></li>
+        <li><a href="#250827-代码复用">250827 代码复用</a>
+          <ul>
+            <li><a href="#泛型">泛型</a></li>
+            <li><a href="#trait">Trait</a></li>
+          </ul>
+        </li>
+        <li><a href="#250827-生命周期">250827 生命周期</a>
+          <ul>
+            <li><a href="#函数中的泛型生命周期">函数中的泛型生命周期</a></li>
+            <li><a href="#struct定义中的生命周期标注">Struct定义中的生命周期标注</a></li>
+            <li><a href="#生命周期省略规则">生命周期省略规则</a></li>
+            <li><a href="#静态生命周期">静态生命周期</a></li>
+          </ul>
+        </li>
+        <li><a href="#250827-编写自动化测试">250827 编写自动化测试</a>
+          <ul>
+            <li><a href="#测试函数">测试函数</a></li>
+            <li><a href="#断言">断言</a></li>
+            <li><a href="#should_panic">should_panic</a></li>
+            <li><a href="#在测试中使用result">在测试中使用Result</a></li>
+            <li><a href="#控制测试如何运行">控制测试如何运行</a></li>
+            <li><a href="#测试的组织">测试的组织</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="泛型" class="headerLink">
-    <a href="#%e6%b3%9b%e5%9e%8b" class="header-mark"></a>泛型</h3></div>
+            </div><div class="content" id="content"><h3 id="250827-代码复用" class="headerLink">
+    <a href="#250827-%e4%bb%a3%e7%a0%81%e5%a4%8d%e7%94%a8" class="header-mark"></a>250827 代码复用</h3><h4 id="泛型" class="headerLink">
+    <a href="#%e6%b3%9b%e5%9e%8b" class="header-mark"></a>泛型</h4><ul>
+<li>在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性</li>
+<li>泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关键方法之一；简单理解，其就是一种模板或占位符，代替某种数据类型，编译器在编译的时候，需要将其解析为具体的类型</li>
+<li>在该例中，<code>fn largest&lt;T&gt;(list: &amp;[T])-&gt;T{ ... }</code>，函数传入一个T类型的列表，在经过运算之后返回一个T，这个T可以是任意类型</li>
+<li>通常，泛型的声明是在使用前的<code>&lt;&gt;</code>中，通常使用一个字母来命名（驼峰法Type），其不仅仅可以用在函数中，也可以用于结构体或枚举的定义中，其可以同时存在多个（但太多了会不宜阅读，代码应该进一步分解为更小的单元）</li>
+<li>在给结构体或枚举类型实现方法时，如果方法是针对泛型的，应在impl关键字后加上泛型标注，如<code>impl&lt;T&gt; Point&lt;T&gt; { fn x(&amp;self)-&gt;&amp;T {&amp;self.x} }</code>，如果说只是针对某一具体的类型来实现，则只需要在结构体名称后标注<code>impl Point&lt;i32&gt; {fn x1(&amp;self)-&gt;i32 {&amp;self.x}}</code></li>
+<li>struct里的泛型类型参数可以和方法的泛型参数不同，例如
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Point</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">x</span>: <span class="nc">T</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">y</span>: <span class="nc">U</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Point</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">mixup</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">&gt;</span><span class="p">(</span><span class="n">other</span>: <span class="nc">Point</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Point</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Point</span><span class="p">{</span><span class="w"> </span><span class="n">x</span>: <span class="nc">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="nc">other</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span>: <span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="mi">4</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span>: <span class="s">&#34;Hello&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="na">&#39;c&#39;</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">mixup</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;p3.x=</span><span class="si">{}</span><span class="s">, p3.y=</span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p3</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Rust在编译阶段，会将泛型替换为具体的类型，这个过程称为单态化（monomorphization），使用泛型代码和使用具体类型时，代码运行速度是一样的</li>
+</ul>
+<h4 id="trait" class="headerLink">
+    <a href="#trait" class="header-mark"></a>Trait</h4><ul>
+<li>
+<p>Trait是抽象定义共享行为的一种策略，其告诉编译器，某种类型具有哪些可以与其他类型共享的功能，类似于其他语言中的接口（interface），其把方法签名放在一起，来定义实现某种目的所必须的一组行为</p>
+</li>
+<li>
+<p>其使用<code>trait</code>关键字进行定义，其可以有多个方法，每个方法签名占一行（定义时只用方法的签名，不需要具体实现），以<code>;</code>结尾，但其要求实现该trait的类型，必须提供具体的方法实现<code>impl trait for class {...}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="n">trair</span><span class="w"> </span><span class="n">Summary</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">summarize</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">summarize2</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;{}, (Read more...)&#34;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">summarize</span><span class="p">())</span><span class="w"> </span><span class="c1">//默认实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">NewsArticle</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">headline</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">location</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">author</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">content</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Summary</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">NewsArticle</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">summarize</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">, by </span><span class="si">{}</span><span class="s"> (</span><span class="si">{}</span><span class="s">)&#34;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">headline</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">author</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">location</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Tweet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">username</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">content</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">reply</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="n">retweet</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Summary</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Tweet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">summarize</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">format!</span><span class="p">(</span><span class="s">&#34;</span><span class="si">{}</span><span class="s">: </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">demo</span>::<span class="n">Summary</span><span class="p">;</span><span class="w"> </span><span class="c1">//这里需要将pub trait引入作用域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">use</span><span class="w"> </span><span class="n">demo</span>::<span class="n">Tweet</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">tweet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Tweet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">username</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;horse_ebooks&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">content</span>: <span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;as you probably know, people&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">reply</span>: <span class="nc">false</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">retweet</span>: <span class="nc">false</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;1 new tweet: </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">tweet</span><span class="p">.</span><span class="n">summarize</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以在某个类型上实现某个trait的前提条件是，这个类型或这个trait是在本地crate中定义的，即无法为外部类型来实现外部的trait。该限制是程序一致性的一部分，确保了其他人的代码不能破坏自己的代码（反之亦然）；如果没有这个规则，两个crate可以为同一类型实现同一个trait，此时rust就不知道该使用哪个具体的实现了（孤儿原则）</p>
+</li>
+<li>
+<p>默认实现：针对不同的类型但行为类似的情景，也可以直接提供一个默认的操作，其直接定义在trait中，这样当某个具体类型实现该trait时，可以直接使用默认行为就可以，当需要有自定义需求时，再重写覆盖掉默认行为即可</p>
+</li>
+<li>
+<p>在默认实现中，可以调用Trait其他的方法，哪怕其没有默认实现也可以，用户在使用该trait时，只需要重写用到的方法即可；需要注意的是，无法在重写实现里，调用默认的实现</p>
+</li>
+<li>
+<p>在标注类型的时候，可以将其指定为实现特定Trait的类型，这样函数就可以大胆调用Trait要求实现的方法了，有几种语法来实现</p>
+<ul>
+<li>impl trait语法，例如<code>pub fn notify(item: impl Summary) {...}</code>表示该函数的参数类型必须实现Summary Trait，其可以理解为下一种方法的语法糖</li>
+<li>Trait bound（约束）语法，其可用于更复杂的情况，例如<code>pub fn notify&lt;T: Summary&gt;(item: T){ ... }</code></li>
+<li>可以使用<code>+</code>来表示指定多种Trait，例如<code>pub fn notify(item: impl Summary+Display) {...}</code>或<code>pub fn notify&lt;T: Summary+Display&gt;(item: T){ ... }</code></li>
+<li>也可以使用where子句来整理代码，让多个Trait在函数签名里看起来不那么乱</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">notify</span><span class="o">&lt;</span><span class="n">T</span>: <span class="nc">Summary</span><span class="o">+</span><span class="n">Display</span><span class="p">,</span><span class="w"> </span><span class="n">U</span>: <span class="nb">Clone</span><span class="o">+</span><span class="n">Debug</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span>:<span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>:<span class="nc">U</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">notify2</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span>: <span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>: <span class="nc">U</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">String</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">where</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">T</span>: <span class="nc">Summary</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Display</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">U</span>: <span class="nb">Clone</span> <span class="o">+</span><span class="w"> </span><span class="n">Debug</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Trait在标注类型时，不仅仅可以用于指定参数，也可以用于指定返回值的类型，如<code>pub fn notify(s: &amp;str) -&gt; impl Summary { ... }</code>，此时需要注意的是，<code>impl trait</code>只能返回确定的同一种类型，返回可能不同类型的代码会报错，例如不可以<code>if 类型1 else 类型2</code>，哪怕这两种都实现了该Trait</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// PatialOrd在prelude中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">largest</span><span class="o">&lt;</span><span class="n">T</span>: <span class="nc">PatialOrd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Copy</span><span class="o">&gt;</span><span class="p">(</span><span class="n">list</span>: <span class="kp">&amp;</span><span class="p">[</span><span class="n">T</span><span class="p">])</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="o">&amp;</span><span class="n">item</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">largest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">number_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">34</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">65</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">largest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">number_list</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The largest number is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">char_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="sc">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;m&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;q&#39;</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">largest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">char_list</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The largest char is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">largest</span><span class="o">&lt;</span><span class="n">T</span>: <span class="nc">PatialOrd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Clone</span><span class="o">&gt;</span><span class="p">(</span><span class="n">list</span>: <span class="kp">&amp;</span><span class="p">[</span><span class="n">T</span><span class="p">])</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">largest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">largest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">largest2</span><span class="o">&lt;</span><span class="n">T</span>: <span class="nc">PatialOrd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">Clone</span><span class="o">&gt;</span><span class="p">(</span><span class="n">list</span>: <span class="kp">&amp;</span><span class="p">[</span><span class="n">T</span><span class="p">])</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="nc">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">largest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">largest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">largest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">str_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">),</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;world&#34;</span><span class="p">)];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">largest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">str_list</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The largest number is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在使用泛型类型参数的impl块上使用trait bound，就可以有条件的为实现了特定trait的类型来实现方法（如下例子）；这样可以为满足Trait Bound的所有类型实都现Trait叫做覆盖实现（blanket implementations），例如标准库中所有实现Display的类型，都会有to_string方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fmt</span>::<span class="n">Display</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">struct</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span>: <span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="nc">T</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="n">x</span>: <span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="bp">Self</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 只有实现Display和PartialOrd的类型T，才可以拥有以下方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">impl</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span>: <span class="nc">Display</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">PartialOrd</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">cmp_display</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The largest number is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The largest number is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="250827-生命周期" class="headerLink">
+    <a href="#250827-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="header-mark"></a>250827 生命周期</h3><ul>
+<li>
+<p>Rust的每个<strong>引用</strong>都有自己的生命周期，其就是<u-b>引用保持有效的作用域</u-b>。大多数时候，生命周期是隐式的、可被推断的，但当引用的生命周期可能以不同的方式相互关联时，就需要手动标注生命周期。生命周期存在的主要目的，就是避免悬垂引用（dangling reference）。在Rust内部，会有一个借用检查器，检查每个借用的生命周期长短，从而检查其是否合法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 此时代码会报错，因为x在离开作用域之后，&amp;x指向的地址内存被释放
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;r: </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在rust中，可以使用生命周期的标注，来描述<strong>多个</strong>引用的生命周期的关系。标注并不会改变引用的生命周期长度，因而单个生命周期的标注本身是没有意义的；当指定了泛型生命周期参数时，函数就可以接受带任何生命周期的引用</p>
+</li>
+<li>
+<p>其标注语法以<code>'</code>开头，通常全是小写且很短，多为<code>'a</code>，标注在引用符<code>&amp;</code>后面，并使用空格将标注和引用类型分开，例如<code>&amp;i32</code>是一个引用，<code>&amp;'a i32</code>是带有显式生命周期的引用，<code>&amp;'a mut i32</code>是带有显示生命周期的可变引用</p>
+</li>
+</ul>
+<h4 id="函数中的泛型生命周期" class="headerLink">
+    <a href="#%e5%87%bd%e6%95%b0%e4%b8%ad%e7%9a%84%e6%b3%9b%e5%9e%8b%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="header-mark"></a>函数中的泛型生命周期</h4><ul>
+<li>
+<p><u-r>当需要函数返回一个引用时，就需要标注生命周期，并且标注的返回类型的生命周期参数，需要于其中一个参数的生命周期相匹配。</u-r></p>
+</li>
+<li>
+<p>因为返回的引用<strong>只能指向参数</strong>，如果是指向函数内创建的值，会直接报错，因为其离开作用域的时候一定会被清空，要返回内部创建值，只能直接返回值来移交所有权到外部，不能只返回引用。因此，返回的引用必定与参数相关（至少要与一个参数的生命周期相关）。</p>
+</li>
+<li>
+<p>而返回值作为一个引用，其有效性就依赖于参数的有效性，rust的借用检查器在检查返回值的有效性时，就需要知道返回值和参数之间的依赖关系，因此，其强制要求标注参数与返回值生命周期的关系。而指定生命周期参数的方式依赖于函数所作的事情。</p>
+</li>
+<li>
+<p>假设有一个返回引用类型的<code>longest()</code>函数，在下面的例子，就需要确保返回值result的生命周期不能长于string1或者string2，否则不能保证result的有效性。可以使用泛型生命周期参数要求rust检查返回值与参数的生命周期关系。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;abcd&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;xyz&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">longest</span><span class="p">(</span><span class="n">string1</span><span class="p">.</span><span class="n">as_str</span><span class="p">(),</span><span class="w"> </span><span class="n">string2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The longest string is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//理想情况下的调用，在result存活期间，string1和string2可以保持有效
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;abcd&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"> </span><span class="c1">// result定义在外部，其生命周期长于string2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;xyz&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">longest</span><span class="p">(</span><span class="n">string1</span><span class="p">.</span><span class="n">as_str</span><span class="p">(),</span><span class="w"> </span><span class="n">string2</span><span class="p">.</span><span class="n">as_str</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The longest string is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 如果string2被返回，此时result会因string2生命周期较短而失效
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>泛型生命周期参数，需要声明在函数名和参数列表之间的<code>&lt;'a&gt;</code>里，当参数带有该声明周期标注后，其并不改变该参数的生命周期，但却告诉借用检查器，该<u-b>参数的声明周期应不短于<code>'a</code></u-b>，即<code>'a</code>所指代的生命周期应是所有带该标注参数中最短的那一个的生命周期</p>
+</li>
+<li>
+<p>在上面的例子中，可以使用如下函数前面来进行生命周期的标注。在下面的代码中，rust就会强行要求函数在执行时，检查参数x、y以及返回值的生命周期长短，<code>'a</code>指代参数x和y的生命周期中较短的那一个，要求返回值的生命周期也必须为<code>'a</code>，避免了因x或y失效，而result作为x或y的引用，理应失效，但仍旧存在的情形</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 以下方法没有标注声明周期，编译会不通过
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 因为返回值是x或者y的一种（都是引用），借用检查器需要保证返回值的有效性
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 如果返回值的生命周期更长，x或y如果提前失效了，那么返回值会没有意义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">longest</span><span class="p">(</span><span class="n">x</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="kt">str</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">longest</span><span class="o">&lt;</span><span class="na">&#39;a</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// 此时生命周期&#39;a指代为string2的生命周期，result与其拥有相同的生命周期，代码合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;abcd&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;xyz&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">longest</span><span class="p">(</span><span class="n">string1</span><span class="p">.</span><span class="n">as_str</span><span class="p">(),</span><span class="w"> </span><span class="n">string2</span><span class="p">.</span><span class="n">as_str</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;The longest string is </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"> </span><span class="c1">// 此时result有效
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="struct定义中的生命周期标注" class="headerLink">
+    <a href="#struct%e5%ae%9a%e4%b9%89%e4%b8%ad%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e6%a0%87%e6%b3%a8" class="header-mark"></a>Struct定义中的生命周期标注</h4><ul>
+<li>Struct里除了自持有的类型外，也可以包含引用，但需要在每个引用上添加生命周期标注
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">ImportantExcerpt</span><span class="o">&lt;</span><span class="na">&#39;a</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">part</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="c1">// 该标注确保了part的生命周期，应该长于实例的生命周期
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">novel</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;Call me Ishmael. Some years age ...&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">first_sentence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">novel</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="n">next</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;Could not found a &#39;.&#39;&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImportantExcerpt</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">part</span>: <span class="nc">first_sentence</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="生命周期省略规则" class="headerLink">
+    <a href="#%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e7%9c%81%e7%95%a5%e8%a7%84%e5%88%99" class="header-mark"></a>生命周期省略规则</h4><ul>
+<li>每个引用都有生命周期，程序员需要为使用生命周期的函数或struct指定生命周期参数。在rust的早期版本（pre 1.0）中，总是要求程序员显式地标注所有的生命周期，但随着代码量的增加，rust开发者发现在某些情况下，程序员总是在一遍又一遍地编写着同样的生命周期标注，而且这些生命周期标注还都是可预测的（存在明确的模式）。于是，rust团队就将这些模式写入了编译器代码，就使得借用解释器在这些情况下可以自动地对生命周期进行推导，而无需程序员手动标注。</li>
+<li>目前，这样的固定模式会越来越多地被添加进来，这些在rust引用分析中所编入的模式称为<strong>生命周期省略规则</strong>。这些规则是一些由编译器来考虑的特殊情况，无需开发者来遵守。当代码符合这些情况时，就无需显式地标注生命周期。另外，省略规则并不会提供完整的推断，如果应用规则后，引用的生命周期仍然模糊不清，编译就会报错，此时需要程序员手动添加生命周期标注，表明引用间的相互关系。</li>
+<li>如果生命周期若出现在函数/方法的参数中，其称为<strong>输入生命周期</strong>，若出现在函数/方法的返回值中，则称为<strong>输出生命周期</strong>。如下是编译器使用的3条规则（适用于fn定义或impl块）：
+<ul>
+<li>规则1：每个引用类型的参数都有自己的生命周期（应用于输入生命周期，即1个参数会有1个生命周期，2个参数会有两个不同的生命周期）</li>
+<li>规则2：如果只有1个输入生命周期参数，那么该生命周期被赋给所有的输出生命周期参数</li>
+<li>规则3：如果有多个输入生命周期参数，且其中一个是<code>&amp;self</code>或<code>&amp;mut self</code>（方法），那么<code>self</code>的生命周期会被赋给所有输出生命周期参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">first_word</span><span class="p">(</span><span class="n">s</span>: <span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="kt">str</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">bytes</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">enumerate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sa">b</span><span class="sc">&#39; &#39;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="o">..</span><span class="n">i</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">&amp;</span><span class="n">s</span><span class="p">[</span><span class="o">..</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>上述代码并不会报错，因为其只有1个参数，规则1会给其标注1个生命周期，规则2会将该生命周期赋给返回值，这样所有的引用都有明确的标注了；但对于有2个参数的函数，就需要手动标注了，因为编译器无法推断</li>
+</ul>
+<h4 id="静态生命周期" class="headerLink">
+    <a href="#%e9%9d%99%e6%80%81%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="header-mark"></a>静态生命周期</h4><ul>
+<li>
+<p><code>'static</code>是一个特殊的生命周期，代表整个程序的持续时间，例如，对于所有的字符串字面值都拥有<code>let s:&amp;'static str = &quot;I have a static lifetime.&quot;</code></p>
+</li>
+<li>
+<p>在为一个引用指定静态生命周期前，一定要三思是否真的需要引用在程序整个生命周期内都存活，大部分时候，需要生命周期指定的错误都是为了由于悬垂引用或生命周期不匹配，解决问题会更重要</p>
+</li>
+<li>
+<p>最后看一个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fmt</span>::<span class="n">Display</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">longest_with_an_announcement</span><span class="o">&lt;</span><span class="na">&#39;a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">x</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>: <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span><span class="p">,</span><span class="w"> </span><span class="n">ann</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kp">&amp;</span><span class="na">&#39;a</span> <span class="kt">str</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">where</span><span class="w"> </span><span class="n">T</span>: <span class="nc">Display</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Announcement! </span><span class="si">{}</span><span class="s">&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">ann</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="250827-编写自动化测试" class="headerLink">
+    <a href="#250827-%e7%bc%96%e5%86%99%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b5%8b%e8%af%95" class="header-mark"></a>250827 编写自动化测试</h3><h4 id="测试函数" class="headerLink">
+    <a href="#%e6%b5%8b%e8%af%95%e5%87%bd%e6%95%b0" class="header-mark"></a>测试函数</h4><ul>
+<li>在rust中，一个测试就是一个函数，其用于验证<strong>非测试代码</strong>的功能是否和预期一致；测试函数体通常执行3个操作：准备数据/状态、运行被测试的代码、断言结果是否正确。此外，测试函数需要使用<code>test</code>属性（attribute）进行标注。Attribute是一段rust代码的元数据，在函数前加上<code>#[test]</code>就可以把函数变成测试函数。</li>
+<li>使用<code>cargo test</code>命令运行所有测试函数，此时rust会构建一个test runner的可执行文件，其来运行标注了test的函数，并报告其是否运行成功。当使用<code>cargo create name -lib</code>创建library项目时，会生成一个tests module，里面自动会有一个test函数。也可以手动添加任意数量的test module或函数。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">it_works</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">another</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">panic!</span><span class="p">(</span><span class="s">&#34;Make this test fail&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>当运行测试时，每一个测试运行在一个新线程上，当测试函数发生<code>panic</code>时，主线程会看见某个测试线程挂掉了，并将其标记为失败并在最后返回、打印</li>
+</ul>
+<h4 id="断言" class="headerLink">
+    <a href="#%e6%96%ad%e8%a8%80" class="header-mark"></a>断言</h4><ul>
+<li>
+<p>来自标准库的宏<code>assert!(result)</code>可以用来确定某个状态是否为true，结果为true时测试通过，否则调用<code>panic!()</code>，测试失败；此外，还有<code>assert_eq!()</code>和<code>assert_ne!()</code>来判断两个参数是否相等或不等，其本质上就是使用了<code>==</code>和<code>!=</code>运算符，只是当断言失败时，该宏可以使用debug格式自动打印参数（要求参数实现了<code>PartialEq</code>和<code>Debug</code>这两个Traits，所有基本类型和标准库里的大部分类型都已经实现了）</p>
+</li>
+<li>
+<p>这三个宏也都可以添加可选的自定义消息，可以作为第2个或第3个参数传入函数中，并且该自定义消息参数会被传递给<code>format!()</code>宏，因而可以使用{}占位符填充消息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[derive(Debug)]</span><span class="w"> </span><span class="c1">//注解，一种格式化的方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">width</span>: <span class="kt">u32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">length</span>: <span class="kt">u32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">can_hold</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">other</span>: <span class="kp">&amp;</span><span class="nc">Rectangle</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">bool</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="bp">self</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">width</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">add_two</span><span class="p">(</span><span class="n">a</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">i32</span> <span class="p">{</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">larger_can_hold_smaller</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">larger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span>: <span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">width</span>: <span class="mi">7</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">smaller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span>: <span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">width</span>: <span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">assert!</span><span class="p">(</span><span class="n">larger</span><span class="p">.</span><span class="n">can_hold</span><span class="p">(</span><span class="o">&amp;</span><span class="n">smaller</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">larger_can_hold_smaller</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">larger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span>: <span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">width</span>: <span class="mi">7</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">smaller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rectangle</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">length</span>: <span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">width</span>: <span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">assert!</span><span class="p">(</span><span class="o">!</span><span class="n">smaller</span><span class="p">.</span><span class="n">can_hold</span><span class="p">(</span><span class="o">&amp;</span><span class="n">larger</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">it_adds_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">add_two</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#34;2 was not added to original number, the result is {}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">add_two</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"> </span><span class="c1">// rust中运行结果和期待值的顺序无所谓
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="should_panic" class="headerLink">
+    <a href="#should_panic" class="header-mark"></a>should_panic</h4><h4 id="在测试中使用result" class="headerLink">
+    <a href="#%e5%9c%a8%e6%b5%8b%e8%af%95%e4%b8%ad%e4%bd%bf%e7%94%a8result" class="header-mark"></a>在测试中使用Result</h4><h4 id="控制测试如何运行" class="headerLink">
+    <a href="#%e6%8e%a7%e5%88%b6%e6%b5%8b%e8%af%95%e5%a6%82%e4%bd%95%e8%bf%90%e8%a1%8c" class="header-mark"></a>控制测试如何运行</h4><ul>
+<li>
+<p>并行测试</p>
+<ul>
+<li>
+<p>测试之间不会相互依赖或者不依赖某个共享状态</p>
+</li>
+<li>
+<p><code>--test-threads</code>参数</p>
+</li>
+<li>
+<p><code>-- --show-output</code>参数</p>
+</li>
+</ul>
+</li>
+<li>
+<p>运行部分测试</p>
+<ul>
+<li>按照名称运行测试的子集</li>
+<li>忽略某些测试</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试的组织" class="headerLink">
+    <a href="#%e6%b5%8b%e8%af%95%e7%9a%84%e7%bb%84%e7%bb%87" class="header-mark"></a>测试的组织</h4><ul>
+<li>rust对测试分为两类：单元测试和集成测试</li>
+<li>单元测试</li>
+<li>集成测试</li>
+</ul>
+<p>胶水代码</p>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
@@ -172,7 +946,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/network/n01_introduction/" class="prev" rel="prev" title="网络 | 计算机网络基础绪论"><i class="fas fa-angle-left fa-fw"></i>网络 | 计算机网络基础绪论</a></div>
+    <div class="post-nav"><a href="/posts/network/n01_introduction/" class="prev" rel="prev" title="网络 | 01. 计算机网络基础绪论"><i class="fas fa-angle-left fa-fw"></i>网络 | 01. 计算机网络基础绪论</a></div>
 </div>
 </article></div>
         </main><footer class="footer">
