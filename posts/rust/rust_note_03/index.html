@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>Rust | 泛型、Trait、生命周期、测试 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="Rust | 泛型、Trait、生命周期、测试" />
+    <title>Rust | 03. 泛型、Trait、生命周期、自动化测试 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="Rust | 03. 泛型、Trait、生命周期、自动化测试" />
 <meta property="og:description" content="250827 代码复用 泛型 在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性 泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_03/" /><meta property="article:section" content="posts" />
@@ -16,7 +16,7 @@
 <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/" />
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 泛型、Trait、生命周期、测试"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 03. 泛型、Trait、生命周期、自动化测试"/>
 <meta name="twitter:description" content="250827 代码复用 泛型 在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性 泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
@@ -30,12 +30,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Rust | 泛型、Trait、生命周期、测试",
+        "headline": "Rust | 03. 泛型、Trait、生命周期、自动化测试",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/"
-        },"genre": "posts","wordcount":  5992 ,
+        },"genre": "posts","wordcount":  7287 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/","datePublished": "2025-08-26T00:17:49+08:00","dateModified": "2025-08-26T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -115,12 +115,12 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Rust | 泛型、Trait、生命周期、测试</h1><div class="post-meta">
+            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Rust | 03. 泛型、Trait、生命周期、自动化测试</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5992 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7287 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -149,7 +149,7 @@
             <li><a href="#测试函数">测试函数</a></li>
             <li><a href="#断言">断言</a></li>
             <li><a href="#should_panic">should_panic</a></li>
-            <li><a href="#在测试中使用result">在测试中使用Result</a></li>
+            <li><a href="#在测试中使用resultt-e">在测试中使用Result&lt;T, E&gt;</a></li>
             <li><a href="#控制测试如何运行">控制测试如何运行</a></li>
             <li><a href="#测试的组织">测试的组织</a></li>
           </ul>
@@ -878,29 +878,209 @@
 </div></li>
 </ul>
 <h4 id="should_panic" class="headerLink">
-    <a href="#should_panic" class="header-mark"></a>should_panic</h4><h4 id="在测试中使用result" class="headerLink">
-    <a href="#%e5%9c%a8%e6%b5%8b%e8%af%95%e4%b8%ad%e4%bd%bf%e7%94%a8result" class="header-mark"></a>在测试中使用Result</h4><h4 id="控制测试如何运行" class="headerLink">
+    <a href="#should_panic" class="header-mark"></a>should_panic</h4><ul>
+<li>
+<p>可以使用<code>should_panic</code>属性来检查是否发生了恐慌，确保程序可以按照预期处理了发生的错误。标注了<code>should_panic</code>的函数，如果发生了恐慌，则测试通过，否则测试失败。注意该属性写在函数声明前，test属性后</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">value</span>: <span class="kt">u32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="n">value</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">panic!</span><span class="p">(</span><span class="s">&#34;Guess value must be between 1 and 100, got </span><span class="si">{}</span><span class="s">.&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Guess</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[should_panic]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">greater_than_100</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Guess</span>::<span class="n">new</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以为<code>should_panic</code>属性添加可选的expected参数，此时将检查失败的消息中是否包含所指定的文字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">value</span>: <span class="kt">u32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="n">value</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Guess</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">panic!</span><span class="p">(</span><span class="s">&#34;Guess value must be greater than or equal to 1, got </span><span class="si">{}</span><span class="s">.&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">panic!</span><span class="p">(</span><span class="s">&#34;Guess value must be less than or equal to 100, got </span><span class="si">{}</span><span class="s">.&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Guess</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[should_panic(expected=</span><span class="s">&#34;Guess value must be greater than&#34;</span><span class="cp">)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">greater_than_100</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Guess</span>::<span class="n">new</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="在测试中使用resultt-e" class="headerLink">
+    <a href="#%e5%9c%a8%e6%b5%8b%e8%af%95%e4%b8%ad%e4%bd%bf%e7%94%a8resultt-e" class="header-mark"></a>在测试中使用Result&lt;T, E&gt;</h4><ul>
+<li>当错误发生时，有时也无需panic，同样可以使用<code>Result&lt;T, E&gt;</code>作为返回类型编写测试，返回Ok时测试通过，返回Err则测试失败
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">it_works</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nb">Ok</span><span class="p">(())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nb">Err</span><span class="p">(</span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;two plus two does not equal to four&#34;</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>值得注意的是，在使用<code>Result&lt;T,E&gt;</code>作为返回结果时，函数无需发生恐慌，此时标注<code>#[should_panic]</code>就没有意义了</li>
+</ul>
+<h4 id="控制测试如何运行" class="headerLink">
     <a href="#%e6%8e%a7%e5%88%b6%e6%b5%8b%e8%af%95%e5%a6%82%e4%bd%95%e8%bf%90%e8%a1%8c" class="header-mark"></a>控制测试如何运行</h4><ul>
 <li>
-<p>并行测试</p>
+<p><code>cargo test</code>和<code>cargo run</code>一样，在运行时会生成二进制代码用于测试，可以通过添加命令行参数来改变其测试的行为。如果不添加任何行为时，其默认的行为是<u-b>并行运行所有测试，成功时捕获（不显示）所有输出</u-b>，仅读取和保留与测试结果相关的信息</p>
+</li>
+<li>
+<p>针对于<code>cargo test</code>这个命令本身的参数，其紧跟<code>cargo test</code>之后；若针对于测试生成的可执行文件，则需要放在<code>--</code>之后，例如<code>cargo test --help</code>显示该命令可用的参数，<code>cargo test -- --help</code>则会在程序编译后显示可以放在这个横线后的参数有哪些</p>
+</li>
+<li>
+<p>并行/连续/串行测试</p>
 <ul>
 <li>
-<p>测试之间不会相互依赖或者不依赖某个共享状态</p>
+<p>在运行多个测试时，默认会使用多个现成来并行运行，这样运行得会更快，但是，需要确保测试之间不会相互依赖或者不依赖某个共享状态（如环境、工作目录、环境变量等）</p>
 </li>
 <li>
-<p><code>--test-threads</code>参数</p>
+<p>当不想要并行测试，或者想要精准控制测试时所使用的线程数量，可以使用<code>cargo test  -- --test-threads=1</code>参数传递具体的线程数量给二进制文件，此时虽然测试执行速度变慢，但其因共享状态而出现干扰的可能性会比较小</p>
 </li>
 <li>
-<p><code>-- --show-output</code>参数</p>
+<p>默认情况下，如果测试通过，rust的test标准库会捕获所有打印到标准输出的内容，例如<code>prinln!()</code>中的内容在测试成功时不会显示，只有失败时才能看到。可以使用<code>cargo test -- --show-output</code>参数将成功通过测试的结果也打印到屏幕上</p>
 </li>
 </ul>
 </li>
 <li>
 <p>运行部分测试</p>
 <ul>
-<li>按照名称运行测试的子集</li>
-<li>忽略某些测试</li>
+<li>当需要与选择一部分函数进行测试时，可以将测试的名称（对应1个测试的全称或对应多个测试的前半部分简都可以，也可以使用某个特定模块的名称也可以）作为cargo test的参数，此时rust会按照测试的名称来运行测试的子集；例如<code>cargo test add</code>命令就只会运行下面内容的前两个</li>
 </ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[test]</span><span class="w"> </span><span class="k">fn</span> <span class="nf">add_two_and_two</span><span class="p">(){</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[test]</span><span class="w"> </span><span class="k">fn</span> <span class="nf">add_two_and_two</span><span class="p">(){</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[test]</span><span class="w"> </span><span class="k">fn</span> <span class="nf">one_hundred</span><span class="p">(){</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以使用<code>#[ignore]</code>指令来显式地忽略某些测试，只运行剩余测试。这种代码应用于某些特别消耗计算资源的一些测试中，此时可以先将其屏蔽掉，不需要每一次都运行该测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[ignore]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">expensive_test</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">assert_eq</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以使用<code>cargo test -- --ignored</code>参数来运行带有ignore属性标记的测试</p>
 </li>
 </ul>
 <h4 id="测试的组织" class="headerLink">
