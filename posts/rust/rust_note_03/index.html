@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_03/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-08-26T00:17:49+08:00" />
 <meta property="article:modified_time" content="2025-08-26T00:17:49+08:00" />
-<meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/" />
+<meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_04/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/" /><meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/" />
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 03. 泛型、Trait、生命周期、自动化测试"/>
@@ -24,7 +24,7 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/rust/rust_note_03/" /><link rel="prev" href="https://jwangl5.github.io/posts/network/n01_introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/rust/rust_note_03/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n08_tcp/" /><link rel="next" href="https://jwangl5.github.io/posts/rust/rust_note_04/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
     {
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/"
-        },"genre": "posts","wordcount":  7287 ,
+        },"genre": "posts","wordcount":  8814 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_03\/","datePublished": "2025-08-26T00:17:49+08:00","dateModified": "2025-08-26T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,8 +119,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7287 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-26">2025-08-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8814 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 18 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -152,8 +152,10 @@
             <li><a href="#在测试中使用resultt-e">在测试中使用Result&lt;T, E&gt;</a></li>
             <li><a href="#控制测试如何运行">控制测试如何运行</a></li>
             <li><a href="#测试的组织">测试的组织</a></li>
+            <li><a href="#binary-crate的测试">binary crate的测试</a></li>
           </ul>
         </li>
+        <li><a href="#250828-代码重构的一些经验总结">250828 代码重构的一些经验总结</a></li>
       </ul>
     </li>
   </ul>
@@ -1085,11 +1087,115 @@
 </ul>
 <h4 id="测试的组织" class="headerLink">
     <a href="#%e6%b5%8b%e8%af%95%e7%9a%84%e7%bb%84%e7%bb%87" class="header-mark"></a>测试的组织</h4><ul>
-<li>rust对测试分为两类：单元测试和集成测试</li>
-<li>单元测试</li>
-<li>集成测试</li>
+<li>
+<p>rust社区对测试分为两类：单元测试和集成测试。单元测试用于将一小块代码隔离出来，看看其是否符合预期，其比较小而专注，每次只对一个模块进行隔离测试，可以测试private的接口；而集成测试位于代码库之外，像其他外部代码一样调用代码，其只能访问公共接口，可以在每个测试中用到多个模块</p>
+</li>
+<li>
+<p>单元测试放在<code>src</code>目录下，使用<code>#[cfg(test)]</code>标注tests模块，<code>cfg</code>是configuration的缩写，用于告诉rust下面的条目只有在指定的配置选项下才被包含，配制选项test由rust自身提供，只有运行<code>cargo test</code>时才编译和运行代码（使用<code>cargo build</code>时不会），包括代码中的helper函数和<code>#[test]</code>标注的函数。没有<code>#[test]</code>标注的函数会被编译，但不会执行测试。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">private_adder</span><span class="p">(</span><span class="n">a</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>: <span class="kt">i32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="p">{</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[cfg(test)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">mod</span> <span class="nn">tests</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">use</span><span class="w"> </span><span class="k">super</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="cp">#[test]</span><span class="w"> </span><span class="k">fn</span> <span class="nf">it_works</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">private_adder</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在rust中，集成测试位于被测试库的外部，只能测试外部可访问的公开API，用于测试该库的多个部分是否能正确的一起工作。继承测试的覆盖率会是很重要的测试指标。通常，集成测试需要在项目根目录下创建<code>tests</code>文件夹，cargo会认识该目录（无需再手动标注<code>#[cfg(test)]</code>），并在其下寻找集成测试信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// tests/integration.rs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">use</span><span class="w"> </span><span class="n">project</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">it_adds_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">add_two</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>cargo test 函数名</code>可以用于运行一个指定的测试；<code>cargo test --test 文件名</code>可以运行某个测试文件内的所有测试。另外需要注意的是该目录下的每一个测试文件都是单独的一个crate，文件之间不共享行为（和src目录下的规则不同）。如果需要一些helper函数，可以将其放在子文件夹内，避免被cargo识别为测试文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// tests/common/mod.rs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">setup</span><span class="p">(){}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="c1">// tests/intergration.rs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">mod</span> <span class="nn">common</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cp">#[test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">it_adds_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">common</span>::<span class="n">setup</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
-<p>胶水代码</p>
+<h4 id="binary-crate的测试" class="headerLink">
+    <a href="#binary-crate%e7%9a%84%e6%b5%8b%e8%af%95" class="header-mark"></a>binary crate的测试</h4><ul>
+<li>如果项目是binary crate，则项目只含有<code>src/main.rs</code>，没有<code>src/lib.rs</code>，此时不能在<code>tests</code>目录下创建继承测试，也无法把<code>main.rs</code>的函数导入作用域（因为只有library crate才能暴露函数给其他crate用，binary crate意味着独立运行）</li>
+<li>这是时候应该将代码的核心逻辑都尽可能地迁移进<code>lib.rs</code>中，在<code>main.rs</code>中只保留少部分胶水代码，此时再利用lib的特性进行测试</li>
+</ul>
+<h3 id="250828-代码重构的一些经验总结" class="headerLink">
+    <a href="#250828-%e4%bb%a3%e7%a0%81%e9%87%8d%e6%9e%84%e7%9a%84%e4%b8%80%e4%ba%9b%e7%bb%8f%e9%aa%8c%e6%80%bb%e7%bb%93" class="header-mark"></a>250828 代码重构的一些经验总结</h3><blockquote>
+<p>这一部分课代码实操，跟着视频写了下，这里总结几点关键的经验</p>
+</blockquote>
+<ul>
+<li>代码重构要趁早，确保每一个函数只干一件事，每一个代码块都是人脑可以读懂并编译的安全代码，把这样的代码封装起来</li>
+<li>Rust社区有给出官方建议的二进制程序关注点分离的指导性原则
+<ul>
+<li>将程序拆分为<code>main.rs</code>和<code>lib.rs</code>，将业务逻辑都放入<code>lib.rs</code>中</li>
+<li>当命令行逻辑较少时，放在<code>main.rs</code>中也行，但如果解析变得复杂时，也需要将其提取到<code>lib.rs</code>中</li>
+</ul>
+</li>
+<li>有关联的几个变量最好放在结构体里，将其数据的约束放在构造函数里，这样不仅仅有易读的逻辑，也可以方便地确保数据类型或值符合要求</li>
+<li>错误处理时不要大类扔出，需要地做一下细分，搞清楚是程序内部错误，还是用户的使用错误，尽可能给出用户友好的提示信息</li>
+<li>当发生错误时，不要总是<code>panic!()</code>，这个是给程序员调试代码用的，最好习惯使用Result&lt;T, E&gt;来书写构造函数或者<code>run()</code>函数，解析和处理可能的一切错误</li>
+<li>测试驱动开发TDD（Test-Driven Development），其基本步骤如下
+<ul>
+<li>编写一个会失败的测试，运行该测试，确保它是按照预期的原因失败</li>
+<li>编写或修改刚好足够的代码，让新测试通过</li>
+<li>重构刚刚添加或修改的代码，确保测试会始终通过</li>
+<li>返回步骤1，继续</li>
+</ul>
+</li>
+<li>大部分的终端，是区分标准输出（stdout）和标准错误（stderr）的，前者使用<code>println!()</code>输出，后者使用<code>eprintln!()</code>。这样做的好处是可以将正确的输出重定向到文件中，而错误的输出直接打印到屏幕上</li>
+</ul>
 </div>
 
         <div class="sponsor">
@@ -1126,7 +1232,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/network/n01_introduction/" class="prev" rel="prev" title="网络 | 01. 计算机网络基础绪论"><i class="fas fa-angle-left fa-fw"></i>网络 | 01. 计算机网络基础绪论</a></div>
+    <div class="post-nav"><a href="/posts/net/n08_tcp/" class="prev" rel="prev" title="网络 | 08. 运输层TCP协议"><i class="fas fa-angle-left fa-fw"></i>网络 | 08. 运输层TCP协议</a>
+            <a href="/posts/rust/rust_note_04/" class="next" rel="next" title="Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程">Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
