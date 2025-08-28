@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 02. 物理层与数据传输 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 02. 物理层与数据传输" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="物理层 物理层解决的是数据比特流在链路上传输的问题，进而给数据链路层提供透明传输比特流的服务 物理层协议的主要任务 种类较多，不需要一一关注，重点" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n02_physical_layer/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-06-17T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 02. 物理层与数据传输"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="物理层 物理层解决的是数据比特流在链路上传输的问题，进而给数据链路层提供透明传输比特流的服务 物理层协议的主要任务 种类较多，不需要一一关注，重点"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n02_physical_layer\/"
-        },"genre": "posts","wordcount":  0 ,
+        },"genre": "posts","wordcount":  2949 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n02_physical_layer\/","datePublished": "2025-06-17T00:00:00+08:00","dateModified": "2025-06-17T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,9 +118,496 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 0 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 0 分钟&nbsp;</div>
-        </div><div class="content" id="content"></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2949 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="物理层" class="headerLink">
+    <a href="#%e7%89%a9%e7%90%86%e5%b1%82" class="header-mark"></a>物理层</h3><ul>
+<li>物理层解决的是数据比特流在链路上传输的问题，进而给数据链路层提供透明传输比特流的服务</li>
+<li>物理层协议的主要任务
+<ul>
+<li><a class="lightgallery" href="/image/image-20250617002051-avis30r.png" title="/image/image-20250617002051-avis30r.png" data-thumbnail="/image/image-20250617002051-avis30r.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617002051-avis30r.png"
+            srcset="/image/image-20250617002051-avis30r.png, /image/image-20250617002051-avis30r.png 1.5x, /image/image-20250617002051-avis30r.png 2x"
+            
+            alt="/image/image-20250617002051-avis30r.png" height="50%"  width="50%" >
+    </a></li>
+<li>种类较多，不需要一一关注，重点熟悉概念</li>
+</ul>
+</li>
+</ul>
+<h4 id="传输媒体两大类" class="headerLink">
+    <a href="#%e4%bc%a0%e8%be%93%e5%aa%92%e4%bd%93%e4%b8%a4%e5%a4%a7%e7%b1%bb" class="header-mark"></a>传输媒体（两大类）</h4><ul>
+<li>
+<p>导引型传输媒体：双绞线、同轴电缆、光纤、电力线</p>
+<ul>
+<li>
+<p>同轴电缆</p>
+<a class="lightgallery" href="/image/image-20250617002325-wy2qfgs.png" title="/image/image-20250617002325-wy2qfgs.png" data-thumbnail="/image/image-20250617002325-wy2qfgs.png">
+                <img
+                    
+                    loading="lazy"
+                    src="/image/image-20250617002325-wy2qfgs.png"
+                    srcset="/image/image-20250617002325-wy2qfgs.png, /image/image-20250617002325-wy2qfgs.png 1.5x, /image/image-20250617002325-wy2qfgs.png 2x"
+                    
+                    alt="/image/image-20250617002325-wy2qfgs.png" height="70%"  width="70%" >
+            </a>
+</li>
+<li>
+<p>双绞线
+<figure><a class="lightgallery" href="/image/image-20250617002457-raabsi5.png" title="image" data-thumbnail="/image/image-20250617002457-raabsi5.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617002457-raabsi5.png"
+            srcset="/image/image-20250617002457-raabsi5.png, /image/image-20250617002457-raabsi5.png 1.5x, /image/image-20250617002457-raabsi5.png 2x"
+            
+            alt="/image/image-20250617002457-raabsi5.png" height="544"  width="1506" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>光纤</p>
+<ul>
+<li>
+<p>很细，需要做成光缆</p>
+<p><figure><a class="lightgallery" href="/image/image-20250617002650-re801p1.png" title="image" data-thumbnail="/image/image-20250617002650-re801p1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617002650-re801p1.png"
+            srcset="/image/image-20250617002650-re801p1.png, /image/image-20250617002650-re801p1.png 1.5x, /image/image-20250617002650-re801p1.png 2x"
+            
+            alt="/image/image-20250617002650-re801p1.png" height="550"  width="1530" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>全反射原理</p>
+<a class="lightgallery" href="/image/image-20250617002746-hee2n37.png" title="/image/image-20250617002746-hee2n37.png" data-thumbnail="/image/image-20250617002746-hee2n37.png">
+                    <img
+                        
+                        loading="lazy"
+                        src="/image/image-20250617002746-hee2n37.png"
+                        srcset="/image/image-20250617002746-hee2n37.png, /image/image-20250617002746-hee2n37.png 1.5x, /image/image-20250617002746-hee2n37.png 2x"
+                        
+                        alt="/image/image-20250617002746-hee2n37.png" height="80%"  width="80%" >
+                </a>
+<a class="lightgallery" href="/image/image-20250617002905-vjxjpvf.png" title="/image/image-20250617002905-vjxjpvf.png" data-thumbnail="/image/image-20250617002905-vjxjpvf.png">
+                    <img
+                        
+                        loading="lazy"
+                        src="/image/image-20250617002905-vjxjpvf.png"
+                        srcset="/image/image-20250617002905-vjxjpvf.png, /image/image-20250617002905-vjxjpvf.png 1.5x, /image/image-20250617002905-vjxjpvf.png 2x"
+                        
+                        alt="/image/image-20250617002905-vjxjpvf.png" height="80%"  width="80%" >
+                </a>
+</li>
+</ul>
+</li>
+<li>
+<p>电力线</p>
+<ul>
+<li>不能够实现高性能局域网</li>
+<li>家里装修的时候没有留网线的时候可以用，只需要插上电力猫即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>非导引型（自由空间）传输媒体：</p>
+  <center>
+  <a class="lightgallery" href="/image/image-20250617003334-pvmt1pr.png" title="/image/image-20250617003334-pvmt1pr.png" data-thumbnail="/image/image-20250617003334-pvmt1pr.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250617003334-pvmt1pr.png"
+                srcset="/image/image-20250617003334-pvmt1pr.png, /image/image-20250617003334-pvmt1pr.png 1.5x, /image/image-20250617003334-pvmt1pr.png 2x"
+                
+                alt="/image/image-20250617003334-pvmt1pr.png" height="80%"  width="80%" >
+        </a>
+  </center>
+<ul>
+<li>无线电波
+<ul>
+<li><a class="lightgallery" href="/image/image-20250617003411-75b1zqi.png" title="/image/image-20250617003411-75b1zqi.png" data-thumbnail="/image/image-20250617003411-75b1zqi.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617003411-75b1zqi.png"
+            srcset="/image/image-20250617003411-75b1zqi.png, /image/image-20250617003411-75b1zqi.png 1.5x, /image/image-20250617003411-75b1zqi.png 2x"
+            
+            alt="/image/image-20250617003411-75b1zqi.png" height="60%"  width="60%" >
+    </a></li>
+</ul>
+</li>
+<li>2.5-40GHz微波通信（WiFi）
+<ul>
+<li><a class="lightgallery" href="/image/image-20250617003537-9lv9wsh.png" title="/image/image-20250617003537-9lv9wsh.png" data-thumbnail="/image/image-20250617003537-9lv9wsh.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617003537-9lv9wsh.png"
+            srcset="/image/image-20250617003537-9lv9wsh.png, /image/image-20250617003537-9lv9wsh.png 1.5x, /image/image-20250617003537-9lv9wsh.png 2x"
+            
+            alt="/image/image-20250617003537-9lv9wsh.png" height="60%"  width="60%" >
+    </a></li>
+<li>直线传播，但由于地球是圆的，微波的传播距离受到限制，通常只有50公里</li>
+</ul>
+</li>
+<li>红外线
+<ul>
+<li>例如红外遥控器之类的</li>
+<li>点对点通信，直线传输，传输距离短，中间不能有障碍物，传输速率低（4-16Mb/s）</li>
+</ul>
+</li>
+<li>可见光通信LiF
+<ul>
+<li>实验研究阶段，有前景</li>
+</ul>
+</li>
+<li>使用前需要得到无线电频谱管理机构
+<ul>
+<li><a class="lightgallery" href="/image/image-20250617003916-nx06td4.png" title="/image/image-20250617003916-nx06td4.png" data-thumbnail="/image/image-20250617003916-nx06td4.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250617003916-nx06td4.png"
+            srcset="/image/image-20250617003916-nx06td4.png, /image/image-20250617003916-nx06td4.png 1.5x, /image/image-20250617003916-nx06td4.png 2x"
+            
+            alt="/image/image-20250617003916-nx06td4.png" height="60%"  width="60%" >
+    </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="传输方式" class="headerLink">
+    <a href="#%e4%bc%a0%e8%be%93%e6%96%b9%e5%bc%8f" class="header-mark"></a>传输方式</h3><ul>
+<li>串行传输和并行传输
+<ul>
+<li>串行传输指数据是1个比特1个比特依次发送，因而在发送端和接收端之间只需要一条数据传输线路</li>
+<li>并行传输指每次发送n个比特，需要n条传输线路，其传输速度快但成本高</li>
+<li>计算机网络间的传输是串行传输；计算机内部的数据传输，如CPU和内存之间的传输是是总线上的并行串传输</li>
+</ul>
+</li>
+<li>同步传输和异步传输
+<ul>
+<li>同步传输是指数据以稳定的比特流的形式传输，字节间没有间隔；接收端持续检测；
+<ul>
+<li>但由于不同设备之间的时钟不能完全同步，持续下来会积累错误</li>
+<li>结局的方法有两种
+<ul>
+<li>外同步：在收发双方之间添加一条单独的时钟信号线</li>
+<li>内同步：发送端将时钟同步信号编码到数据中一起传输（传统以太网使用曼彻斯特编码）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异步传输则是以字节为独立的传输单位，其之间并没有固定的时间间隔；每个字节内部则为一个持续的比特流，为了识别信号，需要在数据前后加上起始位和结束位信号
+<ul>
+<li>❗️异步是字节间的异步，不是比特的异步</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单向通信（一个数据传输方向，如无线电广播）、双向交替通信（半双工，不能同时，如对讲机）、双向同时通信（全双工，可以同时发送和接收信息，如电话）
+<ul>
+<li>单向通信只需要一条信道，双向通信需要两条信道</li>
+</ul>
+</li>
+</ul>
+<h3 id="编码与调制" class="headerLink">
+    <a href="#%e7%bc%96%e7%a0%81%e4%b8%8e%e8%b0%83%e5%88%b6" class="header-mark"></a>编码与调制</h3><ul>
+<li>
+<p>消息（文字、图片、音视频等） =&gt; 数据（运送消息的实体，计算机处理二进制数据） =&gt; 电信号（数据的电磁表现） =&gt; 基带信号（信源发出的原始信号，分为两类，数字基带信号，如CPU与内存间传输的信号、模拟系带信号，如麦克风接收到信号后产生的音频信号）</p>
+</li>
+<li>
+<p>信号需要在信道中传输，有两种：数字信道和模拟信道</p>
+</li>
+<li>
+<p>不改变信号性质，仅对数字基带信号的波形进行变换，成为<strong>编码</strong>，产生的信号仍旧为数字信号，在数字信道中传输，如以太网使用的曼彻斯特编码、4B/5B编码、8B/10B编码</p>
+</li>
+<li>
+<p>将数字信号搬移到较高的频段，并转换为模拟信号的过程，成为<strong>调制</strong>；调制后产生的信号为模拟信号，在模拟信道中传输，如WiFi</p>
+<center>
+<a class="lightgallery" href="/image/image-20250618023123-7uylcwr.png" title="/image/image-20250618023123-7uylcwr.png" data-thumbnail="/image/image-20250618023123-7uylcwr.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250618023123-7uylcwr.png"
+              srcset="/image/image-20250618023123-7uylcwr.png, /image/image-20250618023123-7uylcwr.png 1.5x, /image/image-20250618023123-7uylcwr.png 2x"
+              
+              alt="/image/image-20250618023123-7uylcwr.png" height="90%"  width="90%" >
+      </a>
+</center>
+</li>
+<li>
+<p><strong>码元</strong>：在使用时间域的波形标识数字信号时，代表不同离散数值的<strong>基本波形</strong></p>
+<ul>
+<li><a class="lightgallery" href="/image/image-20250618023240-41kn6tj.png" title="/image/image-20250618023240-41kn6tj.png" data-thumbnail="/image/image-20250618023240-41kn6tj.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250618023240-41kn6tj.png"
+            srcset="/image/image-20250618023240-41kn6tj.png, /image/image-20250618023240-41kn6tj.png 1.5x, /image/image-20250618023240-41kn6tj.png 2x"
+            
+            alt="/image/image-20250618023240-41kn6tj.png" height="40%"  width="40%" >
+    </a></li>
+</ul>
+</li>
+<li>
+<p>传输媒体并不等同于传输信道</p>
+<ul>
+<li>单工传输时，传输媒体中只包含一个信道，可以是发送信道，也可以是接收信道；在双工传输时，传输媒体中包含两个信道</li>
+<li>在使用信道复用技术时，传输媒体中还可以出现超过2个的信道</li>
+</ul>
+</li>
+</ul>
+<h4 id="常用编码" class="headerLink">
+    <a href="#%e5%b8%b8%e7%94%a8%e7%bc%96%e7%a0%81" class="header-mark"></a>常用编码：</h4><ul>
+<li><strong><u-b>不归零编码</u-b></strong>：在信号发送的全部时间里，不存在为零电平的时刻，整电平代表1，负电平代表0，但其需要严格同步时钟作为节拍器来判断有多少个连续信号；在计算机网络中不采用这类编码，因为宁愿传输数据也不要时钟信号</li>
+<li><strong><u-b>归零编码</u-b></strong>：每个码元结束之后都需要归零，所以接收方只需要在信号归零后开始采样就可以了，相当于把时钟信息编码到了归零信号中，形成<u>自同步</u>到特点，但是数据带宽中大部份都用来归零了，效率太低</li>
+<li><strong><u-b>曼彻斯特编码</u-b></strong>：在每个码元的中间时刻，发生数据的跳变，这个时候负跳变表示1，正跳变表示0；即是说，码元中间时刻的跳变既是时钟也是数据</li>
+<li><strong><u-b>差分曼彻斯特编码</u-b></strong>：在每个码元的中间时刻都会发生跳变，但是此时跳变仅表示时钟，而在码元<u>开始时刻</u>的电平是否变化表示信号，效率高，常用于高速传输</li>
+</ul>
+<center>  
+<a class="lightgallery" href="/image/image-20250618024427-r6u6ijd.png" title="/image/image-20250618024427-r6u6ijd.png" data-thumbnail="/image/image-20250618024427-r6u6ijd.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250618024427-r6u6ijd.png"
+            srcset="/image/image-20250618024427-r6u6ijd.png, /image/image-20250618024427-r6u6ijd.png 1.5x, /image/image-20250618024427-r6u6ijd.png 2x"
+            
+            alt="/image/image-20250618024427-r6u6ijd.png" height="80%"  width="80%" >
+    </a>
+</center>
+<ul>
+<li>
+<p>习题</p>
+<a class="lightgallery" href="/image/image-20250618024622-x1mwuof.png" title="/image/image-20250618024622-x1mwuof.png" data-thumbnail="/image/image-20250618024622-x1mwuof.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250618024622-x1mwuof.png"
+              srcset="/image/image-20250618024622-x1mwuof.png, /image/image-20250618024622-x1mwuof.png 1.5x, /image/image-20250618024622-x1mwuof.png 2x"
+              
+              alt="/image/image-20250618024622-x1mwuof.png" height="70%"  width="70%" >
+      </a>
+<ul>
+<li>10表示带宽为10比特/秒，Base表示基带传输，T表示双绞线，这种以太网使用曼彻斯特编码（中间时刻跳变）</li>
+<li>正跳变表示1还是0，其实是不确定的，可以自行假设</li>
+</ul>
+</li>
+</ul>
+<h4 id="基本的调制方法" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e7%9a%84%e8%b0%83%e5%88%b6%e6%96%b9%e6%b3%95" class="header-mark"></a>基本的调制方法</h4><ul>
+<li>
+<p>信源的原始数字信号，需要将其调制为可以在模拟信道中传输的模拟信号</p>
+</li>
+<li>
+<p>可以使用调频、调幅、调相三种基本方法来表示不同信息</p>
+<a class="lightgallery" href="/image/image-20250618024848-r3huxpi.png" title="/image/image-20250618024848-r3huxpi.png" data-thumbnail="/image/image-20250618024848-r3huxpi.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250618024848-r3huxpi.png"
+              srcset="/image/image-20250618024848-r3huxpi.png, /image/image-20250618024848-r3huxpi.png 1.5x, /image/image-20250618024848-r3huxpi.png 2x"
+              
+              alt="/image/image-20250618024848-r3huxpi.png" height="70%"  width="70%" >
+      </a>
+<ul>
+<li>调频是使用不同频率的波来表示比特</li>
+<li>调相是观察特定时间节点时的相位（波要开始上升还是下降）</li>
+<li>使用基本调制方法，一个码元只能包含1个比特的信息</li>
+</ul>
+</li>
+<li>
+<p>混合调制可以在一个码元内表示更多的数字编码信息</p>
+<ul>
+<li>
+<p>频率和相位是相关的，频率是相位的时间变化率，因而每次只能调制其中的一个</p>
+</li>
+<li>
+<p>通常情况下，相位和振幅可以结合起来一起调制，称为<strong>正交振幅调制</strong> QAM</p>
+</li>
+<li>
+<p>举例，QAM-16，可以调制出12种相位，每种相位有1或2种振幅可选</p>
+<ul>
+<li>其码元表示如下左图</li>
+<li>即其可以调制出16种码元（16种波形），因而每个码元可以表示4个比特</li>
+<li>每个码元与4个比特之间的关系并不可以随便定义，需要确保每相邻的两个码元之间只有1位数字不同，否则可能会有较高解析错误的风险，西药使用<strong>格雷码</strong></li>
+</ul>
+<p><a class="lightgallery" href="/image/image-20250619024822-j19wb1b.png" title="/image/image-20250619024822-j19wb1b.png" data-thumbnail="/image/image-20250619024822-j19wb1b.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250619024822-j19wb1b.png"
+                srcset="/image/image-20250619024822-j19wb1b.png, /image/image-20250619024822-j19wb1b.png 1.5x, /image/image-20250619024822-j19wb1b.png 2x"
+                
+                alt="/image/image-20250619024822-j19wb1b.png" height="30%"  width="30%" >
+        </a>
+<a class="lightgallery" href="/image/image-20250619025038-lqm7agz.png" title="/image/image-20250619025038-lqm7agz.png" data-thumbnail="/image/image-20250619025038-lqm7agz.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250619025038-lqm7agz.png"
+                srcset="/image/image-20250619025038-lqm7agz.png, /image/image-20250619025038-lqm7agz.png 1.5x, /image/image-20250619025038-lqm7agz.png 2x"
+                
+                alt="/image/image-20250619025038-lqm7agz.png" height="30%"  width="30%" >
+        </a>
+<a class="lightgallery" href="/image/image-20250619025058-4hfiub2.png" title="/image/image-20250619025058-4hfiub2.png" data-thumbnail="/image/image-20250619025058-4hfiub2.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250619025058-4hfiub2.png"
+                srcset="/image/image-20250619025058-4hfiub2.png, /image/image-20250619025058-4hfiub2.png 1.5x, /image/image-20250619025058-4hfiub2.png 2x"
+                
+                alt="/image/image-20250619025058-4hfiub2.png" height="30%"  width="30%" >
+        </a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="信道的极限容量" class="headerLink">
+    <a href="#%e4%bf%a1%e9%81%93%e7%9a%84%e6%9e%81%e9%99%90%e5%ae%b9%e9%87%8f" class="header-mark"></a>信道的极限容量</h3><ul>
+<li>信号在传输过程种会受到各种因素的影响，如果印象不大还可以解析，但如果失真严重，就不能够恢复原有信息，称为<strong>码间串扰</strong>
+<center>  
+<a class="lightgallery" href="/image/image-20250619025312-75x5ffc.png" title="/image/image-20250619025312-75x5ffc.png" data-thumbnail="/image/image-20250619025312-75x5ffc.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250619025312-75x5ffc.png"
+              srcset="/image/image-20250619025312-75x5ffc.png, /image/image-20250619025312-75x5ffc.png 1.5x, /image/image-20250619025312-75x5ffc.png 2x"
+              
+              alt="/image/image-20250619025312-75x5ffc.png" height="60%"  width="60%" >
+      </a>
+</center>
+</li>
+<li>失真的因素
+<ul>
+<li>码元的传输速率</li>
+<li>信号的传输距离</li>
+<li>噪声干扰</li>
+<li>媒体的传输质量</li>
+</ul>
+</li>
+</ul>
+<h4 id="奈氏准则那奎斯特" class="headerLink">
+    <a href="#%e5%a5%88%e6%b0%8f%e5%87%86%e5%88%99%e9%82%a3%e5%a5%8e%e6%96%af%e7%89%b9" class="header-mark"></a>奈氏准则（那奎斯特）</h4><ul>
+<li>在假定的理想条件下，为了避免码间串扰，码元传输速率是有上限的</li>
+<li>理想低通信道的最高码元传输速率 = 2 W Baud = 2W 码元/秒</li>
+<li>理想带通信道的最高码元传输速率 = W Baud = W 码元/秒</li>
+<li>其中，W指信号带宽，单位为Hz；Baud读作波特，即码元/秒</li>
+<li>码元传输速率又称为波特率、调制速率、波形速率或符号速率</li>
+<li>与比特率的关系
+<ul>
+<li>一个码元只携带一个比特信息时，波特率和比特率在数值上是相等的</li>
+<li>当1个码元携带n比特信息量时，波特率转化成比特率时需要乘以n</li>
+<li>要提高信息的传输速率（比特率），就必须提高每个码元携带的信息量，采用多元制（如混合调制）</li>
+</ul>
+</li>
+<li>实际信道可传输的码元速率，要明显低于奈氏准则给出的上限数值</li>
+<li>实际上，信道的极限传输速率并不是单独提高每个码元所携带信息就可以解决的，其仍旧受限于信号在信道传输时的信噪比（影响接收端对码元的识别）</li>
+</ul>
+<h4 id="香农公式" class="headerLink">
+    <a href="#%e9%a6%99%e5%86%9c%e5%85%ac%e5%bc%8f" class="header-mark"></a>香农公式</h4><ul>
+<li>带宽受限且有高斯白噪声干扰 信道（1948年），极限信息传输速率可以计算如下
+<ul>
+<li>$$
+c=W\times log_2 (1+ \frac SN)
+$$</li>
+<li>c是极限传输速率（b/s），W为信道带宽（Hz），S为信号内所有信号的平均功率，N为信道内高斯噪声的功率,S/N为信噪比</li>
+<li>信噪比越大，信息的极限传输速率越高</li>
+<li>在实际信道传输中，传输速率会比改公式给出低不少，因为还有其他的信号损伤，如脉冲干扰、传输中衰减或失真</li>
+<li>自香农公式发表以后，各种新的信号处理和调制方法陆续出现，目的都是为了尽可能地接近香农公式给出的极限速率极限</li>
+<li>综合来看，在信道带宽一定的情况下，要提高传输速率，就必须采用多元制，提高信道的信噪比</li>
+</ul>
+</li>
+</ul>
+<h4 id="习题" class="headerLink">
+    <a href="#%e4%b9%a0%e9%a2%98" class="header-mark"></a>习题</h4><ul>
+<li>
+<a class="lightgallery" href="/image/image-20250619204123-wdnbpk6.png" title="/image/image-20250619204123-wdnbpk6.png" data-thumbnail="/image/image-20250619204123-wdnbpk6.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619204123-wdnbpk6.png"
+            srcset="/image/image-20250619204123-wdnbpk6.png, /image/image-20250619204123-wdnbpk6.png 1.5x, /image/image-20250619204123-wdnbpk6.png 2x"
+            
+            alt="/image/image-20250619204123-wdnbpk6.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>答案为D</li>
+</ul>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250619204238-q3swqzo.png" title="/image/image-20250619204238-q3swqzo.png" data-thumbnail="/image/image-20250619204238-q3swqzo.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619204238-q3swqzo.png"
+            srcset="/image/image-20250619204238-q3swqzo.png, /image/image-20250619204238-q3swqzo.png 1.5x, /image/image-20250619204238-q3swqzo.png 2x"
+            
+            alt="/image/image-20250619204238-q3swqzo.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>奈氏准则可知，最高码元传输速率为2×3k = 6k Baud</li>
+<li>四相位QAM意味着可以调制出16种不同的基本波形（即每个码元4个比特）</li>
+<li>故最大传输速率为=6k（码元/秒）×4（比特/码元）=24kbps</li>
+</ul>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250619204644-yf7ce81.png" title="/image/image-20250619204644-yf7ce81.png" data-thumbnail="/image/image-20250619204644-yf7ce81.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619204644-yf7ce81.png"
+            srcset="/image/image-20250619204644-yf7ce81.png, /image/image-20250619204644-yf7ce81.png 1.5x, /image/image-20250619204644-yf7ce81.png 2x"
+            
+            alt="/image/image-20250619204644-yf7ce81.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>答案为B</li>
+<li>四相位调制说明，每码元2个比特</li>
+<li>数据传输速率 = 波特率 × 码元容量</li>
+</ul>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250619204806-qz0fjwz.png" title="/image/image-20250619204806-qz0fjwz.png" data-thumbnail="/image/image-20250619204806-qz0fjwz.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619204806-qz0fjwz.png"
+            srcset="/image/image-20250619204806-qz0fjwz.png, /image/image-20250619204806-qz0fjwz.png 1.5x, /image/image-20250619204806-qz0fjwz.png 2x"
+            
+            alt="/image/image-20250619204806-qz0fjwz.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>信噪比（dB）= 10 × log10（S/N）</li>
+<li>30 = 10×log10(S/N)，可知S/N=1000</li>
+<li>c=8k × log2(1+1000)=80 kbps</li>
+<li>实际为40 kbps</li>
+</ul>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250619205139-udbd8v1.png" title="/image/image-20250619205139-udbd8v1.png" data-thumbnail="/image/image-20250619205139-udbd8v1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619205139-udbd8v1.png"
+            srcset="/image/image-20250619205139-udbd8v1.png, /image/image-20250619205139-udbd8v1.png 1.5x, /image/image-20250619205139-udbd8v1.png 2x"
+            
+            alt="/image/image-20250619205139-udbd8v1.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>极限速率为log2(1+1000) W = 9.967W</li>
+<li>无噪声情况下，极限传输速率为2W</li>
+<li>故，每个码元需要携带至少5个比特的信息</li>
+</ul>
+</li>
+</ul>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
