@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="250829 闭包 问题引入 Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一 简单而言，闭包是可以捕获其所" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_04/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-08-28T00:17:49+08:00" />
@@ -17,7 +17,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="250829 闭包 问题引入 Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一 简单而言，闭包是可以捕获其所"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_04\/"
-        },"genre": "posts","wordcount":  0 ,
+        },"genre": "posts","wordcount":  2176 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/rust\/rust_note_04\/","datePublished": "2025-08-28T00:17:49+08:00","dateModified": "2025-08-28T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -119,15 +119,361 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><i class="far fa-list-alt fa-fw"></i>Rust语言编程笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-28">2025-08-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-28">2025-08-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 0 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 0 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-08-28">2025-08-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-08-28">2025-08-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2176 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#250829-闭包">250829 闭包</a>
+          <ul>
+            <li><a href="#问题引入">问题引入</a></li>
+            <li><a href="#闭包的定义">闭包的定义</a></li>
+            <li><a href="#捕获上下文环境">捕获上下文环境</a></li>
+            <li><a href="#move关键字">move关键字</a></li>
+          </ul>
+        </li>
+        <li><a href="#250829-迭代器">250829 迭代器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="250829-闭包" class="headerLink">
+    <a href="#250829-%e9%97%ad%e5%8c%85" class="header-mark"></a>250829 闭包</h3><h4 id="问题引入" class="headerLink">
+    <a href="#%e9%97%ae%e9%a2%98%e5%bc%95%e5%85%a5" class="header-mark"></a>问题引入</h4><ul>
+<li>
+<p>Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一</p>
+</li>
+<li>
+<p>简单而言，闭包是<u-r>可以捕获其所在环境的匿名函数</u-r>，主要有如下几个特征：是匿名函数，可以保存为变量或作为参数，可以在一个地方创建另一个上下文中调用，可以从其定义的作用域捕获值</p>
+</li>
+<li>
+<p>看如下例子，要求程序根据用户的健康参数动态地生成运动推荐，在该实现中，假定计算过程需要几秒钟时间才能完成，程序当下的目标是不让用户发生不必要的等待，<u-b>仅在必要时调用该算法一次</u-b></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">time</span>::<span class="n">Duration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">simulated_expensive_calculation</span><span class="p">(</span><span class="n">intensity</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;calculating slowly...&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">thread</span>::<span class="n">sleep</span><span class="p">(</span><span class="n">Duration</span>::<span class="n">from_secs</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">intensity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">generate_workout</span><span class="p">(</span><span class="n">intensity</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">random_number</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// let expensive_result = simulated_expensive_calculation(intensity);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">intensity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s">&#34;Today, do </span><span class="si">{}</span><span class="s"> pushups!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">simulated_expensive_calculation</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s">&#34;Next, do </span><span class="si">{}</span><span class="s"> situps!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">simulated_expensive_calculation</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">random_number</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Take a break today! Remember to stay hydrated!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;Today, run for </span><span class="si">{}</span><span class="s"> minutes!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">simulated_expensive_calculation</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>针对该代码，最常见的处理思路是用一个变量，将这个函数在最开始运行一次，并将结果保存起来。但这样同样会有问题，就是说，有一种情况下，程序可以根本不执行该程序，这样做并不能完美达成仅必要时执行的目的。如果有一种方法，先把函数定义好，但不执行，只有等到真正需要这个结果时才执行，就可以解决这个问题。</p>
+</li>
+<li>
+<p>如果可以有这样一种结构体，其可以持有一个用户输入的、可以变化的函数，并且当该函数的调用一次后可以缓存其结果，这样就可以做到只在需要结果时，执行一次并缓存结果，下次使用只需要判断这个值是否存在就可以。这个模式叫做记忆化（memoization）或延迟计算（lazy evaluation）。这种解决思路就需要用到闭包可以作为参数，输入并保存在结构体中的特点。</p>
+</li>
+</ul>
+<h4 id="闭包的定义" class="headerLink">
+    <a href="#%e9%97%ad%e5%8c%85%e7%9a%84%e5%ae%9a%e4%b9%89" class="header-mark"></a>闭包的定义</h4><ul>
+<li>
+<p>闭包的定义方法如下<code>let res = |parameters|{function body};</code>，这里等号左边为函数的执行结果，等号的右边为一个匿名函数，参数用<code>|</code>包裹，但是不强制要求标注参数和返回值的类型，其通常很短，在狭小的上下文中工作，编译器通常能推断出类型。此外，其存在与变量中，甚至不需要命名，就不会暴露给外部用户。函数体的写法和其他地方是一样的。在当下函数的定义阶段，其并不会执行，<code>res</code>值为暂时为函数的定义，其只有在遇到<code>(arguements)</code>时才会执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span>  <span class="nf">add_1</span><span class="w"> </span><span class="p">(</span><span class="n">x</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">add_2</span><span class="o">=|</span><span class="n">x</span><span class="w"> </span>:<span class="kt">u32</span><span class="o">|</span><span class="w"> </span>-&gt; <span class="kt">u32</span> <span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">add_3</span><span class="o">=|</span><span class="n">x</span><span class="o">|</span><span class="w">             </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">add_4</span><span class="o">=|</span><span class="n">x</span><span class="o">|</span><span class="w">               </span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="w">  </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>需要注意的时，闭包的定义最终只会为参数/返回值推断出唯一具体的类型。如果第3、4行都不存在，即闭包未被调用时，函数会报错，因为编译器无法推断出其类型；当程序读到第3行时，闭包的参数类型就被界定为字符串类型，第4行会报错。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">example_closure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">example_closure</span><span class="p">(</span><span class="nb">String</span>::<span class="n">from</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// let n = example_closure(5); //会报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>另外，对结构体的定义需要知道所有字段的类型，也同样需要指明闭包的类型。每个闭包实例都有自己唯一的匿名类型，即使两个闭包签名完全一样，其类型也是不一样的。因此，为了能够在结构体中存储闭包，就需要使用到泛型以及Trait Bound。在标准库中提供了一些<code>Fn Trait</code>，所有的闭包都需要至少实现其中的一种（<code>Fn</code>、<code>FnMut</code>、<code>FnOnce</code>）。</p>
+</li>
+<li>
+<p>上面问题的代码可以做如下修改：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">thread</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">time</span>::<span class="n">Duration</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">struct</span> <span class="nc">Cacher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">T</span>: <span class="nb">Fn</span><span class="p">(</span><span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">calculation</span>: <span class="nc">T</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">value</span>: <span class="nb">Option</span><span class="o">&lt;</span><span class="kt">u32</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Cacher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">T</span>: <span class="nb">Fn</span><span class="p">(</span><span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">new</span><span class="p">(</span><span class="n">calculation</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Cacher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Cacher</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">calculation</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">value</span>: <span class="nb">None</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">fn</span> <span class="nf">value</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u32</span>  <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nb">Some</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nb">None</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">calculation</span><span class="p">)(</span><span class="n">arg</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">v</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">fn</span> <span class="nf">generate_workout</span><span class="p">(</span><span class="n">intensity</span>: <span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">random_number</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">expensive_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cacher</span>::<span class="n">new</span><span class="p">(</span><span class="o">|</span><span class="n">num</span><span class="o">|</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;calculating slowly...&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">thread</span>::<span class="n">sleep</span><span class="p">(</span><span class="n">Duration</span>::<span class="n">from_secs</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">intensity</span><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">intensity</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s">&#34;Today, do </span><span class="si">{}</span><span class="s"> pushups!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">expensive_result</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="s">&#34;Next, do </span><span class="si">{}</span><span class="s"> situps!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">expensive_result</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">random_number</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Take a break today! Remember to stay hydrated!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="fm">println!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;Today, run for </span><span class="si">{}</span><span class="s"> minutes!&#34;</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">expensive_result</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>代码在修改后已经可以达成最初的目的了，但是仍旧存在问题。当前的缓存器（Cacher）实例只使用第一次调用时的参数，并只得到一个结果，并且输入的类型和输出的类型需要一致。可以这样解决，</p>
+<ul>
+<li>将结果value定义为一个HashMap，其根据输入的参数来获取结果，当结果不存在时再进行计算</li>
+<li>输入和输出也可以使用两个不同的泛型表示方法来实现拓展</li>
+</ul>
+</li>
+</ul>
+<h4 id="捕获上下文环境" class="headerLink">
+    <a href="#%e6%8d%95%e8%8e%b7%e4%b8%8a%e4%b8%8b%e6%96%87%e7%8e%af%e5%a2%83" class="header-mark"></a>捕获上下文环境</h4><ul>
+<li>
+<p>闭包的另一个特点是其可以访问其定义位置作用域内的变量，而其他常规函数则没有这个能力。看如下例子，当需要判断环境中某个特定值作为函数定义的一部分时，上下文环境中的变量是不可以进入到函数定义作用域内的。需要注意的是，闭包在捕获周围变量时，是会有额外内存开销的，这个也跟普通函数不同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">equal_to_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">|</span><span class="n">z</span><span class="o">|</span><span class="w"> </span><span class="n">z</span><span class="o">==</span><span class="n">x</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// fn equal_to_?(z: i32) -&gt; bool { z==x? }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">assert!</span><span class="p">(</span><span class="n">equal_to_x</span><span class="p">(</span><span class="n">y</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>闭包从周围环境中捕获值的三种方式：</p>
+<ul>
+<li>取得所有权 <code>FnOnce</code>：即闭包可以获得定义处周围变量的所有权，并将其消耗掉</li>
+<li>可变借用 <code>FnMut</code>：其从环境中借用值，且可修改</li>
+<li>不可变借用 <code>Fn</code>：从环境中借用值，但不可修改</li>
+</ul>
+</li>
+<li>
+<p>在创建闭包时，通过闭包对环境值的使用，Rust就能推断出具体是使用了哪个Trait；具体而言，所有必要都至少会被调用一次，因而一定都实现了<code>FnOnce</code>，余下的，没有移动捕获变量的实现了<code>FnMut</code>，无需可变访问捕获变量的闭包则实现了<code>Fn</code>。其三者存在包含关系如下：<code>(FnOnce(FnMut(Fn)))</code>（不理解先记下来）</p>
+</li>
+</ul>
+<h4 id="move关键字" class="headerLink">
+    <a href="#move%e5%85%b3%e9%94%ae%e5%ad%97" class="header-mark"></a>move关键字</h4><ul>
+<li>
+<p>在参数列表前使用<code>move</code>关键字，可以强制闭包取得它所使用的环境值的所有权。当将闭包传递给新线程以移动数据使其归新线程所有时，这个技术就很有用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vex!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">equal_to_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="o">|</span><span class="n">z</span><span class="o">|</span><span class="w"> </span><span class="n">z</span><span class="o">==</span><span class="n">x</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;can&#39;t use x here&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="fm">assert!</span><span class="p">(</span><span class="n">equal_to_x</span><span class="p">(</span><span class="n">y</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>当需要指定<code>Fn</code>Trait Bound时，最好先使用<code>Fn</code>，然后编译器会告诉你能不能行，或者需要其他类型的</p>
+</li>
+</ul>
+<h3 id="250829-迭代器" class="headerLink">
+    <a href="#250829-%e8%bf%ad%e4%bb%a3%e5%99%a8" class="header-mark"></a>250829 迭代器</h3></div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
