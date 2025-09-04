@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "E:/Blog/JWangL5.github.io/CellBrainBlog",
+	"sourceRoot": "L:/Blog/JWangL5.github.io/CellBrainBlog",
 	"sources": [
 		"themes/DoIt/assets/css/style.scss",
 		"themes/DoIt/assets/css/_variables.scss",

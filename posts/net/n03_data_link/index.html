@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 03. 数据链路层（以太网MAC帧、PPP协议） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点 数据链路（Data Lin" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n03_data_link/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-06-19T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点 数据链路（Data Lin"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/"
-        },"genre": "posts","wordcount":  0 ,
+        },"genre": "posts","wordcount":  5238 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/","datePublished": "2025-06-19T00:00:00+08:00","dateModified": "2025-06-19T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,9 +118,619 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 0 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 0 分钟&nbsp;</div>
-        </div><div class="content" id="content"></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5238 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="250619-数据链路层" class="headerLink">
+    <a href="#250619-%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82" class="header-mark"></a>250619 数据链路层</h3><h4 id="在网络体系结构中的地位" class="headerLink">
+    <a href="#%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e4%b8%ad%e7%9a%84%e5%9c%b0%e4%bd%8d" class="header-mark"></a>在网络体系结构中的地位</h4><center> <a class="lightgallery" href="/image/image-20250619210110-f1nlq2y.png" title="/image/image-20250619210110-f1nlq2y.png" data-thumbnail="/image/image-20250619210110-f1nlq2y.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250619210110-f1nlq2y.png"
+            srcset="/image/image-20250619210110-f1nlq2y.png, /image/image-20250619210110-f1nlq2y.png 1.5x, /image/image-20250619210110-f1nlq2y.png 2x"
+            
+            alt="/image/image-20250619210110-f1nlq2y.png" height="80%"  width="80%" >
+    </a> </center>
+<ul>
+<li>链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点</li>
+<li>数据链路（Data Link）是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路</li>
+<li>数据链路层以<strong>帧</strong>为单位传输和处理数据</li>
+</ul>
+<h4 id="三个重要问题" class="headerLink">
+    <a href="#%e4%b8%89%e4%b8%aa%e9%87%8d%e8%a6%81%e9%97%ae%e9%a2%98" class="header-mark"></a>三个重要问题</h4><h5 id="封装成帧" class="headerLink">
+    <a href="#%e5%b0%81%e8%a3%85%e6%88%90%e5%b8%a7" class="header-mark"></a>封装成帧</h5><ul>
+<li>
+<p>将上层交付的网络层数据单元添加数据链路层协议首部（帧头）和帧尾的操作称为封装成帧</p>
+</li>
+<li>
+<p>其目的是为了在链路上以帧为单位传送数据</p>
+</li>
+<li>
+<p>如以太网第二版本的MAC帧格式如下</p>
+<a class="lightgallery" href="/image/image-20250619210611-hwshttl.png" title="/image/image-20250619210611-hwshttl.png" data-thumbnail="/image/image-20250619210611-hwshttl.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250619210611-hwshttl.png"
+              srcset="/image/image-20250619210611-hwshttl.png, /image/image-20250619210611-hwshttl.png 1.5x, /image/image-20250619210611-hwshttl.png 2x"
+              
+              alt="/image/image-20250619210611-hwshttl.png" height="50%"  width="50%" >
+      </a>
+</li>
+<li>
+<p>如点对点协议PPP协议</p>
+<a class="lightgallery" href="/image/image-20250619211921-z34p3b8.png" title="/image/image-20250619211921-z34p3b8.png" data-thumbnail="/image/image-20250619211921-z34p3b8.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250619211921-z34p3b8.png"
+              srcset="/image/image-20250619211921-z34p3b8.png, /image/image-20250619211921-z34p3b8.png 1.5x, /image/image-20250619211921-z34p3b8.png 2x"
+              
+              alt="/image/image-20250619211921-z34p3b8.png" height="50%"  width="50%" >
+      </a>
+</li>
+</ul>
+<ul>
+<li>如何从比特流种提取出帧
+<ul>
+<li>使用帧头和帧尾来定界（<strong>1字节的标志字段</strong>，用于帧定界）</li>
+<li>不是所有的帧都有定界符，如MAC格式
+<ul>
+<li>MAC帧会在物理层添加<u-r>8字节的前导码</u-r>，然后再将其转化为电信号发送</li>
+<li>前导码的前7个字节为前同步码，用于接收方的时钟同步，随后1字节为帧开始定界符，表示随后紧跟MAC帧</li>
+<li>另外，以太网还规定了帧间间隔时间为96比特的发送时间，因此MAC帧并不需要帧结束定界符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>透明传输是指数据链路层<u-r>对上层交付的传输数据没有任何限制</u-r>，就好像数据链路层不存在一样</p>
+<ul>
+<li>
+<p>但实际上，<strong>数据中不能包含帧定界符号</strong>，否则会扰乱接收方对帧的开始、结束识别</p>
+</li>
+<li>
+<p>为了实现透明传输，解决方法是在封装过程中，对数据进行扫描，<strong>每发现一个定界符或转义字符，就在其前面插入一个转义字符</strong>，确保能够正确识别</p>
+</li>
+<li>
+<p>转义字符为特殊的控制字符，占1个字节，十进制数为27</p>
+</li>
+<li>
+<p>面向字节的物理链路，使用字节填充（或字符填充）的方法实现透明传输</p>
+</li>
+<li>
+<p>面向比特的物理链路使用比特填充的方法实现透明传输，如每五个连续1之后就自动插入0</p>
+</li>
+<li>
+<p>例如下练习</p>
+<a class="lightgallery" href="/image/image-20250619213252-wzgiu95.png" title="/image/image-20250619213252-wzgiu95.png" data-thumbnail="/image/image-20250619213252-wzgiu95.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250619213252-wzgiu95.png"
+                srcset="/image/image-20250619213252-wzgiu95.png, /image/image-20250619213252-wzgiu95.png 1.5x, /image/image-20250619213252-wzgiu95.png 2x"
+                
+                alt="/image/image-20250619213252-wzgiu95.png" height="60%"  width="60%" >
+        </a>
+<ul>
+<li>高级数据链路控制协议HDLC采用帧头和帧尾中标志字段作为帧定界符，其值为01111110</li>
+<li>HDLC为了实现透明传输，采用零比特填充法（每5个连续1后面插入1个比特0）</li>
+<li>答案为A</li>
+</ul>
+</li>
+<li>
+<p>为了提高帧的传输效率，应当尽可能使帧的数据部分长度尽可能大一些（远大于帧头和帧尾长度）</p>
+</li>
+<li>
+<p>但考虑到实际差错控制，每一种数据链路层协议也都规定了帧的数据部分长度上限，即<u-r>最大传送单元MTU（Maximum Transfer Unit）</u-r></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="差错检测" class="headerLink">
+    <a href="#%e5%b7%ae%e9%94%99%e6%a3%80%e6%b5%8b" class="header-mark"></a>差错检测</h5><ul>
+<li>
+<p>帧在传输过程中可能出现误码，需要接收端能够识别和检测</p>
+<ul>
+<li>比特流在传输过程中可能发生差错，1变为0或0变为1，这称为<strong>比特差错</strong></li>
+<li>一段时间内，传输错误的比特占四瓶传输比特总数的比例称为误码率BER（Bit Error Rate）</li>
+</ul>
+</li>
+<li>
+<p><strong>检错码</strong>是封装在帧尾的一个信息（根据数据和检错算法计算得到的一个码），如在以太网v2的MAC帧的帧尾种，包含了<strong>4字节的帧检验序列FCS</strong>，用于接收端检测是否存在误码（PPP协议的FCS为2字节）</p>
+</li>
+<li>
+<p>奇偶检验</p>
+<ul>
+<li>在待发送数据后面添加1位奇偶校验位，使整个数据（包含所添加的校验位在内）中“1”的个数为奇数（奇校验）或偶数（偶校验）</li>
+<li><a class="lightgallery" href="/image/image-20250620041056-fs1if5e.png" title="/image/image-20250620041056-fs1if5e.png" data-thumbnail="/image/image-20250620041056-fs1if5e.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620041056-fs1if5e.png"
+            srcset="/image/image-20250620041056-fs1if5e.png, /image/image-20250620041056-fs1if5e.png 1.5x, /image/image-20250620041056-fs1if5e.png 2x"
+            
+            alt="/image/image-20250620041056-fs1if5e.png" height="90%"  width="90%" >
+    </a></li>
+<li>如果有偶数个位发生误码，则不能检查出误码（漏检）</li>
+</ul>
+</li>
+<li>
+<p>循环冗余校验CRC（Cyclic Redundancy Check）</p>
+<ul>
+<li>收发双方约定好一个生成多项式$G(X)$</li>
+<li>发送方基于待发送数据和生成多项式计算出差错检测码（冗余码），将其添加到待传输数据的后面一起传输</li>
+<li>接受方通过生成多项式来计算收到的数据是否产生了误码</li>
+<li>比如
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250620041456-chstdvx.png" title="image" data-thumbnail="/image/image-20250620041456-chstdvx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620041456-chstdvx.png"
+            srcset="/image/image-20250620041456-chstdvx.png, /image/image-20250620041456-chstdvx.png 1.5x, /image/image-20250620041456-chstdvx.png 2x"
+            
+            alt="/image/image-20250620041456-chstdvx.png" height="466"  width="1436" >
+    </a></figure>​</p>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250620041527-qkbdmfy.png" title="/image/image-20250620041527-qkbdmfy.png" data-thumbnail="/image/image-20250620041527-qkbdmfy.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620041527-qkbdmfy.png"
+            srcset="/image/image-20250620041527-qkbdmfy.png, /image/image-20250620041527-qkbdmfy.png 1.5x, /image/image-20250620041527-qkbdmfy.png 2x"
+            
+            alt="/image/image-20250620041527-qkbdmfy.png" height="70%"  width="70%" >
+    </a>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250620041756-panlrwq.png" title="/image/image-20250620041756-panlrwq.png" data-thumbnail="/image/image-20250620041756-panlrwq.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620041756-panlrwq.png"
+            srcset="/image/image-20250620041756-panlrwq.png, /image/image-20250620041756-panlrwq.png 1.5x, /image/image-20250620041756-panlrwq.png 2x"
+            
+            alt="/image/image-20250620041756-panlrwq.png" height="80%"  width="80%" >
+    </a>
+</li>
+<li>
+<p>图上的⊕表示<strong>异或</strong>运算，即相同时为0，不同时为1</p>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250620041832-3l7c8bx.png" title="/image/image-20250620041832-3l7c8bx.png" data-thumbnail="/image/image-20250620041832-3l7c8bx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620041832-3l7c8bx.png"
+            srcset="/image/image-20250620041832-3l7c8bx.png, /image/image-20250620041832-3l7c8bx.png 1.5x, /image/image-20250620041832-3l7c8bx.png 2x"
+            
+            alt="/image/image-20250620041832-3l7c8bx.png" height="80%"  width="80%" >
+    </a>
+</li>
+<li>
+<p>CRC具有很好的检错能力（漏检率非常低），虽然计算比较复杂，但非常利于硬件的实现，因此被广泛应用于数据链路层</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>检错码只能检查是否出错，但不能定位出错误，<strong>无法纠正错误</strong></p>
+<ul>
+<li>如果想要在传输过程中纠正错误，可以使用冗余信息更多的纠错码进行前向纠错，如海明码</li>
+<li>但纠错码的开销比较大，在计算机网络中较少使用</li>
+<li>实际中，计算机网络往往使用检错重传的方式来纠正传输种的差错，或者仅仅丢弃检测到差错的帧，（取决于向上层提供可靠传输服务还是不可靠传输服务）</li>
+</ul>
+</li>
+</ul>
+<h5 id="可靠传输" class="headerLink">
+    <a href="#%e5%8f%af%e9%9d%a0%e4%bc%a0%e8%be%93" class="header-mark"></a>可靠传输</h5><ul>
+<li>接收端在检测出误码之后，不会接受该帧，将其丢弃
+<ul>
+<li>如果数据链路层向上层提供不可靠服务，则在丢弃后不会有其他行为</li>
+<li>但如果数据链路层想上层提供可靠服务，则需要其他措施来确保接收方主机能够重新收到该帧的副本</li>
+</ul>
+</li>
+<li>可靠传输服务是指：想办法实现发送端发送什么，接收端就收到什么
+<ul>
+<li>简单的策略，是接收端发送一个通知帧给发送端，告诉他之前的帧有误码，请重发；发送端接受到之后重发之前的帧即可
+<ul>
+<li>但通知帧仍旧有可能出现误码</li>
+</ul>
+</li>
+<li>一般情况下，有线链路的误码率比较低，为减小开销，并不要求数据链路层向上提供可靠的传输服务，即使出现了误码，可靠传输的问题可以有其上层处理</li>
+<li>但是在无线链路中，其易受干扰，误码率比较高，因此数据链路层必须向上层提供可靠传输服务</li>
+</ul>
+</li>
+<li>比特差错只是传输差错的一种情况，从整个计算机网络体系结构来看，传输差错还包括分组丢失、分组失序以及分组重复（在当前语境下，分组即指代帧）
+<ul>
+<li>路由器将数据丢失</li>
+<li>发送了3个分组，可能由于传输的路径不同，导致3个数据到达的顺序不同</li>
+<li>发送的分组由于某些原因滞留，导致了发送端超时重发，但之后原滞留的分组又到达接收端</li>
+<li>这三种情况一般不会出现在数据链路层，而会出现在其上层</li>
+</ul>
+</li>
+<li>可靠传输不仅仅局限于数据链路层，其他各层均可选择实现可靠传输
+<ul>
+<li><a class="lightgallery" href="/image/image-20250620043304-v0fr4jp.png" title="/image/image-20250620043304-v0fr4jp.png" data-thumbnail="/image/image-20250620043304-v0fr4jp.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250620043304-v0fr4jp.png"
+            srcset="/image/image-20250620043304-v0fr4jp.png, /image/image-20250620043304-v0fr4jp.png 1.5x, /image/image-20250620043304-v0fr4jp.png 2x"
+            
+            alt="/image/image-20250620043304-v0fr4jp.png" height="70%"  width="70%" >
+    </a></li>
+<li>可靠传输的开销和代价比较大，需要根据实际应用选择是否需要可靠传输</li>
+</ul>
+</li>
+</ul>
+<h3 id="可靠传输的三种实现方式" class="headerLink">
+    <a href="#%e5%8f%af%e9%9d%a0%e4%bc%a0%e8%be%93%e7%9a%84%e4%b8%89%e7%a7%8d%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" class="header-mark"></a>可靠传输的三种实现方式</h3><blockquote>
+<p>值得一提的是，这三种协议不仅仅适用于数据传输层，其他层也可以使用同样的思路确保可靠传输）</p>
+</blockquote>
+<h4 id="停止-等待协议-sw" class="headerLink">
+    <a href="#%e5%81%9c%e6%ad%a2-%e7%ad%89%e5%be%85%e5%8d%8f%e8%ae%ae-sw" class="header-mark"></a>停止-等待协议 SW</h4><ul>
+<li>
+<p>收发双方基于互联网传输</p>
+</li>
+<li>
+<a class="lightgallery" href="/image/image-20250621194448-ce14t4t.png" title="/image/image-20250621194448-ce14t4t.png" data-thumbnail="/image/image-20250621194448-ce14t4t.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621194448-ce14t4t.png"
+            srcset="/image/image-20250621194448-ce14t4t.png, /image/image-20250621194448-ce14t4t.png 1.5x, /image/image-20250621194448-ce14t4t.png 2x"
+            
+            alt="/image/image-20250621194448-ce14t4t.png" height="20%"  width="20%" >
+    </a>
+</li>
+<li>
+<p>接受方<strong>每次接受到数据之后都需要进行确认</strong>，在确认无误之后，发送<u-r>确认信息ACK</u-r>给发送方，随后发送方才会继续发送下一个分组数据</p>
+</li>
+<li>
+<p>如果接受方检测数据出现误码，则将数据丢失，且发送报错信息NAK给发送方，要求重新发送该数据</p>
+</li>
+<li>
+<p><p-y>潜在问题1 <strong>超时重传</strong></p-y>：如果数据只是在发送传输过程中丢失，接收方则始终收不到信息并回报确认信息，那么传输则会中断</p>
+<ul>
+<li>为了解决这个问题，发送方可以在发送过一个数据分组时，启动一个超时计时器</li>
+<li>如果到了超时计时器所设定的重传时间，且发送方并没有收到接收方的任何ACK或NAK信息，则重新发送原来的数据分组，这称为<strong>超时重传</strong></li>
+<li><a class="lightgallery" href="/image/image-20250621195027-c9u8w8g.png" title="/image/image-20250621195027-c9u8w8g.png" data-thumbnail="/image/image-20250621195027-c9u8w8g.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621195027-c9u8w8g.png"
+            srcset="/image/image-20250621195027-c9u8w8g.png, /image/image-20250621195027-c9u8w8g.png 1.5x, /image/image-20250621195027-c9u8w8g.png 2x"
+            
+            alt="/image/image-20250621195027-c9u8w8g.png" height="20%"  width="20%" >
+    </a></li>
+<li>一般重传时间选择为<strong>略大于双方通信平均往返时间</strong></li>
+</ul>
+</li>
+<li>
+<p><p-y>潜在问题2 <strong>确认丢失</strong></p-y>：不仅仅发送的数据可能丢失，接收方回传的确认信息也可能丢失，此时会触发发送方的超时重传，接收方会收到重复的数据，这需要接受方对该数据进行辨识和确认</p>
+<ul>
+<li>简单的思路，发送的数据需要带上序号（一个比特就够了），接受方<u-b>只要检测新的数据与原来数据的编号不一致</u-b>即可</li>
+<li><a class="lightgallery" href="/image/image-20250621195417-rc5p6jo.png" title="/image/image-20250621195417-rc5p6jo.png" data-thumbnail="/image/image-20250621195417-rc5p6jo.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621195417-rc5p6jo.png"
+            srcset="/image/image-20250621195417-rc5p6jo.png, /image/image-20250621195417-rc5p6jo.png 1.5x, /image/image-20250621195417-rc5p6jo.png 2x"
+            
+            alt="/image/image-20250621195417-rc5p6jo.png" height="20%"  width="20%" >
+    </a></li>
+</ul>
+</li>
+<li>
+<p><p-y>潜在问题3 <strong>迟到确认</strong></p-y>：既然发送的数据需要编号，回传的确认信息是否有必要编号呢？</p>
+<ul>
+<li><a class="lightgallery" href="/image/image-20250621195703-ah9isr9.png" title="/image/image-20250621195703-ah9isr9.png" data-thumbnail="/image/image-20250621195703-ah9isr9.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621195703-ah9isr9.png"
+            srcset="/image/image-20250621195703-ah9isr9.png, /image/image-20250621195703-ah9isr9.png 1.5x, /image/image-20250621195703-ah9isr9.png 2x"
+            
+            alt="/image/image-20250621195703-ah9isr9.png" height="20%"  width="20%" >
+    </a></li>
+<li>如果确认迟到，则会发生<strong>重复确认</strong>的问题，如果确认信息没有编号，则会让发送端错误地判断确认，此时是有必要给确认信息加上编号的</li>
+<li>但通常而言，对于数据链路层的点对点信道，往返时间比较固定，不会出现确认迟到的问题；因此，<u-b>如果只在数据链路层实现停止-等待协议，可以不用给确认分组编号</u-b></li>
+</ul>
+</li>
+<li>
+<p>小结：</p>
+<ul>
+<li>接收端检测到数据分组有误码时，将其丢弃并等待发送方的超时重传。但对于误码率较高的点对点链路，为使发送方尽早重传，也可给发送方发送<strong>NAK分组（否认分组）</strong></li>
+<li>为了让接收方能够判断所收到的数据分组是否是重复的，需要给数据分组编号。由于停止-等待协议的<u-r>停等特性</u-r>，只需1个比特编号就够了，即编号0和1</li>
+<li>为了让发送方能够判断所收到的ACK分组（确认分组）是否是重复的，需要给ACK分组编号，所用比特数量与数据分组编号所用比特数量一样</li>
+<li>数据链路层一般不会出现ACK分组迟到的情况，因此在数据链路层实现停止-等待协议可以不用给ACK分组编号</li>
+<li>超时计时器设置的重传时间应仔细选择，一般可将重传时间选为略大于“从发送方到接收方的平均往返时间”</li>
+<li>在数据链路层点对点的往返时间比较确定，重传时间比较好设定；然而在运输层，由于端到端往返时间非常不确定，设置合适的重传时间有时并不容易</li>
+</ul>
+</li>
+<li>
+<p>信道利用率：</p>
+<ul>
+<li>
+<p>假设收发双方是直通的信道，该协议可以表示如下</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250621200502-3mriijj.png" title="image" data-thumbnail="/image/image-20250621200502-3mriijj.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621200502-3mriijj.png"
+            srcset="/image/image-20250621200502-3mriijj.png, /image/image-20250621200502-3mriijj.png 1.5x, /image/image-20250621200502-3mriijj.png 2x"
+            
+            alt="/image/image-20250621200502-3mriijj.png" height="474"  width="1362" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>假设信道长度是2000km，数据分组长度是1500B，发送速率为10Mbit/s，忽略$T_A$，其通常远小于$T_D$​</p>
+</li>
+<li>
+<p>此时的信道利用率为</p>
+<ul>
+<li>$$
+U \approx \frac{T_D}{T_D+RTT} = \frac{\frac{1500 \times 8 bit}{10\times 10^6 bit/s}}{\frac{1500 \times 8 bit}{10\times 10^6 bit/s} + \frac{2000 km}{2 \times 10^8 m/s}} = \frac{1.2 ms}{1.2ms + 20ms} \approx 5.66 %
+$$</li>
+<li>​#Q#​ 这里的$2\times 10^8 m/s$是一个什么常数吗？</li>
+</ul>
+</li>
+<li>
+<p>如果将发送速度提高到100Mb/s，则信道利用率则为0.6%</p>
+</li>
+<li>
+<p>当往返时延RTT远大于数据帧发送时延$T_D$时（例如使用卫星链路），信道利用率非常低</p>
+</li>
+<li>
+<p>若出现重传，则对于传送有用的数据信息来说，信道利用率还要降低</p>
+</li>
+<li>
+<p>为了克服停止-等待协议信道利用率低的缺点，出现了其他两种协议</p>
+</li>
+</ul>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250621201755-crr6c57.png" title="image" data-thumbnail="/image/image-20250621201755-crr6c57.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621201755-crr6c57.png"
+            srcset="/image/image-20250621201755-crr6c57.png, /image/image-20250621201755-crr6c57.png 1.5x, /image/image-20250621201755-crr6c57.png 2x"
+            
+            alt="/image/image-20250621201755-crr6c57.png" height="130"  width="1278" >
+    </a></figure>​</p>
+<ul>
+<li>$$
+40%=\frac{x/3kbps}{x/3kbpx+200ms\times2}
+$$</li>
+<li>方程解得800bit</li>
+</ul>
+</li>
+</ul>
+<h4 id="回退n帧协议-gbngo-back-n" class="headerLink">
+    <a href="#%e5%9b%9e%e9%80%80n%e5%b8%a7%e5%8d%8f%e8%ae%ae-gbngo-back-n" class="header-mark"></a>回退N帧协议 GBN（Go-Back-N）</h4><ul>
+<li>
+<p>停止等待协议的信道利用率很低，其原因在于每个数据分组发送都都需要停下来等回传信息</p>
+</li>
+<li>
+<p>如果能够连续发送多个信息（流水线传输），则可以大大提高信道利用率</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250621202939-xg2tg6e.png" title="image" data-thumbnail="/image/image-20250621202939-xg2tg6e.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621202939-xg2tg6e.png"
+            srcset="/image/image-20250621202939-xg2tg6e.png, /image/image-20250621202939-xg2tg6e.png 1.5x, /image/image-20250621202939-xg2tg6e.png 2x"
+            
+            alt="/image/image-20250621202939-xg2tg6e.png" height="540"  width="894" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>回退N帧协议在<strong>流水线传输</strong>的基础上，利用<strong>发送窗口</strong>来限制发送方可以连续发送的数据分组个数</p>
+</li>
+<li>
+<p>例如使用3个比特给分组编号，即序号0-7（$2^N-1$），由此可以选择<u>大于0且小于等于7</u>个的分组一同发送，称为发送窗口，比如这里选择5</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250621203415-fku4yxa.png" title="image" data-thumbnail="/image/image-20250621203415-fku4yxa.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621203415-fku4yxa.png"
+            srcset="/image/image-20250621203415-fku4yxa.png, /image/image-20250621203415-fku4yxa.png 1.5x, /image/image-20250621203415-fku4yxa.png 2x"
+            
+            alt="/image/image-20250621203415-fku4yxa.png" height="208"  width="418" >
+    </a></figure>​</li>
+<li>如果发送窗口的大小超过了分组编号的上限，接收方就无法分辨新、旧数据分组，会出现<strong>分组重复</strong>的错误</li>
+</ul>
+</li>
+<li>
+<p>而接收方的接收窗口，保持和停止-等待协议一样，只能为1</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250621203431-qn9ebtr.png" title="image" data-thumbnail="/image/image-20250621203431-qn9ebtr.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250621203431-qn9ebtr.png"
+            srcset="/image/image-20250621203431-qn9ebtr.png, /image/image-20250621203431-qn9ebtr.png 1.5x, /image/image-20250621203431-qn9ebtr.png 2x"
+            
+            alt="/image/image-20250621203431-qn9ebtr.png" height="236"  width="456" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>无差错情况</p>
+<ul>
+<li>发送方可以将发送窗口内的数据连续发送出去，经过互联网传输，正确到达接收方</li>
+<li>在没有乱序和误码的情况下，接收方依次接受数据，每接受一个数据，接受窗口向前滑动一个位置，并向发送端反馈确认信息</li>
+<li>确认信息到达发送方后，发送方每确认一个，发送窗口向前滑动一个位置，此时会有新的序号落入发送窗口，发送方可以将确认收到的分组在缓存中删除</li>
+</ul>
+</li>
+<li>
+<p>累计确认</p>
+<ul>
+<li>接收方不一定要逐个发送确认信息，二十可以在收到几个分组之后，对按序到达的最后一个分组发送确认（ACKn表示序号为n及以前的所有数据分组都已经正确接收）</li>
+<li>哪怕ACK1丢失，只要发送方接收到ACK4，就说明1号分组的数据也已经被正确接收了，可以将发送窗口向前滑动5个位置</li>
+<li>累计确认的好处是，即使确认分组丢失，发送方也可能不必重传；减小接收方的开销，减小对网络资源的占用</li>
+<li>缺点是不能及时反馈出接收方的确认信息</li>
+</ul>
+</li>
+<li>
+<p>有差错的情况（数据出现误码）</p>
+<ul>
+<li>
+<p>如连续发送的第一个数据分组出现误码，接收方在检测之后发现错误，随后的几个数据由于序号与接受窗口不一致，数据也会随之丢弃</p>
+</li>
+<li>
+<p>每丢弃一个分组数据，接收方则会发送前一个ACK信息给发送方（如5号分组数据出现误码，6、7、0、1号数据都会被丢弃，并发送ACK4给发送方）</p>
+</li>
+<li>
+<p>发送方接收到重复的确认信息之后，即可知道新发送的数据出现错误，可以不等超时计时器就立刻重传数据</p>
+<ul>
+<li>至于收到几个重复确认信息之后再立刻重传，由具体实现决定</li>
+</ul>
+</li>
+<li>
+<p>这里就解释了为什么这个协议叫做回退N帧协议，因为即使后面的信息是正确到达接收方的，但由于接受窗口的限制，这些数据仍旧会被回退回来，重新发送</p>
+</li>
+<li>
+<p>由此可见，当信道质量不好时，退回N帧协议的信道利用率也并不比停止-等待协议高</p>
+</li>
+</ul>
+</li>
+<li>
+<p>小结</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250622020438-usc2gua.png" title="image" data-thumbnail="/image/image-20250622020438-usc2gua.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622020438-usc2gua.png"
+            srcset="/image/image-20250622020438-usc2gua.png, /image/image-20250622020438-usc2gua.png 1.5x, /image/image-20250622020438-usc2gua.png 2x"
+            
+            alt="/image/image-20250622020438-usc2gua.png" height="668"  width="1418" >
+    </a></figure>​</li>
+<li>回退N帧协议在流水线传输的基础上利用发送窗口来限制发送方连续发送分组的数量，是一种连续ARQ协议</li>
+<li>在协议的工作过程中，发送窗口和接受窗口不断向前滑动，因此此类协议又称为滑动窗口协议</li>
+<li>由于回退N帧协议的特性，当通信线路质量不好时，其信道利用率并不比停止-等待协议高</li>
+</ul>
+</li>
+<li>
+<p>练习题</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250622020500-uv06pzv.png" title="image" data-thumbnail="/image/image-20250622020500-uv06pzv.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622020500-uv06pzv.png"
+            srcset="/image/image-20250622020500-uv06pzv.png, /image/image-20250622020500-uv06pzv.png 1.5x, /image/image-20250622020500-uv06pzv.png 2x"
+            
+            alt="/image/image-20250622020500-uv06pzv.png" height="134"  width="1384" >
+    </a></figure>​</p>
+<ul>
+<li>收到3号确认，意味着至少4号发生错误，但4、5、6、7都需要重新发送</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>选择重传协议 SR</strong></p>
+<ul>
+<li>
+<p>在退回N帧协议的基础上，为了进一步提高性能，可以设法只重传出现误码的数据分组</p>
+</li>
+<li>
+<p>即使是，接收窗口的尺寸$W_R$不应再是1，而应该大于1，以便接收方先收下失序到达但无误码且序号在接收窗口之内的数据分组，<strong>等到所缺失分组收齐后再一并提交上层</strong>，这就是选择重传协议的基本思路</p>
+</li>
+<li>
+<p>在该协议中，为了使发送方仅重传出现差错的分组，接收方不能再采用累计确认，而需要对每个正确接收到的数据分组进行逐一确认</p>
+</li>
+<li>
+<p>基本工作原理</p>
+<ul>
+<li>例如使用3比特进行分组编号，发送和接受窗口都选择4个</li>
+<li>发送方接受到确认窗口之后，关闭超时重发的计时器，如果此时是按顺序的确认，发送窗口向前滑动，否则需要等待超时重发最末尾的分组</li>
+</ul>
+</li>
+<li>
+<p>窗口尺寸问题</p>
+<ul>
+<li>
+<p>发送窗口必须满足$1 \lt W_T \le 2^{n-1}$，超过该大小会导致接收方无法区分新旧分组</p>
+<ul>
+<li>接收方确认信息如果丢失，则会导致分组重复错误</li>
+</ul>
+</li>
+<li>
+<p>接收窗口必须满足$1\lt W_R \le W_T$，超过该数字则没有意义，该数据始终不会到达</p>
+</li>
+</ul>
+</li>
+<li>
+<p>小结</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250622022858-8zpltus.png" title="image" data-thumbnail="/image/image-20250622022858-8zpltus.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622022858-8zpltus.png"
+            srcset="/image/image-20250622022858-8zpltus.png, /image/image-20250622022858-8zpltus.png 1.5x, /image/image-20250622022858-8zpltus.png 2x"
+            
+            alt="/image/image-20250622022858-8zpltus.png" height="680"  width="1438" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250622022921-2dc447l.png" title="image" data-thumbnail="/image/image-20250622022921-2dc447l.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622022921-2dc447l.png"
+            srcset="/image/image-20250622022921-2dc447l.png, /image/image-20250622022921-2dc447l.png 1.5x, /image/image-20250622022921-2dc447l.png 2x"
+            
+            alt="/image/image-20250622022921-2dc447l.png" height="134"  width="1386" >
+    </a></figure>​</p>
+<ul>
+<li>答案是B，只需要重传0号和2号数据，3号仍旧没有超时，并不确认接收方是否收到，目前不需要重传</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>以上三个问题都是点对点数据链路层上出现的问题，对于广播信道的数据链路层，还有其他问题需要解决</p>
+<ul>
+<li>
+<p>（编址问题）接收端如何确定是否接受该数据，需要提供原地址和目的地址</p>
+</li>
+<li>
+<p>（碰撞检测）同时传输数据时，信号会发生碰撞，需要避免数据同时出现在总线上，如以太网的媒体接入控制协议CSMA/CD协议（载波监听、多点接入/碰撞检测）</p>
+</li>
+<li>
+<p>随着交换技术的成熟、成本的降低，具有更高性能的、使用点对点链路和链路层交换机的交换式局域网在有线领域（局域网）已经完全取代了共享式局域网</p>
+<ul>
+<li>网络交换机如何交换帧</li>
+<li>由于无线信道的广播天性，无线局域网仍旧使用共享信道技术，如802.11局域网采用的媒体控制协议是CSMA/CA</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
