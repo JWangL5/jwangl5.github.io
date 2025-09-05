@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/"
-        },"genre": "posts","wordcount":  5238 ,
+        },"genre": "posts","wordcount":  5975 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/","datePublished": "2025-06-19T00:00:00+08:00","dateModified": "2025-06-19T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,8 +118,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5238 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5975 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
         </div><div class="content" id="content"><h3 id="250619-数据链路层" class="headerLink">
     <a href="#250619-%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82" class="header-mark"></a>250619 数据链路层</h3><h4 id="在网络体系结构中的地位" class="headerLink">
     <a href="#%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e4%b8%ad%e7%9a%84%e5%9c%b0%e4%bd%8d" class="header-mark"></a>在网络体系结构中的地位</h4><center> <a class="lightgallery" href="/image/image-20250619210110-f1nlq2y.png" title="/image/image-20250619210110-f1nlq2y.png" data-thumbnail="/image/image-20250619210110-f1nlq2y.png">
@@ -462,15 +462,15 @@
 <p>假设收发双方是直通的信道，该协议可以表示如下</p>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250621200502-3mriijj.png" title="image" data-thumbnail="/image/image-20250621200502-3mriijj.png">
+<a class="lightgallery" href="/image/image-20250621200502-3mriijj.png" title="/image/image-20250621200502-3mriijj.png" data-thumbnail="/image/image-20250621200502-3mriijj.png">
         <img
             
             loading="lazy"
             src="/image/image-20250621200502-3mriijj.png"
             srcset="/image/image-20250621200502-3mriijj.png, /image/image-20250621200502-3mriijj.png 1.5x, /image/image-20250621200502-3mriijj.png 2x"
             
-            alt="/image/image-20250621200502-3mriijj.png" height="474"  width="1362" >
-    </a></figure>​</p>
+            alt="/image/image-20250621200502-3mriijj.png" height="70%"  width="70%" >
+    </a>
 </li>
 <li>
 <p>假设信道长度是2000km，数据分组长度是1500B，发送速率为10Mbit/s，忽略$T_A$，其通常远小于$T_D$​</p>
@@ -499,84 +499,71 @@ $$</li>
 </ul>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250621201755-crr6c57.png" title="image" data-thumbnail="/image/image-20250621201755-crr6c57.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621201755-crr6c57.png"
-            srcset="/image/image-20250621201755-crr6c57.png, /image/image-20250621201755-crr6c57.png 1.5x, /image/image-20250621201755-crr6c57.png 2x"
-            
-            alt="/image/image-20250621201755-crr6c57.png" height="130"  width="1278" >
-    </a></figure>​</p>
+<p>习题</p>
+<a class="lightgallery" href="/image/image-20250621201755-crr6c57.png" title="/image/image-20250621201755-crr6c57.png" data-thumbnail="/image/image-20250621201755-crr6c57.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250621201755-crr6c57.png"
+              srcset="/image/image-20250621201755-crr6c57.png, /image/image-20250621201755-crr6c57.png 1.5x, /image/image-20250621201755-crr6c57.png 2x"
+              
+              alt="/image/image-20250621201755-crr6c57.png" height="70%"  width="70%" >
+      </a>
 <ul>
-<li>$$
-40%=\frac{x/3kbps}{x/3kbpx+200ms\times2}
-$$</li>
+<li>$40=\frac{x/3kbps}{x/3kbpx+200ms\times2}$</li>
 <li>方程解得800bit</li>
 </ul>
 </li>
 </ul>
 <h4 id="回退n帧协议-gbngo-back-n" class="headerLink">
     <a href="#%e5%9b%9e%e9%80%80n%e5%b8%a7%e5%8d%8f%e8%ae%ae-gbngo-back-n" class="header-mark"></a>回退N帧协议 GBN（Go-Back-N）</h4><ul>
-<li>
-<p>停止等待协议的信道利用率很低，其原因在于每个数据分组发送都都需要停下来等回传信息</p>
-</li>
-<li>
-<p>如果能够连续发送多个信息（流水线传输），则可以大大提高信道利用率</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250621202939-xg2tg6e.png" title="image" data-thumbnail="/image/image-20250621202939-xg2tg6e.png">
+<li>停止等待协议的信道利用率很低，其原因在于每个数据分组发送都需要停下来等回传信息</li>
+<li>如果能够连续发送多个信息（流水线传输），则可以大大提高信道利用率</li>
+<li><a class="lightgallery" href="/image/image-20250621202939-xg2tg6e.png" title="/image/image-20250621202939-xg2tg6e.png" data-thumbnail="/image/image-20250621202939-xg2tg6e.png">
         <img
             
             loading="lazy"
             src="/image/image-20250621202939-xg2tg6e.png"
             srcset="/image/image-20250621202939-xg2tg6e.png, /image/image-20250621202939-xg2tg6e.png 1.5x, /image/image-20250621202939-xg2tg6e.png 2x"
             
-            alt="/image/image-20250621202939-xg2tg6e.png" height="540"  width="894" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>回退N帧协议在<strong>流水线传输</strong>的基础上，利用<strong>发送窗口</strong>来限制发送方可以连续发送的数据分组个数</p>
-</li>
-<li>
-<p>例如使用3个比特给分组编号，即序号0-7（$2^N-1$），由此可以选择<u>大于0且小于等于7</u>个的分组一同发送，称为发送窗口，比如这里选择5</p>
+            alt="/image/image-20250621202939-xg2tg6e.png" height="70%"  width="70%" >
+    </a></li>
+<li>回退N帧协议在<strong>流水线传输</strong>的基础上，利用<strong>发送窗口</strong>来限制发送方可以连续发送的数据分组个数</li>
+<li>例如使用3个比特给分组编号，即序号0-7（$2^N-1$），由此可以选择<u>大于0且小于等于7</u>个的分组一同发送，称为发送窗口，比如这里选择5
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250621203415-fku4yxa.png" title="image" data-thumbnail="/image/image-20250621203415-fku4yxa.png">
+<li><a class="lightgallery" href="/image/image-20250621203415-fku4yxa.png" title="/image/image-20250621203415-fku4yxa.png" data-thumbnail="/image/image-20250621203415-fku4yxa.png">
         <img
             
             loading="lazy"
             src="/image/image-20250621203415-fku4yxa.png"
             srcset="/image/image-20250621203415-fku4yxa.png, /image/image-20250621203415-fku4yxa.png 1.5x, /image/image-20250621203415-fku4yxa.png 2x"
             
-            alt="/image/image-20250621203415-fku4yxa.png" height="208"  width="418" >
-    </a></figure>​</li>
+            alt="/image/image-20250621203415-fku4yxa.png" height="30%"  width="30%" >
+    </a></li>
 <li>如果发送窗口的大小超过了分组编号的上限，接收方就无法分辨新、旧数据分组，会出现<strong>分组重复</strong>的错误</li>
 </ul>
 </li>
-<li>
-<p>而接收方的接收窗口，保持和停止-等待协议一样，只能为1</p>
+<li>而接收方的接收窗口，保持和停止-等待协议一样，只能为1
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250621203431-qn9ebtr.png" title="image" data-thumbnail="/image/image-20250621203431-qn9ebtr.png">
+<li><a class="lightgallery" href="/image/image-20250621203431-qn9ebtr.png" title="/image/image-20250621203431-qn9ebtr.png" data-thumbnail="/image/image-20250621203431-qn9ebtr.png">
         <img
             
             loading="lazy"
             src="/image/image-20250621203431-qn9ebtr.png"
             srcset="/image/image-20250621203431-qn9ebtr.png, /image/image-20250621203431-qn9ebtr.png 1.5x, /image/image-20250621203431-qn9ebtr.png 2x"
             
-            alt="/image/image-20250621203431-qn9ebtr.png" height="236"  width="456" >
-    </a></figure>​</li>
+            alt="/image/image-20250621203431-qn9ebtr.png" height="30%"  width="30%" >
+    </a></li>
 </ul>
 </li>
-<li>
-<p>无差错情况</p>
+<li>无差错情况
 <ul>
 <li>发送方可以将发送窗口内的数据连续发送出去，经过互联网传输，正确到达接收方</li>
 <li>在没有乱序和误码的情况下，接收方依次接受数据，每接受一个数据，接受窗口向前滑动一个位置，并向发送端反馈确认信息</li>
 <li>确认信息到达发送方后，发送方每确认一个，发送窗口向前滑动一个位置，此时会有新的序号落入发送窗口，发送方可以将确认收到的分组在缓存中删除</li>
 </ul>
 </li>
-<li>
-<p>累计确认</p>
+<li>累计确认
 <ul>
 <li>接收方不一定要逐个发送确认信息，二十可以在收到几个分组之后，对按序到达的最后一个分组发送确认（ACKn表示序号为n及以前的所有数据分组都已经正确接收）</li>
 <li>哪怕ACK1丢失，只要发送方接收到ACK4，就说明1号分组的数据也已经被正确接收了，可以将发送窗口向前滑动5个位置</li>
@@ -584,141 +571,107 @@ $$</li>
 <li>缺点是不能及时反馈出接收方的确认信息</li>
 </ul>
 </li>
-<li>
-<p>有差错的情况（数据出现误码）</p>
+<li>有差错的情况（数据出现误码）
 <ul>
-<li>
-<p>如连续发送的第一个数据分组出现误码，接收方在检测之后发现错误，随后的几个数据由于序号与接受窗口不一致，数据也会随之丢弃</p>
-</li>
-<li>
-<p>每丢弃一个分组数据，接收方则会发送前一个ACK信息给发送方（如5号分组数据出现误码，6、7、0、1号数据都会被丢弃，并发送ACK4给发送方）</p>
-</li>
-<li>
-<p>发送方接收到重复的确认信息之后，即可知道新发送的数据出现错误，可以不等超时计时器就立刻重传数据</p>
+<li>如连续发送的第一个数据分组出现误码，接收方在检测之后发现错误，随后的几个数据由于序号与接受窗口不一致，数据也会随之丢弃</li>
+<li>每丢弃一个分组数据，接收方则会发送前一个ACK信息给发送方（如5号分组数据出现误码，6、7、0、1号数据都会被丢弃，并发送ACK4给发送方）</li>
+<li>发送方接收到重复的确认信息之后，即可知道新发送的数据出现错误，可以不等超时计时器就立刻重传数据
 <ul>
 <li>至于收到几个重复确认信息之后再立刻重传，由具体实现决定</li>
 </ul>
 </li>
-<li>
-<p>这里就解释了为什么这个协议叫做回退N帧协议，因为即使后面的信息是正确到达接收方的，但由于接受窗口的限制，这些数据仍旧会被回退回来，重新发送</p>
-</li>
-<li>
-<p>由此可见，当信道质量不好时，退回N帧协议的信道利用率也并不比停止-等待协议高</p>
-</li>
+<li>这里就解释了为什么这个协议叫做回退N帧协议，因为即使后面的信息是正确到达接收方的，但由于接受窗口的限制，这些数据仍旧会被回退回来，重新发送</li>
+<li>由此可见，当信道质量不好时，退回N帧协议的信道利用率也并不比停止-等待协议高</li>
 </ul>
 </li>
-<li>
-<p>小结</p>
+<li>小结
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250622020438-usc2gua.png" title="image" data-thumbnail="/image/image-20250622020438-usc2gua.png">
+<li><a class="lightgallery" href="/image/image-20250622020438-usc2gua.png" title="/image/image-20250622020438-usc2gua.png" data-thumbnail="/image/image-20250622020438-usc2gua.png">
         <img
             
             loading="lazy"
             src="/image/image-20250622020438-usc2gua.png"
             srcset="/image/image-20250622020438-usc2gua.png, /image/image-20250622020438-usc2gua.png 1.5x, /image/image-20250622020438-usc2gua.png 2x"
             
-            alt="/image/image-20250622020438-usc2gua.png" height="668"  width="1418" >
-    </a></figure>​</li>
+            alt="/image/image-20250622020438-usc2gua.png" height="80%"  width="80%" >
+    </a></li>
 <li>回退N帧协议在流水线传输的基础上利用发送窗口来限制发送方连续发送分组的数量，是一种连续ARQ协议</li>
 <li>在协议的工作过程中，发送窗口和接受窗口不断向前滑动，因此此类协议又称为滑动窗口协议</li>
 <li>由于回退N帧协议的特性，当通信线路质量不好时，其信道利用率并不比停止-等待协议高</li>
 </ul>
 </li>
-<li>
-<p>练习题</p>
+<li>练习题
 <ul>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250622020500-uv06pzv.png" title="image" data-thumbnail="/image/image-20250622020500-uv06pzv.png">
+<li><a class="lightgallery" href="/image/image-20250622020500-uv06pzv.png" title="/image/image-20250622020500-uv06pzv.png" data-thumbnail="/image/image-20250622020500-uv06pzv.png">
         <img
             
             loading="lazy"
             src="/image/image-20250622020500-uv06pzv.png"
             srcset="/image/image-20250622020500-uv06pzv.png, /image/image-20250622020500-uv06pzv.png 1.5x, /image/image-20250622020500-uv06pzv.png 2x"
             
-            alt="/image/image-20250622020500-uv06pzv.png" height="134"  width="1384" >
-    </a></figure>​</p>
-<ul>
+            alt="/image/image-20250622020500-uv06pzv.png" height="70%"  width="70%" >
+    </a></li>
 <li>收到3号确认，意味着至少4号发生错误，但4、5、6、7都需要重新发送</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p><strong>选择重传协议 SR</strong></p>
-<ul>
-<li>
-<p>在退回N帧协议的基础上，为了进一步提高性能，可以设法只重传出现误码的数据分组</p>
-</li>
-<li>
-<p>即使是，接收窗口的尺寸$W_R$不应再是1，而应该大于1，以便接收方先收下失序到达但无误码且序号在接收窗口之内的数据分组，<strong>等到所缺失分组收齐后再一并提交上层</strong>，这就是选择重传协议的基本思路</p>
-</li>
-<li>
-<p>在该协议中，为了使发送方仅重传出现差错的分组，接收方不能再采用累计确认，而需要对每个正确接收到的数据分组进行逐一确认</p>
-</li>
-<li>
-<p>基本工作原理</p>
+<h4 id="选择重传协议-sr" class="headerLink">
+    <a href="#%e9%80%89%e6%8b%a9%e9%87%8d%e4%bc%a0%e5%8d%8f%e8%ae%ae-sr" class="header-mark"></a>选择重传协议 SR</h4><ul>
+<li>在退回N帧协议的基础上，为了进一步提高性能，可以设法只重传出现误码的数据分组</li>
+<li>即使是，接收窗口的尺寸$W_R$不应再是1，而应该大于1，以便接收方先收下失序到达但无误码且序号在接收窗口之内的数据分组，<strong>等到所缺失分组收齐后再一并提交上层</strong>，这就是选择重传协议的基本思路</li>
+<li>在该协议中，为了使发送方仅重传出现差错的分组，接收方不能再采用累计确认，而需要对每个正确接收到的数据分组进行逐一确认</li>
+<li>基本工作原理
 <ul>
 <li>例如使用3比特进行分组编号，发送和接受窗口都选择4个</li>
 <li>发送方接受到确认窗口之后，关闭超时重发的计时器，如果此时是按顺序的确认，发送窗口向前滑动，否则需要等待超时重发最末尾的分组</li>
 </ul>
 </li>
-<li>
-<p>窗口尺寸问题</p>
+<li>窗口尺寸问题
 <ul>
-<li>
-<p>发送窗口必须满足$1 \lt W_T \le 2^{n-1}$，超过该大小会导致接收方无法区分新旧分组</p>
+<li>发送窗口必须满足$1 \lt W_T \le 2^{n-1}$，超过该大小会导致接收方无法区分新旧分组
 <ul>
 <li>接收方确认信息如果丢失，则会导致分组重复错误</li>
 </ul>
 </li>
-<li>
-<p>接收窗口必须满足$1\lt W_R \le W_T$，超过该数字则没有意义，该数据始终不会到达</p>
-</li>
+<li>接收窗口必须满足$1\lt W_R \le W_T$，超过该数字则没有意义，该数据始终不会到达</li>
 </ul>
 </li>
-<li>
-<p>小结</p>
+<li>小结
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250622022858-8zpltus.png" title="image" data-thumbnail="/image/image-20250622022858-8zpltus.png">
+<li><a class="lightgallery" href="/image/image-20250622022858-8zpltus.png" title="/image/image-20250622022858-8zpltus.png" data-thumbnail="/image/image-20250622022858-8zpltus.png">
         <img
             
             loading="lazy"
             src="/image/image-20250622022858-8zpltus.png"
             srcset="/image/image-20250622022858-8zpltus.png, /image/image-20250622022858-8zpltus.png 1.5x, /image/image-20250622022858-8zpltus.png 2x"
             
-            alt="/image/image-20250622022858-8zpltus.png" height="680"  width="1438" >
-    </a></figure>​</li>
+            alt="/image/image-20250622022858-8zpltus.png" height="80%"  width="80%" >
+    </a></li>
 </ul>
 </li>
-<li>
-<p>练习</p>
+<li>练习
 <ul>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250622022921-2dc447l.png" title="image" data-thumbnail="/image/image-20250622022921-2dc447l.png">
+<li><a class="lightgallery" href="/image/image-20250622022921-2dc447l.png" title="/image/image-20250622022921-2dc447l.png" data-thumbnail="/image/image-20250622022921-2dc447l.png">
         <img
             
             loading="lazy"
             src="/image/image-20250622022921-2dc447l.png"
             srcset="/image/image-20250622022921-2dc447l.png, /image/image-20250622022921-2dc447l.png 1.5x, /image/image-20250622022921-2dc447l.png 2x"
             
-            alt="/image/image-20250622022921-2dc447l.png" height="134"  width="1386" >
-    </a></figure>​</p>
-<ul>
+            alt="/image/image-20250622022921-2dc447l.png" height="70%"  width="70%" >
+    </a></li>
 <li>答案是B，只需要重传0号和2号数据，3号仍旧没有超时，并不确认接收方是否收到，目前不需要重传</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
+<hr>
+<ul>
 <li>
 <p>以上三个问题都是点对点数据链路层上出现的问题，对于广播信道的数据链路层，还有其他问题需要解决</p>
 <ul>
-<li>
-<p>（编址问题）接收端如何确定是否接受该数据，需要提供原地址和目的地址</p>
-</li>
-<li>
-<p>（碰撞检测）同时传输数据时，信号会发生碰撞，需要避免数据同时出现在总线上，如以太网的媒体接入控制协议CSMA/CD协议（载波监听、多点接入/碰撞检测）</p>
+<li>（编址问题）接收端如何确定是否接受该数据，需要提供原地址和目的地址</li>
+<li>（碰撞检测）同时传输数据时，信号会发生碰撞，需要避免数据同时出现在总线上，如以太网的媒体接入控制协议CSMA/CD协议（载波监听、多点接入/碰撞检测）</li>
+</ul>
 </li>
 <li>
 <p>随着交换技术的成熟、成本的降低，具有更高性能的、使用点对点链路和链路层交换机的交换式局域网在有线领域（局域网）已经完全取代了共享式局域网</p>
@@ -727,6 +680,105 @@ $$</li>
 <li>由于无线信道的广播天性，无线局域网仍旧使用共享信道技术，如802.11局域网采用的媒体控制协议是CSMA/CA</li>
 </ul>
 </li>
+</ul>
+<h3 id="250622-ppp协议" class="headerLink">
+    <a href="#250622-ppp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250622 PPP协议</h3><ul>
+<li>
+<p>点对点协议PPP(Point-to-Point Protocol)是目前使用最广泛的点对点数据链路层协议</p>
+<ul>
+<li>例如用户在接入因特网时，需要选择因特网服务提供者ISP，如中国移动、中国电信、中国联通，他们已经从因特网管理机构申请到了一批IP地址，用户需要获取到ISP所分配的合法IP地址后，才能称为因特网上的主机</li>
+<li>用户计算机与ISP进行通信时，所使用的数据链路层协议通常就是PPP协议</li>
+<li>1999年公布的，在以太网上运行的PPP协议，即PPP over Ethernet，简称PPPoE，它使得ISP可以通过DSL、电路调制解调器、以太网等宽带接入技术，以以太网接口的形式为用户提供接入服务</li>
+<li>另外，PPP协议也广泛应用于广域网路由器之间的专用线路</li>
+<li>PPP协议是因特网工程任务组IETF在1992年制定的，经过1993年和1994年的修订，现在的PPP协议已成为因特网的正式标准<a href="https://datatracker.ietf.org" target="_blank" rel="noopener noreferrer">RFC1661,RFC1662</a></li>
+</ul>
+</li>
+<li>
+<p>PPP协议为在点对点链路传输各种协议数据报提供了一个标准方法，主要由以下三部分构成：</p>
+<ul>
+<li>​<a class="lightgallery" href="/image/image-20250622030450-ndxr14z.png" title="/image/image-20250622030450-ndxr14z.png" data-thumbnail="/image/image-20250622030450-ndxr14z.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622030450-ndxr14z.png"
+            srcset="/image/image-20250622030450-ndxr14z.png, /image/image-20250622030450-ndxr14z.png 1.5x, /image/image-20250622030450-ndxr14z.png 2x"
+            
+            alt="/image/image-20250622030450-ndxr14z.png" height="70%"  width="70%" >
+    </a></li>
+<li>对各种协议数据报的封装方法（封装成帧）</li>
+<li>链路控制协议LCP：用于建立、配置以及测试数据链路的连接</li>
+<li>一套网络控制协议NCPs：其中的每一个协议支持不同的网络层协议</li>
+</ul>
+</li>
+<li>
+<p>PPP帧的格式</p>
+<ul>
+<li><a class="lightgallery" href="/image/image-20250622030732-42757el.png" title="/image/image-20250622030732-42757el.png" data-thumbnail="/image/image-20250622030732-42757el.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622030732-42757el.png"
+            srcset="/image/image-20250622030732-42757el.png, /image/image-20250622030732-42757el.png 1.5x, /image/image-20250622030732-42757el.png 2x"
+            
+            alt="/image/image-20250622030732-42757el.png" height="70%"  width="70%" >
+    </a></li>
+<li>实现透明传输的方法
+<ul>
+<li>如果数据帧的部分中，出现了帧定界符0x7E（01111110），则需要进行处理</li>
+<li>如果是面向字节传输的异步链路，则使用字节填充法，在该处前插入转移字符
+<ul>
+<li><a class="lightgallery" href="/image/image-20250622031209-11695d8.png" title="/image/image-20250622031209-11695d8.png" data-thumbnail="/image/image-20250622031209-11695d8.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622031209-11695d8.png"
+            srcset="/image/image-20250622031209-11695d8.png, /image/image-20250622031209-11695d8.png 1.5x, /image/image-20250622031209-11695d8.png 2x"
+            
+            alt="/image/image-20250622031209-11695d8.png" height="70%"  width="70%" >
+    </a></li>
+</ul>
+</li>
+<li>如果是面向比特的同步链路，则采用比特填充法，即插入比特0
+<ul>
+<li><a class="lightgallery" href="/image/image-20250622031254-7dalbf7.png" title="/image/image-20250622031254-7dalbf7.png" data-thumbnail="/image/image-20250622031254-7dalbf7.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622031254-7dalbf7.png"
+            srcset="/image/image-20250622031254-7dalbf7.png, /image/image-20250622031254-7dalbf7.png 1.5x, /image/image-20250622031254-7dalbf7.png 2x"
+            
+            alt="/image/image-20250622031254-7dalbf7.png" height="80%"  width="80%" >
+    </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>差错检测方法
+<ul>
+<li>CRC-CCITT = $X^{16}+X^{12}+X^5+1$</li>
+<li>RFC1662的附录部分给出了FCS计算方法的C语言实现（查表法）</li>
+<li>接收方每收到一个PPP帧，就进行CRC检验
+<ul>
+<li>若检验正确，就收下这个帧</li>
+<li>若检验不正确，就丢弃这个帧（使用PPP协议的数据链路层向上不提供可靠传输服务）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>PPP协议的工作状态</p>
+<ul>
+<li><a class="lightgallery" href="/image/image-20250622032242-bfaevkc.png" title="/image/image-20250622032242-bfaevkc.png" data-thumbnail="/image/image-20250622032242-bfaevkc.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622032242-bfaevkc.png"
+            srcset="/image/image-20250622032242-bfaevkc.png, /image/image-20250622032242-bfaevkc.png 1.5x, /image/image-20250622032242-bfaevkc.png 2x"
+            
+            alt="/image/image-20250622032242-bfaevkc.png" height="100%"  width="100%" >
+    </a></li>
 </ul>
 </li>
 </ul>

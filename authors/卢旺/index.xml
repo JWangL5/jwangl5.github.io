@@ -51,7 +51,7 @@
     <link>https://jwangl5.github.io/posts/net/n04_csma_cd/</link>
     <pubDate>Sun, 22 Jun 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n04_csma_cd/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道]]></description>
 </item><item>
     <title>网络 | 03. 数据链路层（以太网MAC帧、PPP协议）</title>
     <link>https://jwangl5.github.io/posts/net/n03_data_link/</link>

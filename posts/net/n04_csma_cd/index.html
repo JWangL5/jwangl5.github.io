@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 04. 媒体接入控制 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 04. 媒体接入控制" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-06-22T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 04. 媒体接入控制"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/"
-        },"genre": "posts","wordcount":  0 ,
+        },"genre": "posts","wordcount":  7103 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/","datePublished": "2025-06-22T00:00:00+08:00","dateModified": "2025-06-22T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,9 +118,816 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 0 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 0 分钟&nbsp;</div>
-        </div><div class="content" id="content"></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7103 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="250622-媒体接入控制" class="headerLink">
+    <a href="#250622-%e5%aa%92%e4%bd%93%e6%8e%a5%e5%85%a5%e6%8e%a7%e5%88%b6" class="header-mark"></a>250622 媒体接入控制</h3><blockquote>
+<p>问题导入与概念</p>
+<ul>
+<li>在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道上发送数据</li>
+<li>此时，如果两个计算机同时在这根媒体上发送数据，就会产生冲突，使得这些数据都发送失败</li>
+<li><u>共享信道</u>要着重考虑的一个问题就是，如何协调多个发送和接收站点对一个共享传输媒体的占用，即<strong>媒体接入控制MAC</strong>（Medium Access Control）</li>
+<li>此类技术主要分为两类：静态划分信道 和 动态划分信道</li>
+</ul>
+</blockquote>
+<h4 id="静态划分信道" class="headerLink">
+    <a href="#%e9%9d%99%e6%80%81%e5%88%92%e5%88%86%e4%bf%a1%e9%81%93" class="header-mark"></a>静态划分信道</h4><ul>
+<li>
+<p>静态划分信道：即<strong>预先分配好信道</strong>，这类方法非常不灵活，对于突发性的数据传输，信道利用率会很低；通常在<u-b>无线网络的物理层</u-b>中使用，而不是在数据链路层，主要可以分为三类：频分多址、时分多址、码分多址</p>
+</li>
+<li>
+<p>信道复用</p>
+<ul>
+<li>复用（Multiplexing）是通信技术中的一个概念，指通过一条物理线路同时传输多路用户的信号</li>
+<li>当网络中传输媒体的传输容量大于多条单一信道的传输总量时，可以利用复用技术在一条物理线路上建立多条通信信道来充分利用传输媒体的带宽</li>
+<li><a class="lightgallery" href="/image/image-20250622215429-olgs394.png" title="/image/image-20250622215429-olgs394.png" data-thumbnail="/image/image-20250622215429-olgs394.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250622215429-olgs394.png"
+            srcset="/image/image-20250622215429-olgs394.png, /image/image-20250622215429-olgs394.png 1.5x, /image/image-20250622215429-olgs394.png 2x"
+            
+            alt="/image/image-20250622215429-olgs394.png" height="90%"  width="90%" >
+    </a></li>
+<li>常用的信道复用技术有四类：频分复用 FDM、时分复用 TDM、波分复用 WDM、码分复用 CDM</li>
+</ul>
+</li>
+<li>
+<p>复用和多址的区别：</p>
+<ul>
+<li>复用是将单一媒体的频带资源划分成很多子信道，这些子信道之间相互独立，互不干扰</li>
+<li>从媒体的整体频带资源上看，每个子信道只占用该媒体频带资源的一部分</li>
+<li>多址（更确切地应该称为多点接入）处理的是动态分配信道给用户</li>
+<li>这在用户<u>仅仅暂时性地占用信道的应用</u>中是必须的，而所有的移动通信系统基本上都属于这种情况</li>
+<li>相反，在信道永久性地分配给用户的应用中，多址是不需要的（无线广播或电视广播站）</li>
+<li>在一定程度上，多址可以看作是复用的应用</li>
+</ul>
+</li>
+</ul>
+<h5 id="频分复用-fdm" class="headerLink">
+    <a href="#%e9%a2%91%e5%88%86%e5%a4%8d%e7%94%a8-fdm" class="header-mark"></a>频分复用 FDM</h5><ul>
+<li>将传输线路的频带资源划分为多个子频带，形成多个子信道，各子信道之间需要留出隔离频带，以免造成子信道间的干扰</li>
+<li>当多路信号输入一个多路复用器时，这个复用器将每一路信号调制到不同频率的载波上，接受端由相应的分用器通过滤波将各路信号分开，将合成的复用信号恢复为原始的多路信号</li>
+<li><a class="lightgallery" href="/image/image-20250624012548-cda5nt5.png" title="/image/image-20250624012548-cda5nt5.png" data-thumbnail="/image/image-20250624012548-cda5nt5.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624012548-cda5nt5.png"
+            srcset="/image/image-20250624012548-cda5nt5.png, /image/image-20250624012548-cda5nt5.png 1.5x, /image/image-20250624012548-cda5nt5.png 2x"
+            
+            alt="/image/image-20250624012548-cda5nt5.png" height="70%"  width="70%" >
+    </a></li>
+<li>频分复用的所有用户同时占用不同的频带资源，并行通信</li>
+</ul>
+<h5 id="时分复用-tdm" class="headerLink">
+    <a href="#%e6%97%b6%e5%88%86%e5%a4%8d%e7%94%a8-tdm" class="header-mark"></a>时分复用 TDM</h5><ul>
+<li>横坐标为时间，将时间划分为一个个的时隙</li>
+<li>时分复用技术将传输线路的带宽资源，按时隙轮流分配给不同的用户，每对用户只在所分配的时隙里使用线路传输数据</li>
+<li><a class="lightgallery" href="/image/image-20250624012801-gx49hlb.png" title="/image/image-20250624012801-gx49hlb.png" data-thumbnail="/image/image-20250624012801-gx49hlb.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624012801-gx49hlb.png"
+            srcset="/image/image-20250624012801-gx49hlb.png, /image/image-20250624012801-gx49hlb.png 1.5x, /image/image-20250624012801-gx49hlb.png 2x"
+            
+            alt="/image/image-20250624012801-gx49hlb.png" height="70%"  width="70%" >
+    </a></li>
+<li>时分复用技术将时间划分成了一段段等长的时分复用帧（TDM帧）</li>
+<li>每一个时分复用的用户，在每一个时分复用帧中占用固定序号的时隙</li>
+<li>每一个用户所占用的时隙是周期性出现的，其周期就是时分复用帧的长度</li>
+<li>时分复用的所有用户在不同的时间占用相同的频带宽度</li>
+<li>类似地，频分复用和时分复用也可以用于多址接入，称为频分多址FDMA、时分多址TDMA</li>
+</ul>
+<h5 id="波分复用-wdm" class="headerLink">
+    <a href="#%e6%b3%a2%e5%88%86%e5%a4%8d%e7%94%a8-wdm" class="header-mark"></a>波分复用 WDM</h5><ul>
+<li>波分复用其实就是光的频分复用</li>
+<li><a class="lightgallery" href="/image/image-20250624013115-0yc9r1j.png" title="/image/image-20250624013115-0yc9r1j.png" data-thumbnail="/image/image-20250624013115-0yc9r1j.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624013115-0yc9r1j.png"
+            srcset="/image/image-20250624013115-0yc9r1j.png, /image/image-20250624013115-0yc9r1j.png 1.5x, /image/image-20250624013115-0yc9r1j.png 2x"
+            
+            alt="/image/image-20250624013115-0yc9r1j.png" height="80%"  width="80%" >
+    </a></li>
+<li>这是8路传输速率均为2.5Gbit/s的光载波，其波长均为1310nm</li>
+<li>经光调制后，分别将波长变换到1550～1561.2 nm，每个光载波相隔1.6nm</li>
+<li>这八个波长很接近的光载波竞购光复用器（合波器），可以在一根光纤中传输，因此在一根光纤上数据传输的总速率就达到了2.5Gbit/s x 8 = 20 Gbit/s</li>
+<li>光每传输一段距离之后会衰减，需要进行放大后才能继续传输；现在已经有了很好的掺铒光纤放大器，两个光纤放大器之间的光缆线路长度可大120km</li>
+<li>光复用器和光分用器（分波器）之间可以放入4个掺铒光纤放大器，使得光复用器和光分用器之间的、无光电转换距离，可达600km</li>
+</ul>
+<h5 id="码分复用-cdm" class="headerLink">
+    <a href="#%e7%a0%81%e5%88%86%e5%a4%8d%e7%94%a8-cdm" class="header-mark"></a>码分复用 CDM</h5><ul>
+<li>
+<p>另一种共享信道的方法，实际上由于该技术主要用于多址接入，其更常见的名字是码分多址CMDA（Code Division Multiple Access）</p>
+</li>
+<li>
+<p>与FDM和TDM不同，CDM的每一个用户可以在相同的时间使用同样的频带进行通信</p>
+</li>
+<li>
+<p>由于各用户使用<u>经过特殊挑选的不同码型，因此各用户之间不会造成干扰</u></p>
+</li>
+<li>
+<p>CDM最初是用于军事通信的，因为这种系统所发送的信号有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现</p>
+</li>
+<li>
+<p>随着技术的发展，CDMA设备的价格和体积都大幅度下降，因而现在已广泛用于民用的运动通信中</p>
+</li>
+<li>
+<p>在CDMA中，每一个比特时间再划分为m个短的间隔，称为码片（chip）（通常取64或128，这里<strong>以8举例</strong>画图）</p>
+</li>
+<li>
+<p><u-b>使用CDMA的每一个站被指派一个唯一的m bit码片序列（chip sequence）</u-b></p>
+<ul>
+<li>一个站如果要发送比特1，则发送它自己的m bit码片序列</li>
+<li>一个站如果要发送比特0，则发送它自己的m bit码片序列的二进制反码</li>
+<li><a class="lightgallery" href="/image/image-20250624233128-mwqmvdx.png" title="/image/image-20250624233128-mwqmvdx.png" data-thumbnail="/image/image-20250624233128-mwqmvdx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624233128-mwqmvdx.png"
+            srcset="/image/image-20250624233128-mwqmvdx.png, /image/image-20250624233128-mwqmvdx.png 1.5x, /image/image-20250624233128-mwqmvdx.png 2x"
+            
+            alt="/image/image-20250624233128-mwqmvdx.png" height="50%"  width="50%" >
+    </a></li>
+<li>这种通信方式称为<u-b>直接序列扩频DSSS</u-b>（读作D Triple S）</li>
+<li>码片序列的挑选原则如下
+<ul>
+<li>分配给每个站的码片序列必须各不相同，实际常采用伪随机码序列</li>
+<li>分配给每个站的码片序列必须相互正交（规格化内积为0）</li>
+<li>令向量S表示站S的码片序列，向量T表示其他任何站的码片序列</li>
+<li><strong>两个不同站S和T的码片序列正交</strong>，就是向量S和T的规划化<strong>内积为0</strong></li>
+<li>$$
+S\cdot T \equiv \frac1m \sum_{i=1}^m S_i T_i = 0
+$$</li>
+<li>向量的对应分量相乘后相加，再除以向量中分量的数量，其结果为0</li>
+<li>$$
+S\cdot S \equiv \frac1m \sum_{i=1}^m S_i S_i = \frac1m \sum_{i=1}^m S_i^2 = \frac1m \sum_{i=1}^m (\pm1)^2 = 1
+$$</li>
+<li>$$
+S\cdot \bar T \equiv 0
+$$</li>
+<li>$$
+S\cdot \bar S \equiv -1
+$$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>CDMA应用举例</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250624235018-sdfg9xj.png" title="image" data-thumbnail="/image/image-20250624235018-sdfg9xj.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624235018-sdfg9xj.png"
+            srcset="/image/image-20250624235018-sdfg9xj.png, /image/image-20250624235018-sdfg9xj.png 1.5x, /image/image-20250624235018-sdfg9xj.png 2x"
+            
+            alt="/image/image-20250624235018-sdfg9xj.png" height="528"  width="1386" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li><figure><a class="lightgallery" href="/image/image-20250624234507-8npbbmx.png" title="image" data-thumbnail="/image/image-20250624234507-8npbbmx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624234507-8npbbmx.png"
+            srcset="/image/image-20250624234507-8npbbmx.png, /image/image-20250624234507-8npbbmx.png 1.5x, /image/image-20250624234507-8npbbmx.png 2x"
+            
+            alt="/image/image-20250624234507-8npbbmx.png" height="200"  width="1286" >
+    </a></figure></li>
+<li><a class="lightgallery" href="/image/image-20250624235032-74j4yt5.png" title="/image/image-20250624235032-74j4yt5.png" data-thumbnail="/image/image-20250624235032-74j4yt5.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624235032-74j4yt5.png"
+            srcset="/image/image-20250624235032-74j4yt5.png, /image/image-20250624235032-74j4yt5.png 1.5x, /image/image-20250624235032-74j4yt5.png 2x"
+            
+            alt="/image/image-20250624235032-74j4yt5.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li><strong>收到的数据与各站进行内积运算，得到1则发送比特1，得到-1则发送比特0，得到0则未发送数据</strong></li>
+<li>答案：A发送比特1，B发送比特0，C未发送数据，D发送比特1</li>
+</ul>
+</li>
+<li><a class="lightgallery" href="/image/image-20250624235656-sfe8v78.png" title="/image/image-20250624235656-sfe8v78.png" data-thumbnail="/image/image-20250624235656-sfe8v78.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250624235656-sfe8v78.png"
+            srcset="/image/image-20250624235656-sfe8v78.png, /image/image-20250624235656-sfe8v78.png 1.5x, /image/image-20250624235656-sfe8v78.png 2x"
+            
+            alt="/image/image-20250624235656-sfe8v78.png" height="70%"  width="70%" >
+    </a>
+<ul>
+<li>选项B</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="动态接入控制" class="headerLink">
+    <a href="#%e5%8a%a8%e6%80%81%e6%8e%a5%e5%85%a5%e6%8e%a7%e5%88%b6" class="header-mark"></a>动态接入控制</h4><ul>
+<li>
+<p>受控接入</p>
+<ul>
+<li>集中控制：有一个主站以循环方式轮询每个站点有无数据发送，只有被轮询到的站点才能发送数据，其最大缺点是存在单点故障问题</li>
+<li>分散控制：各站点是平等的，并连接成一个唤醒网络，令牌（一个特殊的控制帧）沿环逐站传递，接收到令牌的站点才有权发送数据，并在发送完成后将令牌传递给下一个站点</li>
+<li>使用此类令牌传递协议的典型网络有IEEE 802.5令牌环网，IEEE 802.4令牌总线网，光线分布式数据接口FDDI</li>
+<li>这一类协议已由于市场竞争，现已逐步退出历史舞台</li>
+</ul>
+</li>
+<li>
+<p>随机接入</p>
+<ul>
+<li>所有站点通过竞争，随机地在信道上发送数据，如果恰巧有两个或更多的站点在同一时刻发送数据，则信号在共享媒体上就要产生碰撞（即发生冲突），使得这些站点都发送失败</li>
+<li>因此，此类协议要解决的关键问题是<u>如何尽量避免冲突</u>，以及<u>在发生冲突后如何尽快恢复通信</u></li>
+<li>著名的<strong>共享式以太网</strong>采用的就是随机接入（<strong><u>载波监听 多址接入/碰撞检测 CSMA/CD协议</u></strong>）</li>
+</ul>
+</li>
+</ul>
+<h3 id="csmacd协议" class="headerLink">
+    <a href="#csmacd%e5%8d%8f%e8%ae%ae" class="header-mark"></a>CSMA/CD协议</h3><h4 id="基本概念" class="headerLink">
+    <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h4><ul>
+<li>多址接入MA：多个站连接在一条总线上，竞争使用总线</li>
+<li>载波监听CS
+<ul>
+<li>每一个站在发送帧之前要先检测一下总线上是否有其他站点在发送帧（先听后说）</li>
+<li>若检测到总线空闲96比特时间，则发送这个帧</li>
+<li>若检测到总线忙，则继续检测并等待总线转为空闲96比特时间，然后发送这个帧</li>
+<li>96比特时间是帧间最小间隔，其作用是可以检测出一个帧的结束，同时也使得所有其他站点都能有机会平等竞争信道并发送帧</li>
+</ul>
+</li>
+<li>碰撞检测CD
+<ul>
+<li>每一个正在发送帧的站，边发送边检测碰撞（边听边说）</li>
+<li>一单发现总线上出现碰撞，则立即停止发送，<strong>退避****一段随机时间</strong>后再次发送（一单冲突，立即停说，等待时机，重新再说）</li>
+</ul>
+</li>
+<li>其逻辑可以总结如下
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250625000935-afcxub4.png" title="image" data-thumbnail="/image/image-20250625000935-afcxub4.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625000935-afcxub4.png"
+            srcset="/image/image-20250625000935-afcxub4.png, /image/image-20250625000935-afcxub4.png 1.5x, /image/image-20250625000935-afcxub4.png 2x"
+            
+            alt="/image/image-20250625000935-afcxub4.png" height="312"  width="482" >
+    </a></figure>​</li>
+<li>帧发送流程图</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250625010035-29bsqpg.png" title="image" data-thumbnail="/image/image-20250625010035-29bsqpg.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625010035-29bsqpg.png"
+            srcset="/image/image-20250625010035-29bsqpg.png, /image/image-20250625010035-29bsqpg.png 1.5x, /image/image-20250625010035-29bsqpg.png 2x"
+            
+            alt="/image/image-20250625010035-29bsqpg.png" height="674"  width="1410" >
+    </a></figure>​</li>
+<li>帧接收流程图</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250625010112-8l4ebwd.png" title="image" data-thumbnail="/image/image-20250625010112-8l4ebwd.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625010112-8l4ebwd.png"
+            srcset="/image/image-20250625010112-8l4ebwd.png, /image/image-20250625010112-8l4ebwd.png 1.5x, /image/image-20250625010112-8l4ebwd.png 2x"
+            
+            alt="/image/image-20250625010112-8l4ebwd.png" height="686"  width="1156" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>以太网还采取一种叫做<strong>强化碰撞</strong>的措施，就是当发送帧的站点一旦检测到碰撞，除了立即停止发送帧外，还要继续发送32比特或48比特的<strong>人为干扰信号</strong>（Jamming Signal），以便有足够多的碰撞信号使所有站点都能检测出碰撞</li>
+</ul>
+<h4 id="争用期碰撞窗口" class="headerLink">
+    <a href="#%e4%ba%89%e7%94%a8%e6%9c%9f%e7%a2%b0%e6%92%9e%e7%aa%97%e5%8f%a3" class="header-mark"></a>争用期（碰撞窗口）</h4><ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625001329-9zeih6j.png" title="image" data-thumbnail="/image/image-20250625001329-9zeih6j.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625001329-9zeih6j.png"
+            srcset="/image/image-20250625001329-9zeih6j.png, /image/image-20250625001329-9zeih6j.png 1.5x, /image/image-20250625001329-9zeih6j.png 2x"
+            
+            alt="/image/image-20250625001329-9zeih6j.png" height="452"  width="1464" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>主机最多经过2$\tau$（$\delta \to 0$）的时长就可以检测到本次发送是否遭受到了碰撞，因此以太网端到端往返传播时延$2\tau$称为<strong>争用期</strong>或<strong>碰撞窗口</strong></p>
+</li>
+<li>
+<p>经过争用期这段时间还没有检测到碰撞，才能肯定这次发送不会发生碰撞</p>
+</li>
+<li>
+<p>每一个主机在自己发送帧之后的一小段时间内，存在着遭遇碰撞的可能性</p>
+</li>
+<li>
+<p>这一小段时间是不确定的，它取决于另一个发送帧的主机到本机的距离，但不会超过总线的端到端往返传播时延，即不会超过一个争用期时间</p>
+</li>
+<li>
+<p>显然，在以太网中发送帧的主机越多，端到端往返传播时延越大，发送碰撞的概率就越大</p>
+</li>
+<li>
+<p>因此，共享式以太网不能连接太多的主机，使用的总线也不能太长</p>
+</li>
+<li>
+<p>10Mb/s以太网吧争用期定位512比特发送时间，即51.2μs，因此总线长度不能超过5120m，但考虑到其他一些因素，如信号衰减等，以太网规定总线的长度不能超过2500m</p>
+</li>
+</ul>
+<h4 id="最小帧长" class="headerLink">
+    <a href="#%e6%9c%80%e5%b0%8f%e5%b8%a7%e9%95%bf" class="header-mark"></a>最小帧长</h4><ul>
+<li>
+<p>问题场景</p>
+</li>
+<li>
+<p>主机A在给主机D发送一个很短的帧，主机A边发送边检测碰撞，主机A很快完成了发送，之后就不再针对该帧检测碰撞</p>
+</li>
+<li>
+<p>但在该帧的传输过程中，主机C也要发送帧，主机C检测到总线空闲96比特时间后就立即发送帧</p>
+</li>
+<li>
+<p>尽管总线可能并不空闲，这会导致碰撞，主机D最终会收到主机A发送的、并遭遇碰撞的帧</p>
+</li>
+<li>
+<p>主机D会将该帧丢弃，但对于主机A而言，它并不知道自己发送完成的该帧遭遇了碰撞，不会重发该帧</p>
+</li>
+<li>
+<p>由此可知，使用CSMA/CD协议的以太网的帧长不能太短 #Q#​</p>
+</li>
+<li>
+<p>以太网规定，最小帧长为64字节，即512比特（512比特时间为争用期）</p>
+</li>
+<li>
+<p>如果要发送的数据非常少，那么必须加入一些填充字节，使帧长不小于64字节</p>
+</li>
+<li>
+<p>以太网的最小帧长，确保了主机可在帧发送完成前之前就检测到该帧的发送过程中是否遭遇了碰撞</p>
+</li>
+<li>
+<p>如果在争用期（共发送64字节）没有检测到碰撞，那么后续发送的数据一定就不会发生碰撞</p>
+</li>
+<li>
+<p>如果在争用期内检测到碰撞，就立即中止发送，这时已经发送出去的数据一定小于64字节</p>
+</li>
+<li>
+<p>因此，凡长度小于64字节的帧都是由于碰撞，而异常中止的无效帧</p>
+</li>
+</ul>
+<h4 id="最大帧长" class="headerLink">
+    <a href="#%e6%9c%80%e5%a4%a7%e5%b8%a7%e9%95%bf" class="header-mark"></a>最大帧长</h4><ul>
+<li>
+<p>问题场景</p>
+</li>
+<li>
+<p>如果某主机始终发送一个很长的帧，会长时间占用总线，而总线上的其他主机迟迟拿不到总线的使用权</p>
+</li>
+<li>
+<p>另外，由于帧很长，还可能使接收方的缓冲区无法装下该帧而产生溢出</p>
+</li>
+<li>
+<p>故，以太网的帧应该有长度上限</p>
+</li>
+<li>
+<p>对于以太网V2的MAC帧，其数据载荷长度最小46字节，最大1500字节（加上帧首部和尾部的18字节，最大总长度为64字节，最大总长度为1518字节）</p>
+</li>
+<li>
+<p>对于插入VLAN标记后的802.1Q帧，数据载荷为42-1500字节，算上首部和尾部的22字节，其总长度为64-1522字节</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625003745-m147m77.png" title="image" data-thumbnail="/image/image-20250625003745-m147m77.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625003745-m147m77.png"
+            srcset="/image/image-20250625003745-m147m77.png, /image/image-20250625003745-m147m77.png 1.5x, /image/image-20250625003745-m147m77.png 2x"
+            
+            alt="/image/image-20250625003745-m147m77.png" height="242"  width="938" >
+    </a></figure>​</p>
+</li>
+</ul>
+<h4 id="退避时间的计算二进制指数退避算法" class="headerLink">
+    <a href="#%e9%80%80%e9%81%bf%e6%97%b6%e9%97%b4%e7%9a%84%e8%ae%a1%e7%ae%97%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%8c%87%e6%95%b0%e9%80%80%e9%81%bf%e7%ae%97%e6%b3%95" class="header-mark"></a>退避时间的计算（二进制指数退避算法）</h4><ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250625004629-at7jgrx.png" title="image" data-thumbnail="/image/image-20250625004629-at7jgrx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625004629-at7jgrx.png"
+            srcset="/image/image-20250625004629-at7jgrx.png, /image/image-20250625004629-at7jgrx.png 1.5x, /image/image-20250625004629-at7jgrx.png 2x"
+            
+            alt="/image/image-20250625004629-at7jgrx.png" height="444"  width="1416" >
+    </a></figure>​</li>
+<li>若连续多次发生碰撞，就表明可能有较多的主机参与竞争信道</li>
+<li>使用上述退避算法，可使重传需要推迟的平均时间随重传次数而增大，以减小再次发生碰撞的概率，有利于整个系统的稳定</li>
+<li>这一类策略也称为<strong>动态退避</strong></li>
+<li>当重传达16次仍不能成功时，表明同时打算发送帧的主机太多，以至于连续发生碰撞，则丢弃该帧，并向高层报告</li>
+</ul>
+<h4 id="信道利用率" class="headerLink">
+    <a href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87" class="header-mark"></a>信道利用率</h4><ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625005211-pkhaewo.png" title="image" data-thumbnail="/image/image-20250625005211-pkhaewo.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625005211-pkhaewo.png"
+            srcset="/image/image-20250625005211-pkhaewo.png, /image/image-20250625005211-pkhaewo.png 1.5x, /image/image-20250625005211-pkhaewo.png 2x"
+            
+            alt="/image/image-20250625005211-pkhaewo.png" height="228"  width="1350" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>考虑理想情况</p>
+</li>
+<li>
+<p>个主机发送帧都不会产生碰撞</p>
+</li>
+<li>
+<p>总线一旦空闲就有某个主机立即发送帧</p>
+</li>
+<li>
+<p>此时，发送一帧占用总线的时间为$T_0+\tau$，而帧本身发生的时间只有$T_0$</p>
+</li>
+<li>
+<p>因而，信道的极限利用率为$S_{max} = \frac{T_0}{T_0+\tau} \stackrel{a= \frac{\tau}{T_0}}= \frac{1}{1+a},$</p>
+</li>
+<li>
+<p>为提高信道利用，参数a的值应该尽量小，即$\tau$的值应该尽量小，这意味着以太网端到端的举例应收到限制，不应太长；$T_0$应该尽可能大，说明以太网帧的长度应该尽量长些</p>
+</li>
+</ul>
+<h4 id="练习题目" class="headerLink">
+    <a href="#%e7%bb%83%e4%b9%a0%e9%a2%98%e7%9b%ae" class="header-mark"></a>练习题目</h4><ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625010216-sqkbwc7.png" title="image" data-thumbnail="/image/image-20250625010216-sqkbwc7.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625010216-sqkbwc7.png"
+            srcset="/image/image-20250625010216-sqkbwc7.png, /image/image-20250625010216-sqkbwc7.png 1.5x, /image/image-20250625010216-sqkbwc7.png 2x"
+            
+            alt="/image/image-20250625010216-sqkbwc7.png" height="326"  width="988" >
+    </a></figure>​</p>
+<ul>
+<li>无线网络使用CSMA/CA协议</li>
+</ul>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625010311-jead9a9.png" title="image" data-thumbnail="/image/image-20250625010311-jead9a9.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625010311-jead9a9.png"
+            srcset="/image/image-20250625010311-jead9a9.png, /image/image-20250625010311-jead9a9.png 1.5x, /image/image-20250625010311-jead9a9.png 2x"
+            
+            alt="/image/image-20250625010311-jead9a9.png" height="244"  width="1272" >
+    </a></figure>​</p>
+<ul>
+<li>选项D</li>
+</ul>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625011007-wjure8l.png" title="image" data-thumbnail="/image/image-20250625011007-wjure8l.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625011007-wjure8l.png"
+            srcset="/image/image-20250625011007-wjure8l.png, /image/image-20250625011007-wjure8l.png 1.5x, /image/image-20250625011007-wjure8l.png 2x"
+            
+            alt="/image/image-20250625011007-wjure8l.png" height="374"  width="1198" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625011208-t9dm0vn.png" title="image" data-thumbnail="/image/image-20250625011208-t9dm0vn.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625011208-t9dm0vn.png"
+            srcset="/image/image-20250625011208-t9dm0vn.png, /image/image-20250625011208-t9dm0vn.png 1.5x, /image/image-20250625011208-t9dm0vn.png 2x"
+            
+            alt="/image/image-20250625011208-t9dm0vn.png" height="740"  width="1250" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250625011320-6d32eou.png" title="image" data-thumbnail="/image/image-20250625011320-6d32eou.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250625011320-6d32eou.png"
+            srcset="/image/image-20250625011320-6d32eou.png, /image/image-20250625011320-6d32eou.png 1.5x, /image/image-20250625011320-6d32eou.png 2x"
+            
+            alt="/image/image-20250625011320-6d32eou.png" height="486"  width="1240" >
+    </a></figure>​</p>
+<ul>
+<li>CSMA/CD协议曾经用于各种总线结构以太网和双绞线以太网的早期版本中；现在的以太网基于交换机和全双攻连接，不会有碰撞，因此没有必要再使用CSMA/CD协议</li>
+</ul>
+</li>
+</ul>
+<h3 id="csmaca协议" class="headerLink">
+    <a href="#csmaca%e5%8d%8f%e8%ae%ae" class="header-mark"></a>CSMA/CA协议</h3><ul>
+<li>在<strong>无线局域网络</strong>中，<strong>CSMA/CA协议</strong>（载波监听、多址接入/碰撞避免 Carrier Sense, Multiple Access/Collision Avoidance）</li>
+<li>广播信道的无限局域网中是否也可以使用CSMA/CD呢？
+<ul>
+<li>可以使用载波监听、多址接入（CSMA），即在发送帧之前先对传输媒体进行载波监听，若发现有其他站在发送帧，就推迟发送，以免发生碰撞</li>
+<li>但是在无线网络中，不能使用碰撞检测（CD），因为</li>
+<li>无线信道的信号强度动态范围非常大，无线网卡上接受到的信号强度往往会远远小于发送信号的强度（可能相差百万倍），如果要在无限网卡上实现碰撞检测，对硬件的要求非常高</li>
+<li>隐蔽站问题：由于无线网传播的特殊性，进行碰撞检测的意义也不大
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250709235715-be6v7yq.png" title="image" data-thumbnail="/image/image-20250709235715-be6v7yq.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250709235715-be6v7yq.png"
+            srcset="/image/image-20250709235715-be6v7yq.png, /image/image-20250709235715-be6v7yq.png 1.5x, /image/image-20250709235715-be6v7yq.png 2x"
+            
+            alt="/image/image-20250709235715-be6v7yq.png" height="290"  width="700" >
+    </a></figure>​</li>
+<li>在一条总线上连接的互联网，只是存在时延，不存在该问题</li>
+</ul>
+</li>
+<li>因而，在802.11无限局域网中，使用了CSMA/CA协议，是在CSMA的基础上增加了一个碰撞避免CA功能，而不在实现碰撞检测功能</li>
+<li>由于不可能避免所有的碰撞，并且无线信道误码率较高，802.11标准还使用了数据链路层确认机制（停止-等待协议）来确保数据被正确接收</li>
+</ul>
+</li>
+<li>802.11的MAC层标准定义了两种不同的媒体接入方式
+<ul>
+<li>分布式协调功能DCF（Distributed Coordination Function），在DCF方式下，没有中心控制站点，每个站点使用CSMA/CA协议通过争用信道来获取发送权，这是802.11定义的默认方式</li>
+<li>点协调功能PCF（Point Coordination Function），PCF方式使用集中控制的接入算法（一般在接入点AP实现集中控制），是802.11定义的可选方式，在实际中较少使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="帧间间隔ifsinterframe-space" class="headerLink">
+    <a href="#%e5%b8%a7%e9%97%b4%e9%97%b4%e9%9a%94ifsinterframe-space" class="header-mark"></a>帧间间隔IFS（InterFrame Space）</h4><ul>
+<li>802.11标准规定，所有的站点必须在持续检测到信道空闲一段指定时间后才能发送帧，这段时间称为帧间间隔</li>
+<li>帧间间隔的长短取决于该站点要发送的帧的类型</li>
+<li>高优先级帧需要等待的时间较短，因此可以优先获得发送权</li>
+<li>低优先级帧需要等待的时间较长。若某个站的低优先级帧还没来得及发送，而其他站的高优先级帧已经发送到信道上，则信号变为忙态，因而低优先级帧就只能在推迟发送了</li>
+<li>从而减少了碰撞发生的机会</li>
+<li>常用的帧间间隔如下：
+<ul>
+<li>短帧间间隔SIFS（28μs），是最短的帧间间隔，用来分隔开属于一次对话各帧</li>
+<li>一个站点应该能够在这段时间内，从发送方式切换到接收方式</li>
+<li>使用SIFS的帧类型有ACK帧、CTS帧、由过长的MAC帧分片后的数据帧、所有回答AP探寻的帧、和在PCF方式中接入点AP发送出的任何帧</li>
+<li>DCF帧间间隔DIFS（128μs），比SIFS长得多，在DCF方式中用来发送数据帧和管理帧</li>
+</ul>
+</li>
+</ul>
+<h4 id="工作原理举例" class="headerLink">
+    <a href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e4%b8%be%e4%be%8b" class="header-mark"></a>工作原理举例</h4><ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710001408-389dtho.png" title="image" data-thumbnail="/image/image-20250710001408-389dtho.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710001408-389dtho.png"
+            srcset="/image/image-20250710001408-389dtho.png, /image/image-20250710001408-389dtho.png 1.5x, /image/image-20250710001408-389dtho.png 2x"
+            
+            alt="/image/image-20250710001408-389dtho.png" height="276"  width="794" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>当源站有帧要发送，需要先检测到信道空闲，则在<u><strong>DIFS时间</strong></u>后发送数据</p>
+</li>
+<li>
+<p>DIFS时间的存在，保证了其他站高优先级帧的发送</p>
+</li>
+<li>
+<p>目的站收到该数据帧，则在SIFS时间后，向源站发送数据确认帧ACK</p>
+</li>
+<li>
+<p>SIFS的存在，是用来分隔开属于一次对话的各帧，在这段时间里，一个站点应该能够从发送方式切换到接收方式</p>
+</li>
+<li>
+<p>若源站在规定时间内没有收到确认帧ACK，则由重传计时器控制这段时间，重传该帧，直到收到确认为止，或者经过若干次重传失败后放弃发送</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710002058-xnwkote.png" title="image" data-thumbnail="/image/image-20250710002058-xnwkote.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710002058-xnwkote.png"
+            srcset="/image/image-20250710002058-xnwkote.png, /image/image-20250710002058-xnwkote.png 1.5x, /image/image-20250710002058-xnwkote.png 2x"
+            
+            alt="/image/image-20250710002058-xnwkote.png" height="552"  width="1520" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>其他无线站点若需要发送数据，则需要先等待信道由忙状态转变为空闲状态，<u>等待一段DIFS时间后，还需要退避一段随机时间之后</u>，才可以发送下一帧</p>
+</li>
+<li>
+<p>这个随机时间的存在，可以防止多个站点同时发送数据，而产生碰撞</p>
+</li>
+<li>
+<p>当站点检测到信道是空闲的，并且所发送的数据帧不是成功发送完上一个数据帧之后立即连续发送的数据帧，则不使用退避算法</p>
+</li>
+<li>
+<p>以下情况必须使用退避算法</p>
+</li>
+<li>
+<p>在发送数据帧之前检测到信道处于忙状态时</p>
+</li>
+<li>
+<p>在每一次重传一个数据帧时</p>
+</li>
+<li>
+<p>在每一次成功发送后要连续发送下一个帧时（为了避免一个站点长时间占用信道）</p>
+</li>
+</ul>
+<h4 id="退避算法" class="headerLink">
+    <a href="#%e9%80%80%e9%81%bf%e7%ae%97%e6%b3%95" class="header-mark"></a>退避算法</h4><ul>
+<li>
+<p>在执行退避算法时，站点为退避计时器设置一个随机的退避时间</p>
+</li>
+<li>
+<p>当退避计时器的时间减小到零时，就开始发送数据</p>
+</li>
+<li>
+<p>当退避计时器的时间还未减小到零时，而信道又转变为了忙状态，这是就冻结退避计时器的数值，重新等待信道变为空闲，在经过时间DIFS之后，继续启动退避计时器</p>
+</li>
+<li>
+<p>在进行第i次退避时，退避时间在时隙编号（0，1，&hellip;，$2^{2+i}-1$）中随机选择一个，然后乘以基本退避时间（也就是一个时隙的长度）就可以得到随机的退避时间</p>
+</li>
+<li>
+<p>这样做是为了使不同站点选择相同退避时间的概率减小</p>
+</li>
+<li>
+<p>当时隙编号达到255时（对应于第6次退避）就不再增加了</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710003538-mp8qa89.png" title="image" data-thumbnail="/image/image-20250710003538-mp8qa89.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710003538-mp8qa89.png"
+            srcset="/image/image-20250710003538-mp8qa89.png, /image/image-20250710003538-mp8qa89.png 1.5x, /image/image-20250710003538-mp8qa89.png 2x"
+            
+            alt="/image/image-20250710003538-mp8qa89.png" height="572"  width="1226" >
+    </a></figure>​</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>为了尽可能减少碰撞的概率和降低碰撞的影响，802.11标准允许要发送数据的站点对信道进行预约</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710004824-z65wyen.png" title="image" data-thumbnail="/image/image-20250710004824-z65wyen.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710004824-z65wyen.png"
+            srcset="/image/image-20250710004824-z65wyen.png, /image/image-20250710004824-z65wyen.png 1.5x, /image/image-20250710004824-z65wyen.png 2x"
+            
+            alt="/image/image-20250710004824-z65wyen.png" height="304"  width="652" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>源站在发送数据帧之前，先发送一个短的控制帧，称为请求发送RTS（Request To Send），它包括源地址、目的地址以及这次通信所需的持续时间（包括确认帧）</p>
+</li>
+<li>
+<p>若目的站正确收到源站发来的RTS帧，且媒体空闲，就发送一个响应控制帧，称为允许发送CTS（Clear To Send），它也包括这次通信所需要的持续时间（从RTS帧中将此持续时间复制到CTS帧中）</p>
+</li>
+<li>
+<p>源站收到CTS帧后，在等待一段SIFS时间后，就可以发送其数据帧</p>
+</li>
+<li>
+<p>若目的站正确收到了源站发来的数据帧，在等待SIFS时间后，就像源站发送确认帧ACK</p>
+</li>
+<li>
+<p>除源站和目的站意外的其他各站，在接收到CTS帧（或数据帧）后就推迟接入到无线局域网中</p>
+</li>
+<li>
+<p>这样就保证了源站和目的站之间的通信不会受到其他站的干扰</p>
+</li>
+<li>
+<p>若RTS帧发送碰撞，源站就收不到CTS帧，需执行退避算法重传RTS帧</p>
+</li>
+<li>
+<p>由于RTS帧和CTS帧很短，发送碰撞的概率、碰撞产生的开销以及本身的开销都很小。而对于一般的数据帧，其发送时延往往大于传播时延（因为是局域网），碰撞的概率很大，且一旦发生碰撞而导致数据帧重发，则浪费的时间就很多，因此用很小的代价对信道进行预约往往是值得的</p>
+</li>
+<li>
+<p>802.11标准规定了3种情况供用户进行选择</p>
+</li>
+<li>
+<p>使用RTS帧和CTS帧</p>
+</li>
+<li>
+<p>不使用RTS帧和CTS帧</p>
+</li>
+<li>
+<p>只有当数据帧的长度超过某一数值时才使用RTS帧和CTS帧</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="虚拟载波监听" class="headerLink">
+    <a href="#%e8%99%9a%e6%8b%9f%e8%bd%bd%e6%b3%a2%e7%9b%91%e5%90%ac" class="header-mark"></a>虚拟载波监听</h4><ul>
+<li>
+<p>除RTS帧和CTS帧会携带通信持续的时间，数据帧也能携带通信所需要持续的时间，，这称为802.11的虚拟载波监听机制</p>
+</li>
+<li>
+<p>由于利用虚拟载波监听机制，站点只要监听到RTS帧、CTS帧或数据帧中的任何一个，就能知道信道被占用的持续时间，而不需要真正监听到信道上的信号</p>
+</li>
+<li>
+<p>因此虚拟载波监听机制能减少隐蔽站带来的碰撞问题</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005208-tktwxb4.png" title="image" data-thumbnail="/image/image-20250710005208-tktwxb4.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005208-tktwxb4.png"
+            srcset="/image/image-20250710005208-tktwxb4.png, /image/image-20250710005208-tktwxb4.png 1.5x, /image/image-20250710005208-tktwxb4.png 2x"
+            
+            alt="/image/image-20250710005208-tktwxb4.png" height="392"  width="670" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>如图所示，A和C互为隐蔽站，当其都需要向B发送数据时</p>
+</li>
+<li>
+<p>尽管C收不到A发送的RTS帧，但可以收到B返回的CTS帧，这个时候就可以知道信道需要被占用多长时间，在这段时间内C不会再征用信道</p>
+</li>
+</ul>
+<h4 id="相关练习" class="headerLink">
+    <a href="#%e7%9b%b8%e5%85%b3%e7%bb%83%e4%b9%a0" class="header-mark"></a>相关练习</h4><ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005417-tv08d9t.png" title="image" data-thumbnail="/image/image-20250710005417-tv08d9t.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005417-tv08d9t.png"
+            srcset="/image/image-20250710005417-tv08d9t.png, /image/image-20250710005417-tv08d9t.png 1.5x, /image/image-20250710005417-tv08d9t.png 2x"
+            
+            alt="/image/image-20250710005417-tv08d9t.png" height="120"  width="1116" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005535-f2gts28.png" title="image" data-thumbnail="/image/image-20250710005535-f2gts28.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005535-f2gts28.png"
+            srcset="/image/image-20250710005535-f2gts28.png, /image/image-20250710005535-f2gts28.png 1.5x, /image/image-20250710005535-f2gts28.png 2x"
+            
+            alt="/image/image-20250710005535-f2gts28.png" height="410"  width="1236" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005549-1rs99bf.png" title="image" data-thumbnail="/image/image-20250710005549-1rs99bf.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005549-1rs99bf.png"
+            srcset="/image/image-20250710005549-1rs99bf.png, /image/image-20250710005549-1rs99bf.png 1.5x, /image/image-20250710005549-1rs99bf.png 2x"
+            
+            alt="/image/image-20250710005549-1rs99bf.png" height="110"  width="1058" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005644-mn8cbca.png" title="image" data-thumbnail="/image/image-20250710005644-mn8cbca.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005644-mn8cbca.png"
+            srcset="/image/image-20250710005644-mn8cbca.png, /image/image-20250710005644-mn8cbca.png 1.5x, /image/image-20250710005644-mn8cbca.png 2x"
+            
+            alt="/image/image-20250710005644-mn8cbca.png" height="400"  width="1004" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005703-rwnkau5.png" title="image" data-thumbnail="/image/image-20250710005703-rwnkau5.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005703-rwnkau5.png"
+            srcset="/image/image-20250710005703-rwnkau5.png, /image/image-20250710005703-rwnkau5.png 1.5x, /image/image-20250710005703-rwnkau5.png 2x"
+            
+            alt="/image/image-20250710005703-rwnkau5.png" height="178"  width="1132" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250710005739-pfie89v.png" title="image" data-thumbnail="/image/image-20250710005739-pfie89v.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250710005739-pfie89v.png"
+            srcset="/image/image-20250710005739-pfie89v.png, /image/image-20250710005739-pfie89v.png 1.5x, /image/image-20250710005739-pfie89v.png 2x"
+            
+            alt="/image/image-20250710005739-pfie89v.png" height="144"  width="1070" >
+    </a></figure>​</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>随着交换技术的发展和成本的降低，具有更高性能的，使用 点对点链路和链路层交换机 的交换式局域网，在有线领域已经完全取代了共享式局域网，但由于无线信道的广播天性，无线局域网仍然使用的是<strong>共享媒体技术</strong></li>
+</ul>
+<p>‍</p>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img
