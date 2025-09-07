@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 06. 网络层与IP数据报的路由与交付 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 06. 网络层与IP数据报的路由与交付" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n06_net_route/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-07-15T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 06. 网络层与IP数据报的路由与交付"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n06_net_route\/"
-        },"genre": "posts","wordcount":  0 ,
+        },"genre": "posts","wordcount":  5590 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n06_net_route\/","datePublished": "2025-07-15T00:00:00+08:00","dateModified": "2025-07-15T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,9 +118,1021 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 0 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 0 分钟&nbsp;</div>
-        </div><div class="content" id="content"></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5590 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
+        </div><div class="content" id="content"><h3 id="250715-网络层与ipv4" class="headerLink">
+    <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><ul>
+<li>
+<p>网络层</p>
+<ul>
+<li>
+<p>主要任务是实现网络互联，进而实现数据包在各网络之间的传输</p>
+</li>
+<li>
+<p>如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现物理层和数据链路层即可；但如果需要将其互连起来，形成一个更大的互联网，就需要使用网络层互连设备 路由器，就必须实现网络层</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715095644-mbggtco.png" title="image" data-thumbnail="/image/image-20250715095644-mbggtco.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715095644-mbggtco.png"
+            srcset="/image/image-20250715095644-mbggtco.png, /image/image-20250715095644-mbggtco.png 1.5x, /image/image-20250715095644-mbggtco.png 2x"
+            
+            alt="/image/image-20250715095644-mbggtco.png" height="298"  width="520" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>网络层需要解决的主要问题</p>
+<ul>
+<li>
+<p>网络层向运输层提供怎样的服务（可靠传输还是不可靠传输）</p>
+<ul>
+<li>常见传输错误：传输过程中误码、路由器繁忙而被丢弃、按序发送的数据包不能按序到达接收方</li>
+<li>如果网络层对上述传输错误采取措施，则提供可靠服务；否则为不可靠服务</li>
+<li>不同网络采取的协议可能不同，例如因特网使用的TCP/IP协议体系的网际层，提供的是无连接的、不可靠的数据报服务；而ATM、帧中继和X.25的网络层提供的都是面向连接的、可靠的虚电路服务</li>
+</ul>
+</li>
+<li>
+<p>网络层寻址问题</p>
+<ul>
+<li>TCP/IP协议体系的网际层使用IP地址</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715100457-8gitbz1.png" title="image" data-thumbnail="/image/image-20250715100457-8gitbz1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715100457-8gitbz1.png"
+            srcset="/image/image-20250715100457-8gitbz1.png, /image/image-20250715100457-8gitbz1.png 1.5x, /image/image-20250715100457-8gitbz1.png 2x"
+            
+            alt="/image/image-20250715100457-8gitbz1.png" height="398"  width="956" >
+    </a></figure>​</li>
+<li>前几个数字相同，表示网络编号，后一个数字不同，表示该网络中不同的路由器接口</li>
+</ul>
+</li>
+<li>
+<p>路由选择问题</p>
+<ul>
+<li>在确定收发方后，仍旧可能有多个路径发送该数据包，如何确定？</li>
+<li>依据数据包中的目的地址和路由器中的路由表</li>
+<li>路由表可以由用户或网络管理员进行人工配置，但这种方法只适用于规模较小、且网络拓扑不改变的小型互联网</li>
+<li>也可以选择合适的路由选择协议，由路由器执行路由选择协议中所规定的路由选择算法，而自动得出路由表中的路由记录，这种方法适用于网络规模较大，且拓扑经常改变的大型互联网</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>TCP/IP协议栈</p>
+<ul>
+<li>
+<p>因特网时目前全世界用户数量最多的互联网，它使用TCP/IP协议栈</p>
+</li>
+<li>
+<p>由于TCP/IP协议栈的网络层使用<strong>网际协议IP</strong>，它是整个协议栈的核心协议，因此在TCP/IP协议栈中网络层常称为网际层</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715101333-ghy5ryj.png" title="image" data-thumbnail="/image/image-20250715101333-ghy5ryj.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715101333-ghy5ryj.png"
+            srcset="/image/image-20250715101333-ghy5ryj.png, /image/image-20250715101333-ghy5ryj.png 1.5x, /image/image-20250715101333-ghy5ryj.png 2x"
+            
+            alt="/image/image-20250715101333-ghy5ryj.png" height="488"  width="1102" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>网络层提供的两种服务</p>
+<ul>
+<li>
+<p>面向连接的虚电路服务</p>
+<ul>
+<li>基本思想：可靠通信应由网络自身来保证</li>
+<li>当两台计算机进行通信时，应首先建立网络层的连接，即建立“虚电路”，以保证通信双方所需的一切网络资源；随后通信双方沿着已建立的虚电路发送分组</li>
+<li>需要注意的是，虚电路表示，这是一条逻辑上的连接，分组都沿着这条逻辑连接，按照存储转发方式传送；而并不是真正建立了一条物理连接</li>
+<li>而采用电路交换的电话通信，则是先建立一条真正的连接</li>
+<li>分组的首部仅在连接建立阶段使用完整的目的主机地址，之后每个分组的首部只需携带一条虚电路编号即可</li>
+<li>这种通信方式如果再使用可靠传输的网络协议，就可使所发送的分组最终正确到达接收方（无差错按序到达、不丢失、不重复）</li>
+<li>通信结束之后，需要释放之前所建立的虚电路</li>
+<li>很多广域分组交换网都使用面向连接的虚电路服务，例如，曾经的X.25和逐渐过时的帧中继FR、异步传输模式ATM等</li>
+</ul>
+</li>
+<li>
+<p>无连接的数据报服务（TCP/IP体系结构的因特网网际层所提供的服务）</p>
+<ul>
+<li>因特网先驱最早使用的方式，其基本思路是：可靠通信应当由用户主机来保证</li>
+<li>当两台计算机进行通信时，它们的网络层不需要先建立连接，每个分组可走不同的路径，因而每个分组的首部必须携带目的主机的完整地址</li>
+<li>这种通信方式所传送的分组可能误码、丢失、重复和失序</li>
+<li>由于网络本身不提供端到端的可靠传输服务，这就使网络中的路由器可以做得比较简单，而且价格低廉（与电信网交换机相比较）</li>
+<li>因特网采用了这种设计思想，也就是将复杂的网络处理功能至于因特网的边缘（用户主机和其内部的运输层），而将相对简单的尽最大努力的分组交付功能置于因特网的核心</li>
+<li>好处是网络造价降低、运行方式灵活、能够适应多种应用；因特网能发展至今，也充分证明了这种思想的正确性</li>
+<li>‍</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>IPv4地址</p>
+<ul>
+<li>
+<p>概述</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715103449-a21onxp.png" title="image" data-thumbnail="/image/image-20250715103449-a21onxp.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715103449-a21onxp.png"
+            srcset="/image/image-20250715103449-a21onxp.png, /image/image-20250715103449-a21onxp.png 1.5x, /image/image-20250715103449-a21onxp.png 2x"
+            
+            alt="/image/image-20250715103449-a21onxp.png" height="662"  width="1344" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>表示方法：点分十进制表示</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715103544-ih2eetc.png" title="image" data-thumbnail="/image/image-20250715103544-ih2eetc.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715103544-ih2eetc.png"
+            srcset="/image/image-20250715103544-ih2eetc.png, /image/image-20250715103544-ih2eetc.png 1.5x, /image/image-20250715103544-ih2eetc.png 2x"
+            
+            alt="/image/image-20250715103544-ih2eetc.png" height="700"  width="1500" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715103618-pfst574.png" title="image" data-thumbnail="/image/image-20250715103618-pfst574.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715103618-pfst574.png"
+            srcset="/image/image-20250715103618-pfst574.png, /image/image-20250715103618-pfst574.png 1.5x, /image/image-20250715103618-pfst574.png 2x"
+            
+            alt="/image/image-20250715103618-pfst574.png" height="712"  width="1506" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715103650-xj6zt7f.png" title="image" data-thumbnail="/image/image-20250715103650-xj6zt7f.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715103650-xj6zt7f.png"
+            srcset="/image/image-20250715103650-xj6zt7f.png, /image/image-20250715103650-xj6zt7f.png 1.5x, /image/image-20250715103650-xj6zt7f.png 2x"
+            
+            alt="/image/image-20250715103650-xj6zt7f.png" height="684"  width="1492" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>分类编制阶段</p>
+<ul>
+<li>
+<p>5类地址（第一个历史阶段）</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250715103758-74m3l3d.png" title="image" data-thumbnail="/image/image-20250715103758-74m3l3d.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715103758-74m3l3d.png"
+            srcset="/image/image-20250715103758-74m3l3d.png, /image/image-20250715103758-74m3l3d.png 1.5x, /image/image-20250715103758-74m3l3d.png 2x"
+            
+            alt="/image/image-20250715103758-74m3l3d.png" height="698"  width="1546" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>A类</p>
+<ul>
+<li>
+<p>最高位固定为0，若后7位全部取0时，就为A类地址的最小网络号，其十进制为0，该<strong>网络号被保留，不能指派</strong></p>
+</li>
+<li>
+<p>因此，A类网络第一个可指派的网络号为最高位固定为0，低7位为0000001，十进制为1；将24位主机号全部取0，就可以得到该网络地址：<code>1.0.0.0</code>​</p>
+</li>
+<li>
+<p>当低7位全部取1时，就得到最大网络号127，该网络号被作为<strong>本地环回测试地址</strong>，不能指派</p>
+<ul>
+<li>当将127开头的IPv4地址的主机号部分，最低位取1、其他位取0，就可得到最小的本地软件环回测试地址，即<code>127.0.0.1</code>​</li>
+<li>当将127开头的IPv4地址的主机号部分，最低位取0、其他位取1，就可以得到最大的本地环回测试地址<code>127.255.255.254</code>​</li>
+</ul>
+</li>
+<li>
+<p>最后一个可指派的网络号为<code>01111111</code>​（126），网络地址为<code>126.0.0.0</code>​</p>
+</li>
+<li>
+<p>可指派的A类网络数量：网络号126</p>
+</li>
+<li>
+<p>每个网络中，可分配的IP地址数量为：$2^{24}-2=16777214$，减去2是因为要取出<strong>主机号全0的网络地址和主机号全1的广播地址</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>B类网络</p>
+<ul>
+<li>16位网络号最高位固定为10</li>
+<li>低14位全部取0时，得到最小网络号，即<code>128.0</code>​，也是第一个可指派的网络号，主机号全取0后，可以得到其网络地址<code>128.0.0.0</code>​</li>
+<li>当网络号低14为全部取1时，就是最大网络号（可指派的最后一个），为<code>191.255</code>​，其网络地址为<code>191.255.0.0</code>​</li>
+<li>B类网络可指派的网络数量为$2^{14}=16384$</li>
+<li>每个网络中可分配的IP地址数量为$2^{16}-2=65534$</li>
+<li>有些教材中指出，128.0时保留网络号，B类第一个可指派网络号为128.1，但根据2002年9月发布的RFC3300文档，128.0网络号已经可以分配了</li>
+</ul>
+</li>
+<li>
+<p>C类</p>
+<ul>
+<li>24位网络号，以110开头</li>
+<li>最小网络号是低21位全为0的情况，其网络号为<code>192.0.0.0</code>​</li>
+<li>最大网络号也是最后一个可指派的网络号为<code>223.255.255</code>​</li>
+<li>可指派的C类网络数量为$2^{21}=2097152$</li>
+<li>每个网络中可分配的IP地址数量为$2^8-2=254$</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715121700-3wecws0.png" title="image" data-thumbnail="/image/image-20250715121700-3wecws0.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715121700-3wecws0.png"
+            srcset="/image/image-20250715121700-3wecws0.png, /image/image-20250715121700-3wecws0.png 1.5x, /image/image-20250715121700-3wecws0.png 2x"
+            
+            alt="/image/image-20250715121700-3wecws0.png" height="724"  width="1476" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715121819-kqmhc6p.png" title="image" data-thumbnail="/image/image-20250715121819-kqmhc6p.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715121819-kqmhc6p.png"
+            srcset="/image/image-20250715121819-kqmhc6p.png, /image/image-20250715121819-kqmhc6p.png 1.5x, /image/image-20250715121819-kqmhc6p.png 2x"
+            
+            alt="/image/image-20250715121819-kqmhc6p.png" height="520"  width="1278" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250715122002-8des4g1.png" title="image" data-thumbnail="/image/image-20250715122002-8des4g1.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250715122002-8des4g1.png"
+            srcset="/image/image-20250715122002-8des4g1.png, /image/image-20250715122002-8des4g1.png 1.5x, /image/image-20250715122002-8des4g1.png 2x"
+            
+            alt="/image/image-20250715122002-8des4g1.png" height="714"  width="1494" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>子网划分的IPv4地址（第二个历史阶段）</p>
+<ul>
+<li>
+<p>问题引入：如某单位有一个大型的局域网需要连接到因特网</p>
+<ul>
+<li>
+<p>如果申请一个C类网络地址，其可分配的IP地址数量只有254个，会不够使用</p>
+</li>
+<li>
+<p>但如果该单位申请了一个B类网络地址，其可分配的IP地址数量达到了65534个，给每台计算机和路由器接口都分配后，还会有剩余；而这些剩余的IP地址，只能由该单位的同一个网络使用，</p>
+</li>
+<li>
+<p>随着该单位计算机网络的发展，需要将原来的网络划分成三个独立的网络（子网1、2、3），新的子网需要重新申请B类IP地址</p>
+</li>
+<li>
+<p>这个时候会造成浪费</p>
+<ul>
+<li>需要花时间和费用来申请</li>
+<li>增加其他路由器中路由表的数量</li>
+<li>浪费原网络中剩余的大量IP地址</li>
+</ul>
+</li>
+<li>
+<p>这个时候，如果可以从IP地址的主机号部分，借用一些位，作为子网号来区分不同的子网，就可以避免浪费</p>
+</li>
+<li>
+<p>例如，可以借用16位主机号中的8位作为子网号，就可以将剩余IP地址划分开，分给不同的网络</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731101715-4s91oz2.png" title="image" data-thumbnail="/image/image-20250731101715-4s91oz2.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731101715-4s91oz2.png"
+            srcset="/image/image-20250731101715-4s91oz2.png, /image/image-20250731101715-4s91oz2.png 1.5x, /image/image-20250731101715-4s91oz2.png 2x"
+            
+            alt="/image/image-20250731101715-4s91oz2.png" height="742"  width="1372" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>我们和计算机怎么知道分类地址中，有多少比特被用作子网了呢？ =&gt; 子网掩码</p>
+<ul>
+<li>
+<p>32比特的子网掩码，可以表明分类IP地址的主机号部分，被借用了几个比特作为子网号</p>
+<ul>
+<li>32位分类IP地址：网络号+主机号</li>
+<li>32位划分子网的IP地址：网络号+子网号+主机号</li>
+<li>子网掩码使用连续的比特1来对应网络号和子网号，用连续的比特0来对应主机号</li>
+<li>将划分子网的IP地址，与其相应的子网掩码进行逻辑与运算，就可以得到IPv4地址所在子网的网络地址</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731102223-6jo9lld.png" title="image" data-thumbnail="/image/image-20250731102223-6jo9lld.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731102223-6jo9lld.png"
+            srcset="/image/image-20250731102223-6jo9lld.png, /image/image-20250731102223-6jo9lld.png 1.5x, /image/image-20250731102223-6jo9lld.png 2x"
+            
+            alt="/image/image-20250731102223-6jo9lld.png" height="326"  width="1558" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>举例</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731102340-88j8fo6.png" title="image" data-thumbnail="/image/image-20250731102340-88j8fo6.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731102340-88j8fo6.png"
+            srcset="/image/image-20250731102340-88j8fo6.png, /image/image-20250731102340-88j8fo6.png 1.5x, /image/image-20250731102340-88j8fo6.png 2x"
+            
+            alt="/image/image-20250731102340-88j8fo6.png" height="730"  width="1508" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731102538-v9kfymi.png" title="image" data-thumbnail="/image/image-20250731102538-v9kfymi.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731102538-v9kfymi.png"
+            srcset="/image/image-20250731102538-v9kfymi.png, /image/image-20250731102538-v9kfymi.png 1.5x, /image/image-20250731102538-v9kfymi.png 2x"
+            
+            alt="/image/image-20250731102538-v9kfymi.png" height="600"  width="1606" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731102614-3nrodwu.png" title="image" data-thumbnail="/image/image-20250731102614-3nrodwu.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731102614-3nrodwu.png"
+            srcset="/image/image-20250731102614-3nrodwu.png, /image/image-20250731102614-3nrodwu.png 1.5x, /image/image-20250731102614-3nrodwu.png 2x"
+            
+            alt="/image/image-20250731102614-3nrodwu.png" height="738"  width="1502" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731103415-sd07329.png" title="image" data-thumbnail="/image/image-20250731103415-sd07329.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731103415-sd07329.png"
+            srcset="/image/image-20250731103415-sd07329.png, /image/image-20250731103415-sd07329.png 1.5x, /image/image-20250731103415-sd07329.png 2x"
+            
+            alt="/image/image-20250731103415-sd07329.png" height="142"  width="1356" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>默认子网掩码是指，在未划分子网情况下使用的子网掩码</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731103608-kt4aryh.png" title="image" data-thumbnail="/image/image-20250731103608-kt4aryh.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731103608-kt4aryh.png"
+            srcset="/image/image-20250731103608-kt4aryh.png, /image/image-20250731103608-kt4aryh.png 1.5x, /image/image-20250731103608-kt4aryh.png 2x"
+            
+            alt="/image/image-20250731103608-kt4aryh.png" height="734"  width="1104" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>无分类编址的IPv4地址</p>
+<ul>
+<li>
+<p>问题引入</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731103752-9gagezx.png" title="image" data-thumbnail="/image/image-20250731103752-9gagezx.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731103752-9gagezx.png"
+            srcset="/image/image-20250731103752-9gagezx.png, /image/image-20250731103752-9gagezx.png 1.5x, /image/image-20250731103752-9gagezx.png 2x"
+            
+            alt="/image/image-20250731103752-9gagezx.png" height="566"  width="1298" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>CIDR</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250731103857-sllosfq.png" title="image" data-thumbnail="/image/image-20250731103857-sllosfq.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731103857-sllosfq.png"
+            srcset="/image/image-20250731103857-sllosfq.png, /image/image-20250731103857-sllosfq.png 1.5x, /image/image-20250731103857-sllosfq.png 2x"
+            
+            alt="/image/image-20250731103857-sllosfq.png" height="724"  width="1452" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>举例</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731104008-yizmi2g.png" title="image" data-thumbnail="/image/image-20250731104008-yizmi2g.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731104008-yizmi2g.png"
+            srcset="/image/image-20250731104008-yizmi2g.png, /image/image-20250731104008-yizmi2g.png 1.5x, /image/image-20250731104008-yizmi2g.png 2x"
+            
+            alt="/image/image-20250731104008-yizmi2g.png" height="748"  width="1526" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731104518-5zzaakv.png" title="image" data-thumbnail="/image/image-20250731104518-5zzaakv.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731104518-5zzaakv.png"
+            srcset="/image/image-20250731104518-5zzaakv.png, /image/image-20250731104518-5zzaakv.png 1.5x, /image/image-20250731104518-5zzaakv.png 2x"
+            
+            alt="/image/image-20250731104518-5zzaakv.png" height="740"  width="1484" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>路由聚合</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250731104707-aj4wwaq.png" title="image" data-thumbnail="/image/image-20250731104707-aj4wwaq.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731104707-aj4wwaq.png"
+            srcset="/image/image-20250731104707-aj4wwaq.png, /image/image-20250731104707-aj4wwaq.png 1.5x, /image/image-20250731104707-aj4wwaq.png 2x"
+            
+            alt="/image/image-20250731104707-aj4wwaq.png" height="772"  width="1540" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731104815-nml75sl.png" title="image" data-thumbnail="/image/image-20250731104815-nml75sl.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731104815-nml75sl.png"
+            srcset="/image/image-20250731104815-nml75sl.png, /image/image-20250731104815-nml75sl.png 1.5x, /image/image-20250731104815-nml75sl.png 2x"
+            
+            alt="/image/image-20250731104815-nml75sl.png" height="708"  width="1392" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731105049-9xcd4iz.png" title="image" data-thumbnail="/image/image-20250731105049-9xcd4iz.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731105049-9xcd4iz.png"
+            srcset="/image/image-20250731105049-9xcd4iz.png, /image/image-20250731105049-9xcd4iz.png 1.5x, /image/image-20250731105049-9xcd4iz.png 2x"
+            
+            alt="/image/image-20250731105049-9xcd4iz.png" height="738"  width="1308" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>IPv4地址的应用规划</p>
+<ul>
+<li>
+<p>在给定一个IPv4地址块时，如何将其划分为几个更小的地址块，并将这些地址块分配给互联网中的不同网络，进而可以给各网络中的主机和路由器接口分配IPv4地址</p>
+</li>
+<li>
+<p>一般有两种方法</p>
+<ul>
+<li>
+<p>定长的子网掩码（Fixed Length Subnet Mask，FLSM）</p>
+<ul>
+<li>
+<p>使用同一个子网掩码来划分子网</p>
+</li>
+<li>
+<p>每个子网所分配得到的IP地址数量相同，容易会造成浪费</p>
+</li>
+<li>
+<p>举例</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731121449-01kbgda.png" title="image" data-thumbnail="/image/image-20250731121449-01kbgda.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731121449-01kbgda.png"
+            srcset="/image/image-20250731121449-01kbgda.png, /image/image-20250731121449-01kbgda.png 1.5x, /image/image-20250731121449-01kbgda.png 2x"
+            
+            alt="/image/image-20250731121449-01kbgda.png" height="654"  width="1508" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731121540-wcn5q9b.png" title="image" data-thumbnail="/image/image-20250731121540-wcn5q9b.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731121540-wcn5q9b.png"
+            srcset="/image/image-20250731121540-wcn5q9b.png, /image/image-20250731121540-wcn5q9b.png 1.5x, /image/image-20250731121540-wcn5q9b.png 2x"
+            
+            alt="/image/image-20250731121540-wcn5q9b.png" height="528"  width="1522" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731121709-662y75y.png" title="image" data-thumbnail="/image/image-20250731121709-662y75y.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731121709-662y75y.png"
+            srcset="/image/image-20250731121709-662y75y.png, /image/image-20250731121709-662y75y.png 1.5x, /image/image-20250731121709-662y75y.png 2x"
+            
+            alt="/image/image-20250731121709-662y75y.png" height="494"  width="854" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>变长的子网掩码（Variable Length Subnet Mask）</p>
+<ul>
+<li>
+<p>使用不同的子网掩码来划分子网</p>
+</li>
+<li>
+<p>每个子网所分配的 IP地址数量可以不同，尽可能减少对IP地址的浪费</p>
+</li>
+<li>
+<p>举例：</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731121758-oh7rqma.png" title="image" data-thumbnail="/image/image-20250731121758-oh7rqma.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731121758-oh7rqma.png"
+            srcset="/image/image-20250731121758-oh7rqma.png, /image/image-20250731121758-oh7rqma.png 1.5x, /image/image-20250731121758-oh7rqma.png 2x"
+            
+            alt="/image/image-20250731121758-oh7rqma.png" height="654"  width="1494" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731122047-wzg3vkn.png" title="image" data-thumbnail="/image/image-20250731122047-wzg3vkn.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731122047-wzg3vkn.png"
+            srcset="/image/image-20250731122047-wzg3vkn.png, /image/image-20250731122047-wzg3vkn.png 1.5x, /image/image-20250731122047-wzg3vkn.png 2x"
+            
+            alt="/image/image-20250731122047-wzg3vkn.png" height="644"  width="1470" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>##‍# 250731 IP数据报的交付与路由问题</p>
+<ul>
+<li>
+<p>IP数据报的转发与发送过程</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250731122505-unm663s.png" title="image" data-thumbnail="/image/image-20250731122505-unm663s.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731122505-unm663s.png"
+            srcset="/image/image-20250731122505-unm663s.png, /image/image-20250731122505-unm663s.png 1.5x, /image/image-20250731122505-unm663s.png 2x"
+            
+            alt="/image/image-20250731122505-unm663s.png" height="186"  width="1346" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>2个过程：主机发送IP数据报，路由器转发IP数据报</p>
+</li>
+<li>
+<p>直接交付与间接交付</p>
+<ul>
+<li>
+<p>在同一个子网中的数据，可以直接交付</p>
+</li>
+<li>
+<p><strong>在不同网络中的数据，需要通过路由器间接交付</strong></p>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250731122649-osafutv.png" title="image" data-thumbnail="/image/image-20250731122649-osafutv.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731122649-osafutv.png"
+            srcset="/image/image-20250731122649-osafutv.png, /image/image-20250731122649-osafutv.png 1.5x, /image/image-20250731122649-osafutv.png 2x"
+            
+            alt="/image/image-20250731122649-osafutv.png" height="582"  width="1418" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>源主机如何知道目的主机是否与自己在同一个网络中？</p>
+<ul>
+<li>在数据报文发送时，源主机一定知道自己的IP地址和子网掩码，以及目的主机的IP地址</li>
+<li>将源主机和目的主机的IP地址与自己的子网掩码做逻辑与运算，可以得到两个网络地址，如果相同，则说明两个主机在相同的网络中，否则不同</li>
+</ul>
+</li>
+<li>
+<p><strong>当网络不通时，需要通过路由器进行转发</strong>，这时源主机怎么知道是否有路由器连接目的主机？以及怎么找到是哪个路由器呢？</p>
+<ul>
+<li>每个子网中，都需要被指定一台路由器，数据需要经由该路由器与外界进行转发；这个路由器也被称做<strong>默认网关</strong></li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731143344-8nq6a8r.png" title="image" data-thumbnail="/image/image-20250731143344-8nq6a8r.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731143344-8nq6a8r.png"
+            srcset="/image/image-20250731143344-8nq6a8r.png, /image/image-20250731143344-8nq6a8r.png 1.5x, /image/image-20250731143344-8nq6a8r.png 2x"
+            
+            alt="/image/image-20250731143344-8nq6a8r.png" height="600"  width="1520" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>间接交付过程</p>
+<ul>
+<li>
+<p>当数据需要间接交付时，<strong>源主机会将数据交付给自己的默认网关</strong></p>
+</li>
+<li>
+<p>路由器收到数据报之后首先会检查IP数据报的首部是否出错</p>
+<ul>
+<li>出错时丢弃该数据报并报告源主机</li>
+<li>若没有出错，则进行转发</li>
+</ul>
+</li>
+<li>
+<p>路由器根据IP数据报的目的地址，在路由表中查找匹配的条目（路由表中存储目的网络地址和地址掩码）</p>
+<ul>
+<li>若找到匹配的条目，则转发给条目中指示的下一跳（可能自己的另一个接口，或者另一个直连的路由器）</li>
+<li>若找不到，则丢弃该IP数据报并通告源主机</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250731144310-hyxegrt.png" title="image" data-thumbnail="/image/image-20250731144310-hyxegrt.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250731144310-hyxegrt.png"
+            srcset="/image/image-20250731144310-hyxegrt.png, /image/image-20250731144310-hyxegrt.png 1.5x, /image/image-20250731144310-hyxegrt.png 2x"
+            
+            alt="/image/image-20250731144310-hyxegrt.png" height="750"  width="1424" >
+    </a></figure>​</li>
+<li>这里其实还有一个关键问题，就是路由表结构的设计（可以是管理员配置的静态路由，也可以是路由器自动生成的动态路由），从而确保查询速度(之后进行讨论)</li>
+</ul>
+</li>
+<li>
+<p>路由器对广播域的隔离：当源主机发送广播数据报时，当其被路由器接收时，不会进行转发，否则会出现广播风暴</p>
+<ul>
+<li>例如主机A发送了一个广播数据报，该网络中的所有机器都可以收到该广播，但是路由器在收到之后并不会转发</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806230702-b14sriq.png" title="image" data-thumbnail="/image/image-20250806230702-b14sriq.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806230702-b14sriq.png"
+            srcset="/image/image-20250806230702-b14sriq.png, /image/image-20250806230702-b14sriq.png 1.5x, /image/image-20250806230702-b14sriq.png 2x"
+            
+            alt="/image/image-20250806230702-b14sriq.png" height="682"  width="1594" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806230751-2chot5d.png" title="image" data-thumbnail="/image/image-20250806230751-2chot5d.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806230751-2chot5d.png"
+            srcset="/image/image-20250806230751-2chot5d.png, /image/image-20250806230751-2chot5d.png 1.5x, /image/image-20250806230751-2chot5d.png 2x"
+            
+            alt="/image/image-20250806230751-2chot5d.png" height="804"  width="1604" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806230844-r5uwhmt.png" title="image" data-thumbnail="/image/image-20250806230844-r5uwhmt.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806230844-r5uwhmt.png"
+            srcset="/image/image-20250806230844-r5uwhmt.png, /image/image-20250806230844-r5uwhmt.png 1.5x, /image/image-20250806230844-r5uwhmt.png 2x"
+            
+            alt="/image/image-20250806230844-r5uwhmt.png" height="540"  width="1378" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806231050-20qc691.png" title="image" data-thumbnail="/image/image-20250806231050-20qc691.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806231050-20qc691.png"
+            srcset="/image/image-20250806231050-20qc691.png, /image/image-20250806231050-20qc691.png 1.5x, /image/image-20250806231050-20qc691.png 2x"
+            
+            alt="/image/image-20250806231050-20qc691.png" height="822"  width="1448" >
+    </a></figure>​</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806231323-o1obuqs.png" title="image" data-thumbnail="/image/image-20250806231323-o1obuqs.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806231323-o1obuqs.png"
+            srcset="/image/image-20250806231323-o1obuqs.png, /image/image-20250806231323-o1obuqs.png 1.5x, /image/image-20250806231323-o1obuqs.png 2x"
+            
+            alt="/image/image-20250806231323-o1obuqs.png" height="844"  width="1726" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>静态路由及其潜在的环路问题</p>
+<ul>
+<li>
+<p>用户或网络管理员使用路由器相关命令给路由器<strong>人工配置路由表</strong>，该方法简单、开销小，但不能及时适应网络状态（流量、拓扑等）的变化，一般只在小规模网络中使用</p>
+</li>
+<li>
+<p>静态路由配置</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250806231820-r69pv9w.png" title="image" data-thumbnail="/image/image-20250806231820-r69pv9w.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806231820-r69pv9w.png"
+            srcset="/image/image-20250806231820-r69pv9w.png, /image/image-20250806231820-r69pv9w.png 1.5x, /image/image-20250806231820-r69pv9w.png 2x"
+            
+            alt="/image/image-20250806231820-r69pv9w.png" height="702"  width="1688" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>默认路由</p>
+<ul>
+<li>若R2的接口2连接了因特网，现在主机需要发送数据给Internet中某个网络的某个主机，那么R1的路由设置需要添加该部分信息，数据才可以得到正确转发</li>
+<li>但是，因特网中包含有众多的网络，如果每一个网络都需要配置路由条目，那人工配置就会有巨大的工作量，且极大地降低了查表转发速度</li>
+<li>实际上，对于具有相同下一跳的不同目的网络的路由条目，可以使用默认路由条目来替代</li>
+<li>默认路由条目的目的网络地址为0.0.0.0，地址掩码也为0.0.0.0，其CIDR形式为0.0.0.0/0</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806232718-f2qxo66.png" title="image" data-thumbnail="/image/image-20250806232718-f2qxo66.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806232718-f2qxo66.png"
+            srcset="/image/image-20250806232718-f2qxo66.png, /image/image-20250806232718-f2qxo66.png 1.5x, /image/image-20250806232718-f2qxo66.png 2x"
+            
+            alt="/image/image-20250806232718-f2qxo66.png" height="798"  width="1690" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>特定主机路由</p>
+<ul>
+<li>一般用于网络管理人员对网络的管理和测试；或者在特定安全问题背景下，也可以采用特定的主机路由</li>
+<li>在特定主机路由条目中，其目的网络地址为该主机的IP地址，地址掩码为255.255.255.255（CIDR为32）</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806233038-ha6ba19.png" title="image" data-thumbnail="/image/image-20250806233038-ha6ba19.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806233038-ha6ba19.png"
+            srcset="/image/image-20250806233038-ha6ba19.png, /image/image-20250806233038-ha6ba19.png 1.5x, /image/image-20250806233038-ha6ba19.png 2x"
+            
+            alt="/image/image-20250806233038-ha6ba19.png" height="794"  width="1700" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>聚合路由</p>
+</li>
+<li>
+<p>最长匹配原则</p>
+</li>
+</ul>
+</li>
+<li>
+<p>配置错误可能导致的问题</p>
+<ul>
+<li>
+<p>正确配置</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806233220-1yyn1ee.png" title="image" data-thumbnail="/image/image-20250806233220-1yyn1ee.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806233220-1yyn1ee.png"
+            srcset="/image/image-20250806233220-1yyn1ee.png, /image/image-20250806233220-1yyn1ee.png 1.5x, /image/image-20250806233220-1yyn1ee.png 2x"
+            
+            alt="/image/image-20250806233220-1yyn1ee.png" height="674"  width="1684" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>直接配置错误导致的环路</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806233307-stcfxag.png" title="image" data-thumbnail="/image/image-20250806233307-stcfxag.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806233307-stcfxag.png"
+            srcset="/image/image-20250806233307-stcfxag.png, /image/image-20250806233307-stcfxag.png 1.5x, /image/image-20250806233307-stcfxag.png 2x"
+            
+            alt="/image/image-20250806233307-stcfxag.png" height="728"  width="1690" >
+    </a></figure>​</li>
+<li>为了防止IP数据包在路由环路中永远兜圈，在IP数据报首部设有生存事件TTL字段，IP数据报进入路由器后，TTL字段的值减1，若TTL的值不等于0，则被路由器转发，否则被丢弃</li>
+</ul>
+</li>
+<li>
+<p>聚合不存在网络导致的环路</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806233611-rpo95bc.png" title="image" data-thumbnail="/image/image-20250806233611-rpo95bc.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806233611-rpo95bc.png"
+            srcset="/image/image-20250806233611-rpo95bc.png, /image/image-20250806233611-rpo95bc.png 1.5x, /image/image-20250806233611-rpo95bc.png 2x"
+            
+            alt="/image/image-20250806233611-rpo95bc.png" height="786"  width="1626" >
+    </a></figure>​</li>
+<li>在使用聚合路由时，其可能会出现部分不存在的网络，其会通过默认路由再被返回来</li>
+<li>可以使用黑洞路由的配置方法来排除这些不存在的网络（当下一跳地址为null0时，路由器丢弃该数据）</li>
+<li>​<figure><a class="lightgallery" href="/image/image-20250806233743-tqzthmu.png" title="image" data-thumbnail="/image/image-20250806233743-tqzthmu.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806233743-tqzthmu.png"
+            srcset="/image/image-20250806233743-tqzthmu.png, /image/image-20250806233743-tqzthmu.png 1.5x, /image/image-20250806233743-tqzthmu.png 2x"
+            
+            alt="/image/image-20250806233743-tqzthmu.png" height="850"  width="1636" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>网络故障导致的路由环路</p>
+<ul>
+<li>
+<p>当路由器检测到网络故障而不可达时，其会在路由表中自动删除该直连网络的路由条目</p>
+</li>
+<li>
+<p>此时，若要转发数据给该网络，其由于确实路由条目，而只能走默认路由转发，从而可能引发环路问题</p>
+</li>
+<li>
+<p>可以通过配置黑洞路由来解决该问题</p>
+<ul>
+<li>若路由器检测到故障消失、接口可用时，其会自动地得出其接口直连网络的路由条目，此时我们人工配置的黑洞路由条目会失效</li>
+<li>若检测到接口直连的网络不可达，路由器会删除该直连网络路由条目，黑洞路由条目生效</li>
+</ul>
+</li>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250806234307-5ng0c0h.png" title="image" data-thumbnail="/image/image-20250806234307-5ng0c0h.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250806234307-5ng0c0h.png"
+            srcset="/image/image-20250806234307-5ng0c0h.png, /image/image-20250806234307-5ng0c0h.png 1.5x, /image/image-20250806234307-5ng0c0h.png 2x"
+            
+            alt="/image/image-20250806234307-5ng0c0h.png" height="724"  width="1508" >
+    </a></figure>​</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>动态路由选择与路由选择协议</p>
+<ul>
+<li>
+<p>路由器通过选择协议自动获取路由信息的方式叫做动态路由选择，其比较复杂、开销大，但能够较好地适应网络状态的变化，适用于大规模网络</p>
+</li>
+<li>
+<p>因特网是全球最大的互联网络，其主要有3大特点：自适应、分布式、分层次</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250807002629-jtir2af.png" title="image" data-thumbnail="/image/image-20250807002629-jtir2af.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250807002629-jtir2af.png"
+            srcset="/image/image-20250807002629-jtir2af.png, /image/image-20250807002629-jtir2af.png 1.5x, /image/image-20250807002629-jtir2af.png 2x"
+            
+            alt="/image/image-20250807002629-jtir2af.png" height="596"  width="1520" >
+    </a></figure>​</li>
+</ul>
+</li>
+<li>
+<p>因特网采用的分层次路由选择协议（两类，内部网关或外部网关）</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250807003025-zyri671.png" title="image" data-thumbnail="/image/image-20250807003025-zyri671.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250807003025-zyri671.png"
+            srcset="/image/image-20250807003025-zyri671.png, /image/image-20250807003025-zyri671.png 1.5x, /image/image-20250807003025-zyri671.png 2x"
+            
+            alt="/image/image-20250807003025-zyri671.png" height="520"  width="1560" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>以前RFC文档叫做网关Internal/External Gateway Protocol，现在也可以叫做路由器协议，即Router，简写为ERP或IRP</p>
+</li>
+<li>
+<p>两个自治系统之间使用何种具体的协议，并没有直接关联</p>
+</li>
+<li>
+<p>常见的路由选择协议</p>
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250807003219-vjesz2h.png" title="image" data-thumbnail="/image/image-20250807003219-vjesz2h.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250807003219-vjesz2h.png"
+            srcset="/image/image-20250807003219-vjesz2h.png, /image/image-20250807003219-vjesz2h.png 1.5x, /image/image-20250807003219-vjesz2h.png 2x"
+            
+            alt="/image/image-20250807003219-vjesz2h.png" height="616"  width="1662" >
+    </a></figure>​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>路由器基本结构（路由选择部分，分组转发部分）</p>
+<ul>
+<li>
+<p>​<figure><a class="lightgallery" href="/image/image-20250807003420-u9dp8it.png" title="image" data-thumbnail="/image/image-20250807003420-u9dp8it.png">
+        <img
+            
+            loading="lazy"
+            src="/image/image-20250807003420-u9dp8it.png"
+            srcset="/image/image-20250807003420-u9dp8it.png, /image/image-20250807003420-u9dp8it.png 1.5x, /image/image-20250807003420-u9dp8it.png 2x"
+            
+            alt="/image/image-20250807003420-u9dp8it.png" height="728"  width="1494" >
+    </a></figure>​</p>
+</li>
+<li>
+<p>路由选择部分的核心是路由转发处理机</p>
+</li>
+<li>
+<p>分组转发部分由3部分组成，分别是输入端口、交换结构和输出端口</p>
+<ul>
+<li>交换结构中包含输入缓冲区（暂存新进入路由器但还来不及处理的分组）和输出缓冲区（暂存已经处理完毕但还来不及发送的分组）</li>
+<li>实际上，路由器上的一个端口应该同时包含输入和输出的功能</li>
+</ul>
+</li>
+<li>
+<p>信号从输入端口进入路由器，物理层将其转换为比特流，链路层提取出帧，去除帧头和帧尾后交付给网络层</p>
+<ul>
+<li>
+<p>如果网络层收到的分组是普通待转发的分组，则根据分组首部中的目的地址进行查表转发（找不到时丢弃该分组）；</p>
+<p>再经由输出端口转发，网络层更新数据分组首部的某些字段值（如生存时间减1），链路层封装为帧，物理层将比特流转化为电信号进行发送</p>
+</li>
+<li>
+<p>如果网络层收到的分组是路由器之间交换路由信息的路由报文，则将该分组送交路由选择交换处理机，路由选择处理机根据分组的内容来更新自己的路由表（实际上是两个表，只是为了简化平时不区分）</p>
+<ul>
+<li><strong>路由表</strong>一般仅包含从目的网络到下一跳的映射；需要对网络拓扑变化的计算最优化</li>
+<li><strong>转发表</strong>是根据路由表得出的，转发表的结构应当使查找过程最优化</li>
+</ul>
+</li>
+<li>
+<p>此外，路由选择处理机，除了处理路由报文外，也会周期性地向其他路由器发送自己知道的路由选择信息</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>具体的路由选择协议算法</p>
+<ul>
+<li>
+<p>路由信息协议RIP</p>
+<ul>
+<li>‍</li>
+</ul>
+</li>
+<li>
+<p>开放最短路径优先OSPF</p>
+<ul>
+<li>‍</li>
+</ul>
+</li>
+<li>
+<p>边界网关协议BGP</p>
+<ul>
+<li>输出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>‍</p>
+</li>
+</ul>
+<p>‍</p>
+</div>
 
         <div class="sponsor">
         <div class="sponsor-avatar"><img

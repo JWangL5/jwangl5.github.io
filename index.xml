@@ -35,19 +35,19 @@
     <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
     <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[250806 IP数据报与IP协议 IPv4数据报（IP数据报）首部格式 IP数据报是实现IP协议主要功能的基础，其结构如下 ​ ​ 有两部分组成，20字节的固定]]></description>
 </item><item>
     <title>网络 | 06. 网络层与IP数据报的路由与交付</title>
     <link>https://jwangl5.github.io/posts/net/n06_net_route/</link>
     <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现]]></description>
 </item><item>
     <title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
     <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
     <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所]]></description>
 </item><item>
     <title>网络 | 04. 媒体接入控制</title>
     <link>https://jwangl5.github.io/posts/net/n04_csma_cd/</link>
