@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n02_physical_layer\/"
-        },"genre": "posts","wordcount":  2949 ,
+        },"genre": "posts","wordcount":  2964 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n02_physical_layer\/","datePublished": "2025-06-17T00:00:00+08:00","dateModified": "2025-06-17T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,11 +118,11 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2949 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-17">2025-06-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2964 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="content" id="content"><h3 id="物理层" class="headerLink">
     <a href="#%e7%89%a9%e7%90%86%e5%b1%82" class="header-mark"></a>物理层</h3><ul>
-<li>物理层解决的是数据比特流在链路上传输的问题，进而给数据链路层提供透明传输比特流的服务</li>
+<li>物理层解决的是<u-r>数据比特流在链路上传输</u-r>的问题，进而给数据链路层提供透明传输比特流的服务</li>
 <li>物理层协议的主要任务
 <ul>
 <li><a class="lightgallery" href="/image/image-20250617002051-avis30r.png" title="/image/image-20250617002051-avis30r.png" data-thumbnail="/image/image-20250617002051-avis30r.png">
@@ -132,7 +132,7 @@
             src="/image/image-20250617002051-avis30r.png"
             srcset="/image/image-20250617002051-avis30r.png, /image/image-20250617002051-avis30r.png 1.5x, /image/image-20250617002051-avis30r.png 2x"
             
-            alt="/image/image-20250617002051-avis30r.png" height="50%"  width="50%" >
+            alt="/image/image-20250617002051-avis30r.png" height="40%"  width="40%" >
     </a></li>
 <li>种类较多，不需要一一关注，重点熟悉概念</li>
 </ul>
@@ -250,7 +250,7 @@
             src="/image/image-20250617003537-9lv9wsh.png"
             srcset="/image/image-20250617003537-9lv9wsh.png, /image/image-20250617003537-9lv9wsh.png 1.5x, /image/image-20250617003537-9lv9wsh.png 2x"
             
-            alt="/image/image-20250617003537-9lv9wsh.png" height="60%"  width="60%" >
+            alt="/image/image-20250617003537-9lv9wsh.png" height="40%"  width="40%" >
     </a></li>
 <li>直线传播，但由于地球是圆的，微波的传播距离受到限制，通常只有50公里</li>
 </ul>
@@ -326,10 +326,10 @@
 <p>信号需要在信道中传输，有两种：数字信道和模拟信道</p>
 </li>
 <li>
-<p>不改变信号性质，仅对数字基带信号的波形进行变换，成为<strong>编码</strong>，产生的信号仍旧为数字信号，在数字信道中传输，如以太网使用的曼彻斯特编码、4B/5B编码、8B/10B编码</p>
+<p>不改变信号性质，仅对数字基带信号的波形进行变换，称为<strong>编码</strong>，产生的信号仍旧为数字信号，<u-r>在数字信道中传输</u-r>，如以太网使用的曼彻斯特编码、4B/5B编码、8B/10B编码</p>
 </li>
 <li>
-<p>将数字信号搬移到较高的频段，并转换为模拟信号的过程，成为<strong>调制</strong>；调制后产生的信号为模拟信号，在模拟信道中传输，如WiFi</p>
+<p>将数字信号搬移到较高的频段，并转换为模拟信号的过程，称为<strong>调制</strong>；调制后产生的信号为模拟信号，<u-r>在模拟信道中传输</u-r>，如WiFi</p>
 <center>
 <a class="lightgallery" href="/image/image-20250618023123-7uylcwr.png" title="/image/image-20250618023123-7uylcwr.png" data-thumbnail="/image/image-20250618023123-7uylcwr.png">
           <img
@@ -366,10 +366,10 @@
 </ul>
 <h4 id="常用编码" class="headerLink">
     <a href="#%e5%b8%b8%e7%94%a8%e7%bc%96%e7%a0%81" class="header-mark"></a>常用编码：</h4><ul>
-<li><strong><u-b>不归零编码</u-b></strong>：在信号发送的全部时间里，不存在为零电平的时刻，整电平代表1，负电平代表0，但其需要严格同步时钟作为节拍器来判断有多少个连续信号；在计算机网络中不采用这类编码，因为宁愿传输数据也不要时钟信号</li>
-<li><strong><u-b>归零编码</u-b></strong>：每个码元结束之后都需要归零，所以接收方只需要在信号归零后开始采样就可以了，相当于把时钟信息编码到了归零信号中，形成<u>自同步</u>到特点，但是数据带宽中大部份都用来归零了，效率太低</li>
-<li><strong><u-b>曼彻斯特编码</u-b></strong>：在每个码元的中间时刻，发生数据的跳变，这个时候负跳变表示1，正跳变表示0；即是说，码元中间时刻的跳变既是时钟也是数据</li>
-<li><strong><u-b>差分曼彻斯特编码</u-b></strong>：在每个码元的中间时刻都会发生跳变，但是此时跳变仅表示时钟，而在码元<u>开始时刻</u>的电平是否变化表示信号，效率高，常用于高速传输</li>
+<li><strong>不归零编码</strong>：在信号发送的全部时间里，不存在为零电平的时刻，整电平代表1，负电平代表0，但其需要严格同步时钟作为节拍器来判断有多少个连续信号；在计算机网络中不采用这类编码，因为宁愿传输数据也不要时钟信号</li>
+<li><strong>归零编码</strong>：每个码元结束之后都需要归零，所以接收方只需要在信号归零后开始采样就可以了，相当于把时钟信息编码到了归零信号中，形成<u-b>自同步</u-b>到特点，但是数据带宽中大部份都用来归零了，效率太低</li>
+<li><strong>曼彻斯特编码</strong>：在每个码元的中间时刻，发生数据的跳变，这个时候负跳变表示1，正跳变表示0；即是说，码元中间时刻的跳变既是时钟也是数据</li>
+<li><strong>差分曼彻斯特编码</strong>：在每个码元的中间时刻都会发生跳变，但是此时跳变仅表示时钟，而在码元<u>开始时刻</u>的电平是否变化表示信号，效率高，常用于高速传输</li>
 </ul>
 <center>  
 <a class="lightgallery" href="/image/image-20250618024427-r6u6ijd.png" title="/image/image-20250618024427-r6u6ijd.png" data-thumbnail="/image/image-20250618024427-r6u6ijd.png">
@@ -392,7 +392,7 @@
               src="/image/image-20250618024622-x1mwuof.png"
               srcset="/image/image-20250618024622-x1mwuof.png, /image/image-20250618024622-x1mwuof.png 1.5x, /image/image-20250618024622-x1mwuof.png 2x"
               
-              alt="/image/image-20250618024622-x1mwuof.png" height="70%"  width="70%" >
+              alt="/image/image-20250618024622-x1mwuof.png" height="60%"  width="60%" >
       </a>
 <ul>
 <li>10表示带宽为10比特/秒，Base表示基带传输，T表示双绞线，这种以太网使用曼彻斯特编码（中间时刻跳变）</li>
@@ -514,14 +514,45 @@
     <a href="#%e9%a6%99%e5%86%9c%e5%85%ac%e5%bc%8f" class="header-mark"></a>香农公式</h4><ul>
 <li>带宽受限且有高斯白噪声干扰 信道（1948年），极限信息传输速率可以计算如下
 <ul>
-<li>$$
+<li>
+<p>$$
 c=W\times log_2 (1+ \frac SN)
-$$</li>
-<li>c是极限传输速率（b/s），W为信道带宽（Hz），S为信号内所有信号的平均功率，N为信道内高斯噪声的功率,S/N为信噪比</li>
-<li>信噪比越大，信息的极限传输速率越高</li>
-<li>在实际信道传输中，传输速率会比改公式给出低不少，因为还有其他的信号损伤，如脉冲干扰、传输中衰减或失真</li>
-<li>自香农公式发表以后，各种新的信号处理和调制方法陆续出现，目的都是为了尽可能地接近香农公式给出的极限速率极限</li>
-<li>综合来看，在信道带宽一定的情况下，要提高传输速率，就必须采用多元制，提高信道的信噪比</li>
+$$</p>
+</li>
+<li>
+<p>c是极限传输速率（b/s），W为信道带宽（Hz），S为信号内所有信号的平均功率，N为信道内高斯噪声的功率,S/N为信噪比</p>
+</li>
+<li>
+<p>信噪比越大，信息的极限传输速率越高</p>
+</li>
+<li>
+<p>在实际信道传输中，传输速率会比改公式给出低不少，因为还有其他的信号损伤，如脉冲干扰、传输中衰减或失真</p>
+</li>
+<li>
+<p>自香农公式发表以后，各种新的信号处理和调制方法陆续出现，目的都是为了尽可能地接近香农公式给出的极限速率极限</p>
+</li>
+<li>
+<p>综合来看，在信道带宽一定的情况下，要提高传输速率，就必须采用多元制，提高信道的信噪比</p>
+<a target="_blank" href="/posts/net/n02_nyquist_shannon/" title="软考备考笔记" class="friend-link" rel="noopener noreferrer">
+        <div class="friend-link-div">
+            <div class="friend-link-avatar"><img
+            
+            loading="lazy"
+            src="https://zhangzifan.com/uploads/2018/04/link.png"
+            srcset="https://zhangzifan.com/uploads/2018/04/link.png, https://zhangzifan.com/uploads/2018/04/link.png 1.5x, https://zhangzifan.com/uploads/2018/04/link.png 2x"
+            sizes="auto"
+            alt="https://zhangzifan.com/uploads/2018/04/link.png"
+            title="https://zhangzifan.com/uploads/2018/04/link.png" ></div>
+            <div class="friend-link-info">
+                <div class="friend-name-div">
+                    <i class="fas fa-user-circle fa-fw"></i>
+                    <i class="friend-name">软考备考笔记</i>
+                </div>
+                <p class="friend-bio">奈氏准则与香农定理</p>
+            </div>
+        </div>
+    </a>
+</li>
 </ul>
 </li>
 </ul>

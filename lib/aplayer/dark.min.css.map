@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "dark.min.css",
-	"sourceRoot": "E:/Blog/JWangL5.github.io/CellBrainBlog",
+	"sourceRoot": "/home/卢旺/Blog/JWangL5.github.io/CellBrainBlog",
 	"sources": [
 		"themes/DoIt/assets/lib/aplayer/dark.scss"
 	],
