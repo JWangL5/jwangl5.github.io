@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 04. 媒体接入控制 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 04. 媒体接入控制" />
-<meta property="og:description" content="250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道" />
+<meta property="og:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-06-22T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 04. 媒体接入控制"/>
-<meta name="twitter:description" content="250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道"/>
+<meta name="twitter:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/"
-        },"genre": "posts","wordcount":  7047 ,
+        },"genre": "posts","wordcount":  7061 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/","datePublished": "2025-06-22T00:00:00+08:00","dateModified": "2025-06-22T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,9 +118,21 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7047 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7061 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h3 id="250622-媒体接入控制" class="headerLink">
+        </div><div class="content" id="content"><center>
+<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" title="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" data-sub-html="<h2>数据链路层框架之媒体接入控制</h2>">
+        <img
+            
+            loading="lazy"
+            src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png"
+            srcset="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png 1.5x, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png 2x"
+            
+            alt="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" height="90%"  width="90%" >
+    </a><figcaption class="image-caption">数据链路层框架之媒体接入控制</figcaption>
+    </figure>
+</center>
+<h3 id="250622-媒体接入控制" class="headerLink">
     <a href="#250622-%e5%aa%92%e4%bd%93%e6%8e%a5%e5%85%a5%e6%8e%a7%e5%88%b6" class="header-mark"></a>250622 媒体接入控制</h3><blockquote>
 <p>问题导入与概念</p>
 <ul>

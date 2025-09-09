@@ -23,6 +23,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n03_hamming/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>软考备考 | 常见协议速查表</title>
+    <link>https://jwangl5.github.io/posts/net/n00_protocols/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>软考备考 | 奈氏准则与香农公式</title>
     <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
     <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
     <description><![CDATA[250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所]]></description>
-</item><item>
-    <title>网络 | 04. 媒体接入控制</title>
-    <link>https://jwangl5.github.io/posts/net/n04_csma_cd/</link>
-    <pubDate>Sun, 22 Jun 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n04_csma_cd/</guid>
-    <description><![CDATA[250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道]]></description>
 </item></channel>
 </rss>
