@@ -29,6 +29,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>软考备考 | 以太网物理层规范</title>
+    <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_ethernet/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>软考备考 | 奈氏准则与香农公式</title>
     <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
     <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
     <description><![CDATA[250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现]]></description>
-</item><item>
-    <title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
-    <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
-    <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
-    <description><![CDATA[250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所]]></description>
 </item></channel>
 </rss>
