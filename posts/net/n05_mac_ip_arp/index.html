@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网" />
-<meta property="og:description" content="250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所" />
+<meta property="og:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2025-07-10T00:00:00+08:00" />
@@ -16,7 +16,7 @@
 
 
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网"/>
-<meta name="twitter:description" content="250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所"/>
+<meta name="twitter:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构"/>
 <meta name="twitter:site" content="@JWangL5"/>
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n05_mac_ip_arp\/"
-        },"genre": "posts","wordcount":  7222 ,
+        },"genre": "posts","wordcount":  7215 ,
         "url": "https:\/\/jwangl5.github.io\/posts\/net\/n05_mac_ip_arp\/","datePublished": "2025-07-10T00:00:00+08:00","dateModified": "2025-07-10T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"authors": [{
@@ -118,81 +118,55 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7222 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7215 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h3 id="250710-mac地址ip地址arp协议" class="headerLink">
-    <a href="#250710-mac%e5%9c%b0%e5%9d%80ip%e5%9c%b0%e5%9d%80arp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250710 MAC地址、IP地址、ARP协议</h3><h4 id="基本概念" class="headerLink">
+        </div><div class="content" id="content"><h2 id="250710-mac地址ip地址arp协议" class="headerLink">
+    <a href="#250710-mac%e5%9c%b0%e5%9d%80ip%e5%9c%b0%e5%9d%80arp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250710 MAC地址、IP地址、ARP协议</h2><h3 id="mac地址" class="headerLink">
+    <a href="#mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>MAC地址</h3><h4 id="基本概念" class="headerLink">
     <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h4><ul>
-<li>
-<p>MAC地址是以太网的MAC子层所使用的地址，属于数据链路层</p>
-</li>
-<li>
-<p>IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层</p>
-</li>
-<li>
-<p>ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址</p>
-</li>
-<li>
-<p>尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论</p>
-</li>
+<li>MAC地址是以太网的MAC子层所使用的地址，属于数据链路层</li>
+<li>IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层</li>
+<li>ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址</li>
+<li>尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论</li>
 </ul>
-<h4 id="mac地址" class="headerLink">
-    <a href="#mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>MAC地址</h4><ul>
-<li>
-<p>使用点对点信道的数据链路层不需要地址（一条线连接两个机器时）</p>
-</li>
-<li>
-<p>使用广播信道的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机</p>
-</li>
-<li>
-<p>每个主机必须有一个唯一的标识，即数据链路层地址</p>
-</li>
-<li>
-<p>从而搞清楚发送主机和接收主机是谁</p>
-</li>
-<li>
-<p>在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于媒体接入控制（MAC，Media Acess Control），因此这类地址被称为MAC地址</p>
-</li>
-<li>
-<p>MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址</p>
+<h4 id="mac地址-1" class="headerLink">
+    <a href="#mac%e5%9c%b0%e5%9d%80-1" class="header-mark"></a>MAC地址</h4><ul>
+<li>使用点对点信道的数据链路层不需要地址（一条线连接两个机器时）</li>
+<li>使用<e-circle>广播信道</e-circle>的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机</li>
+<li>每个主机必须有一个唯一的标识（即数据链路层地址），从而搞清楚发送主机和接收主机是谁</li>
+<li>在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于<u-b>媒体接入控制</u-b>（MAC，Media Acess Control），因此这类地址被称为MAC地址</li>
+<li>MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710010734-2zj44uo.png" title="image" data-thumbnail="/image/image-20250710010734-2zj44uo.png">
+<li><a class="lightgallery" href="/image/image-20250710010734-2zj44uo.png" title="/image/image-20250710010734-2zj44uo.png" data-thumbnail="/image/image-20250710010734-2zj44uo.png">
         <img
             
             loading="lazy"
             src="/image/image-20250710010734-2zj44uo.png"
             srcset="/image/image-20250710010734-2zj44uo.png, /image/image-20250710010734-2zj44uo.png 1.5x, /image/image-20250710010734-2zj44uo.png 2x"
             
-            alt="/image/image-20250710010734-2zj44uo.png" height="360"  width="1010" >
-    </a></figure>​</li>
+            alt="/image/image-20250710010734-2zj44uo.png" height="70%"  width="70%" >
+    </a></li>
 </ul>
 </li>
-<li>
-<p>MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层</p>
+<li>MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710010821-tmjaj3b.png" title="image" data-thumbnail="/image/image-20250710010821-tmjaj3b.png">
+<li><a class="lightgallery" href="/image/image-20250710010821-tmjaj3b.png" title="/image/image-20250710010821-tmjaj3b.png" data-thumbnail="/image/image-20250710010821-tmjaj3b.png">
         <img
             
             loading="lazy"
             src="/image/image-20250710010821-tmjaj3b.png"
             srcset="/image/image-20250710010821-tmjaj3b.png, /image/image-20250710010821-tmjaj3b.png 1.5x, /image/image-20250710010821-tmjaj3b.png 2x"
             
-            alt="/image/image-20250710010821-tmjaj3b.png" height="110"  width="1146" >
-    </a></figure>​</li>
+            alt="/image/image-20250710010821-tmjaj3b.png" height="70%"  width="70%" >
+    </a></li>
 </ul>
 </li>
-<li>
-<p>一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址</p>
-</li>
-<li>
-<p>而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址</p>
-</li>
-<li>
-<p>综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识</p>
-</li>
-<li>
-<p>IEEE 802局域网的MAC地址格式</p>
-</li>
+<li>一般情况下，用户主机会包含<strong>两个</strong>网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址</li>
+<li>而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址</li>
+<li>综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识</li>
+</ul>
+<h4 id="ieee-802局域网的mac地址格式" class="headerLink">
+    <a href="#ieee-802%e5%b1%80%e5%9f%9f%e7%bd%91%e7%9a%84mac%e5%9c%b0%e5%9d%80%e6%a0%bc%e5%bc%8f" class="header-mark"></a>IEEE 802局域网的MAC地址格式</h4><ul>
 <li>
 <p>由48比特构成，每8个比特为1个字节，共6个字节</p>
 </li>
@@ -206,21 +180,20 @@
 <p>这种地址标识符称为扩展的唯一标识符EUI，对于48比特的MAC地址，可称为EUI-48</p>
 </li>
 <li>
-<p>MAC的标准表示方法，是将每4个比特写成一个十六进制的字符，共12个字符；将每两个字符为一组，共6组，组之间用短线或冒号连接</p>
+<p>MAC的标准表示方法，是将每4个比特写成一个十六进制的字符，共12个字符；将每两个字符为一组，共6组，组之间用短线或冒号连接
+<a class="lightgallery" href="/image/image-20250710011816-xd3gc33.png" title="/image/image-20250710011816-xd3gc33.png" data-thumbnail="/image/image-20250710011816-xd3gc33.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250710011816-xd3gc33.png"
+                srcset="/image/image-20250710011816-xd3gc33.png, /image/image-20250710011816-xd3gc33.png 1.5x, /image/image-20250710011816-xd3gc33.png 2x"
+                
+                alt="/image/image-20250710011816-xd3gc33.png" height="100%"  width="100%" >
+        </a></p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710011816-xd3gc33.png" title="image" data-thumbnail="/image/image-20250710011816-xd3gc33.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710011816-xd3gc33.png"
-            srcset="/image/image-20250710011816-xd3gc33.png, /image/image-20250710011816-xd3gc33.png 1.5x, /image/image-20250710011816-xd3gc33.png 2x"
-            
-            alt="/image/image-20250710011816-xd3gc33.png" height="604"  width="1494" >
-    </a></figure>​</li>
-</ul>
-</li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710011853-9lp0w61.png" title="image" data-thumbnail="/image/image-20250710011853-9lp0w61.png">
+<p>可以根据MAC地址，查找到该设备的厂商信息，例如华为的组织标识为30-FB-B8​，小米为A4-45-19
+<figure><a class="lightgallery" href="/image/image-20250710011853-9lp0w61.png" title="image" data-thumbnail="/image/image-20250710011853-9lp0w61.png">
         <img
             
             loading="lazy"
@@ -228,10 +201,8 @@
             srcset="/image/image-20250710011853-9lp0w61.png, /image/image-20250710011853-9lp0w61.png 1.5x, /image/image-20250710011853-9lp0w61.png 2x"
             
             alt="/image/image-20250710011853-9lp0w61.png" height="542"  width="1442" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710011907-qaj8a9b.png" title="image" data-thumbnail="/image/image-20250710011907-qaj8a9b.png">
+    </a></figure>​
+<figure><a class="lightgallery" href="/image/image-20250710011907-qaj8a9b.png" title="image" data-thumbnail="/image/image-20250710011907-qaj8a9b.png">
         <img
             
             loading="lazy"
@@ -242,10 +213,7 @@
     </a></figure>​</p>
 </li>
 <li>
-<p>可以根据MAC地址，查找到该设备的厂商信息</p>
-</li>
-<li>
-<p>第一个字节的b0和b1为有特殊的用途，根据标识其可以分为四类，每类有70多亿个</p>
+<p><u-b>第一个字节的b0和b1</u-b>为有特殊的用途，根据标识其可以分为四类，每类有70多亿个</p>
 <ul>
 <li>b0为0时是单播，b0为1时是多播地址；在十六进制下，第二个数字如果是奇数则为多播地址（13579BDF）</li>
 <li>​<figure><a class="lightgallery" href="/image/image-20250710012220-8cffc4n.png" title="image" data-thumbnail="/image/image-20250710012220-8cffc4n.png">
@@ -259,6 +227,8 @@
     </a></figure>​</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
 <p>每个人可以拥有几个全球管理的单播MAC地址？</p>
 <ul>
@@ -267,51 +237,39 @@
 <li>对于使用EUI-48空间的应用程序，IEEE的目标寿命为100年（直到2080年），但是鼓励采用EUI-64作为替代</li>
 </ul>
 </li>
+</ul>
+<h4 id="mac地址的发送顺序" class="headerLink">
+    <a href="#mac%e5%9c%b0%e5%9d%80%e7%9a%84%e5%8f%91%e9%80%81%e9%a1%ba%e5%ba%8f" class="header-mark"></a>MAC地址的发送顺序</h4><ul>
 <li>
-<p>MAC地址的发送顺序</p>
+<p>字节发送顺序是第一字节到第六字节，字节内比特的发送顺序为b0到b7，例如举例说明功能</p>
+<p><a class="lightgallery" href="/image/image-20250710012845-bodozq8.png" title="/image/image-20250710012845-bodozq8.png" data-thumbnail="/image/image-20250710012845-bodozq8.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250710012845-bodozq8.png"
+              srcset="/image/image-20250710012845-bodozq8.png, /image/image-20250710012845-bodozq8.png 1.5x, /image/image-20250710012845-bodozq8.png 2x"
+              
+              alt="/image/image-20250710012845-bodozq8.png" height="33%"  width="33%" >
+      </a>
+<a class="lightgallery" href="/image/image-20250710013002-00ozm4f.png" title="/image/image-20250710013002-00ozm4f.png" data-thumbnail="/image/image-20250710013002-00ozm4f.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250710013002-00ozm4f.png"
+              srcset="/image/image-20250710013002-00ozm4f.png, /image/image-20250710013002-00ozm4f.png 1.5x, /image/image-20250710013002-00ozm4f.png 2x"
+              
+              alt="/image/image-20250710013002-00ozm4f.png" height="33%"  width="33%" >
+      </a>
+<a class="lightgallery" href="/image/image-20250710013421-sjrqnet.png" title="/image/image-20250710013421-sjrqnet.png" data-thumbnail="/image/image-20250710013421-sjrqnet.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250710013421-sjrqnet.png"
+              srcset="/image/image-20250710013421-sjrqnet.png, /image/image-20250710013421-sjrqnet.png 1.5x, /image/image-20250710013421-sjrqnet.png 2x"
+              
+              alt="/image/image-20250710013421-sjrqnet.png" height="33%"  width="33%" >
+      </a></p>
 </li>
-<li>
-<p>字节发送顺序是第一字节到第六字节</p>
-</li>
-<li>
-<p>字节内比特的发送顺序为b0到b7</p>
-</li>
-<li>
-<p>举例说明功能</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710012845-bodozq8.png" title="image" data-thumbnail="/image/image-20250710012845-bodozq8.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710012845-bodozq8.png"
-            srcset="/image/image-20250710012845-bodozq8.png, /image/image-20250710012845-bodozq8.png 1.5x, /image/image-20250710012845-bodozq8.png 2x"
-            
-            alt="/image/image-20250710012845-bodozq8.png" height="418"  width="1180" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710013002-00ozm4f.png" title="image" data-thumbnail="/image/image-20250710013002-00ozm4f.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710013002-00ozm4f.png"
-            srcset="/image/image-20250710013002-00ozm4f.png, /image/image-20250710013002-00ozm4f.png 1.5x, /image/image-20250710013002-00ozm4f.png 2x"
-            
-            alt="/image/image-20250710013002-00ozm4f.png" height="420"  width="1178" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710013421-sjrqnet.png" title="image" data-thumbnail="/image/image-20250710013421-sjrqnet.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710013421-sjrqnet.png"
-            srcset="/image/image-20250710013421-sjrqnet.png, /image/image-20250710013421-sjrqnet.png 1.5x, /image/image-20250710013421-sjrqnet.png 2x"
-            
-            alt="/image/image-20250710013421-sjrqnet.png" height="530"  width="1526" >
-    </a></figure>​</p>
-<ul>
 <li>
 <p>给主机配置多播组列表时进行私有应用时，不得使用公有的标准多播地址</p>
 </li>
@@ -319,83 +277,59 @@
 <p><a href="http://standards.ieee.org/develop/regauth/grpmac/public.html" target="_blank" rel="noopener noreferrer">http://standards.ieee.org/develop/regauth/grpmac/public.html</a></p>
 </li>
 </ul>
-</li>
-<li>
-<p>随机MAC地址</p>
-</li>
-<li>
-<p>据斯诺登报道，美国安全局有一套通过监视电子设备MAC地址，来跟踪城市中每个人的行动</p>
-</li>
-<li>
-<p>因此，苹果率先在iOS设备扫描网络时，采用随机MAC地址技术</p>
-</li>
-<li>
-<p>随后，Win10、安卓6.0、内核版本3.18的Linux也陆续提供随机MAC地址技术</p>
-</li>
+<h4 id="随机mac地址" class="headerLink">
+    <a href="#%e9%9a%8f%e6%9c%bamac%e5%9c%b0%e5%9d%80" class="header-mark"></a>随机MAC地址</h4><ul>
+<li>据斯诺登报道，美国安全局有一套通过监视电子设备MAC地址，来跟踪城市中每个人的行动</li>
+<li>因此，苹果率先在iOS设备扫描网络时，采用随机MAC地址技术</li>
+<li>随后，Win10、安卓6.0、内核版本3.18的Linux也陆续提供随机MAC地址技术</li>
 </ul>
-<h4 id="ip地址网络层的作用" class="headerLink">
-    <a href="#ip%e5%9c%b0%e5%9d%80%e7%bd%91%e7%bb%9c%e5%b1%82%e7%9a%84%e4%bd%9c%e7%94%a8" class="header-mark"></a>IP地址（<strong>网络层</strong>）的作用</h4><ul>
+<h3 id="ip地址网络层的作用" class="headerLink">
+    <a href="#ip%e5%9c%b0%e5%9d%80%e7%bd%91%e7%bb%9c%e5%b1%82%e7%9a%84%e4%bd%9c%e7%94%a8" class="header-mark"></a>IP地址（网络层）的作用</h3><ul>
 <li>
 <p>IP地址是因特网上的主机和路由器所使用的地址，用于表示两部分信息</p>
-</li>
-<li>
-<p>网络编号：标识因特网上数以百万计的网络</p>
-</li>
-<li>
-<p>主机编号：标识同一网络上不通主机（或路由器各接口）</p>
-</li>
-<li>
-<p>同一个网络上的各主机和路由器上的各接口IP地址的网络号应该是相同的，而主机号部分则应该各不相同</p>
-</li>
-<li>
-<p>因特网中不同网络的网络编号必须各不相同</p>
-</li>
-<li>
-<p>至于哪些数字标识网络，哪些数字标识主机，其在不同场景下不同</p>
-</li>
-<li>
-<p>MAC地址不具备区分不同网络的功能</p>
+<ul>
+<li>网络编号：标识因特网上数以百万计的网络</li>
+<li>主机编号：标识同一网络上不通主机（或路由器各接口）</li>
+<li>同一个网络上的各主机和路由器上的各接口IP地址的网络号应该是相同的，而主机号部分则应该各不相同</li>
+<li>因特网中不同网络的网络编号必须各不相同</li>
+<li>至于哪些数字标识网络，哪些数字标识主机，其在不同场景下不同</li>
+<li>MAC地址不具备区分不同网络的功能
 <ul>
 <li>如果只是一个单独的网络，不接入因特网，可以只使用MAC地址（这不是一般用户的应用方式）</li>
 <li>如果主机所在的网络需要接入因特网，则IP地址和MAC地址都需要使用</li>
 </ul>
 </li>
-<li>
-<p>从网络习题结构看IP地址和MAC地址</p>
+</ul>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710225235-8h1jz98.png" title="image" data-thumbnail="/image/image-20250710225235-8h1jz98.png">
+<p>从网络整体结构看IP地址和MAC地址</p>
+<ul>
+<li><a class="lightgallery" href="/image/image-20250710225235-8h1jz98.png" title="/image/image-20250710225235-8h1jz98.png" data-thumbnail="/image/image-20250710225235-8h1jz98.png">
         <img
             
             loading="lazy"
             src="/image/image-20250710225235-8h1jz98.png"
             srcset="/image/image-20250710225235-8h1jz98.png, /image/image-20250710225235-8h1jz98.png 1.5x, /image/image-20250710225235-8h1jz98.png 2x"
             
-            alt="/image/image-20250710225235-8h1jz98.png" height="444"  width="1426" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710225512-jzpm7a5.png" title="image" data-thumbnail="/image/image-20250710225512-jzpm7a5.png">
+            alt="/image/image-20250710225235-8h1jz98.png" height="70%"  width="70%" >
+    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710225512-jzpm7a5.png" title="/image/image-20250710225512-jzpm7a5.png" data-thumbnail="/image/image-20250710225512-jzpm7a5.png">
         <img
             
             loading="lazy"
             src="/image/image-20250710225512-jzpm7a5.png"
             srcset="/image/image-20250710225512-jzpm7a5.png, /image/image-20250710225512-jzpm7a5.png 1.5x, /image/image-20250710225512-jzpm7a5.png 2x"
             
-            alt="/image/image-20250710225512-jzpm7a5.png" height="404"  width="1116" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>数据包转发过程中，源IP地址和目的IP地址保持不变</p>
-</li>
-<li>
-<p>数据包转发过程中，源MAC地址和目的MAC地址逐个链路（逐个网络）改变</p>
+            alt="/image/image-20250710225512-jzpm7a5.png" height="70%"  width="70%" >
+    </a></li>
+<li>数据包转发过程中，源IP地址和目的IP地址保持不变</li>
+<li>数据包转发过程中，源MAC地址和目的MAC地址逐个链路（逐个网络）改变</li>
+</ul>
 </li>
 <li>
 <p>习题</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710225716-dxwoufh.png" title="image" data-thumbnail="/image/image-20250710225716-dxwoufh.png">
+<ul>
+<li>​<figure><a class="lightgallery" href="/image/image-20250710225716-dxwoufh.png" title="image" data-thumbnail="/image/image-20250710225716-dxwoufh.png">
         <img
             
             loading="lazy"
@@ -403,9 +337,11 @@
             srcset="/image/image-20250710225716-dxwoufh.png, /image/image-20250710225716-dxwoufh.png 1.5x, /image/image-20250710225716-dxwoufh.png 2x"
             
             alt="/image/image-20250710225716-dxwoufh.png" height="318"  width="1496" >
-    </a></figure>​</p>
+    </a></figure>​
 <ul>
 <li>D</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -413,69 +349,67 @@
     <a href="#arp%e5%8d%8f%e8%ae%ae%e5%9c%b0%e5%9d%80%e8%a7%a3%e6%9e%90%e5%8d%8f%e8%ae%aearp%e6%80%8e%e4%b9%88%e6%a0%b9%e6%8d%aeip%e5%9c%b0%e5%9d%80%e6%89%be%e5%88%b0mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>ARP协议（地址解析协议ARP，怎么根据IP地址找到MAC地址）</h4><ul>
 <li>
 <p>问题引入</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250710230043-8k99h5l.png" title="image" data-thumbnail="/image/image-20250710230043-8k99h5l.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710230043-8k99h5l.png"
-            srcset="/image/image-20250710230043-8k99h5l.png, /image/image-20250710230043-8k99h5l.png 1.5x, /image/image-20250710230043-8k99h5l.png 2x"
-            
-            alt="/image/image-20250710230043-8k99h5l.png" height="440"  width="1212" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>每台主机都会有一个ARP高速缓存表，在要发送消息时，会现在自己的缓存表中查找相应主机的MAC地址</p>
+<a class="lightgallery" href="/image/image-20250710230043-8k99h5l.png" title="/image/image-20250710230043-8k99h5l.png" data-thumbnail="/image/image-20250710230043-8k99h5l.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250710230043-8k99h5l.png"
+              srcset="/image/image-20250710230043-8k99h5l.png, /image/image-20250710230043-8k99h5l.png 1.5x, /image/image-20250710230043-8k99h5l.png 2x"
+              
+              alt="/image/image-20250710230043-8k99h5l.png" height="60%"  width="60%" >
+      </a>
 <ul>
-<li>如果没有找到，则需要发送ARP请求报文来获取该MAC地址</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710230636-tua8bpi.png" title="image" data-thumbnail="/image/image-20250710230636-tua8bpi.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710230636-tua8bpi.png"
-            srcset="/image/image-20250710230636-tua8bpi.png, /image/image-20250710230636-tua8bpi.png 1.5x, /image/image-20250710230636-tua8bpi.png 2x"
-            
-            alt="/image/image-20250710230636-tua8bpi.png" height="584"  width="1470" >
-    </a></figure>​</li>
-<li>主机收到ARP请求后，如果与自己的MAC地址不匹配，则丢弃该广播信息；如果确认是自己的MAC地址后，发送ARP响应报文，该报文为单播帧，包含自己的IP地址和MAC地址</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710230726-1n5gdou.png" title="image" data-thumbnail="/image/image-20250710230726-1n5gdou.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710230726-1n5gdou.png"
-            srcset="/image/image-20250710230726-1n5gdou.png, /image/image-20250710230726-1n5gdou.png 1.5x, /image/image-20250710230726-1n5gdou.png 2x"
-            
-            alt="/image/image-20250710230726-1n5gdou.png" height="512"  width="1424" >
-    </a></figure>​</li>
-<li>源主机收到ARP响应报文后，将该信息记录到自己的ARP高速缓存表中；这个时候，重新加载了的缓存表中就有对应的MAC地址了，可以用户网络通信了</li>
+<li>每台主机都会有一个<u-b>ARP高速缓存表</u-b>，在要发送消息时，会现在自己的缓存表中查找相应主机的MAC地址
+<ul>
+<li>
+<p>如果没有找到，则需要发送ARP请求报文来获取该MAC地址</p>
+<a class="lightgallery" href="/image/image-20250710230636-tua8bpi.png" title="/image/image-20250710230636-tua8bpi.png" data-thumbnail="/image/image-20250710230636-tua8bpi.png">
+              <img
+                  
+                  loading="lazy"
+                  src="/image/image-20250710230636-tua8bpi.png"
+                  srcset="/image/image-20250710230636-tua8bpi.png, /image/image-20250710230636-tua8bpi.png 1.5x, /image/image-20250710230636-tua8bpi.png 2x"
+                  
+                  alt="/image/image-20250710230636-tua8bpi.png" height="80%"  width="80%" >
+          </a>
+</li>
+<li>
+<p>主机收到ARP请求后，如果与自己的MAC地址不匹配，则丢弃该广播信息；如果确认是自己的MAC地址后，发送ARP响应报文，该报文为单播帧，包含自己的IP地址和MAC地址</p>
+<a class="lightgallery" href="/image/image-20250710230726-1n5gdou.png" title="/image/image-20250710230726-1n5gdou.png" data-thumbnail="/image/image-20250710230726-1n5gdou.png">
+              <img
+                  
+                  loading="lazy"
+                  src="/image/image-20250710230726-1n5gdou.png"
+                  srcset="/image/image-20250710230726-1n5gdou.png, /image/image-20250710230726-1n5gdou.png 1.5x, /image/image-20250710230726-1n5gdou.png 2x"
+                  
+                  alt="/image/image-20250710230726-1n5gdou.png" height="80%"  width="80%" >
+          </a>
+</li>
+<li>
+<p>源主机收到ARP响应报文后，将该信息记录到自己的ARP高速缓存表中；这个时候，重新加载了的缓存表中就有对应的MAC地址了，可以用户网络通信了</p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <p>ARP高速缓存表中都有两种类型，</p>
-</li>
-<li>
-<p>动态类型是指，记录是主机自己主动获取的，其生命周期默认为2分钟（当生命周期结束时，该记录将自动删除）</p>
 <ul>
-<li>因为MAC地址和IP地址的关系并不是永久性的，例如当主机的网卡坏了，更换新的网卡后，主机的IP地址并没有变化，但MAC地址改变了</li>
+<li>动态类型是指，记录是主机自己主动获取的，其生命周期默认为2分钟（当生命周期结束时，该记录将自动删除）。因为MAC地址和IP地址的关系并不是永久性的，例如当主机的网卡坏了，更换新的网卡后，主机的IP地址并没有变化，但MAC地址改变了</li>
+<li>静态类型是由网络维护人员手动配置的，不同操作系统下其生命周期不同（例如系统重启后不存在或系统重启后依然有效）</li>
 </ul>
 </li>
 <li>
-<p>静态类型是由网络维护人员手动配置的，不同操作系统下其生命周期不同（例如系统重启后不存在或系统重启后依然有效）</p>
-</li>
-<li>
-<p>ARP协议只能在**<u>一段链路或一个网络中使用</u>**，不能跨网络使用，如下的网络结构中，主机H1不能通过ARP协议获取到H2的IP地址</p>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250711125234-bnhvet1.png" title="image" data-thumbnail="/image/image-20250711125234-bnhvet1.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250711125234-bnhvet1.png"
-            srcset="/image/image-20250711125234-bnhvet1.png, /image/image-20250711125234-bnhvet1.png 1.5x, /image/image-20250711125234-bnhvet1.png 2x"
-            
-            alt="/image/image-20250711125234-bnhvet1.png" height="306"  width="1150" >
-    </a></figure>​</p>
+<p>ARP协议只能在<u-r>一段链路或一个网络中使用</u-r>，不能跨网络使用，如下的网络结构中，主机H1不能通过ARP协议获取到H2的IP地址</p>
+<a class="lightgallery" href="/image/image-20250711125234-bnhvet1.png" title="/image/image-20250711125234-bnhvet1.png" data-thumbnail="/image/image-20250711125234-bnhvet1.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250711125234-bnhvet1.png"
+              srcset="/image/image-20250711125234-bnhvet1.png, /image/image-20250711125234-bnhvet1.png 1.5x, /image/image-20250711125234-bnhvet1.png 2x"
+              
+              alt="/image/image-20250711125234-bnhvet1.png" height="40%"  width="40%" >
+      </a>
 </li>
 <li>
 <p>除了ARP请求和响应报文外，ARP协议还存在其他类型的报文，如用于检查IP地址冲突的“无故ARP、免费ARP”等</p>
@@ -484,19 +418,13 @@
 <p>ARP协议没有安全验证机制，存在ARP欺骗（攻击）问题</p>
 </li>
 </ul>
-<h3 id="250713-集线器与交换机" class="headerLink">
-    <a href="#250713-%e9%9b%86%e7%ba%bf%e5%99%a8%e4%b8%8e%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>250713 集线器与交换机</h3><ul>
-<li>
-<p>集线器和交换机的区别</p>
+<h2 id="250713-集线器与交换机" class="headerLink">
+    <a href="#250713-%e9%9b%86%e7%ba%bf%e5%99%a8%e4%b8%8e%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>250713 集线器与交换机</h2><h4 id="集线器和交换机的区别" class="headerLink">
+    <a href="#%e9%9b%86%e7%ba%bf%e5%99%a8%e5%92%8c%e4%ba%a4%e6%8d%a2%e6%9c%ba%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>集线器和交换机的区别</h4><ul>
+<li>早期的<strong>总线型以太网</strong>使用<strong>集线器</strong>
 <ul>
-<li>
-<p>早期的<strong>总线型以太网</strong>使用<strong>集线器</strong></p>
-<ul>
-<li>
-<p>最早使用粗同轴电缆作为传输媒体，后来演进到使用价格相对便宜的细同轴电缆</p>
-</li>
-<li>
-<p>当初认为，这种链接方法既简单又可靠</p>
+<li>最早使用粗同轴电缆作为传输媒体，后来演进到使用价格相对便宜的细同轴电缆</li>
+<li>当初认为，这种链接方法既简单又可靠
 <ul>
 <li>那个年代认为，<strong>有源器件不可靠</strong>，无源的电缆线才是可靠的</li>
 <li>但实际上，使用无源电缆和大量机械接头的总线型以太网，并不像想象中那么可靠</li>
@@ -504,8 +432,7 @@
 </li>
 </ul>
 </li>
-<li>
-<p>后来，以太网发展出了一种，使用大规模集成电路，可靠性非常高的设备，叫做<strong>集线器</strong></p>
+<li>后来，以太网发展出了一种，使用大规模集成电路，可靠性非常高的设备，叫做<strong>集线器</strong>
 <ul>
 <li>
 <p>且使用更便宜、更灵活的<strong>双绞线</strong>作为传输媒体</p>
@@ -513,19 +440,19 @@
 <li>
 <p>使用双绞线和集线器hub的<strong>星形以太网</strong></p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713223234-3fv6q8b.png" title="image" data-thumbnail="/image/image-20250713223234-3fv6q8b.png">
+<li><a class="lightgallery" href="/image/image-20250713223234-3fv6q8b.png" title="/image/image-20250713223234-3fv6q8b.png" data-thumbnail="/image/image-20250713223234-3fv6q8b.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713223234-3fv6q8b.png"
             srcset="/image/image-20250713223234-3fv6q8b.png, /image/image-20250713223234-3fv6q8b.png 1.5x, /image/image-20250713223234-3fv6q8b.png 2x"
             
-            alt="/image/image-20250713223234-3fv6q8b.png" height="428"  width="542" >
-    </a></figure>​</li>
+            alt="/image/image-20250713223234-3fv6q8b.png" height="30%"  width="30%" >
+    </a></li>
 </ul>
 </li>
 <li>
-<p>虽然物理拓扑是星型的，但<strong>逻辑上仍是一个总线网</strong>，各站共享总线资源，使用的还是CSMA/CD协议</p>
+<p>虽然物理拓扑是星型的，但<c-r>逻辑上仍是一个总线网</c-r>，各站共享总线资源，使用的还是CSMA/CD协议</p>
 </li>
 <li>
 <p>集线器只在物理层工作，它的每个接口仅简单地转发比特，不进行碰撞检测（该任务由各站网卡负责）（分析问题时，可以将集线器简单看作是一条总线）</p>
@@ -536,67 +463,43 @@
 <li>
 <p>使用集线器可以对以太网进行扩展（使用集线器在物理层扩展以太网）</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713223927-ned43uj.png" title="image" data-thumbnail="/image/image-20250713223927-ned43uj.png">
+<li><a class="lightgallery" href="/image/image-20250713223927-ned43uj.png" title="/image/image-20250713223927-ned43uj.png" data-thumbnail="/image/image-20250713223927-ned43uj.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713223927-ned43uj.png"
             srcset="/image/image-20250713223927-ned43uj.png, /image/image-20250713223927-ned43uj.png 1.5x, /image/image-20250713223927-ned43uj.png 2x"
             
-            alt="/image/image-20250713223927-ned43uj.png" height="366"  width="1392" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713223850-yrw5spi.png" title="image" data-thumbnail="/image/image-20250713223850-yrw5spi.png">
+            alt="/image/image-20250713223927-ned43uj.png" height="60%"  width="60%" >
+    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713223850-yrw5spi.png" title="/image/image-20250713223850-yrw5spi.png" data-thumbnail="/image/image-20250713223850-yrw5spi.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713223850-yrw5spi.png"
             srcset="/image/image-20250713223850-yrw5spi.png, /image/image-20250713223850-yrw5spi.png 1.5x, /image/image-20250713223850-yrw5spi.png 2x"
             
-            alt="/image/image-20250713223850-yrw5spi.png" height="658"  width="1498" >
-    </a></figure>​</li>
+            alt="/image/image-20250713223850-yrw5spi.png" height="60%"  width="60%" >
+    </a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>以太网交换机</p>
-<ul>
-<li>
-<p>在集线器互连而成的<strong>共享总线式以太网</strong>的某个主机，要给另一个主机发送单播帧时，该单播帧会通过共享总线传输到总线上的各个主机</p>
-</li>
-<li>
-<p>使用交换机互连而成的<strong>交换式以太网</strong>上的某个主机，要给另一个主机发送单播帧时，该单播帧进入交换机后，交换机会将该单播帧转发给目的主机，而不是网络中的其他各个主机</p>
-<ul>
-<li>忽略ARP过程</li>
-<li>假设交换机的帧交换表已经配置好了</li>
 </ul>
-</li>
-<li>
-<p>以太网交换机通常都有多个接口，每个接口都可以直接与一台主机或另一个以太网交换机相连，一般都工作在<strong>全双工方式</strong>（发送和接收同时进行）</p>
-</li>
-<li>
-<p>集线器下的网络，各主机需要共享总线的，需要使用CSMA/CD协议来协调各主机争用总线，只能工作在<strong>半双工模式</strong>（收发不能同时进行）</p>
-</li>
-<li>
-<p>以太网交换机具有<strong>并行性</strong>，能同时链接多对接口，使多对主机能同时通信，而无碰撞（不使用CSMA/CD协议）</p>
-</li>
-<li>
-<p>以太网交换机一般都具有多种速率的接口，例如10Mb/s、100Mb/s、1Gb/s、10Gb/s接口的多种组合</p>
-</li>
-<li>
-<p>以太网交换机工作在数据链路层（也包括物理层），它收到帧后，在帧交换表中查找目的MAC地址所对应的接口号，然后通过在接口转发该帧</p>
-</li>
-<li>
-<p>以太网交换机是一种<strong>即插即用的设备</strong>，其内部的<u>帧交换表</u>时通过自学习算法，自动、逐步建立起来的</p>
-</li>
-<li>
-<p>帧有两种转发方式</p>
+<h4 id="以太网交换机" class="headerLink">
+    <a href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>以太网交换机</h4><ul>
+<li>在集线器互连而成的<strong>共享总线式以太网</strong>的某个主机，要给另一个主机发送单播帧时，该单播帧会通过共享总线传输到总线上的各个主机</li>
+<li>使用交换机互连而成的<strong>交换式以太网</strong>上的某个主机，要给另一个主机发送单播帧时，该单播帧进入交换机后，交换机会将该单播帧转发给目的主机，而不是网络中的其他各个主机（假设忽略ARP过程、且交换机的帧交换表已经配置好了）</li>
+<li>以太网交换机通常都有多个接口，每个接口都可以直接与一台主机或另一个以太网交换机相连，一般都工作在<strong>全双工方式</strong>（发送和接收同时进行）</li>
+<li>集线器下的网络，各主机需要共享总线的，需要使用CSMA/CD协议来协调各主机争用总线，只能工作在<strong>半双工模式</strong>（收发不能同时进行）</li>
+<li>以太网交换机具有<strong>并行性</strong>，能同时链接多对接口，使多对主机能同时通信，而无碰撞（不使用CSMA/CD协议）</li>
+<li>以太网交换机一般都具有多种速率的接口，例如10Mb/s、100Mb/s、1Gb/s、10Gb/s接口的多种组合</li>
+<li>以太网交换机工作在数据链路层（也包括物理层），它收到帧后，在帧交换表中查找目的MAC地址所对应的接口号，然后通过在接口转发该帧</li>
+<li>以太网交换机是一种<strong>即插即用的设备</strong>，其内部的<u>帧交换表</u>时通过自学习算法，自动、逐步建立起来的</li>
+<li>帧有两种转发方式
 <ul>
-<li>
-<p>存储转发</p>
-</li>
-<li>
-<p>直通交换</p>
+<li>存储转发</li>
+<li>直通交换
 <ul>
 <li>不必缓存后再处理，而是在帧接收的同时，就立即按目的MAC地址，决定帧的转发接口，因而提高了帧的转发速率</li>
 <li>采用基于硬件的交叉矩阵（交换时延非常小，但不检查帧是都有差错）</li>
@@ -605,90 +508,82 @@
 </ul>
 </li>
 </ul>
-</li>
+<h4 id="对比集线器和交换机" class="headerLink">
+    <a href="#%e5%af%b9%e6%af%94%e9%9b%86%e7%ba%bf%e5%99%a8%e5%92%8c%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>对比集线器和交换机</h4><ul>
 <li>
-<p>对比集线器和交换机</p>
-<ul>
-<li>
-<p>主机发送帧的情况</p>
-<ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713234715-0fssvap.png" title="image" data-thumbnail="/image/image-20250713234715-0fssvap.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713234715-0fssvap.png"
-            srcset="/image/image-20250713234715-0fssvap.png, /image/image-20250713234715-0fssvap.png 1.5x, /image/image-20250713234715-0fssvap.png 2x"
-            
-            alt="/image/image-20250713234715-0fssvap.png" height="656"  width="270" >
-    </a></figure>​<figure><a class="lightgallery" href="/image/image-20250713234752-47nhl97.png" title="image" data-thumbnail="/image/image-20250713234752-47nhl97.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713234752-47nhl97.png"
-            srcset="/image/image-20250713234752-47nhl97.png, /image/image-20250713234752-47nhl97.png 1.5x, /image/image-20250713234752-47nhl97.png 2x"
-            
-            alt="/image/image-20250713234752-47nhl97.png" height="644"  width="350" >
-    </a></figure>​</li>
-<li>不同机器在相同的广播域，使用起来没有区别</li>
-</ul>
+<p>主机发送帧的情况：不同机器在相同的广播域，使用起来没有区别</p>
+<p><a class="lightgallery" href="/image/image-20250713234715-0fssvap.png" title="/image/image-20250713234715-0fssvap.png" data-thumbnail="/image/image-20250713234715-0fssvap.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250713234715-0fssvap.png"
+              srcset="/image/image-20250713234715-0fssvap.png, /image/image-20250713234715-0fssvap.png 1.5x, /image/image-20250713234715-0fssvap.png 2x"
+              
+              alt="/image/image-20250713234715-0fssvap.png" height="13%"  width="13%" >
+      </a>
+<a class="lightgallery" href="/image/image-20250713234752-47nhl97.png" title="/image/image-20250713234752-47nhl97.png" data-thumbnail="/image/image-20250713234752-47nhl97.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250713234752-47nhl97.png"
+              srcset="/image/image-20250713234752-47nhl97.png, /image/image-20250713234752-47nhl97.png 1.5x, /image/image-20250713234752-47nhl97.png 2x"
+              
+              alt="/image/image-20250713234752-47nhl97.png" height="17%"  width="17%" >
+      </a></p>
 </li>
 <li>
 <p>多台主机同时发送帧时</p>
 <ul>
 <li>集线器下会发生碰撞，遭遇碰撞的帧也会传播到总线上的各主机</li>
-<li>但在交换机的交换式以太网中，<strong><u>交换机收到多个帧时，会将他们缓存起来</u></strong>，然后根据目的地址，<strong>逐个转发</strong>给目的主机，不会产生碰撞</li>
+<li>但在交换机的交换式以太网中，<u-b>交换机收到多个帧时，会将他们缓存起来</u-b>，然后根据目的地址，<strong>逐个转发</strong>给目的主机，不会产生碰撞</li>
 </ul>
 </li>
 <li>
 <p>扩展以太网的区别</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713235202-yeg85d0.png" title="image" data-thumbnail="/image/image-20250713235202-yeg85d0.png">
+<li><a class="lightgallery" href="/image/image-20250713235202-yeg85d0.png" title="/image/image-20250713235202-yeg85d0.png" data-thumbnail="/image/image-20250713235202-yeg85d0.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713235202-yeg85d0.png"
             srcset="/image/image-20250713235202-yeg85d0.png, /image/image-20250713235202-yeg85d0.png 1.5x, /image/image-20250713235202-yeg85d0.png 2x"
             
-            alt="/image/image-20250713235202-yeg85d0.png" height="654"  width="1218" >
-    </a></figure>​</li>
+            alt="/image/image-20250713235202-yeg85d0.png" height="60%"  width="60%" >
+    </a></li>
 <li>而对于广播帧，效果上看没有区别</li>
 <li>对使用集线器的以太网，各主机都属于同一个广播域，其在扩展后，<strong>参与竞争总线的主机变多了</strong></li>
 <li>即使是，仅使用集线器扩展的以太网，<strong>不仅仅扩展了广播域，也扩展了碰撞域（冲突域）</strong></li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713235449-7rrbpve.png" title="image" data-thumbnail="/image/image-20250713235449-7rrbpve.png">
+<li><a class="lightgallery" href="/image/image-20250713235449-7rrbpve.png" title="/image/image-20250713235449-7rrbpve.png" data-thumbnail="/image/image-20250713235449-7rrbpve.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713235449-7rrbpve.png"
             srcset="/image/image-20250713235449-7rrbpve.png, /image/image-20250713235449-7rrbpve.png 1.5x, /image/image-20250713235449-7rrbpve.png 2x"
             
-            alt="/image/image-20250713235449-7rrbpve.png" height="636"  width="1304" >
-    </a></figure>​</li>
+            alt="/image/image-20250713235449-7rrbpve.png" height="60%"  width="60%" >
+    </a></li>
 </ul>
 </li>
 <li>
 <p>小结</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250713235504-2l8ux6b.png" title="image" data-thumbnail="/image/image-20250713235504-2l8ux6b.png">
+<li><a class="lightgallery" href="/image/image-20250713235504-2l8ux6b.png" title="/image/image-20250713235504-2l8ux6b.png" data-thumbnail="/image/image-20250713235504-2l8ux6b.png">
         <img
             
             loading="lazy"
             src="/image/image-20250713235504-2l8ux6b.png"
             srcset="/image/image-20250713235504-2l8ux6b.png, /image/image-20250713235504-2l8ux6b.png 1.5x, /image/image-20250713235504-2l8ux6b.png 2x"
             
-            alt="/image/image-20250713235504-2l8ux6b.png" height="556"  width="1556" >
-    </a></figure>​</li>
+            alt="/image/image-20250713235504-2l8ux6b.png" height="70%"  width="70%" >
+    </a></li>
 <li>交换机并不比集线器贵，但拥有更好的特性，因而集线器目前已经在市场上所淘汰</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
+<h4 id="三层交换机" class="headerLink">
+    <a href="#%e4%b8%89%e5%b1%82%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>三层交换机</h4><ul>
 <li>
-<p>以太网交换机工作在数据链路层（也包括物理层）</p>
-<ul>
-<li>
-<p>市面上有<u>包含部分网络层功能</u>的交换机，称为<strong>三层交换机</strong></p>
+<p>市面上有<u-b>包含部分网络层功能</u-b>的交换机，称为<strong>三层交换机</strong>，其工作在数据链路层（也包括物理层）</p>
 </li>
 <li>
 <p>以太网交换机收到帧后，在帧交换表中查找帧的目的MAC地址所对应的接口号，然后通过该接口转发该帧</p>
@@ -696,122 +591,97 @@
 <li>
 <p>以太网交换机是一种即插即用的设备，刚上电启动时，内部的帧交换表时空的；随着网络中各主机间的通信，以太网交换机通过<strong>自学习算法</strong>，自动逐渐建立起来帧交换表</p>
 <ul>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714000424-fkfaxc8.png" title="image" data-thumbnail="/image/image-20250714000424-fkfaxc8.png">
+<li><a class="lightgallery" href="/image/image-20250714000424-fkfaxc8.png" title="/image/image-20250714000424-fkfaxc8.png" data-thumbnail="/image/image-20250714000424-fkfaxc8.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714000424-fkfaxc8.png"
             srcset="/image/image-20250714000424-fkfaxc8.png, /image/image-20250714000424-fkfaxc8.png 1.5x, /image/image-20250714000424-fkfaxc8.png 2x"
             
-            alt="/image/image-20250714000424-fkfaxc8.png" height="424"  width="1238" >
-    </a></figure>​</p>
-<ul>
+            alt="/image/image-20250714000424-fkfaxc8.png" height="70%"  width="70%" >
+    </a></li>
 <li>如图所示，每个交换机通过接口分别连接了3台主机</li>
 <li>为了简单起见，各主机中网卡上固化的MAC地址，仅用一个大写字母表示，各主机互不相同</li>
 <li>为了将重点放在以太网交换机自学习和转发帧的流程上，假设各主机知道网络中其他各主机的MAC地址（无需进行ARP）</li>
-</ul>
-</li>
-<li>
-<p>当A给B发送帧时，帧通过接口1进入交换器1后，交换机1首先执行<strong>登记</strong>操作，将该帧重点源MAC地址A和接口1记录到帧交换表中，该操作称为自学习</p>
-</li>
-<li>
-<p>随后对该帧进行<strong>转发</strong>，该帧的目的MAC地址为B，则在帧交换表中查找地址B，找不到时，则对该帧进行盲目地<strong>转发（盲目泛洪）</strong> ，即向除该帧进入交换机的接口外的全部接口转发该帧；在该阶段，交换机的帧交换表并不完善，其只能盲目地进行转发</p>
-</li>
-<li>
-<p>主机B收到该帧后，根据该帧的目的MAC地址B确认该帧是发送给自己的帧，于是接受该帧；主机C确认其不是发送给自己的，就丢弃该帧；</p>
-</li>
-<li>
-<p>该帧通过交换机1的接口4发出，到交换机2的接口2，交换机2接收该帧后，首先登记该帧的源MAC地址A和接口号2到帧交换表中，随后进行转发，在帧交换表中无法找到目的MAC地址B后，就进行盲目转发，主机DEF都会收到该帧，并在验证后丢弃该帧</p>
-</li>
-<li>
-<p>若现在B要给A发送帧，其将帧发送到交换机1中时，首先登记源MAC地址B和接口3到帧交换表，随后在帧交换表中查找目的MAC地址A，在已知其接口的情况下，则进行<strong>明确的转发</strong></p>
-</li>
-<li>
-<p>若主机E要对A发送帧，其首先发送到交换机2，登记E的相关信息后，可以在帧交换表中找到主机A的MAC地址，按照其对应的接口号2，明确转发该帧给交换机1；交换机1登记E的相关信息后，查找A的接口，明确转发</p>
-</li>
+<li>当A给B发送帧时，帧通过接口1进入交换器1后，交换机1首先执行<strong>登记</strong>操作，将该帧重点源MAC地址A和接口1记录到帧交换表中，该操作称为自学习</li>
+<li>随后对该帧进行<strong>转发</strong>，该帧的目的MAC地址为B，则在帧交换表中查找地址B，找不到时，则对该帧进行盲目地<strong>转发（盲目泛洪）</strong> ，即向除该帧进入交换机的接口外的全部接口转发该帧；在该阶段，交换机的帧交换表并不完善，其只能盲目地进行转发</li>
+<li>主机B收到该帧后，根据该帧的目的MAC地址B确认该帧是发送给自己的帧，于是接受该帧；主机C确认其不是发送给自己的，就丢弃该帧；</li>
+<li>该帧通过交换机1的接口4发出，到交换机2的接口2，交换机2接收该帧后，首先登记该帧的源MAC地址A和接口号2到帧交换表中，随后进行转发，在帧交换表中无法找到目的MAC地址B后，就进行盲目转发，主机DEF都会收到该帧，并在验证后丢弃该帧</li>
+<li>若现在B要给A发送帧，其将帧发送到交换机1中时，首先登记源MAC地址B和接口3到帧交换表，随后在帧交换表中查找目的MAC地址A，在已知其接口的情况下，则进行<strong>明确的转发</strong></li>
+<li>若主机E要对A发送帧，其首先发送到交换机2，登记E的相关信息后，可以在帧交换表中找到主机A的MAC地址，按照其对应的接口号2，明确转发该帧给交换机1；交换机1登记E的相关信息后，查找A的接口，明确转发</li>
 </ul>
 </li>
 <li>
 <p>以太网交换器丢失帧的情况</p>
 <ul>
 <li>给接口1再接一个主机G（省略了集线器没有画出）</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714002039-75lq2kl.png" title="image" data-thumbnail="/image/image-20250714002039-75lq2kl.png">
+<li><a class="lightgallery" href="/image/image-20250714002039-75lq2kl.png" title="/image/image-20250714002039-75lq2kl.png" data-thumbnail="/image/image-20250714002039-75lq2kl.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714002039-75lq2kl.png"
             srcset="/image/image-20250714002039-75lq2kl.png, /image/image-20250714002039-75lq2kl.png 1.5x, /image/image-20250714002039-75lq2kl.png 2x"
             
-            alt="/image/image-20250714002039-75lq2kl.png" height="434"  width="1254" >
-    </a></figure>​</li>
+            alt="/image/image-20250714002039-75lq2kl.png" height="70%"  width="70%" >
+    </a></li>
 <li>现在，主机G给主机A发送帧，该帧通过总线进行传输，主机A和交换机1的接口1都可以收到；主机A收到后确认、接收该帧；</li>
 <li>交换机1收到该帧后，登记源MAC地址G和接口1的相关信息，随后对该帧进行转发，该帧的目的MAC地址是A，在帧交换表中查到的接口号为1，但是该帧正是从接口1进入交换机1的，交换机不会再从该接口将该帧转发出去（因为没有必要），于是丢弃该帧；交换机2不会收到该帧</li>
 </ul>
 </li>
 <li>
 <p>当网络中各主机都发送过帧后，网络中的各交换机就可以学习到各主机的MAC地址，以及他们与自己各接口的对应关系</p>
-<ul>
-<li>值得注意的是，帧交换表中的每条记录，都有自己的有效时间，到期自动删除（因为该关系不一定是永久性的）</li>
-</ul>
+</li>
+<li>
+<p>值得注意的是，帧交换表中的每条记录，都有自己的有效时间，到期自动删除（因为该关系不一定是永久性的）</p>
 </li>
 <li>
 <p>习题</p>
 <ul>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714002654-nx0l6qa.png" title="image" data-thumbnail="/image/image-20250714002654-nx0l6qa.png">
+<li><a class="lightgallery" href="/image/image-20250714002654-nx0l6qa.png" title="/image/image-20250714002654-nx0l6qa.png" data-thumbnail="/image/image-20250714002654-nx0l6qa.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714002654-nx0l6qa.png"
             srcset="/image/image-20250714002654-nx0l6qa.png, /image/image-20250714002654-nx0l6qa.png 1.5x, /image/image-20250714002654-nx0l6qa.png 2x"
             
-            alt="/image/image-20250714002654-nx0l6qa.png" height="458"  width="1386" >
-    </a></figure>​</p>
-<ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714002726-rmwoqpl.png" title="image" data-thumbnail="/image/image-20250714002726-rmwoqpl.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002726-rmwoqpl.png"
-            srcset="/image/image-20250714002726-rmwoqpl.png, /image/image-20250714002726-rmwoqpl.png 1.5x, /image/image-20250714002726-rmwoqpl.png 2x"
-            
-            alt="/image/image-20250714002726-rmwoqpl.png" height="264"  width="1260" >
-    </a></figure>​</li>
-</ul>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714002749-vpk9l6r.png" title="image" data-thumbnail="/image/image-20250714002749-vpk9l6r.png">
+            alt="/image/image-20250714002654-nx0l6qa.png" height="70%"  width="70%" >
+    </a>
+<a class="lightgallery" href="/image/image-20250714002726-rmwoqpl.png" title="/image/image-20250714002726-rmwoqpl.png" data-thumbnail="/image/image-20250714002726-rmwoqpl.png">
+              <img
+                  
+                  loading="lazy"
+                  src="/image/image-20250714002726-rmwoqpl.png"
+                  srcset="/image/image-20250714002726-rmwoqpl.png, /image/image-20250714002726-rmwoqpl.png 1.5x, /image/image-20250714002726-rmwoqpl.png 2x"
+                  
+                  alt="/image/image-20250714002726-rmwoqpl.png" height="70%"  width="70%" >
+          </a></li>
+<li><a class="lightgallery" href="/image/image-20250714002749-vpk9l6r.png" title="/image/image-20250714002749-vpk9l6r.png" data-thumbnail="/image/image-20250714002749-vpk9l6r.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714002749-vpk9l6r.png"
             srcset="/image/image-20250714002749-vpk9l6r.png, /image/image-20250714002749-vpk9l6r.png 1.5x, /image/image-20250714002749-vpk9l6r.png 2x"
             
-            alt="/image/image-20250714002749-vpk9l6r.png" height="174"  width="824" >
-    </a></figure>​</p>
-<ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714002821-y67091b.png" title="image" data-thumbnail="/image/image-20250714002821-y67091b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002821-y67091b.png"
-            srcset="/image/image-20250714002821-y67091b.png, /image/image-20250714002821-y67091b.png 1.5x, /image/image-20250714002821-y67091b.png 2x"
-            
-            alt="/image/image-20250714002821-y67091b.png" height="212"  width="1152" >
-    </a></figure>​</li>
-</ul>
-</li>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714002849-3f2v0ne.png" title="image" data-thumbnail="/image/image-20250714002849-3f2v0ne.png">
+            alt="/image/image-20250714002749-vpk9l6r.png" height="40%"  width="40%" >
+    </a>
+<a class="lightgallery" href="/image/image-20250714002821-y67091b.png" title="/image/image-20250714002821-y67091b.png" data-thumbnail="/image/image-20250714002821-y67091b.png">
+              <img
+                  
+                  loading="lazy"
+                  src="/image/image-20250714002821-y67091b.png"
+                  srcset="/image/image-20250714002821-y67091b.png, /image/image-20250714002821-y67091b.png 1.5x, /image/image-20250714002821-y67091b.png 2x"
+                  
+                  alt="/image/image-20250714002821-y67091b.png" height="60%"  width="60%" >
+          </a></li>
+<li><a class="lightgallery" href="/image/image-20250714002849-3f2v0ne.png" title="/image/image-20250714002849-3f2v0ne.png" data-thumbnail="/image/image-20250714002849-3f2v0ne.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714002849-3f2v0ne.png"
             srcset="/image/image-20250714002849-3f2v0ne.png, /image/image-20250714002849-3f2v0ne.png 1.5x, /image/image-20250714002849-3f2v0ne.png 2x"
             
-            alt="/image/image-20250714002849-3f2v0ne.png" height="452"  width="1220" >
-    </a></figure>​</p>
+            alt="/image/image-20250714002849-3f2v0ne.png" height="65%"  width="65%" >
+    </a>
 <ul>
 <li>B</li>
 </ul>
@@ -819,119 +689,117 @@
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>以太网交换器的<strong>生成式协议STP</strong></p>
-<ul>
+<h4 id="以太网交换器的生成式协议stp" class="headerLink">
+    <a href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e4%ba%a4%e6%8d%a2%e5%99%a8%e7%9a%84%e7%94%9f%e6%88%90%e5%bc%8f%e5%8d%8f%e8%ae%aestp" class="header-mark"></a>以太网交换器的生成式协议STP</h4><ul>
 <li>
 <p>如何提高以太网的可靠性？</p>
+<p><a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="/image/image-20250714003216-rr8awfc.png" data-thumbnail="/image/image-20250714003216-rr8awfc.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250714003216-rr8awfc.png"
+              srcset="/image/image-20250714003216-rr8awfc.png, /image/image-20250714003216-rr8awfc.png 1.5x, /image/image-20250714003216-rr8awfc.png 2x"
+              
+              alt="/image/image-20250714003216-rr8awfc.png" height="30%"  width="30%" >
+      </a>
+<a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="/image/image-20250714003216-rr8awfc.png" data-thumbnail="/image/image-20250714003216-rr8awfc.png">
+          <img
+              
+              loading="lazy"
+              src="/image/image-20250714003216-rr8awfc.png"
+              srcset="/image/image-20250714003216-rr8awfc.png, /image/image-20250714003216-rr8awfc.png 1.5x, /image/image-20250714003216-rr8awfc.png 2x"
+              
+              alt="/image/image-20250714003216-rr8awfc.png" height="30%"  width="30%" >
+      </a></p>
+<ul>
+<li>可以通过添加<strong>冗余链路</strong>的方法，来提高以太网的可靠性
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="image" data-thumbnail="/image/image-20250714003216-rr8awfc.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714003216-rr8awfc.png"
-            srcset="/image/image-20250714003216-rr8awfc.png, /image/image-20250714003216-rr8awfc.png 1.5x, /image/image-20250714003216-rr8awfc.png 2x"
-            
-            alt="/image/image-20250714003216-rr8awfc.png" height="620"  width="786" >
-    </a></figure>​<figure><a class="lightgallery" href="/image/image-20250714003241-onaz1ef.png" title="image" data-thumbnail="/image/image-20250714003241-onaz1ef.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714003241-onaz1ef.png"
-            srcset="/image/image-20250714003241-onaz1ef.png, /image/image-20250714003241-onaz1ef.png 1.5x, /image/image-20250714003241-onaz1ef.png 2x"
-            
-            alt="/image/image-20250714003241-onaz1ef.png" height="610"  width="782" >
-    </a></figure>​</p>
-</li>
-<li>
-<p>可以通过添加<strong>冗余链路</strong>的方法，来提高以太网的可靠性</p>
-<ul>
-<li>
-<p>如在B和C之间添加一个冗余链路后</p>
-<ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714003339-3st6fxt.png" title="image" data-thumbnail="/image/image-20250714003339-3st6fxt.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714003339-3st6fxt.png"
-            srcset="/image/image-20250714003339-3st6fxt.png, /image/image-20250714003339-3st6fxt.png 1.5x, /image/image-20250714003339-3st6fxt.png 2x"
-            
-            alt="/image/image-20250714003339-3st6fxt.png" height="610"  width="778" >
-    </a></figure>​</li>
-<li>哪怕一个链路出现故障，整个网络仍然是通的</li>
-</ul>
+<p>如在B和C之间添加一个冗余链路后，哪怕一个链路出现故障，整个网络仍然是通的</p>
+<a class="lightgallery" href="/image/image-20250714003339-3st6fxt.png" title="/image/image-20250714003339-3st6fxt.png" data-thumbnail="/image/image-20250714003339-3st6fxt.png">
+              <img
+                  
+                  loading="lazy"
+                  src="/image/image-20250714003339-3st6fxt.png"
+                  srcset="/image/image-20250714003339-3st6fxt.png, /image/image-20250714003339-3st6fxt.png 1.5x, /image/image-20250714003339-3st6fxt.png 2x"
+                  
+                  alt="/image/image-20250714003339-3st6fxt.png" height="30%"  width="30%" >
+          </a>
 </li>
 <li>
 <p>但是，冗余链路也会带来一些负面效应，形成<strong>网络环路</strong>，而网络环路会带来以下问题</p>
 <ul>
-<li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714003854-f8cz71g.png" title="image" data-thumbnail="/image/image-20250714003854-f8cz71g.png">
+<li><a class="lightgallery" href="/image/image-20250714003854-f8cz71g.png" title="/image/image-20250714003854-f8cz71g.png" data-thumbnail="/image/image-20250714003854-f8cz71g.png">
         <img
             
             loading="lazy"
             src="/image/image-20250714003854-f8cz71g.png"
             srcset="/image/image-20250714003854-f8cz71g.png, /image/image-20250714003854-f8cz71g.png 1.5x, /image/image-20250714003854-f8cz71g.png 2x"
             
-            alt="/image/image-20250714003854-f8cz71g.png" height="462"  width="786" >
-    </a></figure>​</p>
+            alt="/image/image-20250714003854-f8cz71g.png" height="40%"  width="40%" >
+    </a></li>
+<li>相同的广播帧会在各交换机之间反复转发，分别按照顺时针和逆时针方向同时兜圈，这就是所谓的<strong>广播风波</strong></li>
+<li>广播风暴：大量消耗网络资源，使得网络无法正常转发其他数据帧</li>
+<li>主机收到重复的广播帧后也会消耗大量的主机资源</li>
+<li>交换机的帧交换表震荡（漂移），如H1是来自于1，但顺时针来的广播风暴会将其改为2，逆时针的风暴又会将其改为3</li>
+</ul>
 </li>
-<li>
-<p>相同的广播帧会在各交换机之间反复转发，分别按照顺时针和逆时针方向同时兜圈，这就是所谓的<strong>广播风波</strong></p>
-</li>
-<li>
-<p>广播风暴：大量消耗网络资源，使得网络无法正常转发其他数据帧</p>
-</li>
-<li>
-<p>主机收到重复的广播帧后也会消耗大量的主机资源</p>
-</li>
-<li>
-<p>交换机的帧交换表震荡（漂移）</p>
-<ul>
-<li>如H1是来自于1，但顺时针来的广播风暴会将其改为2，逆时针的风暴又会将其改为3</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>为了可以在增加冗余链路来提高网络可靠性的同时，避免网络环路带来的各种问题，以太网交换机使用<span data-type="text" style="color: var(--b3-font-color8);">生成树协议STP（Spanning Tree Protocol）</span>来解决该问题</p>
+<p>为了可以在增加冗余链路来提高网络可靠性的同时，避免网络环路带来的各种问题，以太网交换机使用<u-r>生成树协议STP（Spanning Tree Protocol）</u-r>来解决该问题</p>
 <ul>
 <li>
 <p>不论交换机之间采用怎么的物理连接，交换机都能够自动计算并构建出一个逻辑上没有环路的网络，其拓扑结构必须是树形的（无逻辑环路）</p>
 </li>
 <li>
 <p>举例</p>
+<p><a class="lightgallery" href="/image/image-20250714004357-8yx1xei.png" title="/image/image-20250714004357-8yx1xei.png" data-thumbnail="/image/image-20250714004357-8yx1xei.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250714004357-8yx1xei.png"
+                srcset="/image/image-20250714004357-8yx1xei.png, /image/image-20250714004357-8yx1xei.png 1.5x, /image/image-20250714004357-8yx1xei.png 2x"
+                
+                alt="/image/image-20250714004357-8yx1xei.png" height="30%"  width="30%" >
+        </a>
+<a class="lightgallery" href="/image/image-20250714004420-rdt9wjx.png" title="/image/image-20250714004420-rdt9wjx.png" data-thumbnail="/image/image-20250714004420-rdt9wjx.png">
+            <img
+                
+                loading="lazy"
+                src="/image/image-20250714004420-rdt9wjx.png"
+                srcset="/image/image-20250714004420-rdt9wjx.png, /image/image-20250714004420-rdt9wjx.png 1.5x, /image/image-20250714004420-rdt9wjx.png 2x"
+                
+                alt="/image/image-20250714004420-rdt9wjx.png" height="30%"  width="30%" >
+        </a></p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714004357-8yx1xei.png" title="image" data-thumbnail="/image/image-20250714004357-8yx1xei.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714004357-8yx1xei.png"
-            srcset="/image/image-20250714004357-8yx1xei.png, /image/image-20250714004357-8yx1xei.png 1.5x, /image/image-20250714004357-8yx1xei.png 2x"
-            
-            alt="/image/image-20250714004357-8yx1xei.png" height="752"  width="552" >
-    </a></figure>​<figure><a class="lightgallery" href="/image/image-20250714004420-rdt9wjx.png" title="image" data-thumbnail="/image/image-20250714004420-rdt9wjx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714004420-rdt9wjx.png"
-            srcset="/image/image-20250714004420-rdt9wjx.png, /image/image-20250714004420-rdt9wjx.png 1.5x, /image/image-20250714004420-rdt9wjx.png 2x"
-            
-            alt="/image/image-20250714004420-rdt9wjx.png" height="746"  width="544" >
-    </a></figure>​</li>
 <li>当机器如图进行物理连接后，就会形成多个环路</li>
 <li>实际上，各交换机之间，按照生成树协议中规定的生成树算法，交互一些参数后，每个交换机就可以判断出自己应该阻塞自己的哪些接口，如右图所示，形成没有环路的网络</li>
 <li>当然，最后生成的树形拓扑结构必须要确保能够连通整个网络</li>
 <li>当首次连接交换机，或网络的物理拓扑发生变化时（有可能是人为改变或故障），交换机都将进行生成树的重新计算</li>
 <li>生成树算法STA</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<a target="_blank" href="/posts/net/n05_stp/" title="软考备考 | 生成树协议" class="friend-link" rel="noopener noreferrer">
+        <div class="friend-link-div">
+            <div class="friend-link-avatar"><img
+            
+            loading="lazy"
+            src="https://zhangzifan.com/uploads/2018/04/link.png"
+            srcset="https://zhangzifan.com/uploads/2018/04/link.png, https://zhangzifan.com/uploads/2018/04/link.png 1.5x, https://zhangzifan.com/uploads/2018/04/link.png 2x"
+            sizes="auto"
+            alt="https://zhangzifan.com/uploads/2018/04/link.png"
+            title="https://zhangzifan.com/uploads/2018/04/link.png" ></div>
+            <div class="friend-link-info">
+                <div class="friend-name-div">
+                    <i class="fas fa-user-circle fa-fw"></i>
+                    <i class="friend-name">软考备考 | 生成树协议</i>
+                </div>
+                <p class="friend-bio"></p>
+            </div>
+        </div>
+    </a>
 </li>
 </ul>
 </li>

@@ -31,6 +31,12 @@
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>软考备考 | 生成树协议STP</title>
+    <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>软考备考 | 以太网物理层规范</title>
     <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
@@ -71,7 +77,7 @@
     <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
     <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
-    <description><![CDATA[250710 MAC地址、IP地址、ARP协议 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所]]></description>
+    <description><![CDATA[250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构]]></description>
 </item><item>
     <title>网络 | 04. 媒体接入控制</title>
     <link>https://jwangl5.github.io/posts/net/n04_csma_cd/</link>
@@ -120,11 +126,5 @@
     <pubDate>Sun, 21 Apr 2024 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/languages/toefl_glossary_geography/</guid>
     <description><![CDATA[地质时代划分 （Classification of geologic time periods）在地质年代划分中，习惯于以生物的情况来划分，把整个46亿年划成两个大的单元，]]></description>
-</item><item>
-    <title>TOEFL | 历史学相关背景材料&#43;习题精炼&#43;词汇整理</title>
-    <link>https://jwangl5.github.io/posts/languages/toefl_glossary_history/</link>
-    <pubDate>Sun, 21 Apr 2024 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/languages/toefl_glossary_history/</guid>
-    <description><![CDATA[Ancient Egypt 古埃及 Ancient Egypt was a civilization of ancient Northeastern Africa, concentrated along the lower reaches of the Nile River - geographically Lower Egypt and Upper Egypt, in the place that is now occupied by the countries of Egypt and Sudan. 古埃及是非洲东北地区的文明，在地理上被尼罗河一分为二]]></description>
 </item></channel>
 </rss>
