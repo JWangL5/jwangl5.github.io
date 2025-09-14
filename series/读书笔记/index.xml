@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>读书笔记 - 系列 - JWangL5&#39;s Blog</title>
-        <link>http://localhost:1313/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <link>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
         <description>读书笔记 - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
     <title>Book | 《简单逻辑学》阅读笔记（🔖Reading...） </title>
-    <link>http://localhost:1313/posts/book/being_logical/</link>
+    <link>https://jwangl5.github.io/posts/book/being_logical/</link>
     <pubDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/book/being_logical/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/book/being_logical/</guid>
     <description><![CDATA[<blockquote>
   <p>很早以前就被B站UP主推荐过<a href="https://book.douban.com/subject/24754537/" target="_blank" rel="noopener noreferrer">这本书</a>，当时买过实体书很快就读过一遍了。深感其内容之精妙，这里用一些时间整理其间大纲和重要细节</p>]]></description>
 </item></channel>
