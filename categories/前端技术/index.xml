@@ -1,21 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>前端技术 - 分类 - JWangL5&#39;s Blog</title>
-        <link>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
+        <link>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
         <description>前端技术 - 分类 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" rel="self" type="application/rss+xml" /><item>
     <title>Hugo&#43;GitHub Pages搭建博客</title>
-    <link>http://localhost:1313/posts/bolg_set_up_by_hugo_and_github_pages/</link>
+    <link>https://jwangl5.github.io/posts/bolg_set_up_by_hugo_and_github_pages/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/bolg_set_up_by_hugo_and_github_pages/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/bolg_set_up_by_hugo_and_github_pages/</guid>
     <description><![CDATA[<h2 id="前言" class="headerLink">
     <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h2><p>自从网易博客不再运营之后，不止一次地萌生过想要重开一个博客的想法，但每每又觉得自己的文字并没有太多价值，就一直没有实际行动。但不可否认的是，把长段的文字写出来或是把之前不理解的东西搞明白并输出，哪怕没有别人看也会是一件能够让自己高兴、甚至自豪的事情。这段时间想要重新再次学习<code>《Molecular driving forces》</code>一书，希望能够借着这个博客，把系统梳理的笔记做出来。</p>]]></description>
 </item><item>
     <title>用TypeScript写的贪吃蛇小游戏（可直接游戏）</title>
-    <link>http://localhost:1313/posts/greedysnake_game_code_in_typescript/</link>
+    <link>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</link>
     <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/greedysnake_game_code_in_typescript/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/</guid>
     <description><![CDATA[<p>最近在学习<code>TypeScript</code>的时候，跟着<a href="https://www.bilibili.com/video/BV1Xy4y1v7S2" target="_blank" rel="noopener noreferrer">B站课</a>写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！</p>]]></description>
 </item></channel>
 </rss>

@@ -1,26 +1,26 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Opencv - 系列 - JWangL5&#39;s Blog</title>
-        <link>http://localhost:1313/series/opencv/</link>
+        <link>https://jwangl5.github.io/series/opencv/</link>
         <description>Opencv - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/opencv/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/opencv/" rel="self" type="application/rss+xml" /><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
-    <link>http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/</guid>
     <description><![CDATA[<p>在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>]]></description>
 </item><item>
     <title>OpenCV | 图像的空间域处理之点运算</title>
-    <link>http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</link>
     <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</guid>
     <description><![CDATA[<p>​		在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>]]></description>
 </item><item>
     <title>OpenCV | 图像的显示与存储</title>
-    <link>http://localhost:1313/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</link>
     <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</guid>
     <description><![CDATA[<h1 id="一python-opencv的安装" class="headerLink">
     <a href="#%e4%b8%80python-opencv%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>一、python-opencv的安装</h1><p><strong>方法一</strong>：使用pip命令</p>
 <ul>

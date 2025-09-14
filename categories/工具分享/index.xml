@@ -1,34 +1,34 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>工具分享 - 分类 - JWangL5&#39;s Blog</title>
-        <link>http://localhost:1313/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</link>
+        <link>https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/</link>
         <description>工具分享 - 分类 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 25 Aug 2023 15:56:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 25 Aug 2023 15:56:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%86%E4%BA%AB/" rel="self" type="application/rss+xml" /><item>
     <title>logseq、zotero和坚果云的相互关联配制</title>
-    <link>http://localhost:1313/posts/use_logseq_to_take_paper_notes/</link>
+    <link>https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/</link>
     <pubDate>Fri, 25 Aug 2023 15:56:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/use_logseq_to_take_paper_notes/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/</guid>
     <description><![CDATA[<blockquote>
   <p>最近在BioBit暑期学校认识了很多新朋友，有朋友在见识了我用的Logseq后在问复刻过程，这里就写了一点文字来说明这个事情</p>]]></description>
 </item><item>
     <title>一个将pdf转化为图像的Python脚本（含代码下载）</title>
-    <link>http://localhost:1313/posts/python-scripts/python_script_for_pdf2image/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</link>
     <pubDate>Tue, 30 May 2023 21:11:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/python_script_for_pdf2image/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_pdf2image/</guid>
     <description><![CDATA[<blockquote>
   <p>写这个脚本的起因是最近发现了一个用Rust编写的、很神奇的文字排版工具叫做<code>Typst</code>，在调整排版格式的时候用PDF文件很难做到完全还原，于是需要将其灵活地转换为图片，但是每次在pdf编辑器中点又很麻烦，于是写了一个脚本，每次调整、编译时自动执行该代码即可得到编译好的pdf和对应的图片</p>]]></description>
 </item><item>
     <title>Venn和Upset Diagram的绘制</title>
-    <link>http://localhost:1313/posts/python-scripts/venn_and_upset_diagram/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</link>
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/venn_and_upset_diagram/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
     <description><![CDATA[<p>对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成：</p>]]></description>
 </item><item>
     <title>Python脚本爬取B站弹幕（已失效）</title>
-    <link>http://localhost:1313/posts/python-scripts/python_script_for_bilibili_danmu/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</link>
     <pubDate>Fri, 11 Dec 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/python_script_for_bilibili_danmu/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/</guid>
     <description><![CDATA[<blockquote>
   <p>20年底用于爬取B站弹幕的代码，最近在整理博客时测试，发现该代码已经失效了，应该是B站修改了API</p>]]></description>
 </item></channel>

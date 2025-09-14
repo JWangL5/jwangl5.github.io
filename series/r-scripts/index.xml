@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>R Scripts - 系列 - JWangL5&#39;s Blog</title>
-        <link>http://localhost:1313/series/r-scripts/</link>
+        <link>https://jwangl5.github.io/series/r-scripts/</link>
         <description>R Scripts - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/r-scripts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/r-scripts/" rel="self" type="application/rss+xml" /><item>
     <title>Venn和Upset Diagram的绘制</title>
-    <link>http://localhost:1313/posts/python-scripts/venn_and_upset_diagram/</link>
+    <link>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</link>
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/venn_and_upset_diagram/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/venn_and_upset_diagram/</guid>
     <description><![CDATA[<p>对于Venn图，一直没有找到好看的Python工具，因而我一直在使用网页工具来完成：</p>]]></description>
 </item><item>
     <title>使用clusterProfiler完成GO富集（含R脚本）</title>
-    <link>http://localhost:1313/posts/cell-biology/go_enrich_by_clusterprofiler/</link>
+    <link>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</link>
     <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/cell-biology/go_enrich_by_clusterprofiler/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</guid>
     <description><![CDATA[<h2 id="关于go富集的原理" class="headerLink">
     <a href="#%e5%85%b3%e4%ba%8ego%e5%af%8c%e9%9b%86%e7%9a%84%e5%8e%9f%e7%90%86" class="header-mark"></a>关于GO富集的原理</h2><blockquote>
   <p>这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分</p>]]></description>
