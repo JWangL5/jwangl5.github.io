@@ -1,82 +1,117 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>网络 | 03. 数据链路层（以太网MAC帧、PPP协议） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）" />
-<meta property="og:description" content="数据链路层框架之三个核心问题 250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/net/n03_data_link/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-06-19T00:00:00+08:00" />
-<meta property="article:modified_time" content="2025-06-19T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>网络 | 03. 数据链路层（以太网MAC帧、PPP协议） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n03_data_link/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）">
+  <meta property="og:description" content="数据链路层框架之三个核心问题 250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点 数据链路（Data Link）是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路 数据链路层以帧为单位传输和处理数据 三个重要问题 封装成帧 将上层交付的网络层数据单元添加数据链路层协议首部（帧头）和帧尾的操作称为封装成帧">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-19T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-06-19T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）"/>
-<meta name="twitter:description" content="数据链路层框架之三个核心问题 250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）">
+  <meta name="twitter:description" content="数据链路层框架之三个核心问题 250619 数据链路层 在网络体系结构中的地位 链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点 数据链路（Data Link）是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路 数据链路层以帧为单位传输和处理数据 三个重要问题 封装成帧 将上层交付的网络层数据单元添加数据链路层协议首部（帧头）和帧尾的操作称为封装成帧">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/net/n03_data_link/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n02_physical_layer/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/net/n03_data_link/" /><link rel="prev" href="http://localhost:1313/posts/net/n02_physical_layer/" /><link rel="next" href="http://localhost:1313/posts/net/n04_csma_cd/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 03. 数据链路层（以太网MAC帧、PPP协议）",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/"
+            "@id": "http://localhost:1313/posts/net/n03_data_link/"
         },"genre": "posts","wordcount":  6008 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/net\/n03_data_link\/","datePublished": "2025-06-19T00:00:00+08:00","dateModified": "2025-06-19T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n03_data_link/","datePublished": "2025-06-19T00:00:00+08:00","dateModified": "2025-06-19T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +122,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,37 +153,57 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 03. 数据链路层（以太网MAC帧、PPP协议）</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#250619-数据链路层">250619 数据链路层</a>
+          <ul>
+            <li><a href="#在网络体系结构中的地位">在网络体系结构中的地位</a></li>
+            <li><a href="#三个重要问题">三个重要问题</a>
+              <ul>
+                <li><a href="#封装成帧">封装成帧</a></li>
+                <li><a href="#差错检测">差错检测</a></li>
+                <li><a href="#可靠传输">可靠传输</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#可靠传输的三种实现方式">可靠传输的三种实现方式</a>
+          <ul>
+            <li><a href="#停止-等待协议-sw">停止-等待协议 SW</a></li>
+            <li><a href="#回退n帧协议-gbngo-back-n">回退N帧协议 GBN（Go-Back-N）</a></li>
+            <li><a href="#选择重传协议-sr">选择重传协议 SR</a></li>
+          </ul>
+        </li>
+        <li><a href="#250622-ppp协议">250622 PPP协议</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-06-19" data-pagefind-body>网络 | 03. 数据链路层（以太网MAC帧、PPP协议）</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6008 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
-        </div><div class="content" id="content"><center>
-<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" title="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" data-sub-html="<h2>数据链路层框架之三个核心问题</h2>">
-        <img
-            
-            loading="lazy"
-            src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png"
-            srcset="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png 1.5x, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png 2x"
-            
-            alt="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" height="80%"  width="80%" >
-    </a><figcaption class="image-caption">数据链路层框架之三个核心问题</figcaption>
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-06-19">2025-06-19</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 6008 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 27 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><center>
+<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" title="" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png" data-sub-html="<h2>数据链路层框架之三个核心问题</h2>"><img  loading="lazy" src='/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap1.png'    height="80%" width="80%"></a><figcaption class="image-caption">数据链路层框架之三个核心问题</figcaption>
     </figure>
 </center>
 <h3 id="250619-数据链路层" class="headerLink">
     <a href="#250619-%e6%95%b0%e6%8d%ae%e9%93%be%e8%b7%af%e5%b1%82" class="header-mark"></a>250619 数据链路层</h3><h4 id="在网络体系结构中的地位" class="headerLink">
-    <a href="#%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e4%b8%ad%e7%9a%84%e5%9c%b0%e4%bd%8d" class="header-mark"></a>在网络体系结构中的地位</h4><center> <a class="lightgallery" href="/image/image-20250619210110-f1nlq2y.png" title="/image/image-20250619210110-f1nlq2y.png" data-thumbnail="/image/image-20250619210110-f1nlq2y.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250619210110-f1nlq2y.png"
-            srcset="/image/image-20250619210110-f1nlq2y.png, /image/image-20250619210110-f1nlq2y.png 1.5x, /image/image-20250619210110-f1nlq2y.png 2x"
-            
-            alt="/image/image-20250619210110-f1nlq2y.png" height="80%"  width="80%" >
-    </a> </center>
+    <a href="#%e5%9c%a8%e7%bd%91%e7%bb%9c%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84%e4%b8%ad%e7%9a%84%e5%9c%b0%e4%bd%8d" class="header-mark"></a>在网络体系结构中的地位</h4><center> <a class="lightgallery" href="/image/image-20250619210110-f1nlq2y.png" title="" data-thumbnail="/image/image-20250619210110-f1nlq2y.png"><img  loading="lazy" src='/image/image-20250619210110-f1nlq2y.png'    height="80%" width="80%"></a> </center>
 <ul>
 <li>链路（Link）就是从一个结点到相邻结点的一段物理线路，中间没有任何其他的交换结点</li>
 <li>数据链路（Data Link）是指把实现通信协议的硬件和软件加到链路上，就构成了数据链路</li>
@@ -159,27 +220,11 @@
 </li>
 <li>
 <p>如以太网第二版本的MAC帧格式如下</p>
-<a class="lightgallery" href="/image/image-20250619210611-hwshttl.png" title="/image/image-20250619210611-hwshttl.png" data-thumbnail="/image/image-20250619210611-hwshttl.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250619210611-hwshttl.png"
-              srcset="/image/image-20250619210611-hwshttl.png, /image/image-20250619210611-hwshttl.png 1.5x, /image/image-20250619210611-hwshttl.png 2x"
-              
-              alt="/image/image-20250619210611-hwshttl.png" height="50%"  width="50%" >
-      </a>
+<a class="lightgallery" href="/image/image-20250619210611-hwshttl.png" title="" data-thumbnail="/image/image-20250619210611-hwshttl.png"><img  loading="lazy" src='/image/image-20250619210611-hwshttl.png'    height="50%" width="50%"></a>
 </li>
 <li>
 <p>如点对点协议PPP协议</p>
-<a class="lightgallery" href="/image/image-20250619211921-z34p3b8.png" title="/image/image-20250619211921-z34p3b8.png" data-thumbnail="/image/image-20250619211921-z34p3b8.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250619211921-z34p3b8.png"
-              srcset="/image/image-20250619211921-z34p3b8.png, /image/image-20250619211921-z34p3b8.png 1.5x, /image/image-20250619211921-z34p3b8.png 2x"
-              
-              alt="/image/image-20250619211921-z34p3b8.png" height="50%"  width="50%" >
-      </a>
+<a class="lightgallery" href="/image/image-20250619211921-z34p3b8.png" title="" data-thumbnail="/image/image-20250619211921-z34p3b8.png"><img  loading="lazy" src='/image/image-20250619211921-z34p3b8.png'    height="50%" width="50%"></a>
 </li>
 </ul>
 <ul>
@@ -217,15 +262,7 @@
 </li>
 <li>
 <p>例如下练习</p>
-<a class="lightgallery" href="/image/image-20250619213252-wzgiu95.png" title="/image/image-20250619213252-wzgiu95.png" data-thumbnail="/image/image-20250619213252-wzgiu95.png">
-            <img
-                
-                loading="lazy"
-                src="/image/image-20250619213252-wzgiu95.png"
-                srcset="/image/image-20250619213252-wzgiu95.png, /image/image-20250619213252-wzgiu95.png 1.5x, /image/image-20250619213252-wzgiu95.png 2x"
-                
-                alt="/image/image-20250619213252-wzgiu95.png" height="60%"  width="60%" >
-        </a>
+<a class="lightgallery" href="/image/image-20250619213252-wzgiu95.png" title="" data-thumbnail="/image/image-20250619213252-wzgiu95.png"><img  loading="lazy" src='/image/image-20250619213252-wzgiu95.png'    height="60%" width="60%"></a>
 <ul>
 <li>高级数据链路控制协议HDLC采用帧头和帧尾中标志字段作为帧定界符，其值为01111110</li>
 <li>HDLC为了实现透明传输，采用零比特填充法（每5个连续1后面插入1个比特0）</li>
@@ -257,15 +294,7 @@
 <p>奇偶检验</p>
 <ul>
 <li>在待发送数据后面添加1位奇偶校验位，使整个数据（包含所添加的校验位在内）中“1”的个数为奇数（奇校验）或偶数（偶校验）</li>
-<li><a class="lightgallery" href="/image/image-20250620041056-fs1if5e.png" title="/image/image-20250620041056-fs1if5e.png" data-thumbnail="/image/image-20250620041056-fs1if5e.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620041056-fs1if5e.png"
-            srcset="/image/image-20250620041056-fs1if5e.png, /image/image-20250620041056-fs1if5e.png 1.5x, /image/image-20250620041056-fs1if5e.png 2x"
-            
-            alt="/image/image-20250620041056-fs1if5e.png" height="90%"  width="90%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250620041056-fs1if5e.png" title="" data-thumbnail="/image/image-20250620041056-fs1if5e.png"><img  loading="lazy" src='/image/image-20250620041056-fs1if5e.png'    height="90%" width="90%"></a></li>
 <li>如果有偶数个位发生误码，则不能检查出误码（漏检）</li>
 </ul>
 </li>
@@ -278,51 +307,19 @@
 <li>比如
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250620041456-chstdvx.png" title="image" data-thumbnail="/image/image-20250620041456-chstdvx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620041456-chstdvx.png"
-            srcset="/image/image-20250620041456-chstdvx.png, /image/image-20250620041456-chstdvx.png 1.5x, /image/image-20250620041456-chstdvx.png 2x"
-            
-            alt="/image/image-20250620041456-chstdvx.png" height="466"  width="1436" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250620041456-chstdvx.png'   alt="image" height="466" width="1436">​</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250620041527-qkbdmfy.png" title="/image/image-20250620041527-qkbdmfy.png" data-thumbnail="/image/image-20250620041527-qkbdmfy.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620041527-qkbdmfy.png"
-            srcset="/image/image-20250620041527-qkbdmfy.png, /image/image-20250620041527-qkbdmfy.png 1.5x, /image/image-20250620041527-qkbdmfy.png 2x"
-            
-            alt="/image/image-20250620041527-qkbdmfy.png" height="70%"  width="70%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250620041527-qkbdmfy.png" title="" data-thumbnail="/image/image-20250620041527-qkbdmfy.png"><img  loading="lazy" src='/image/image-20250620041527-qkbdmfy.png'    height="70%" width="70%"></a>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250620041756-panlrwq.png" title="/image/image-20250620041756-panlrwq.png" data-thumbnail="/image/image-20250620041756-panlrwq.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620041756-panlrwq.png"
-            srcset="/image/image-20250620041756-panlrwq.png, /image/image-20250620041756-panlrwq.png 1.5x, /image/image-20250620041756-panlrwq.png 2x"
-            
-            alt="/image/image-20250620041756-panlrwq.png" height="80%"  width="80%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250620041756-panlrwq.png" title="" data-thumbnail="/image/image-20250620041756-panlrwq.png"><img  loading="lazy" src='/image/image-20250620041756-panlrwq.png'    height="80%" width="80%"></a>
 </li>
 <li>
 <p>图上的⊕表示<strong>异或</strong>运算，即相同时为0，不同时为1</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250620041832-3l7c8bx.png" title="/image/image-20250620041832-3l7c8bx.png" data-thumbnail="/image/image-20250620041832-3l7c8bx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620041832-3l7c8bx.png"
-            srcset="/image/image-20250620041832-3l7c8bx.png, /image/image-20250620041832-3l7c8bx.png 1.5x, /image/image-20250620041832-3l7c8bx.png 2x"
-            
-            alt="/image/image-20250620041832-3l7c8bx.png" height="80%"  width="80%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250620041832-3l7c8bx.png" title="" data-thumbnail="/image/image-20250620041832-3l7c8bx.png"><img  loading="lazy" src='/image/image-20250620041832-3l7c8bx.png'    height="80%" width="80%"></a>
 </li>
 <li>
 <p>CRC具有很好的检错能力（漏检率非常低），虽然计算比较复杂，但非常利于硬件的实现，因此被广泛应用于数据链路层</p>
@@ -344,17 +341,11 @@
 <p>实际中，计算机网络往往使用检错重传的方式来纠正传输种的差错，或者仅仅丢弃检测到差错的帧，（取决于向上层提供可靠传输服务还是不可靠传输服务）</p>
 <p><a target="_blank" href="/posts/net/n03_hamming/" title="软考备考 | 海明码" class="friend-link" rel="noopener noreferrer">
         <div class="friend-link-div">
-            <div class="friend-link-avatar"><img
-            
-            loading="lazy"
-            src="https://zhangzifan.com/uploads/2018/04/link.png"
-            srcset="https://zhangzifan.com/uploads/2018/04/link.png, https://zhangzifan.com/uploads/2018/04/link.png 1.5x, https://zhangzifan.com/uploads/2018/04/link.png 2x"
-            sizes="auto"
-            alt="https://zhangzifan.com/uploads/2018/04/link.png"
-            title="https://zhangzifan.com/uploads/2018/04/link.png" ></div>
+            <div class="friend-link-avatar"><img   src='https://zhangzifan.com/uploads/2018/04/link.png'     ></div>
             <div class="friend-link-info">
                 <div class="friend-name-div">
-                    <i class="fas fa-user-circle fa-fw"></i>
+                    <svg class="icon"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg>
                     <i class="friend-name">软考备考 | 海明码</i>
                 </div>
                 <p class="friend-bio"></p>
@@ -363,17 +354,11 @@
     </a>
 <a target="_blank" href="/posts/python-scripts/hamming_code/" title="海明码Python脚本" class="friend-link" rel="noopener noreferrer">
         <div class="friend-link-div">
-            <div class="friend-link-avatar"><img
-            
-            loading="lazy"
-            src="https://zhangzifan.com/uploads/2018/04/link.png"
-            srcset="https://zhangzifan.com/uploads/2018/04/link.png, https://zhangzifan.com/uploads/2018/04/link.png 1.5x, https://zhangzifan.com/uploads/2018/04/link.png 2x"
-            sizes="auto"
-            alt="https://zhangzifan.com/uploads/2018/04/link.png"
-            title="https://zhangzifan.com/uploads/2018/04/link.png" ></div>
+            <div class="friend-link-avatar"><img   src='https://zhangzifan.com/uploads/2018/04/link.png'     ></div>
             <div class="friend-link-info">
                 <div class="friend-name-div">
-                    <i class="fas fa-user-circle fa-fw"></i>
+                    <svg class="icon"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg>
                     <i class="friend-name">海明码Python脚本</i>
                 </div>
                 <p class="friend-bio"></p>
@@ -413,38 +398,21 @@
 </li>
 <li>可靠传输不仅仅局限于数据链路层，其他各层均可选择实现可靠传输
 <ul>
-<li><a class="lightgallery" href="/image/image-20250620043304-v0fr4jp.png" title="/image/image-20250620043304-v0fr4jp.png" data-thumbnail="/image/image-20250620043304-v0fr4jp.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250620043304-v0fr4jp.png"
-            srcset="/image/image-20250620043304-v0fr4jp.png, /image/image-20250620043304-v0fr4jp.png 1.5x, /image/image-20250620043304-v0fr4jp.png 2x"
-            
-            alt="/image/image-20250620043304-v0fr4jp.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250620043304-v0fr4jp.png" title="" data-thumbnail="/image/image-20250620043304-v0fr4jp.png"><img  loading="lazy" src='/image/image-20250620043304-v0fr4jp.png'    height="70%" width="70%"></a></li>
 <li>可靠传输的开销和代价比较大，需要根据实际应用选择是否需要可靠传输</li>
 </ul>
 </li>
 </ul>
 <h3 id="可靠传输的三种实现方式" class="headerLink">
     <a href="#%e5%8f%af%e9%9d%a0%e4%bc%a0%e8%be%93%e7%9a%84%e4%b8%89%e7%a7%8d%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" class="header-mark"></a>可靠传输的三种实现方式</h3><blockquote>
-<p>值得一提的是，这三种协议不仅仅适用于数据传输层，其他层也可以使用同样的思路确保可靠传输）</p>
-</blockquote>
-<h4 id="停止-等待协议-sw" class="headerLink">
+  <p>值得一提的是，这三种协议不仅仅适用于数据传输层，其他层也可以使用同样的思路确保可靠传输）</p>
+</blockquote><h4 id="停止-等待协议-sw" class="headerLink">
     <a href="#%e5%81%9c%e6%ad%a2-%e7%ad%89%e5%be%85%e5%8d%8f%e8%ae%ae-sw" class="header-mark"></a>停止-等待协议 SW</h4><ul>
 <li>
 <p>收发双方基于互联网传输</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250621194448-ce14t4t.png" title="/image/image-20250621194448-ce14t4t.png" data-thumbnail="/image/image-20250621194448-ce14t4t.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621194448-ce14t4t.png"
-            srcset="/image/image-20250621194448-ce14t4t.png, /image/image-20250621194448-ce14t4t.png 1.5x, /image/image-20250621194448-ce14t4t.png 2x"
-            
-            alt="/image/image-20250621194448-ce14t4t.png" height="20%"  width="20%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250621194448-ce14t4t.png" title="" data-thumbnail="/image/image-20250621194448-ce14t4t.png"><img  loading="lazy" src='/image/image-20250621194448-ce14t4t.png'    height="20%" width="20%"></a>
 </li>
 <li>
 <p>接受方<strong>每次接受到数据之后都需要进行确认</strong>，在确认无误之后，发送<u-r>确认信息ACK</u-r>给发送方，随后发送方才会继续发送下一个分组数据</p>
@@ -457,15 +425,7 @@
 <ul>
 <li>为了解决这个问题，发送方可以在发送过一个数据分组时，启动一个超时计时器</li>
 <li>如果到了超时计时器所设定的重传时间，且发送方并没有收到接收方的任何ACK或NAK信息，则重新发送原来的数据分组，这称为<strong>超时重传</strong></li>
-<li><a class="lightgallery" href="/image/image-20250621195027-c9u8w8g.png" title="/image/image-20250621195027-c9u8w8g.png" data-thumbnail="/image/image-20250621195027-c9u8w8g.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621195027-c9u8w8g.png"
-            srcset="/image/image-20250621195027-c9u8w8g.png, /image/image-20250621195027-c9u8w8g.png 1.5x, /image/image-20250621195027-c9u8w8g.png 2x"
-            
-            alt="/image/image-20250621195027-c9u8w8g.png" height="20%"  width="20%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621195027-c9u8w8g.png" title="" data-thumbnail="/image/image-20250621195027-c9u8w8g.png"><img  loading="lazy" src='/image/image-20250621195027-c9u8w8g.png'    height="20%" width="20%"></a></li>
 <li>一般重传时间选择为<strong>略大于双方通信平均往返时间</strong></li>
 </ul>
 </li>
@@ -473,29 +433,13 @@
 <p><p-y>潜在问题2 <strong>确认丢失</strong></p-y>：不仅仅发送的数据可能丢失，接收方回传的确认信息也可能丢失，此时会触发发送方的超时重传，接收方会收到重复的数据，这需要接受方对该数据进行辨识和确认</p>
 <ul>
 <li>简单的思路，发送的数据需要带上序号（一个比特就够了），接受方<u-b>只要检测新的数据与原来数据的编号不一致</u-b>即可</li>
-<li><a class="lightgallery" href="/image/image-20250621195417-rc5p6jo.png" title="/image/image-20250621195417-rc5p6jo.png" data-thumbnail="/image/image-20250621195417-rc5p6jo.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621195417-rc5p6jo.png"
-            srcset="/image/image-20250621195417-rc5p6jo.png, /image/image-20250621195417-rc5p6jo.png 1.5x, /image/image-20250621195417-rc5p6jo.png 2x"
-            
-            alt="/image/image-20250621195417-rc5p6jo.png" height="20%"  width="20%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621195417-rc5p6jo.png" title="" data-thumbnail="/image/image-20250621195417-rc5p6jo.png"><img  loading="lazy" src='/image/image-20250621195417-rc5p6jo.png'    height="20%" width="20%"></a></li>
 </ul>
 </li>
 <li>
 <p><p-y>潜在问题3 <strong>迟到确认</strong></p-y>：既然发送的数据需要编号，回传的确认信息是否有必要编号呢？</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250621195703-ah9isr9.png" title="/image/image-20250621195703-ah9isr9.png" data-thumbnail="/image/image-20250621195703-ah9isr9.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621195703-ah9isr9.png"
-            srcset="/image/image-20250621195703-ah9isr9.png, /image/image-20250621195703-ah9isr9.png 1.5x, /image/image-20250621195703-ah9isr9.png 2x"
-            
-            alt="/image/image-20250621195703-ah9isr9.png" height="20%"  width="20%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621195703-ah9isr9.png" title="" data-thumbnail="/image/image-20250621195703-ah9isr9.png"><img  loading="lazy" src='/image/image-20250621195703-ah9isr9.png'    height="20%" width="20%"></a></li>
 <li>如果确认迟到，则会发生<strong>重复确认</strong>的问题，如果确认信息没有编号，则会让发送端错误地判断确认，此时是有必要给确认信息加上编号的</li>
 <li>但通常而言，对于数据链路层的点对点信道，往返时间比较固定，不会出现确认迟到的问题；因此，<u-b>如果只在数据链路层实现停止-等待协议，可以不用给确认分组编号</u-b></li>
 </ul>
@@ -518,15 +462,7 @@
 <p>假设收发双方是直通的信道，该协议可以表示如下</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250621200502-3mriijj.png" title="/image/image-20250621200502-3mriijj.png" data-thumbnail="/image/image-20250621200502-3mriijj.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621200502-3mriijj.png"
-            srcset="/image/image-20250621200502-3mriijj.png, /image/image-20250621200502-3mriijj.png 1.5x, /image/image-20250621200502-3mriijj.png 2x"
-            
-            alt="/image/image-20250621200502-3mriijj.png" height="70%"  width="70%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250621200502-3mriijj.png" title="" data-thumbnail="/image/image-20250621200502-3mriijj.png"><img  loading="lazy" src='/image/image-20250621200502-3mriijj.png'    height="70%" width="70%"></a>
 </li>
 <li>
 <p>假设信道长度是2000km，数据分组长度是1500B，发送速率为10Mbit/s，忽略$T_A$，其通常远小于$T_D$​</p>
@@ -556,15 +492,7 @@ $$</li>
 </li>
 <li>
 <p>习题</p>
-<a class="lightgallery" href="/image/image-20250621201755-crr6c57.png" title="/image/image-20250621201755-crr6c57.png" data-thumbnail="/image/image-20250621201755-crr6c57.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250621201755-crr6c57.png"
-              srcset="/image/image-20250621201755-crr6c57.png, /image/image-20250621201755-crr6c57.png 1.5x, /image/image-20250621201755-crr6c57.png 2x"
-              
-              alt="/image/image-20250621201755-crr6c57.png" height="70%"  width="70%" >
-      </a>
+<a class="lightgallery" href="/image/image-20250621201755-crr6c57.png" title="" data-thumbnail="/image/image-20250621201755-crr6c57.png"><img  loading="lazy" src='/image/image-20250621201755-crr6c57.png'    height="70%" width="70%"></a>
 <ul>
 <li>$40=\frac{x/3kbps}{x/3kbpx+200ms\times2}$</li>
 <li>方程解得800bit</li>
@@ -575,41 +503,17 @@ $$</li>
     <a href="#%e5%9b%9e%e9%80%80n%e5%b8%a7%e5%8d%8f%e8%ae%ae-gbngo-back-n" class="header-mark"></a>回退N帧协议 GBN（Go-Back-N）</h4><ul>
 <li>停止等待协议的信道利用率很低，其原因在于每个数据分组发送都需要停下来等回传信息</li>
 <li>如果能够连续发送多个信息（流水线传输），则可以大大提高信道利用率</li>
-<li><a class="lightgallery" href="/image/image-20250621202939-xg2tg6e.png" title="/image/image-20250621202939-xg2tg6e.png" data-thumbnail="/image/image-20250621202939-xg2tg6e.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621202939-xg2tg6e.png"
-            srcset="/image/image-20250621202939-xg2tg6e.png, /image/image-20250621202939-xg2tg6e.png 1.5x, /image/image-20250621202939-xg2tg6e.png 2x"
-            
-            alt="/image/image-20250621202939-xg2tg6e.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621202939-xg2tg6e.png" title="" data-thumbnail="/image/image-20250621202939-xg2tg6e.png"><img  loading="lazy" src='/image/image-20250621202939-xg2tg6e.png'    height="70%" width="70%"></a></li>
 <li>回退N帧协议在<strong>流水线传输</strong>的基础上，利用<strong>发送窗口</strong>来限制发送方可以连续发送的数据分组个数</li>
 <li>例如使用3个比特给分组编号，即序号0-7（$2^N-1$），由此可以选择<u>大于0且小于等于7</u>个的分组一同发送，称为发送窗口，比如这里选择5
 <ul>
-<li><a class="lightgallery" href="/image/image-20250621203415-fku4yxa.png" title="/image/image-20250621203415-fku4yxa.png" data-thumbnail="/image/image-20250621203415-fku4yxa.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621203415-fku4yxa.png"
-            srcset="/image/image-20250621203415-fku4yxa.png, /image/image-20250621203415-fku4yxa.png 1.5x, /image/image-20250621203415-fku4yxa.png 2x"
-            
-            alt="/image/image-20250621203415-fku4yxa.png" height="30%"  width="30%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621203415-fku4yxa.png" title="" data-thumbnail="/image/image-20250621203415-fku4yxa.png"><img  loading="lazy" src='/image/image-20250621203415-fku4yxa.png'    height="30%" width="30%"></a></li>
 <li>如果发送窗口的大小超过了分组编号的上限，接收方就无法分辨新、旧数据分组，会出现<strong>分组重复</strong>的错误</li>
 </ul>
 </li>
 <li>而接收方的接收窗口，保持和停止-等待协议一样，只能为1
 <ul>
-<li><a class="lightgallery" href="/image/image-20250621203431-qn9ebtr.png" title="/image/image-20250621203431-qn9ebtr.png" data-thumbnail="/image/image-20250621203431-qn9ebtr.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250621203431-qn9ebtr.png"
-            srcset="/image/image-20250621203431-qn9ebtr.png, /image/image-20250621203431-qn9ebtr.png 1.5x, /image/image-20250621203431-qn9ebtr.png 2x"
-            
-            alt="/image/image-20250621203431-qn9ebtr.png" height="30%"  width="30%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250621203431-qn9ebtr.png" title="" data-thumbnail="/image/image-20250621203431-qn9ebtr.png"><img  loading="lazy" src='/image/image-20250621203431-qn9ebtr.png'    height="30%" width="30%"></a></li>
 </ul>
 </li>
 <li>无差错情况
@@ -642,15 +546,7 @@ $$</li>
 </li>
 <li>小结
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622020438-usc2gua.png" title="/image/image-20250622020438-usc2gua.png" data-thumbnail="/image/image-20250622020438-usc2gua.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622020438-usc2gua.png"
-            srcset="/image/image-20250622020438-usc2gua.png, /image/image-20250622020438-usc2gua.png 1.5x, /image/image-20250622020438-usc2gua.png 2x"
-            
-            alt="/image/image-20250622020438-usc2gua.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622020438-usc2gua.png" title="" data-thumbnail="/image/image-20250622020438-usc2gua.png"><img  loading="lazy" src='/image/image-20250622020438-usc2gua.png'    height="80%" width="80%"></a></li>
 <li>回退N帧协议在流水线传输的基础上利用发送窗口来限制发送方连续发送分组的数量，是一种连续ARQ协议</li>
 <li>在协议的工作过程中，发送窗口和接受窗口不断向前滑动，因此此类协议又称为滑动窗口协议</li>
 <li>由于回退N帧协议的特性，当通信线路质量不好时，其信道利用率并不比停止-等待协议高</li>
@@ -658,15 +554,7 @@ $$</li>
 </li>
 <li>练习题
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622020500-uv06pzv.png" title="/image/image-20250622020500-uv06pzv.png" data-thumbnail="/image/image-20250622020500-uv06pzv.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622020500-uv06pzv.png"
-            srcset="/image/image-20250622020500-uv06pzv.png, /image/image-20250622020500-uv06pzv.png 1.5x, /image/image-20250622020500-uv06pzv.png 2x"
-            
-            alt="/image/image-20250622020500-uv06pzv.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622020500-uv06pzv.png" title="" data-thumbnail="/image/image-20250622020500-uv06pzv.png"><img  loading="lazy" src='/image/image-20250622020500-uv06pzv.png'    height="70%" width="70%"></a></li>
 <li>收到3号确认，意味着至少4号发生错误，但4、5、6、7都需要重新发送</li>
 </ul>
 </li>
@@ -694,28 +582,12 @@ $$</li>
 </li>
 <li>小结
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622022858-8zpltus.png" title="/image/image-20250622022858-8zpltus.png" data-thumbnail="/image/image-20250622022858-8zpltus.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622022858-8zpltus.png"
-            srcset="/image/image-20250622022858-8zpltus.png, /image/image-20250622022858-8zpltus.png 1.5x, /image/image-20250622022858-8zpltus.png 2x"
-            
-            alt="/image/image-20250622022858-8zpltus.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622022858-8zpltus.png" title="" data-thumbnail="/image/image-20250622022858-8zpltus.png"><img  loading="lazy" src='/image/image-20250622022858-8zpltus.png'    height="80%" width="80%"></a></li>
 </ul>
 </li>
 <li>练习
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622022921-2dc447l.png" title="/image/image-20250622022921-2dc447l.png" data-thumbnail="/image/image-20250622022921-2dc447l.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622022921-2dc447l.png"
-            srcset="/image/image-20250622022921-2dc447l.png, /image/image-20250622022921-2dc447l.png 1.5x, /image/image-20250622022921-2dc447l.png 2x"
-            
-            alt="/image/image-20250622022921-2dc447l.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622022921-2dc447l.png" title="" data-thumbnail="/image/image-20250622022921-2dc447l.png"><img  loading="lazy" src='/image/image-20250622022921-2dc447l.png'    height="70%" width="70%"></a></li>
 <li>答案是B，只需要重传0号和2号数据，3号仍旧没有超时，并不确认接收方是否收到，目前不需要重传</li>
 </ul>
 </li>
@@ -752,15 +624,7 @@ $$</li>
 <li>
 <p>PPP协议为在点对点链路传输各种协议数据报提供了一个标准方法，主要由以下三部分构成：</p>
 <ul>
-<li>​<a class="lightgallery" href="/image/image-20250622030450-ndxr14z.png" title="/image/image-20250622030450-ndxr14z.png" data-thumbnail="/image/image-20250622030450-ndxr14z.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622030450-ndxr14z.png"
-            srcset="/image/image-20250622030450-ndxr14z.png, /image/image-20250622030450-ndxr14z.png 1.5x, /image/image-20250622030450-ndxr14z.png 2x"
-            
-            alt="/image/image-20250622030450-ndxr14z.png" height="70%"  width="70%" >
-    </a></li>
+<li>​<a class="lightgallery" href="/image/image-20250622030450-ndxr14z.png" title="" data-thumbnail="/image/image-20250622030450-ndxr14z.png"><img  loading="lazy" src='/image/image-20250622030450-ndxr14z.png'    height="70%" width="70%"></a></li>
 <li>对各种协议数据报的封装方法（封装成帧）</li>
 <li>链路控制协议LCP：用于建立、配置以及测试数据链路的连接</li>
 <li>一套网络控制协议NCPs：其中的每一个协议支持不同的网络层协议</li>
@@ -769,42 +633,18 @@ $$</li>
 <li>
 <p>PPP帧的格式</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622030732-42757el.png" title="/image/image-20250622030732-42757el.png" data-thumbnail="/image/image-20250622030732-42757el.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622030732-42757el.png"
-            srcset="/image/image-20250622030732-42757el.png, /image/image-20250622030732-42757el.png 1.5x, /image/image-20250622030732-42757el.png 2x"
-            
-            alt="/image/image-20250622030732-42757el.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622030732-42757el.png" title="" data-thumbnail="/image/image-20250622030732-42757el.png"><img  loading="lazy" src='/image/image-20250622030732-42757el.png'    height="70%" width="70%"></a></li>
 <li>实现透明传输的方法
 <ul>
 <li>如果数据帧的部分中，出现了帧定界符0x7E（01111110），则需要进行处理</li>
 <li>如果是面向字节传输的异步链路，则使用字节填充法，在该处前插入转移字符
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622031209-11695d8.png" title="/image/image-20250622031209-11695d8.png" data-thumbnail="/image/image-20250622031209-11695d8.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622031209-11695d8.png"
-            srcset="/image/image-20250622031209-11695d8.png, /image/image-20250622031209-11695d8.png 1.5x, /image/image-20250622031209-11695d8.png 2x"
-            
-            alt="/image/image-20250622031209-11695d8.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622031209-11695d8.png" title="" data-thumbnail="/image/image-20250622031209-11695d8.png"><img  loading="lazy" src='/image/image-20250622031209-11695d8.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 <li>如果是面向比特的同步链路，则采用比特填充法，即插入比特0
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622031254-7dalbf7.png" title="/image/image-20250622031254-7dalbf7.png" data-thumbnail="/image/image-20250622031254-7dalbf7.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622031254-7dalbf7.png"
-            srcset="/image/image-20250622031254-7dalbf7.png, /image/image-20250622031254-7dalbf7.png 1.5x, /image/image-20250622031254-7dalbf7.png 2x"
-            
-            alt="/image/image-20250622031254-7dalbf7.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622031254-7dalbf7.png" title="" data-thumbnail="/image/image-20250622031254-7dalbf7.png"><img  loading="lazy" src='/image/image-20250622031254-7dalbf7.png'    height="80%" width="80%"></a></li>
 </ul>
 </li>
 </ul>
@@ -826,30 +666,16 @@ $$</li>
 <li>
 <p>PPP协议的工作状态</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250622032242-bfaevkc.png" title="/image/image-20250622032242-bfaevkc.png" data-thumbnail="/image/image-20250622032242-bfaevkc.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622032242-bfaevkc.png"
-            srcset="/image/image-20250622032242-bfaevkc.png, /image/image-20250622032242-bfaevkc.png 1.5x, /image/image-20250622032242-bfaevkc.png 2x"
-            
-            alt="/image/image-20250622032242-bfaevkc.png" height="100%"  width="100%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622032242-bfaevkc.png" title="" data-thumbnail="/image/image-20250622032242-bfaevkc.png"><img  loading="lazy" src='/image/image-20250622032242-bfaevkc.png'    height="100%" width="100%"></a></li>
 </ul>
 </li>
 </ul>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -859,39 +685,86 @@ $$</li>
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/net/n02_physical_layer/" class="prev" rel="prev" title="网络 | 02. 物理层与数据传输"><i class="fas fa-angle-left fa-fw"></i>网络 | 02. 物理层与数据传输</a>
-            <a href="/posts/net/n04_csma_cd/" class="next" rel="next" title="网络 | 04. 媒体接入控制">网络 | 04. 媒体接入控制<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n02_physical_layer/" class="prev" rel="prev" title="网络 | 02. 物理层与数据传输"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络 | 02. 物理层与数据传输</a>
+            <a href="/posts/net/n04_csma_cd/" class="next" rel="next" title="网络 | 04. 媒体接入控制">网络 | 04. 媒体接入控制<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

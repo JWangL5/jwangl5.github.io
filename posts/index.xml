@@ -1,68 +1,988 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>所有文章 | JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_04/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_04/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_04/</guid>
-    <description><![CDATA[250829 闭包 问题引入 Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一 简单而言，闭包是可以捕获其所]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_04/</guid>
+    <description><![CDATA[<h3 id="250829-闭包" class="headerLink">
+    <a href="#250829-%e9%97%ad%e5%8c%85" class="header-mark"></a>250829 闭包</h3><h4 id="问题引入" class="headerLink">
+    <a href="#%e9%97%ae%e9%a2%98%e5%bc%95%e5%85%a5" class="header-mark"></a>问题引入</h4><ul>
+<li>
+<p>Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一</p>]]></description>
 </item><item>
     <title>Rust | 03. 泛型、Trait、生命周期、自动化测试</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_03/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_03/</link>
     <pubDate>Tue, 26 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_03/</guid>
-    <description><![CDATA[250827 代码复用 泛型 在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性 泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_03/</guid>
+    <description><![CDATA[<h3 id="250827-代码复用" class="headerLink">
+    <a href="#250827-%e4%bb%a3%e7%a0%81%e5%a4%8d%e7%94%a8" class="header-mark"></a>250827 代码复用</h3><h4 id="泛型" class="headerLink">
+    <a href="#%e6%b3%9b%e5%9e%8b" class="header-mark"></a>泛型</h4><ul>
+<li>在出现重复代码时，可以使用函数将其抽象出来，提高代码的效率和可读性</li>
+<li>泛型时具体类型或其他属性的抽象代替，也是提高代码复用能力的关键方法之一；简单理解，其就是一种模板或占位符，代替某种数据类型，编译器在编译的时候，需要将其解析为具体的类型</li>
+<li>在该例中，<code>fn largest&lt;T&gt;(list: &amp;[T])-&gt;T{ ... }</code>，函数传入一个T类型的列表，在经过运算之后返回一个T，这个T可以是任意类型</li>
+<li>通常，泛型的声明是在使用前的<code>&lt;&gt;</code>中，通常使用一个字母来命名（驼峰法Type），其不仅仅可以用在函数中，也可以用于结构体或枚举的定义中，其可以同时存在多个（但太多了会不宜阅读，代码应该进一步分解为更小的单元）</li>
+<li>在给结构体或枚举类型实现方法时，如果方法是针对泛型的，应在impl关键字后加上泛型标注，如<code>impl&lt;T&gt; Point&lt;T&gt; { fn x(&amp;self)-&gt;&amp;T {&amp;self.x} }</code>，如果说只是针对某一具体的类型来实现，则只需要在结构体名称后标注<code>impl Point&lt;i32&gt; {fn x1(&amp;self)-&gt;i32 {&amp;self.x}}</code></li>
+<li>struct里的泛型类型参数可以和方法的泛型参数不同，例如
+<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+  <div class="
+    
+    tw-flex 
+    tw-flex-row
+    tw-flex-1 
+    tw-justify-between 
+    tw-w-full tw-bg-bgColor-secondary
+    ">      
+    <button 
+      class="
+        code-block-button
+        tw-mx-2 
+        tw-flex
+        tw-flex-row
+        tw-flex-1"
+      aria-hidden="true">
+          <div class="group-[.is-open]:tw-rotate-90 tw-transition-[transform] tw-duration-500 tw-ease-in-out print:!tw-hidden tw-w-min tw-h-min tw-my-1 tw-mx-1"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg></div>
+          <p class="tw-select-none !tw-my-1">rust</p>]]></description>
 </item><item>
     <title>软考备考 | 海明码</title>
-    <link>https://jwangl5.github.io/posts/net/n03_hamming/</link>
+    <link>http://localhost:1313/posts/net/n03_hamming/</link>
     <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n03_hamming/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n03_hamming/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-4cf2a0e2">
+  <div class="loadingWrapper" id="loadingWrapper-4cf2a0e2">
+    <div class="loading" id="loading-4cf2a0e2"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250822%20%e6%b5%b7%e6%98%8e%e7%a0%81.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250822 海明码.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-4cf2a0e2');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-4cf2a0e2');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-4cf2a0e2-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
 </item><item>
     <title>软考备考 | 常见协议速查表</title>
-    <link>https://jwangl5.github.io/posts/net/n00_protocols/</link>
+    <link>http://localhost:1313/posts/net/n00_protocols/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n00_protocols/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-fe3fb243">
+  <div class="loadingWrapper" id="loadingWrapper-fe3fb243">
+    <div class="loading" id="loading-fe3fb243"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20Protocols.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 Protocols.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-fe3fb243');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-fe3fb243');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-fe3fb243-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
 </item><item>
     <title>软考备考 | 生成树协议STP</title>
-    <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
+    <link>http://localhost:1313/posts/net/n05_stp/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n05_stp/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-9731d451">
+  <div class="loadingWrapper" id="loadingWrapper-9731d451">
+    <div class="loading" id="loading-9731d451"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20STP.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 STP.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-9731d451');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-9731d451');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-9731d451-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
 </item><item>
     <title>软考备考 | 以太网物理层规范</title>
-    <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
+    <link>http://localhost:1313/posts/net/n02_ethernet/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_ethernet/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n02_ethernet/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-911156ca">
+  <div class="loadingWrapper" id="loadingWrapper-911156ca">
+    <div class="loading" id="loading-911156ca"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%89%a9%e7%90%86%e5%b1%82%e8%a7%84%e8%8c%83.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 以太网物理层规范.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-911156ca');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-911156ca');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-911156ca-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
 </item><item>
     <title>软考备考 | 奈氏准则与香农公式</title>
-    <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
+    <link>http://localhost:1313/posts/net/n02_nyquist_shannon/</link>
     <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n02_nyquist_shannon/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-7f274746">
+  <div class="loadingWrapper" id="loadingWrapper-7f274746">
+    <div class="loading" id="loading-7f274746"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250813%20%e5%a5%88%e6%b0%8f%e5%87%86%e5%88%99.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250813 奈氏准则.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-7f274746');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-7f274746');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-7f274746-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
 </item><item>
     <title>网络 | 08. 运输层TCP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
+    <link>http://localhost:1313/posts/net/n08_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n08_tcp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络 | 09. 应用层</title>
-    <link>https://jwangl5.github.io/posts/net/n09_application/</link>
+    <link>http://localhost:1313/posts/net/n09_application/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n09_application/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络 | 07. IP数据报与IP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
+    <link>http://localhost:1313/posts/net/n07_ip_protocol/</link>
     <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
-    <description><![CDATA[250806 IP数据报与IP协议 IPv4数据报（IP数据报）首部格式 IP数据报是实现IP协议主要功能的基础，其结构如下 ​ ​ 有两部分组成，20字节的固定]]></description>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n07_ip_protocol/</guid>
+    <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
+    <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
+<li>
+<p>IPv4数据报（IP数据报）首部格式</p>]]></description>
 </item></channel>
 </rss>

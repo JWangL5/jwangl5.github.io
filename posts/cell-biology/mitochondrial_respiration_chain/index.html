@@ -1,82 +1,119 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>生物学能基本原理与能量代谢 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="生物学能基本原理与能量代谢" />
-<meta property="og:description" content="生物学能基本原理 自由能与平衡常数 基本概念与原理 能量//生物能（环境&ndash;&gt;生物&ndash;&gt;环境）//热力学能 热力学第" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/cell-biology/mitochondrial_respiration_chain/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-11-21T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-11-21T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>生物学能基本原理与能量代谢 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/cell-biology/mitochondrial_respiration_chain/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="生物学能基本原理与能量代谢">
+  <meta property="og:description" content="生物学能基本原理 自由能与平衡常数 基本概念与原理
+能量//生物能（环境–&gt;生物–&gt;环境）//热力学能 热力学第一定律（能量守恒）//热力学第二定律（熵增原理） △G = △H - T △S = - 2.303RT*lg(K_eq)">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-11-21T00:00:00+08:00">
+    <meta property="article:modified_time" content="2019-11-21T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="生物学能基本原理与能量代谢"/>
-<meta name="twitter:description" content="生物学能基本原理 自由能与平衡常数 基本概念与原理 能量//生物能（环境&ndash;&gt;生物&ndash;&gt;环境）//热力学能 热力学第"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="生物学能基本原理与能量代谢">
+  <meta name="twitter:description" content="生物学能基本原理 自由能与平衡常数 基本概念与原理
+能量//生物能（环境–&gt;生物–&gt;环境）//热力学能 热力学第一定律（能量守恒）//热力学第二定律（熵增原理） △G = △H - T △S = - 2.303RT*lg(K_eq)">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/cell-biology/mitochondrial_respiration_chain/" /><link rel="prev" href="https://jwangl5.github.io/posts/encoding_and_packaging_of_video/" /><link rel="next" href="https://jwangl5.github.io/posts/curriculum_vitae_2019/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/cell-biology/mitochondrial_respiration_chain/" /><link rel="prev" href="http://localhost:1313/posts/encoding_and_packaging_of_video/" /><link rel="next" href="http://localhost:1313/posts/curriculum_vitae_2019/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "生物学能基本原理与能量代谢",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/mitochondrial_respiration_chain\/"
+            "@id": "http://localhost:1313/posts/cell-biology/mitochondrial_respiration_chain/"
         },"genre": "posts","wordcount":  6761 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/cell-biology\/mitochondrial_respiration_chain\/","datePublished": "2019-11-21T00:00:00+08:00","dateModified": "2019-11-21T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/cell-biology/mitochondrial_respiration_chain/","datePublished": "2019-11-21T00:00:00+08:00","dateModified": "2019-11-21T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +124,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,18 +155,59 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">生物学能基本原理与能量代谢</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#生物学能基本原理">生物学能基本原理</a>
+      <ul>
+        <li><a href="#自由能与平衡常数">自由能与平衡常数</a></li>
+        <li><a href="#atp与生命起源">ATP与生命起源</a></li>
+      </ul>
+    </li>
+    <li><a href="#能量的产生方式">能量的产生方式</a>
+      <ul>
+        <li><a href="#底物磷酸化">底物磷酸化</a></li>
+        <li><a href="#化学渗透">化学渗透</a>
+          <ul>
+            <li><a href="#基于视紫红质的化学渗透不依赖电子传递链">基于视紫红质的化学渗透【不依赖电子传递链！】</a></li>
+            <li><a href="#氧化还原与电子传递原理">氧化还原与电子传递原理</a></li>
+            <li><a href="#正向电子传递电子传递链的标准形态">正向电子传递【电子传递链的标准形态】</a></li>
+            <li><a href="#电子传递系统分类和举例">电子传递系统分类和举例</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#超短电子传递链不涉及脂溶性的膜上电子载体">超短电子传递链（不涉及脂溶性的膜上电子载体 ）</a></li>
+                    <li><a href="#涉及脂溶性的膜上电子传递">涉及脂溶性的膜上电子传递</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2019-11-21" data-pagefind-body>生物学能基本原理与能量代谢</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><i class="far fa-folder fa-fw"></i>分子细胞生物学</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-21">2019-11-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-11-21">2019-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6761 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="true">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>分子细胞生物学</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2019-11-21">2019-11-21</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2019-11-21">2019-11-21</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 6761 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 30 分钟&nbsp;</div>
+        </div><div class="details toc print:!tw-block" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                    <span class="details-icon"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
@@ -157,7 +241,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="生物学能基本原理" class="headerLink">
+            </div><div class="content" id="content" data-pagefind-body><h2 id="生物学能基本原理" class="headerLink">
     <a href="#%e7%94%9f%e7%89%a9%e5%ad%a6%e8%83%bd%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" class="header-mark"></a>生物学能基本原理</h2><h3 id="自由能与平衡常数" class="headerLink">
     <a href="#%e8%87%aa%e7%94%b1%e8%83%bd%e4%b8%8e%e5%b9%b3%e8%a1%a1%e5%b8%b8%e6%95%b0" class="header-mark"></a>自由能与平衡常数</h3><ul>
 <li>
@@ -216,15 +300,7 @@
 <li>标准状况下，CO2/HCOOH  E0=-430mV、2H+/H2  E0=-414mV、若以H2作为电子供体（正极），则<strong>H2+CO2&mdash;&gt;HCOO-+H+  ΔE=(E+)-(E-)=-16mV&lt;0</strong>，根据能斯特方程反应不自发；因而1988年就有人认为生命体不可能用H2还原CO2</li>
 <li>但是，根据能斯特方程，<strong>在碱性条件下，H电对的电极电势下降比C快</strong>，因而使得这个还原反应在动力学上可以发生！</li>
 <li>在碱性喷口处由于区室化的形成，从而形成了局部的碱性环境和质子梯度，从而给H2还原CO2提供了可能
-<figure><a class="lightgallery" href="/image/NesetpHForEnergy.jpg" title="/image/NesetpHForEnergy.jpg" data-thumbnail="/image/NesetpHForEnergy.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/NesetpHForEnergy.jpg"
-            srcset="/image/NesetpHForEnergy.jpg, /image/NesetpHForEnergy.jpg 1.5x, /image/NesetpHForEnergy.jpg 2x"
-            
-            alt="/image/NesetpHForEnergy.jpg" height="420"  width="560" >
-    </a></figure></li>
+<img class="tw-inline" loading="lazy" src='/image/NesetpHForEnergy.jpg'    height="420" width="560"></li>
 <li>环境中发生的CO2还原给细胞创造了有机物环境，使得细胞可以有着先天利用有机物（如氨基酸）的优势，从而逐渐演化出了利用氨基酸形成蛋白，形成基因装置的可能</li>
 </ul>
 </li>
@@ -258,18 +334,9 @@
 </ul>
 <h3 id="化学渗透" class="headerLink">
     <a href="#%e5%8c%96%e5%ad%a6%e6%b8%97%e9%80%8f" class="header-mark"></a>化学渗透</h3><blockquote>
-<p>伴随着一系列氧化还原反应，电子沿电子传递链传递，质子泵出膜外，造成膜内外的质子梯度(化学势能)和电荷梯度(电势能)，形成质子动力</p>
-</blockquote>
-<h4 id="基于视紫红质的化学渗透不依赖电子传递链" class="headerLink">
-    <a href="#%e5%9f%ba%e4%ba%8e%e8%a7%86%e7%b4%ab%e7%ba%a2%e8%b4%a8%e7%9a%84%e5%8c%96%e5%ad%a6%e6%b8%97%e9%80%8f%e4%b8%8d%e4%be%9d%e8%b5%96%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e9%93%be" class="header-mark"></a>基于视紫红质的化学渗透【不依赖电子传递链！】</h4><p><figure><a class="lightgallery" href="/image/rhodopsin.jpg" title="/image/rhodopsin.jpg" data-thumbnail="/image/rhodopsin.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/rhodopsin.jpg"
-            srcset="/image/rhodopsin.jpg, /image/rhodopsin.jpg 1.5x, /image/rhodopsin.jpg 2x"
-            
-            alt="/image/rhodopsin.jpg" height="359"  width="325" >
-    </a></figure></p>
+  <p>伴随着一系列氧化还原反应，电子沿电子传递链传递，质子泵出膜外，造成膜内外的质子梯度(化学势能)和电荷梯度(电势能)，形成质子动力</p>
+</blockquote><h4 id="基于视紫红质的化学渗透不依赖电子传递链" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8e%e8%a7%86%e7%b4%ab%e7%ba%a2%e8%b4%a8%e7%9a%84%e5%8c%96%e5%ad%a6%e6%b8%97%e9%80%8f%e4%b8%8d%e4%be%9d%e8%b5%96%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e9%93%be" class="header-mark"></a>基于视紫红质的化学渗透【不依赖电子传递链！】</h4><p><img class="tw-inline" loading="lazy" src='/image/rhodopsin.jpg'    height="359" width="325"></p>
 <ul>
 <li>1973年首先在嗜盐古菌中发现<strong>盐沼盐杆菌</strong> (Halobacterium halobium)</li>
 <li><strong>低氧</strong>条件下，<strong>光照</strong>会诱导表达更多的<strong>视紫红质蛋白</strong>，发色团是<strong>视黄醛</strong> (retinal；维生素A醛)，属于类胡萝卜素</li>
@@ -301,15 +368,7 @@
 <ul>
 <li>
 <p>NAD+ 烟酰胺腺嘌呤二核苷酸
-<figure><a class="lightgallery" href="/image/NADH.jpg" title="/image/NADH.jpg" data-thumbnail="/image/NADH.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/NADH.jpg"
-            srcset="/image/NADH.jpg, /image/NADH.jpg 1.5x, /image/NADH.jpg 2x"
-            
-            alt="/image/NADH.jpg" height="242"  width="410" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/NADH.jpg'    height="242" width="410"></p>
 <ul>
 <li><strong>烟酰胺腺嘌呤二核苷酸</strong>的烟酰胺环从供体获得<strong>两个电子</strong>和<strong>一个质子</strong></li>
 <li>烟酰胺腺嘌呤二核苷酸磷酸(NADP+)类似</li>
@@ -317,15 +376,7 @@
 </li>
 <li>
 <p>FAD 黄素腺嘌呤二核苷酸
-<figure><a class="lightgallery" href="/image/FAD.jpg" title="/image/FAD.jpg" data-thumbnail="/image/FAD.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/FAD.jpg"
-            srcset="/image/FAD.jpg, /image/FAD.jpg 1.5x, /image/FAD.jpg 2x"
-            
-            alt="/image/FAD.jpg" height="199"  width="427" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/FAD.jpg'    height="199" width="427"></p>
 <ul>
 <li>黄素腺嘌呤二核苷酸(FAD)的<strong>异咯嗪环</strong>从供体获得<strong>两个电子</strong>和<strong>两个质子</strong>；</li>
 <li>黄素单核苷酸(FMN)类似；含有FAD和FMN的蛋白质叫<strong>黄素蛋白</strong></li>
@@ -333,30 +384,14 @@
 </li>
 <li>
 <p>CoQ 泛醌
-<figure><a class="lightgallery" href="/image/CoQ.jpg" title="/image/CoQ.jpg" data-thumbnail="/image/CoQ.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/CoQ.jpg"
-            srcset="/image/CoQ.jpg, /image/CoQ.jpg 1.5x, /image/CoQ.jpg 2x"
-            
-            alt="/image/CoQ.jpg" height="206"  width="297" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/CoQ.jpg'    height="206" width="297"></p>
 <ul>
 <li>泛醌可从供体获得<strong>两个电子</strong>和<strong>两个质子</strong></li>
 </ul>
 </li>
 <li>
 <p>血红素
-<figure><a class="lightgallery" href="/image/Heme.jpg" title="/image/Heme.jpg" data-thumbnail="/image/Heme.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/Heme.jpg"
-            srcset="/image/Heme.jpg, /image/Heme.jpg 1.5x, /image/Heme.jpg 2x"
-            
-            alt="/image/Heme.jpg" height="264"  width="413" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/Heme.jpg'    height="264" width="413"></p>
 <ul>
 <li>细胞色素(cytochrome)中，铁原子参与血红素或其他类似卟啉环的组成，由<strong>蛋白质和铁卟啉环</strong>组成</li>
 <li>通过Fe原子的可逆的氧化还原反应，每次传递<strong>一个电子</strong></li>
@@ -364,15 +399,7 @@
 </li>
 <li>
 <p>Fd 非血红素铁蛋白（含铁原子但无血红素的电子传递蛋白）
-<figure><a class="lightgallery" href="/image/ferredoxin.jpg" title="/image/ferredoxin.jpg" data-thumbnail="/image/ferredoxin.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/ferredoxin.jpg"
-            srcset="/image/ferredoxin.jpg, /image/ferredoxin.jpg 1.5x, /image/ferredoxin.jpg 2x"
-            
-            alt="/image/ferredoxin.jpg" height="195"  width="397" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/ferredoxin.jpg'    height="195" width="397"></p>
 <ul>
 <li>铁氧还蛋白(ferredoxin)，虽然不含血红素，但仍有可逆的氧化还原反应。</li>
 <li>Fd可分为Fe2S2、Fe4S4、Fe3S4等类型</li>
@@ -396,15 +423,7 @@
 </li>
 <li>
 <p>亚细胞定位（<strong>线粒体和叶绿体都起源于革兰氏阴性菌</strong>）
-<figure><a class="lightgallery" href="/image/MicrobeMetabolic.jpg" title="/image/MicrobeMetabolic.jpg" data-thumbnail="/image/MicrobeMetabolic.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/MicrobeMetabolic.jpg"
-            srcset="/image/MicrobeMetabolic.jpg, /image/MicrobeMetabolic.jpg 1.5x, /image/MicrobeMetabolic.jpg 2x"
-            
-            alt="/image/MicrobeMetabolic.jpg" height="178"  width="474" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/MicrobeMetabolic.jpg'    height="178" width="474"></p>
 <ul>
 <li>真核生物中化能有机营养型微生物的电子传递链在线粒体内膜</li>
 <li>从NAD+/NADH，黄素单核苷酸FMN，辅酶Q，细胞色素bc1, 细胞色素c, 细胞色素aa3，还原电势越来越高</li>
@@ -422,15 +441,7 @@
 </li>
 <li>
 <p>【电子传递的模型】E·coli有氧呼吸电子传递链
-<figure><a class="lightgallery" href="/image/EnergyInEcoli.jpg" title="/image/EnergyInEcoli.jpg" data-thumbnail="/image/EnergyInEcoli.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/EnergyInEcoli.jpg"
-            srcset="/image/EnergyInEcoli.jpg, /image/EnergyInEcoli.jpg 1.5x, /image/EnergyInEcoli.jpg 2x"
-            
-            alt="/image/EnergyInEcoli.jpg" height="334"  width="661" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/EnergyInEcoli.jpg'    height="334" width="661"></p>
 <ul>
 <li>
 <p>呼吸链：NADH&mdash;&gt;FMNH2&mdash;&gt;Fe/S&mdash;&gt;Q_B&mdash;&gt;Cyt b&mdash;&gt;Cyt o&mdash;&gt;O2
@@ -438,15 +449,7 @@
 </li>
 <li>
 <p>两种末端氧化酶
-<figure><a class="lightgallery" href="/image/dehydrogenase.jpg" title="/image/dehydrogenase.jpg" data-thumbnail="/image/dehydrogenase.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/dehydrogenase.jpg"
-            srcset="/image/dehydrogenase.jpg, /image/dehydrogenase.jpg 1.5x, /image/dehydrogenase.jpg 2x"
-            
-            alt="/image/dehydrogenase.jpg" height="215"  width="592" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/dehydrogenase.jpg'    height="215" width="592"></p>
 <ul>
 <li>
 <p><strong>bo-type (对数期、高氧)</strong></p>
@@ -469,46 +472,21 @@
 </li>
 </ul>
 <h4 id="正向电子传递电子传递链的标准形态" class="headerLink">
-    <a href="#%e6%ad%a3%e5%90%91%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e9%93%be%e7%9a%84%e6%a0%87%e5%87%86%e5%bd%a2%e6%80%81" class="header-mark"></a>正向电子传递【电子传递链的标准形态】</h4><p><figure><a class="lightgallery" href="/image/EletronChain.jpg" title="/image/EletronChain.jpg" data-thumbnail="/image/EletronChain.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/EletronChain.jpg"
-            srcset="/image/EletronChain.jpg, /image/EletronChain.jpg 1.5x, /image/EletronChain.jpg 2x"
-            
-            alt="/image/EletronChain.jpg" height="315"  width="804" >
-    </a></figure></p>
+    <a href="#%e6%ad%a3%e5%90%91%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e9%93%be%e7%9a%84%e6%a0%87%e5%87%86%e5%bd%a2%e6%80%81" class="header-mark"></a>正向电子传递【电子传递链的标准形态】</h4><p><img class="tw-inline" loading="lazy" src='/image/EletronChain.jpg'    height="315" width="804"></p>
 <ul>
 <li>
 <p>从NAD+/NADH，黄素单核苷酸FMN，辅酶Q，细胞色素bc1, 细胞色素c, 细胞色素aa3，还原电势越来越高</p>
-<p><figure><a class="lightgallery" href="/image/EnergyInEletronChain.jpg" title="/image/EnergyInEletronChain.jpg" data-thumbnail="/image/EnergyInEletronChain.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/EnergyInEletronChain.jpg"
-            srcset="/image/EnergyInEletronChain.jpg, /image/EnergyInEletronChain.jpg 1.5x, /image/EnergyInEletronChain.jpg 2x"
-            
-            alt="/image/EnergyInEletronChain.jpg" height="207"  width="553" >
-    </a></figure></p>
+<p><img class="tw-inline" loading="lazy" src='/image/EnergyInEletronChain.jpg'    height="207" width="553"></p>
 </li>
 </ul>
 <h4 id="电子传递系统分类和举例" class="headerLink">
     <a href="#%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e7%b3%bb%e7%bb%9f%e5%88%86%e7%b1%bb%e5%92%8c%e4%b8%be%e4%be%8b" class="header-mark"></a>电子传递系统分类和举例</h4><blockquote>
-<p>自然界存在多种多样的基于电子传递链的化学渗透系统，与生物的生存环境和适应机制紧密相关</p>
-</blockquote>
-<h6 id="超短电子传递链不涉及脂溶性的膜上电子载体" class="headerLink">
+  <p>自然界存在多种多样的基于电子传递链的化学渗透系统，与生物的生存环境和适应机制紧密相关</p>
+</blockquote><h6 id="超短电子传递链不涉及脂溶性的膜上电子载体" class="headerLink">
     <a href="#%e8%b6%85%e7%9f%ad%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92%e9%93%be%e4%b8%8d%e6%b6%89%e5%8f%8a%e8%84%82%e6%ba%b6%e6%80%a7%e7%9a%84%e8%86%9c%e4%b8%8a%e7%94%b5%e5%ad%90%e8%bd%bd%e4%bd%93" class="header-mark"></a>超短电子传递链（不涉及脂溶性的膜上电子载体 ）</h6><ul>
 <li>
 <p>重要的特点
-<figure><a class="lightgallery" href="/image/ShortestEletronChain.jpg" title="/image/ShortestEletronChain.jpg" data-thumbnail="/image/ShortestEletronChain.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/ShortestEletronChain.jpg"
-            srcset="/image/ShortestEletronChain.jpg, /image/ShortestEletronChain.jpg 1.5x, /image/ShortestEletronChain.jpg 2x"
-            
-            alt="/image/ShortestEletronChain.jpg" height="293"  width="374" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/ShortestEletronChain.jpg'    height="293" width="374"></p>
 <ul>
 <li>出现在大多数的产甲烷菌和产乙酸菌中，其利用H2还原CO2放出能量</li>
 <li>标准的ΔEm仅为180 mV和130 mV，其产生的<strong>能量十分贫乏</strong></li>
@@ -520,27 +498,11 @@
 <ul>
 <li>
 <p>标准模式图
-<figure><a class="lightgallery" href="/image/ShortestChainModel.jpg" title="/image/ShortestChainModel.jpg" data-thumbnail="/image/ShortestChainModel.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/ShortestChainModel.jpg"
-            srcset="/image/ShortestChainModel.jpg, /image/ShortestChainModel.jpg 1.5x, /image/ShortestChainModel.jpg 2x"
-            
-            alt="/image/ShortestChainModel.jpg" height="459"  width="755" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/ShortestChainModel.jpg'    height="459" width="755"></p>
 </li>
 <li>
 <p>不含细胞色素的产甲烷古菌
-<figure><a class="lightgallery" href="/image/Methanobacteriales.jpg" title="/image/Methanobacteriales.jpg" data-thumbnail="/image/Methanobacteriales.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/Methanobacteriales.jpg"
-            srcset="/image/Methanobacteriales.jpg, /image/Methanobacteriales.jpg 1.5x, /image/Methanobacteriales.jpg 2x"
-            
-            alt="/image/Methanobacteriales.jpg" height="520"  width="748" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/Methanobacteriales.jpg'    height="520" width="748"></p>
 <ul>
 <li>利用跨膜的甲基转移酶MtrA-H，每转移1个甲基泵出2个Na+</li>
 <li>利用A1A0 ATPase合成ATP，每4个Na+合成1个ATP</li>
@@ -550,43 +512,19 @@
 </li>
 <li>
 <p>不含细胞色素的产乙酸细菌
-<figure><a class="lightgallery" href="/image/Acetobacterium.jpg" title="/image/Acetobacterium.jpg" data-thumbnail="/image/Acetobacterium.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/Acetobacterium.jpg"
-            srcset="/image/Acetobacterium.jpg, /image/Acetobacterium.jpg 1.5x, /image/Acetobacterium.jpg 2x"
-            
-            alt="/image/Acetobacterium.jpg" height="526"  width="698" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/Acetobacterium.jpg'    height="526" width="698"></p>
 <ul>
 <li>跨膜的Fd-NAD氧化还原酶Rnf</li>
 <li>利用H2还原的Fd2-来驱动，每分子H2还原0.5Fd2-，泵出1个Na+</li>
 <li>△E_m = 130 mV</li>
 <li>改过程亦步设计脂溶性膜上的电子载体</li>
 <li>关键的氧化还原酶RnfA-G的结构
-<figure><a class="lightgallery" href="/image/RnfA-G.jpg" title="/image/RnfA-G.jpg" data-thumbnail="/image/RnfA-G.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/RnfA-G.jpg"
-            srcset="/image/RnfA-G.jpg, /image/RnfA-G.jpg 1.5x, /image/RnfA-G.jpg 2x"
-            
-            alt="/image/RnfA-G.jpg" height="465"  width="430" >
-    </a></figure></li>
+<img class="tw-inline" loading="lazy" src='/image/RnfA-G.jpg'    height="465" width="430"></li>
 </ul>
 </li>
 <li>
 <p>克氏梭菌的<strong>乙醇-乙酸发酵</strong>
-<figure><a class="lightgallery" href="/image/ClostridiumKluyveri.jpg" title="/image/ClostridiumKluyveri.jpg" data-thumbnail="/image/ClostridiumKluyveri.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/ClostridiumKluyveri.jpg"
-            srcset="/image/ClostridiumKluyveri.jpg, /image/ClostridiumKluyveri.jpg 1.5x, /image/ClostridiumKluyveri.jpg 2x"
-            
-            alt="/image/ClostridiumKluyveri.jpg" height="565"  width="759" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/ClostridiumKluyveri.jpg'    height="565" width="759"></p>
 <ul>
 <li>跨膜的Fd-NAD氧化还原酶Rnf，在乙醇和乙酸浓度高时起作用</li>
 <li>其利用乙酸/乙醇发酵过程中产生的NADH来驱动RnfA-G，泵出H+</li>
@@ -595,28 +533,12 @@
 </li>
 <li>
 <p>强烈火球菌的<strong>葡萄糖发酵</strong>(超嗜热古菌)
-<figure><a class="lightgallery" href="/image/PyrococcusFuriosus.jpg" title="/image/PyrococcusFuriosus.jpg" data-thumbnail="/image/PyrococcusFuriosus.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/PyrococcusFuriosus.jpg"
-            srcset="/image/PyrococcusFuriosus.jpg, /image/PyrococcusFuriosus.jpg 1.5x, /image/PyrococcusFuriosus.jpg 2x"
-            
-            alt="/image/PyrococcusFuriosus.jpg" height="554"  width="696" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/PyrococcusFuriosus.jpg'    height="554" width="696"></p>
 <ul>
 <li>产生的还原力Fd2-用于驱动Na+的外流</li>
 <li>使用单个跨膜的氢化酶来建立化学渗透梯度</li>
 <li>跨膜的氢化酶EchA-F的结构
-<figure><a class="lightgallery" href="/image/EchA-F.jpg" title="/image/EchA-F.jpg" data-thumbnail="/image/EchA-F.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/EchA-F.jpg"
-            srcset="/image/EchA-F.jpg, /image/EchA-F.jpg 1.5x, /image/EchA-F.jpg 2x"
-            
-            alt="/image/EchA-F.jpg" height="461"  width="410" >
-    </a></figure></li>
+<img class="tw-inline" loading="lazy" src='/image/EchA-F.jpg'    height="461" width="410"></li>
 </ul>
 </li>
 </ul>
@@ -626,15 +548,7 @@
     <a href="#%e6%b6%89%e5%8f%8a%e8%84%82%e6%ba%b6%e6%80%a7%e7%9a%84%e8%86%9c%e4%b8%8a%e7%94%b5%e5%ad%90%e4%bc%a0%e9%80%92" class="header-mark"></a>涉及脂溶性的膜上电子传递</h6><ul>
 <li>
 <p><span style='color:red'>细胞捕获能量（节约消耗）的手段——图仅为关于原理的构象（可能的三种基本模式，不一定是真实的！）</span>
-<figure><a class="lightgallery" href="/image/EletronChainOnMembrane.jpg" title="/image/EletronChainOnMembrane.jpg" data-thumbnail="/image/EletronChainOnMembrane.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/EletronChainOnMembrane.jpg"
-            srcset="/image/EletronChainOnMembrane.jpg, /image/EletronChainOnMembrane.jpg 1.5x, /image/EletronChainOnMembrane.jpg 2x"
-            
-            alt="/image/EletronChainOnMembrane.jpg" height="304"  width="1253" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/EletronChainOnMembrane.jpg'    height="304" width="1253"></p>
 <ul>
 <li>
 <p><p-g><strong>关键问题</strong></p-g>：细胞如何产生更多的能量？ 更优的底物；如何捕获并利用更多的能量？ 建立更高的质子梯度，利用更充分的底物！</p>
@@ -675,15 +589,7 @@
 </li>
 <li>
 <p>在细菌和古菌中的分布
-<figure><a class="lightgallery" href="/image/MembranceCarrierDistribution.jpg" title="/image/MembranceCarrierDistribution.jpg" data-thumbnail="/image/MembranceCarrierDistribution.jpg">
-        <img
-            
-            loading="lazy"
-            src="/image/MembranceCarrierDistribution.jpg"
-            srcset="/image/MembranceCarrierDistribution.jpg, /image/MembranceCarrierDistribution.jpg 1.5x, /image/MembranceCarrierDistribution.jpg 2x"
-            
-            alt="/image/MembranceCarrierDistribution.jpg" height="479"  width="752" >
-    </a></figure></p>
+<img class="tw-inline" loading="lazy" src='/image/MembranceCarrierDistribution.jpg'    height="479" width="752"></p>
 </li>
 <li>
 <p>根据其电势的高低，可以初步将其分为两大类</p>
@@ -805,30 +711,15 @@ QH2被氧化为Q而可以回收更多上游氧化还原反应所释放的能量<
 </ul>
 <hr>
 <blockquote>
-<p>另外，之前在生化课上学习氧化呼吸链时，总是记不住，为了方便速查，借别人的图汇总过一张图还挺不错的。</p>
-</blockquote>
-<p><figure><a class="lightgallery" href="/image/MitoRespirationChain-01.png" title="/image/MitoRespirationChain-01.png" data-thumbnail="/image/MitoRespirationChain-01.png">
-        <img
-            
-            loading="lazy"
-            src="/image/MitoRespirationChain-01.png"
-            srcset="/image/MitoRespirationChain-01.png, /image/MitoRespirationChain-01.png 1.5x, /image/MitoRespirationChain-01.png 2x"
-            
-            alt="/image/MitoRespirationChain-01.png" height="1389"  width="1965" >
-    </a></figure>
+  <p>另外，之前在生化课上学习氧化呼吸链时，总是记不住，为了方便速查，借别人的图汇总过一张图还挺不错的。</p>
+</blockquote><p><img class="tw-inline" loading="lazy" src='/image/MitoRespirationChain-01.png'    height="1389" width="1965">
 （2018年12月9日）</p>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -838,39 +729,86 @@ QH2被氧化为Q而可以回收更多上游氧化还原反应所释放的能量<
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/encoding_and_packaging_of_video/" class="prev" rel="prev" title="视频的编码与封装"><i class="fas fa-angle-left fa-fw"></i>视频的编码与封装</a>
-            <a href="/posts/curriculum_vitae_2019/" class="next" rel="next" title="My Curriculum Vitae (2019)">My Curriculum Vitae (2019)<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/encoding_and_packaging_of_video/" class="prev" rel="prev" title="视频的编码与封装"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>视频的编码与封装</a>
+            <a href="/posts/curriculum_vitae_2019/" class="next" rel="next" title="My Curriculum Vitae (2019)">My Curriculum Vitae (2019)<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

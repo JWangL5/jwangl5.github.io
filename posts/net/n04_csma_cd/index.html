@@ -1,82 +1,117 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>网络 | 04. 媒体接入控制 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 04. 媒体接入控制" />
-<meta property="og:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-06-22T00:00:00+08:00" />
-<meta property="article:modified_time" content="2025-06-22T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>网络 | 04. 媒体接入控制 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n04_csma_cd/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络 | 04. 媒体接入控制">
+  <meta property="og:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-22T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-06-22T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 04. 媒体接入控制"/>
-<meta name="twitter:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念 在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络 | 04. 媒体接入控制">
+  <meta name="twitter:description" content="数据链路层框架之媒体接入控制 250622 媒体接入控制 问题导入与概念">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n03_data_link/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/net/n04_csma_cd/" /><link rel="prev" href="http://localhost:1313/posts/net/n03_data_link/" /><link rel="next" href="http://localhost:1313/posts/net/n05_mac_ip_arp/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 04. 媒体接入控制",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/"
+            "@id": "http://localhost:1313/posts/net/n04_csma_cd/"
         },"genre": "posts","wordcount":  7061 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/net\/n04_csma_cd\/","datePublished": "2025-06-22T00:00:00+08:00","dateModified": "2025-06-22T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n04_csma_cd/","datePublished": "2025-06-22T00:00:00+08:00","dateModified": "2025-06-22T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +122,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,37 +153,77 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 04. 媒体接入控制</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#250622-媒体接入控制">250622 媒体接入控制</a>
+          <ul>
+            <li><a href="#静态划分信道">静态划分信道</a>
+              <ul>
+                <li><a href="#频分复用-fdm">频分复用 FDM</a></li>
+                <li><a href="#时分复用-tdm">时分复用 TDM</a></li>
+                <li><a href="#波分复用-wdm">波分复用 WDM</a></li>
+                <li><a href="#码分复用-cdm">码分复用 CDM</a></li>
+              </ul>
+            </li>
+            <li><a href="#动态接入控制">动态接入控制</a></li>
+          </ul>
+        </li>
+        <li><a href="#csmacd协议">CSMA/CD协议</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+            <li><a href="#争用期碰撞窗口">争用期（碰撞窗口）</a></li>
+            <li><a href="#最小帧长">最小帧长</a></li>
+            <li><a href="#最大帧长">最大帧长</a></li>
+            <li><a href="#退避时间的计算二进制指数退避算法">退避时间的计算（二进制指数退避算法）</a></li>
+            <li><a href="#信道利用率">信道利用率</a></li>
+            <li><a href="#练习题目">练习题目</a></li>
+          </ul>
+        </li>
+        <li><a href="#csmaca协议">CSMA/CA协议</a>
+          <ul>
+            <li><a href="#帧间间隔ifsinterframe-space">帧间间隔IFS（InterFrame Space）</a></li>
+            <li><a href="#工作原理举例">工作原理举例</a></li>
+            <li><a href="#退避算法">退避算法</a></li>
+            <li><a href="#虚拟载波监听">虚拟载波监听</a></li>
+            <li><a href="#相关练习">相关练习</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-06-22" data-pagefind-body>网络 | 04. 媒体接入控制</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7061 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
-        </div><div class="content" id="content"><center>
-<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" title="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" data-sub-html="<h2>数据链路层框架之媒体接入控制</h2>">
-        <img
-            
-            loading="lazy"
-            src="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png"
-            srcset="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png 1.5x, /image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png 2x"
-            
-            alt="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" height="90%"  width="90%" >
-    </a><figcaption class="image-caption">数据链路层框架之媒体接入控制</figcaption>
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-06-22">2025-06-22</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 7061 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 31 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><center>
+<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" title="" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png" data-sub-html="<h2>数据链路层框架之媒体接入控制</h2>"><img  loading="lazy" src='/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap2.png'    height="90%" width="90%"></a><figcaption class="image-caption">数据链路层框架之媒体接入控制</figcaption>
     </figure>
 </center>
 <h3 id="250622-媒体接入控制" class="headerLink">
     <a href="#250622-%e5%aa%92%e4%bd%93%e6%8e%a5%e5%85%a5%e6%8e%a7%e5%88%b6" class="header-mark"></a>250622 媒体接入控制</h3><blockquote>
-<p>问题导入与概念</p>
+  <p>问题导入与概念</p>
 <ul>
 <li>在同轴电缆上，多台计算机接入这根总线，他们共享这根传输媒体，形成总线型的局域网，各主机竞争这根总线，随机地在信道上发送数据</li>
 <li>此时，如果两个计算机同时在这根媒体上发送数据，就会产生冲突，使得这些数据都发送失败</li>
 <li><u>共享信道</u>要着重考虑的一个问题就是，如何协调多个发送和接收站点对一个共享传输媒体的占用，即<strong>媒体接入控制MAC</strong>（Medium Access Control）</li>
 <li>此类技术主要分为两类：静态划分信道 和 动态划分信道</li>
 </ul>
-</blockquote>
-<h4 id="静态划分信道" class="headerLink">
+</blockquote><h4 id="静态划分信道" class="headerLink">
     <a href="#%e9%9d%99%e6%80%81%e5%88%92%e5%88%86%e4%bf%a1%e9%81%93" class="header-mark"></a>静态划分信道</h4><ul>
 <li>
 <p>静态划分信道：即<strong>预先分配好信道</strong>，这类方法非常不灵活，对于突发性的数据传输，信道利用率会很低；通常在<u-b>无线网络的物理层</u-b>中使用，而不是在数据链路层，主要可以分为三类：频分多址、时分多址、码分多址</p>
@@ -152,15 +233,7 @@
 <ul>
 <li>复用（Multiplexing）是通信技术中的一个概念，指通过一条物理线路同时传输多路用户的信号</li>
 <li>当网络中传输媒体的传输容量大于多条单一信道的传输总量时，可以利用复用技术在一条物理线路上建立多条通信信道来充分利用传输媒体的带宽</li>
-<li><a class="lightgallery" href="/image/image-20250622215429-olgs394.png" title="/image/image-20250622215429-olgs394.png" data-thumbnail="/image/image-20250622215429-olgs394.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250622215429-olgs394.png"
-            srcset="/image/image-20250622215429-olgs394.png, /image/image-20250622215429-olgs394.png 1.5x, /image/image-20250622215429-olgs394.png 2x"
-            
-            alt="/image/image-20250622215429-olgs394.png" height="90%"  width="90%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250622215429-olgs394.png" title="" data-thumbnail="/image/image-20250622215429-olgs394.png"><img  loading="lazy" src='/image/image-20250622215429-olgs394.png'    height="90%" width="90%"></a></li>
 <li>常用的信道复用技术有四类：频分复用 FDM、时分复用 TDM、波分复用 WDM、码分复用 CDM</li>
 </ul>
 </li>
@@ -180,30 +253,14 @@
     <a href="#%e9%a2%91%e5%88%86%e5%a4%8d%e7%94%a8-fdm" class="header-mark"></a>频分复用 FDM</h5><ul>
 <li>将传输线路的频带资源划分为多个子频带，形成多个子信道，各子信道之间需要留出隔离频带，以免造成子信道间的干扰</li>
 <li>当多路信号输入一个多路复用器时，这个复用器将每一路信号调制到不同频率的载波上，接受端由相应的分用器通过滤波将各路信号分开，将合成的复用信号恢复为原始的多路信号</li>
-<li><a class="lightgallery" href="/image/image-20250624012548-cda5nt5.png" title="/image/image-20250624012548-cda5nt5.png" data-thumbnail="/image/image-20250624012548-cda5nt5.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624012548-cda5nt5.png"
-            srcset="/image/image-20250624012548-cda5nt5.png, /image/image-20250624012548-cda5nt5.png 1.5x, /image/image-20250624012548-cda5nt5.png 2x"
-            
-            alt="/image/image-20250624012548-cda5nt5.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250624012548-cda5nt5.png" title="" data-thumbnail="/image/image-20250624012548-cda5nt5.png"><img  loading="lazy" src='/image/image-20250624012548-cda5nt5.png'    height="70%" width="70%"></a></li>
 <li>频分复用的所有用户同时占用不同的频带资源，并行通信</li>
 </ul>
 <h5 id="时分复用-tdm" class="headerLink">
     <a href="#%e6%97%b6%e5%88%86%e5%a4%8d%e7%94%a8-tdm" class="header-mark"></a>时分复用 TDM</h5><ul>
 <li>横坐标为时间，将时间划分为一个个的时隙</li>
 <li>时分复用技术将传输线路的带宽资源，按时隙轮流分配给不同的用户，每对用户只在所分配的时隙里使用线路传输数据</li>
-<li><a class="lightgallery" href="/image/image-20250624012801-gx49hlb.png" title="/image/image-20250624012801-gx49hlb.png" data-thumbnail="/image/image-20250624012801-gx49hlb.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624012801-gx49hlb.png"
-            srcset="/image/image-20250624012801-gx49hlb.png, /image/image-20250624012801-gx49hlb.png 1.5x, /image/image-20250624012801-gx49hlb.png 2x"
-            
-            alt="/image/image-20250624012801-gx49hlb.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250624012801-gx49hlb.png" title="" data-thumbnail="/image/image-20250624012801-gx49hlb.png"><img  loading="lazy" src='/image/image-20250624012801-gx49hlb.png'    height="70%" width="70%"></a></li>
 <li>时分复用技术将时间划分成了一段段等长的时分复用帧（TDM帧）</li>
 <li>每一个时分复用的用户，在每一个时分复用帧中占用固定序号的时隙</li>
 <li>每一个用户所占用的时隙是周期性出现的，其周期就是时分复用帧的长度</li>
@@ -213,15 +270,7 @@
 <h5 id="波分复用-wdm" class="headerLink">
     <a href="#%e6%b3%a2%e5%88%86%e5%a4%8d%e7%94%a8-wdm" class="header-mark"></a>波分复用 WDM</h5><ul>
 <li>波分复用其实就是光的频分复用</li>
-<li><a class="lightgallery" href="/image/image-20250624013115-0yc9r1j.png" title="/image/image-20250624013115-0yc9r1j.png" data-thumbnail="/image/image-20250624013115-0yc9r1j.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624013115-0yc9r1j.png"
-            srcset="/image/image-20250624013115-0yc9r1j.png, /image/image-20250624013115-0yc9r1j.png 1.5x, /image/image-20250624013115-0yc9r1j.png 2x"
-            
-            alt="/image/image-20250624013115-0yc9r1j.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250624013115-0yc9r1j.png" title="" data-thumbnail="/image/image-20250624013115-0yc9r1j.png"><img  loading="lazy" src='/image/image-20250624013115-0yc9r1j.png'    height="80%" width="80%"></a></li>
 <li>这是8路传输速率均为2.5Gbit/s的光载波，其波长均为1310nm</li>
 <li>经光调制后，分别将波长变换到1550～1561.2 nm，每个光载波相隔1.6nm</li>
 <li>这八个波长很接近的光载波竞购光复用器（合波器），可以在一根光纤中传输，因此在一根光纤上数据传输的总速率就达到了2.5Gbit/s x 8 = 20 Gbit/s</li>
@@ -253,15 +302,7 @@
 <ul>
 <li>一个站如果要发送比特1，则发送它自己的m bit码片序列</li>
 <li>一个站如果要发送比特0，则发送它自己的m bit码片序列的二进制反码</li>
-<li><a class="lightgallery" href="/image/image-20250624233128-mwqmvdx.png" title="/image/image-20250624233128-mwqmvdx.png" data-thumbnail="/image/image-20250624233128-mwqmvdx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624233128-mwqmvdx.png"
-            srcset="/image/image-20250624233128-mwqmvdx.png, /image/image-20250624233128-mwqmvdx.png 1.5x, /image/image-20250624233128-mwqmvdx.png 2x"
-            
-            alt="/image/image-20250624233128-mwqmvdx.png" height="50%"  width="50%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250624233128-mwqmvdx.png" title="" data-thumbnail="/image/image-20250624233128-mwqmvdx.png"><img  loading="lazy" src='/image/image-20250624233128-mwqmvdx.png'    height="50%" width="50%"></a></li>
 <li>这种通信方式称为<u-b>直接序列扩频DSSS</u-b>（读作D Triple S）</li>
 <li>码片序列的挑选原则如下
 <ul>
@@ -289,52 +330,20 @@ $$</li>
 <li>
 <p>CDMA应用举例</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250624235018-sdfg9xj.png" title="image" data-thumbnail="/image/image-20250624235018-sdfg9xj.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624235018-sdfg9xj.png"
-            srcset="/image/image-20250624235018-sdfg9xj.png, /image/image-20250624235018-sdfg9xj.png 1.5x, /image/image-20250624235018-sdfg9xj.png 2x"
-            
-            alt="/image/image-20250624235018-sdfg9xj.png" height="528"  width="1386" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250624235018-sdfg9xj.png'   alt="image" height="528" width="1386">​</li>
 </ul>
 </li>
 <li>
 <p>练习</p>
 <ul>
-<li><figure><a class="lightgallery" href="/image/image-20250624234507-8npbbmx.png" title="image" data-thumbnail="/image/image-20250624234507-8npbbmx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624234507-8npbbmx.png"
-            srcset="/image/image-20250624234507-8npbbmx.png, /image/image-20250624234507-8npbbmx.png 1.5x, /image/image-20250624234507-8npbbmx.png 2x"
-            
-            alt="/image/image-20250624234507-8npbbmx.png" height="200"  width="1286" >
-    </a></figure></li>
-<li><a class="lightgallery" href="/image/image-20250624235032-74j4yt5.png" title="/image/image-20250624235032-74j4yt5.png" data-thumbnail="/image/image-20250624235032-74j4yt5.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624235032-74j4yt5.png"
-            srcset="/image/image-20250624235032-74j4yt5.png, /image/image-20250624235032-74j4yt5.png 1.5x, /image/image-20250624235032-74j4yt5.png 2x"
-            
-            alt="/image/image-20250624235032-74j4yt5.png" height="70%"  width="70%" >
-    </a>
+<li><img class="tw-inline" loading="lazy" src='/image/image-20250624234507-8npbbmx.png'   alt="image" height="200" width="1286"></li>
+<li><a class="lightgallery" href="/image/image-20250624235032-74j4yt5.png" title="" data-thumbnail="/image/image-20250624235032-74j4yt5.png"><img  loading="lazy" src='/image/image-20250624235032-74j4yt5.png'    height="70%" width="70%"></a>
 <ul>
 <li><strong>收到的数据与各站进行内积运算，得到1则发送比特1，得到-1则发送比特0，得到0则未发送数据</strong></li>
 <li>答案：A发送比特1，B发送比特0，C未发送数据，D发送比特1</li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250624235656-sfe8v78.png" title="/image/image-20250624235656-sfe8v78.png" data-thumbnail="/image/image-20250624235656-sfe8v78.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250624235656-sfe8v78.png"
-            srcset="/image/image-20250624235656-sfe8v78.png, /image/image-20250624235656-sfe8v78.png 1.5x, /image/image-20250624235656-sfe8v78.png 2x"
-            
-            alt="/image/image-20250624235656-sfe8v78.png" height="70%"  width="70%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250624235656-sfe8v78.png" title="" data-thumbnail="/image/image-20250624235656-sfe8v78.png"><img  loading="lazy" src='/image/image-20250624235656-sfe8v78.png'    height="70%" width="70%"></a>
 <ul>
 <li>选项B</li>
 </ul>
@@ -382,35 +391,11 @@ $$</li>
 </li>
 <li>其逻辑可以总结如下
 <ul>
-<li><a class="lightgallery" href="/image/image-20250625000935-afcxub4.png" title="/image/image-20250625000935-afcxub4.png" data-thumbnail="/image/image-20250625000935-afcxub4.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625000935-afcxub4.png"
-            srcset="/image/image-20250625000935-afcxub4.png, /image/image-20250625000935-afcxub4.png 1.5x, /image/image-20250625000935-afcxub4.png 2x"
-            
-            alt="/image/image-20250625000935-afcxub4.png" height="30%"  width="30%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625000935-afcxub4.png" title="" data-thumbnail="/image/image-20250625000935-afcxub4.png"><img  loading="lazy" src='/image/image-20250625000935-afcxub4.png'    height="30%" width="30%"></a></li>
 <li>帧发送流程图</li>
-<li><a class="lightgallery" href="/image/image-20250625010035-29bsqpg.png" title="/image/image-20250625010035-29bsqpg.png" data-thumbnail="/image/image-20250625010035-29bsqpg.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625010035-29bsqpg.png"
-            srcset="/image/image-20250625010035-29bsqpg.png, /image/image-20250625010035-29bsqpg.png 1.5x, /image/image-20250625010035-29bsqpg.png 2x"
-            
-            alt="/image/image-20250625010035-29bsqpg.png" height="90%"  width="90%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625010035-29bsqpg.png" title="" data-thumbnail="/image/image-20250625010035-29bsqpg.png"><img  loading="lazy" src='/image/image-20250625010035-29bsqpg.png'    height="90%" width="90%"></a></li>
 <li>帧接收流程图</li>
-<li><a class="lightgallery" href="/image/image-20250625010112-8l4ebwd.png" title="/image/image-20250625010112-8l4ebwd.png" data-thumbnail="/image/image-20250625010112-8l4ebwd.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625010112-8l4ebwd.png"
-            srcset="/image/image-20250625010112-8l4ebwd.png, /image/image-20250625010112-8l4ebwd.png 1.5x, /image/image-20250625010112-8l4ebwd.png 2x"
-            
-            alt="/image/image-20250625010112-8l4ebwd.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625010112-8l4ebwd.png" title="" data-thumbnail="/image/image-20250625010112-8l4ebwd.png"><img  loading="lazy" src='/image/image-20250625010112-8l4ebwd.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 <li>以太网还采取一种叫做<strong>强化碰撞</strong>的措施，就是当发送帧的站点一旦检测到碰撞，除了立即停止发送帧外，还要继续发送32比特或48比特的<strong>人为干扰信号</strong>（Jamming Signal），以便有足够多的碰撞信号使所有站点都能检测出碰撞</li>
@@ -418,15 +403,7 @@ $$</li>
 <h4 id="争用期碰撞窗口" class="headerLink">
     <a href="#%e4%ba%89%e7%94%a8%e6%9c%9f%e7%a2%b0%e6%92%9e%e7%aa%97%e5%8f%a3" class="header-mark"></a>争用期（碰撞窗口）</h4><ul>
 <li>
-<a class="lightgallery" href="/image/image-20250625001329-9zeih6j.png" title="/image/image-20250625001329-9zeih6j.png" data-thumbnail="/image/image-20250625001329-9zeih6j.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625001329-9zeih6j.png"
-            srcset="/image/image-20250625001329-9zeih6j.png, /image/image-20250625001329-9zeih6j.png 1.5x, /image/image-20250625001329-9zeih6j.png 2x"
-            
-            alt="/image/image-20250625001329-9zeih6j.png" height="70%"  width="70%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250625001329-9zeih6j.png" title="" data-thumbnail="/image/image-20250625001329-9zeih6j.png"><img  loading="lazy" src='/image/image-20250625001329-9zeih6j.png'    height="70%" width="70%"></a>
 </li>
 <li>
 <p>主机最多经过2$\tau$（$\delta \to 0$）的时长就可以检测到本次发送是否遭受到了碰撞，因此以太网端到端往返传播时延$2\tau$称为<strong>争用期</strong>或<strong>碰撞窗口</strong></p>
@@ -483,29 +460,13 @@ $$</li>
 <li>对于以太网V2的MAC帧，其数据载荷长度最小46字节，最大1500字节（加上帧首部和尾部的18字节，最大总长度为64字节，最大总长度为1518字节）</li>
 <li>对于插入VLAN标记后的802.1Q帧，数据载荷为42-1500字节，算上首部和尾部的22字节，其总长度为64-1522字节
 <ul>
-<li><a class="lightgallery" href="/image/image-20250625003745-m147m77.png" title="/image/image-20250625003745-m147m77.png" data-thumbnail="/image/image-20250625003745-m147m77.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625003745-m147m77.png"
-            srcset="/image/image-20250625003745-m147m77.png, /image/image-20250625003745-m147m77.png 1.5x, /image/image-20250625003745-m147m77.png 2x"
-            
-            alt="/image/image-20250625003745-m147m77.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625003745-m147m77.png" title="" data-thumbnail="/image/image-20250625003745-m147m77.png"><img  loading="lazy" src='/image/image-20250625003745-m147m77.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 </ul>
 <h4 id="退避时间的计算二进制指数退避算法" class="headerLink">
     <a href="#%e9%80%80%e9%81%bf%e6%97%b6%e9%97%b4%e7%9a%84%e8%ae%a1%e7%ae%97%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%8c%87%e6%95%b0%e9%80%80%e9%81%bf%e7%ae%97%e6%b3%95" class="header-mark"></a>退避时间的计算（二进制指数退避算法）</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250625004629-at7jgrx.png" title="/image/image-20250625004629-at7jgrx.png" data-thumbnail="/image/image-20250625004629-at7jgrx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625004629-at7jgrx.png"
-            srcset="/image/image-20250625004629-at7jgrx.png, /image/image-20250625004629-at7jgrx.png 1.5x, /image/image-20250625004629-at7jgrx.png 2x"
-            
-            alt="/image/image-20250625004629-at7jgrx.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625004629-at7jgrx.png" title="" data-thumbnail="/image/image-20250625004629-at7jgrx.png"><img  loading="lazy" src='/image/image-20250625004629-at7jgrx.png'    height="70%" width="70%"></a></li>
 <li>若连续多次发生碰撞，就表明可能有较多的主机参与竞争信道</li>
 <li>使用上述退避算法，可使重传需要推迟的平均时间随重传次数而增大，以减小再次发生碰撞的概率，有利于整个系统的稳定</li>
 <li>这一类策略也称为<strong>动态退避</strong></li>
@@ -513,15 +474,7 @@ $$</li>
 </ul>
 <h4 id="信道利用率" class="headerLink">
     <a href="#%e4%bf%a1%e9%81%93%e5%88%a9%e7%94%a8%e7%8e%87" class="header-mark"></a>信道利用率</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250625005211-pkhaewo.png" title="/image/image-20250625005211-pkhaewo.png" data-thumbnail="/image/image-20250625005211-pkhaewo.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625005211-pkhaewo.png"
-            srcset="/image/image-20250625005211-pkhaewo.png, /image/image-20250625005211-pkhaewo.png 1.5x, /image/image-20250625005211-pkhaewo.png 2x"
-            
-            alt="/image/image-20250625005211-pkhaewo.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625005211-pkhaewo.png" title="" data-thumbnail="/image/image-20250625005211-pkhaewo.png"><img  loading="lazy" src='/image/image-20250625005211-pkhaewo.png'    height="70%" width="70%"></a></li>
 <li>考虑理想情况
 <ul>
 <li>个主机发送帧都不会产生碰撞</li>
@@ -534,59 +487,19 @@ $$</li>
 </ul>
 <h4 id="练习题目" class="headerLink">
     <a href="#%e7%bb%83%e4%b9%a0%e9%a2%98%e7%9b%ae" class="header-mark"></a>练习题目</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250625010216-sqkbwc7.png" title="/image/image-20250625010216-sqkbwc7.png" data-thumbnail="/image/image-20250625010216-sqkbwc7.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625010216-sqkbwc7.png"
-            srcset="/image/image-20250625010216-sqkbwc7.png, /image/image-20250625010216-sqkbwc7.png 1.5x, /image/image-20250625010216-sqkbwc7.png 2x"
-            
-            alt="/image/image-20250625010216-sqkbwc7.png" height="40%"  width="40%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250625010216-sqkbwc7.png" title="" data-thumbnail="/image/image-20250625010216-sqkbwc7.png"><img  loading="lazy" src='/image/image-20250625010216-sqkbwc7.png'    height="40%" width="40%"></a>
 <ul>
 <li>无线网络使用CSMA/CA协议</li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250625010311-jead9a9.png" title="/image/image-20250625010311-jead9a9.png" data-thumbnail="/image/image-20250625010311-jead9a9.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625010311-jead9a9.png"
-            srcset="/image/image-20250625010311-jead9a9.png, /image/image-20250625010311-jead9a9.png 1.5x, /image/image-20250625010311-jead9a9.png 2x"
-            
-            alt="/image/image-20250625010311-jead9a9.png" height="55%"  width="55%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250625010311-jead9a9.png" title="" data-thumbnail="/image/image-20250625010311-jead9a9.png"><img  loading="lazy" src='/image/image-20250625010311-jead9a9.png'    height="55%" width="55%"></a>
 <ul>
 <li>选项D</li>
-<li><a class="lightgallery" href="/image/image-20250625011007-wjure8l.png" title="/image/image-20250625011007-wjure8l.png" data-thumbnail="/image/image-20250625011007-wjure8l.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625011007-wjure8l.png"
-            srcset="/image/image-20250625011007-wjure8l.png, /image/image-20250625011007-wjure8l.png 1.5x, /image/image-20250625011007-wjure8l.png 2x"
-            
-            alt="/image/image-20250625011007-wjure8l.png" height="50%"  width="50%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625011007-wjure8l.png" title="" data-thumbnail="/image/image-20250625011007-wjure8l.png"><img  loading="lazy" src='/image/image-20250625011007-wjure8l.png'    height="50%" width="50%"></a></li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250625011208-t9dm0vn.png" title="/image/image-20250625011208-t9dm0vn.png" data-thumbnail="/image/image-20250625011208-t9dm0vn.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625011208-t9dm0vn.png"
-            srcset="/image/image-20250625011208-t9dm0vn.png, /image/image-20250625011208-t9dm0vn.png 1.5x, /image/image-20250625011208-t9dm0vn.png 2x"
-            
-            alt="/image/image-20250625011208-t9dm0vn.png" height="60%"  width="60%" >
-    </a></li>
-<li><a class="lightgallery" href="/image/image-20250625011320-6d32eou.png" title="/image/image-20250625011320-6d32eou.png" data-thumbnail="/image/image-20250625011320-6d32eou.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250625011320-6d32eou.png"
-            srcset="/image/image-20250625011320-6d32eou.png, /image/image-20250625011320-6d32eou.png 1.5x, /image/image-20250625011320-6d32eou.png 2x"
-            
-            alt="/image/image-20250625011320-6d32eou.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250625011208-t9dm0vn.png" title="" data-thumbnail="/image/image-20250625011208-t9dm0vn.png"><img  loading="lazy" src='/image/image-20250625011208-t9dm0vn.png'    height="60%" width="60%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250625011320-6d32eou.png" title="" data-thumbnail="/image/image-20250625011320-6d32eou.png"><img  loading="lazy" src='/image/image-20250625011320-6d32eou.png'    height="60%" width="60%"></a></li>
 </ul>
 <hr>
 <ul>
@@ -602,15 +515,7 @@ $$</li>
 <li>无线信道的信号强度动态范围非常大，无线网卡上接受到的信号强度往往会远远小于发送信号的强度（可能相差百万倍），如果要在无限网卡上实现碰撞检测，对硬件的要求非常高</li>
 <li>隐蔽站问题：由于无线网传播的特殊性，进行碰撞检测的意义也不大
 <ul>
-<li><a class="lightgallery" href="/image/image-20250709235715-be6v7yq.png" title="/image/image-20250709235715-be6v7yq.png" data-thumbnail="/image/image-20250709235715-be6v7yq.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250709235715-be6v7yq.png"
-            srcset="/image/image-20250709235715-be6v7yq.png, /image/image-20250709235715-be6v7yq.png 1.5x, /image/image-20250709235715-be6v7yq.png 2x"
-            
-            alt="/image/image-20250709235715-be6v7yq.png" height="40%"  width="40%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250709235715-be6v7yq.png" title="" data-thumbnail="/image/image-20250709235715-be6v7yq.png"><img  loading="lazy" src='/image/image-20250709235715-be6v7yq.png'    height="40%" width="40%"></a></li>
 <li>在一条总线上连接的互联网，只是存在时延，不存在该问题</li>
 </ul>
 </li>
@@ -646,15 +551,7 @@ $$</li>
 </ul>
 <h4 id="工作原理举例" class="headerLink">
     <a href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e4%b8%be%e4%be%8b" class="header-mark"></a>工作原理举例</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250710001408-389dtho.png" title="/image/image-20250710001408-389dtho.png" data-thumbnail="/image/image-20250710001408-389dtho.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710001408-389dtho.png"
-            srcset="/image/image-20250710001408-389dtho.png, /image/image-20250710001408-389dtho.png 1.5x, /image/image-20250710001408-389dtho.png 2x"
-            
-            alt="/image/image-20250710001408-389dtho.png" height="40%"  width="40%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710001408-389dtho.png" title="" data-thumbnail="/image/image-20250710001408-389dtho.png"><img  loading="lazy" src='/image/image-20250710001408-389dtho.png'    height="40%" width="40%"></a></li>
 <li>当源站有帧要发送，需要先检测到信道空闲，则在<u><strong>DIFS时间</strong></u>后发送数据
 <ul>
 <li>DIFS时间的存在，保证了其他站高优先级帧的发送</li>
@@ -666,15 +563,7 @@ $$</li>
 </ul>
 </li>
 <li>若源站在规定时间内没有收到确认帧ACK，则由重传计时器控制这段时间，重传该帧，直到收到确认为止，或者经过若干次重传失败后放弃发送</li>
-<li><a class="lightgallery" href="/image/image-20250710002058-xnwkote.png" title="/image/image-20250710002058-xnwkote.png" data-thumbnail="/image/image-20250710002058-xnwkote.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710002058-xnwkote.png"
-            srcset="/image/image-20250710002058-xnwkote.png, /image/image-20250710002058-xnwkote.png 1.5x, /image/image-20250710002058-xnwkote.png 2x"
-            
-            alt="/image/image-20250710002058-xnwkote.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710002058-xnwkote.png" title="" data-thumbnail="/image/image-20250710002058-xnwkote.png"><img  loading="lazy" src='/image/image-20250710002058-xnwkote.png'    height="70%" width="70%"></a></li>
 <li>其他无线站点若需要发送数据，则需要先等待信道由忙状态转变为空闲状态，<u>等待一段DIFS时间后，还需要退避一段随机时间之后</u>，才可以发送下一帧
 <ul>
 <li>这个随机时间的存在，可以防止多个站点同时发送数据，而产生碰撞</li>
@@ -701,15 +590,7 @@ $$</li>
 <ul>
 <li>这样做是为了使不同站点选择相同退避时间的概率减小</li>
 <li>当时隙编号达到255时（对应于第6次退避）就不再增加了</li>
-<li><a class="lightgallery" href="/image/image-20250710003538-mp8qa89.png" title="/image/image-20250710003538-mp8qa89.png" data-thumbnail="/image/image-20250710003538-mp8qa89.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710003538-mp8qa89.png"
-            srcset="/image/image-20250710003538-mp8qa89.png, /image/image-20250710003538-mp8qa89.png 1.5x, /image/image-20250710003538-mp8qa89.png 2x"
-            
-            alt="/image/image-20250710003538-mp8qa89.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710003538-mp8qa89.png" title="" data-thumbnail="/image/image-20250710003538-mp8qa89.png"><img  loading="lazy" src='/image/image-20250710003538-mp8qa89.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 </ul>
@@ -718,15 +599,7 @@ $$</li>
 <li>
 <p>为了尽可能减少碰撞的概率和降低碰撞的影响，802.11标准允许要发送数据的站点对信道进行预约</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710004824-z65wyen.png" title="/image/image-20250710004824-z65wyen.png" data-thumbnail="/image/image-20250710004824-z65wyen.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710004824-z65wyen.png"
-            srcset="/image/image-20250710004824-z65wyen.png, /image/image-20250710004824-z65wyen.png 1.5x, /image/image-20250710004824-z65wyen.png 2x"
-            
-            alt="/image/image-20250710004824-z65wyen.png" height="50%"  width="50%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710004824-z65wyen.png" title="" data-thumbnail="/image/image-20250710004824-z65wyen.png"><img  loading="lazy" src='/image/image-20250710004824-z65wyen.png'    height="50%" width="50%"></a></li>
 <li>源站在发送数据帧之前，先发送一个短的控制帧，称为请求发送RTS（Request To Send），它包括源地址、目的地址以及这次通信所需的持续时间（包括确认帧）</li>
 <li>若目的站正确收到源站发来的RTS帧，且媒体空闲，就发送一个响应控制帧，称为允许发送CTS（Clear To Send），它也包括这次通信所需要的持续时间（从RTS帧中将此持续时间复制到CTS帧中）</li>
 <li>源站收到CTS帧后，在等待一段SIFS时间后，就可以发送其数据帧</li>
@@ -751,15 +624,7 @@ $$</li>
 <li>由于利用虚拟载波监听机制，站点只要监听到RTS帧、CTS帧或数据帧中的任何一个，就能知道信道被占用的持续时间，而不需要真正监听到信道上的信号</li>
 <li>因此虚拟载波监听机制能减少隐蔽站带来的碰撞问题
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710005208-tktwxb4.png" title="/image/image-20250710005208-tktwxb4.png" data-thumbnail="/image/image-20250710005208-tktwxb4.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005208-tktwxb4.png"
-            srcset="/image/image-20250710005208-tktwxb4.png, /image/image-20250710005208-tktwxb4.png 1.5x, /image/image-20250710005208-tktwxb4.png 2x"
-            
-            alt="/image/image-20250710005208-tktwxb4.png" height="30%"  width="30%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710005208-tktwxb4.png" title="" data-thumbnail="/image/image-20250710005208-tktwxb4.png"><img  loading="lazy" src='/image/image-20250710005208-tktwxb4.png'    height="30%" width="30%"></a></li>
 <li>如图所示，A和C互为隐蔽站，当其都需要向B发送数据时</li>
 <li>尽管C收不到A发送的RTS帧，但可以收到B返回的CTS帧，这个时候就可以知道信道需要被占用多长时间，在这段时间内C不会再征用信道</li>
 </ul>
@@ -767,68 +632,20 @@ $$</li>
 </ul>
 <h4 id="相关练习" class="headerLink">
     <a href="#%e7%9b%b8%e5%85%b3%e7%bb%83%e4%b9%a0" class="header-mark"></a>相关练习</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250710005417-tv08d9t.png" title="/image/image-20250710005417-tv08d9t.png" data-thumbnail="/image/image-20250710005417-tv08d9t.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005417-tv08d9t.png"
-            srcset="/image/image-20250710005417-tv08d9t.png, /image/image-20250710005417-tv08d9t.png 1.5x, /image/image-20250710005417-tv08d9t.png 2x"
-            
-            alt="/image/image-20250710005417-tv08d9t.png" height="70%"  width="70%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250710005417-tv08d9t.png" title="" data-thumbnail="/image/image-20250710005417-tv08d9t.png"><img  loading="lazy" src='/image/image-20250710005417-tv08d9t.png'    height="70%" width="70%"></a>
 <ul>
-<li>​<a class="lightgallery" href="/image/image-20250710005535-f2gts28.png" title="/image/image-20250710005535-f2gts28.png" data-thumbnail="/image/image-20250710005535-f2gts28.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005535-f2gts28.png"
-            srcset="/image/image-20250710005535-f2gts28.png, /image/image-20250710005535-f2gts28.png 1.5x, /image/image-20250710005535-f2gts28.png 2x"
-            
-            alt="/image/image-20250710005535-f2gts28.png" height="70%"  width="70%" >
-    </a></li>
+<li>​<a class="lightgallery" href="/image/image-20250710005535-f2gts28.png" title="" data-thumbnail="/image/image-20250710005535-f2gts28.png"><img  loading="lazy" src='/image/image-20250710005535-f2gts28.png'    height="70%" width="70%"></a></li>
 <li>D</li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250710005549-1rs99bf.png" title="/image/image-20250710005549-1rs99bf.png" data-thumbnail="/image/image-20250710005549-1rs99bf.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005549-1rs99bf.png"
-            srcset="/image/image-20250710005549-1rs99bf.png, /image/image-20250710005549-1rs99bf.png 1.5x, /image/image-20250710005549-1rs99bf.png 2x"
-            
-            alt="/image/image-20250710005549-1rs99bf.png" height="60%"  width="60%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250710005549-1rs99bf.png" title="" data-thumbnail="/image/image-20250710005549-1rs99bf.png"><img  loading="lazy" src='/image/image-20250710005549-1rs99bf.png'    height="60%" width="60%"></a>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710005644-mn8cbca.png" title="/image/image-20250710005644-mn8cbca.png" data-thumbnail="/image/image-20250710005644-mn8cbca.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005644-mn8cbca.png"
-            srcset="/image/image-20250710005644-mn8cbca.png, /image/image-20250710005644-mn8cbca.png 1.5x, /image/image-20250710005644-mn8cbca.png 2x"
-            
-            alt="/image/image-20250710005644-mn8cbca.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710005644-mn8cbca.png" title="" data-thumbnail="/image/image-20250710005644-mn8cbca.png"><img  loading="lazy" src='/image/image-20250710005644-mn8cbca.png'    height="60%" width="60%"></a></li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250710005703-rwnkau5.png" title="/image/image-20250710005703-rwnkau5.png" data-thumbnail="/image/image-20250710005703-rwnkau5.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005703-rwnkau5.png"
-            srcset="/image/image-20250710005703-rwnkau5.png, /image/image-20250710005703-rwnkau5.png 1.5x, /image/image-20250710005703-rwnkau5.png 2x"
-            
-            alt="/image/image-20250710005703-rwnkau5.png" height="60%"  width="60%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250710005703-rwnkau5.png" title="" data-thumbnail="/image/image-20250710005703-rwnkau5.png"><img  loading="lazy" src='/image/image-20250710005703-rwnkau5.png'    height="60%" width="60%"></a>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710005739-pfie89v.png" title="/image/image-20250710005739-pfie89v.png" data-thumbnail="/image/image-20250710005739-pfie89v.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710005739-pfie89v.png"
-            srcset="/image/image-20250710005739-pfie89v.png, /image/image-20250710005739-pfie89v.png 1.5x, /image/image-20250710005739-pfie89v.png 2x"
-            
-            alt="/image/image-20250710005739-pfie89v.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710005739-pfie89v.png" title="" data-thumbnail="/image/image-20250710005739-pfie89v.png"><img  loading="lazy" src='/image/image-20250710005739-pfie89v.png'    height="60%" width="60%"></a></li>
 </ul>
 </li>
 </ul>
@@ -838,16 +655,10 @@ $$</li>
 </ul>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -857,39 +668,86 @@ $$</li>
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/net/n03_data_link/" class="prev" rel="prev" title="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）"><i class="fas fa-angle-left fa-fw"></i>网络 | 03. 数据链路层（以太网MAC帧、PPP协议）</a>
-            <a href="/posts/net/n05_mac_ip_arp/" class="next" rel="next" title="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网">网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n03_data_link/" class="prev" rel="prev" title="网络 | 03. 数据链路层（以太网MAC帧、PPP协议）"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络 | 03. 数据链路层（以太网MAC帧、PPP协议）</a>
+            <a href="/posts/net/n05_mac_ip_arp/" class="next" rel="next" title="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网">网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

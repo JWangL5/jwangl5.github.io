@@ -1,82 +1,117 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网" />
-<meta property="og:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-07-10T00:00:00+08:00" />
-<meta property="article:modified_time" content="2025-07-10T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n05_mac_ip_arp/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网">
+  <meta property="og:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层 ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址 尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论 MAC地址 使用点对点信道的数据链路层不需要地址（一条线连接两个机器时） 使用广播信道的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机 每个主机必须有一个唯一的标识（即数据链路层地址），从而搞清楚发送主机和接收主机是谁 在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于媒体接入控制（MAC，Media Acess Control），因此这类地址被称为MAC地址 MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址 MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层 一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址 而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址 综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识 IEEE 802局域网的MAC地址格式 由48比特构成，每8个比特为1个字节，共6个字节">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-10T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-07-10T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网"/>
-<meta name="twitter:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网">
+  <meta name="twitter:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层 ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址 尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论 MAC地址 使用点对点信道的数据链路层不需要地址（一条线连接两个机器时） 使用广播信道的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机 每个主机必须有一个唯一的标识（即数据链路层地址），从而搞清楚发送主机和接收主机是谁 在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于媒体接入控制（MAC，Media Acess Control），因此这类地址被称为MAC地址 MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址 MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层 一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址 而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址 综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识 IEEE 802局域网的MAC地址格式 由48比特构成，每8个比特为1个字节，共6个字节">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n06_net_route/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/net/n05_mac_ip_arp/" /><link rel="prev" href="http://localhost:1313/posts/net/n04_csma_cd/" /><link rel="next" href="http://localhost:1313/posts/net/n06_net_route/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n05_mac_ip_arp\/"
+            "@id": "http://localhost:1313/posts/net/n05_mac_ip_arp/"
         },"genre": "posts","wordcount":  7215 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/net\/n05_mac_ip_arp\/","datePublished": "2025-07-10T00:00:00+08:00","dateModified": "2025-07-10T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n05_mac_ip_arp/","datePublished": "2025-07-10T00:00:00+08:00","dateModified": "2025-07-10T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +122,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,15 +153,59 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#250710-mac地址ip地址arp协议">250710 MAC地址、IP地址、ARP协议</a>
+      <ul>
+        <li><a href="#mac地址">MAC地址</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+            <li><a href="#mac地址-1">MAC地址</a></li>
+            <li><a href="#ieee-802局域网的mac地址格式">IEEE 802局域网的MAC地址格式</a></li>
+            <li><a href="#mac地址的发送顺序">MAC地址的发送顺序</a></li>
+            <li><a href="#随机mac地址">随机MAC地址</a></li>
+          </ul>
+        </li>
+        <li><a href="#ip地址网络层的作用">IP地址（网络层）的作用</a>
+          <ul>
+            <li><a href="#arp协议地址解析协议arp怎么根据ip地址找到mac地址">ARP协议（地址解析协议ARP，怎么根据IP地址找到MAC地址）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#250713-集线器与交换机">250713 集线器与交换机</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#集线器和交换机的区别">集线器和交换机的区别</a></li>
+            <li><a href="#以太网交换机">以太网交换机</a></li>
+            <li><a href="#对比集线器和交换机">对比集线器和交换机</a></li>
+            <li><a href="#三层交换机">三层交换机</a></li>
+            <li><a href="#以太网交换器的生成式协议stp">以太网交换器的生成式协议STP</a></li>
+          </ul>
+        </li>
+        <li><a href="#250714-虚拟局域网vlan">250714 虚拟局域网VLAN</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-07-10" data-pagefind-body>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7215 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h2 id="250710-mac地址ip地址arp协议" class="headerLink">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-07-10">2025-07-10</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 7215 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 32 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><h2 id="250710-mac地址ip地址arp协议" class="headerLink">
     <a href="#250710-mac%e5%9c%b0%e5%9d%80ip%e5%9c%b0%e5%9d%80arp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250710 MAC地址、IP地址、ARP协议</h2><h3 id="mac地址" class="headerLink">
     <a href="#mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>MAC地址</h3><h4 id="基本概念" class="headerLink">
     <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h4><ul>
@@ -137,28 +222,12 @@
 <li>在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于<u-b>媒体接入控制</u-b>（MAC，Media Acess Control），因此这类地址被称为MAC地址</li>
 <li>MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710010734-2zj44uo.png" title="/image/image-20250710010734-2zj44uo.png" data-thumbnail="/image/image-20250710010734-2zj44uo.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710010734-2zj44uo.png"
-            srcset="/image/image-20250710010734-2zj44uo.png, /image/image-20250710010734-2zj44uo.png 1.5x, /image/image-20250710010734-2zj44uo.png 2x"
-            
-            alt="/image/image-20250710010734-2zj44uo.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710010734-2zj44uo.png" title="" data-thumbnail="/image/image-20250710010734-2zj44uo.png"><img  loading="lazy" src='/image/image-20250710010734-2zj44uo.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 <li>MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710010821-tmjaj3b.png" title="/image/image-20250710010821-tmjaj3b.png" data-thumbnail="/image/image-20250710010821-tmjaj3b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710010821-tmjaj3b.png"
-            srcset="/image/image-20250710010821-tmjaj3b.png, /image/image-20250710010821-tmjaj3b.png 1.5x, /image/image-20250710010821-tmjaj3b.png 2x"
-            
-            alt="/image/image-20250710010821-tmjaj3b.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710010821-tmjaj3b.png" title="" data-thumbnail="/image/image-20250710010821-tmjaj3b.png"><img  loading="lazy" src='/image/image-20250710010821-tmjaj3b.png'    height="70%" width="70%"></a></li>
 </ul>
 </li>
 <li>一般情况下，用户主机会包含<strong>两个</strong>网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址</li>
@@ -181,50 +250,18 @@
 </li>
 <li>
 <p>MAC的标准表示方法，是将每4个比特写成一个十六进制的字符，共12个字符；将每两个字符为一组，共6组，组之间用短线或冒号连接
-<a class="lightgallery" href="/image/image-20250710011816-xd3gc33.png" title="/image/image-20250710011816-xd3gc33.png" data-thumbnail="/image/image-20250710011816-xd3gc33.png">
-            <img
-                
-                loading="lazy"
-                src="/image/image-20250710011816-xd3gc33.png"
-                srcset="/image/image-20250710011816-xd3gc33.png, /image/image-20250710011816-xd3gc33.png 1.5x, /image/image-20250710011816-xd3gc33.png 2x"
-                
-                alt="/image/image-20250710011816-xd3gc33.png" height="100%"  width="100%" >
-        </a></p>
+<a class="lightgallery" href="/image/image-20250710011816-xd3gc33.png" title="" data-thumbnail="/image/image-20250710011816-xd3gc33.png"><img  loading="lazy" src='/image/image-20250710011816-xd3gc33.png'    height="100%" width="100%"></a></p>
 <ul>
 <li>
 <p>可以根据MAC地址，查找到该设备的厂商信息，例如华为的组织标识为30-FB-B8​，小米为A4-45-19
-<figure><a class="lightgallery" href="/image/image-20250710011853-9lp0w61.png" title="image" data-thumbnail="/image/image-20250710011853-9lp0w61.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710011853-9lp0w61.png"
-            srcset="/image/image-20250710011853-9lp0w61.png, /image/image-20250710011853-9lp0w61.png 1.5x, /image/image-20250710011853-9lp0w61.png 2x"
-            
-            alt="/image/image-20250710011853-9lp0w61.png" height="542"  width="1442" >
-    </a></figure>​
-<figure><a class="lightgallery" href="/image/image-20250710011907-qaj8a9b.png" title="image" data-thumbnail="/image/image-20250710011907-qaj8a9b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710011907-qaj8a9b.png"
-            srcset="/image/image-20250710011907-qaj8a9b.png, /image/image-20250710011907-qaj8a9b.png 1.5x, /image/image-20250710011907-qaj8a9b.png 2x"
-            
-            alt="/image/image-20250710011907-qaj8a9b.png" height="536"  width="1432" >
-    </a></figure>​</p>
+<img class="tw-inline" loading="lazy" src='/image/image-20250710011853-9lp0w61.png'   alt="image" height="542" width="1442">​
+<img class="tw-inline" loading="lazy" src='/image/image-20250710011907-qaj8a9b.png'   alt="image" height="536" width="1432">​</p>
 </li>
 <li>
 <p><u-b>第一个字节的b0和b1</u-b>为有特殊的用途，根据标识其可以分为四类，每类有70多亿个</p>
 <ul>
 <li>b0为0时是单播，b0为1时是多播地址；在十六进制下，第二个数字如果是奇数则为多播地址（13579BDF）</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710012220-8cffc4n.png" title="image" data-thumbnail="/image/image-20250710012220-8cffc4n.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710012220-8cffc4n.png"
-            srcset="/image/image-20250710012220-8cffc4n.png, /image/image-20250710012220-8cffc4n.png 1.5x, /image/image-20250710012220-8cffc4n.png 2x"
-            
-            alt="/image/image-20250710012220-8cffc4n.png" height="488"  width="1434" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250710012220-8cffc4n.png'   alt="image" height="488" width="1434">​</li>
 </ul>
 </li>
 </ul>
@@ -242,33 +279,9 @@
     <a href="#mac%e5%9c%b0%e5%9d%80%e7%9a%84%e5%8f%91%e9%80%81%e9%a1%ba%e5%ba%8f" class="header-mark"></a>MAC地址的发送顺序</h4><ul>
 <li>
 <p>字节发送顺序是第一字节到第六字节，字节内比特的发送顺序为b0到b7，例如举例说明功能</p>
-<p><a class="lightgallery" href="/image/image-20250710012845-bodozq8.png" title="/image/image-20250710012845-bodozq8.png" data-thumbnail="/image/image-20250710012845-bodozq8.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250710012845-bodozq8.png"
-              srcset="/image/image-20250710012845-bodozq8.png, /image/image-20250710012845-bodozq8.png 1.5x, /image/image-20250710012845-bodozq8.png 2x"
-              
-              alt="/image/image-20250710012845-bodozq8.png" height="33%"  width="33%" >
-      </a>
-<a class="lightgallery" href="/image/image-20250710013002-00ozm4f.png" title="/image/image-20250710013002-00ozm4f.png" data-thumbnail="/image/image-20250710013002-00ozm4f.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250710013002-00ozm4f.png"
-              srcset="/image/image-20250710013002-00ozm4f.png, /image/image-20250710013002-00ozm4f.png 1.5x, /image/image-20250710013002-00ozm4f.png 2x"
-              
-              alt="/image/image-20250710013002-00ozm4f.png" height="33%"  width="33%" >
-      </a>
-<a class="lightgallery" href="/image/image-20250710013421-sjrqnet.png" title="/image/image-20250710013421-sjrqnet.png" data-thumbnail="/image/image-20250710013421-sjrqnet.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250710013421-sjrqnet.png"
-              srcset="/image/image-20250710013421-sjrqnet.png, /image/image-20250710013421-sjrqnet.png 1.5x, /image/image-20250710013421-sjrqnet.png 2x"
-              
-              alt="/image/image-20250710013421-sjrqnet.png" height="33%"  width="33%" >
-      </a></p>
+<p><a class="lightgallery" href="/image/image-20250710012845-bodozq8.png" title="" data-thumbnail="/image/image-20250710012845-bodozq8.png"><img  loading="lazy" src='/image/image-20250710012845-bodozq8.png'    height="33%" width="33%"></a>
+<a class="lightgallery" href="/image/image-20250710013002-00ozm4f.png" title="" data-thumbnail="/image/image-20250710013002-00ozm4f.png"><img  loading="lazy" src='/image/image-20250710013002-00ozm4f.png'    height="33%" width="33%"></a>
+<a class="lightgallery" href="/image/image-20250710013421-sjrqnet.png" title="" data-thumbnail="/image/image-20250710013421-sjrqnet.png"><img  loading="lazy" src='/image/image-20250710013421-sjrqnet.png'    height="33%" width="33%"></a></p>
 </li>
 <li>
 <p>给主机配置多播组列表时进行私有应用时，不得使用公有的标准多播地址</p>
@@ -304,24 +317,8 @@
 <li>
 <p>从网络整体结构看IP地址和MAC地址</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250710225235-8h1jz98.png" title="/image/image-20250710225235-8h1jz98.png" data-thumbnail="/image/image-20250710225235-8h1jz98.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710225235-8h1jz98.png"
-            srcset="/image/image-20250710225235-8h1jz98.png, /image/image-20250710225235-8h1jz98.png 1.5x, /image/image-20250710225235-8h1jz98.png 2x"
-            
-            alt="/image/image-20250710225235-8h1jz98.png" height="70%"  width="70%" >
-    </a></li>
-<li><a class="lightgallery" href="/image/image-20250710225512-jzpm7a5.png" title="/image/image-20250710225512-jzpm7a5.png" data-thumbnail="/image/image-20250710225512-jzpm7a5.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710225512-jzpm7a5.png"
-            srcset="/image/image-20250710225512-jzpm7a5.png, /image/image-20250710225512-jzpm7a5.png 1.5x, /image/image-20250710225512-jzpm7a5.png 2x"
-            
-            alt="/image/image-20250710225512-jzpm7a5.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250710225235-8h1jz98.png" title="" data-thumbnail="/image/image-20250710225235-8h1jz98.png"><img  loading="lazy" src='/image/image-20250710225235-8h1jz98.png'    height="70%" width="70%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250710225512-jzpm7a5.png" title="" data-thumbnail="/image/image-20250710225512-jzpm7a5.png"><img  loading="lazy" src='/image/image-20250710225512-jzpm7a5.png'    height="70%" width="70%"></a></li>
 <li>数据包转发过程中，源IP地址和目的IP地址保持不变</li>
 <li>数据包转发过程中，源MAC地址和目的MAC地址逐个链路（逐个网络）改变</li>
 </ul>
@@ -329,15 +326,7 @@
 <li>
 <p>习题</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250710225716-dxwoufh.png" title="image" data-thumbnail="/image/image-20250710225716-dxwoufh.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250710225716-dxwoufh.png"
-            srcset="/image/image-20250710225716-dxwoufh.png, /image/image-20250710225716-dxwoufh.png 1.5x, /image/image-20250710225716-dxwoufh.png 2x"
-            
-            alt="/image/image-20250710225716-dxwoufh.png" height="318"  width="1496" >
-    </a></figure>​
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250710225716-dxwoufh.png'   alt="image" height="318" width="1496">​
 <ul>
 <li>D</li>
 </ul>
@@ -349,41 +338,17 @@
     <a href="#arp%e5%8d%8f%e8%ae%ae%e5%9c%b0%e5%9d%80%e8%a7%a3%e6%9e%90%e5%8d%8f%e8%ae%aearp%e6%80%8e%e4%b9%88%e6%a0%b9%e6%8d%aeip%e5%9c%b0%e5%9d%80%e6%89%be%e5%88%b0mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>ARP协议（地址解析协议ARP，怎么根据IP地址找到MAC地址）</h4><ul>
 <li>
 <p>问题引入</p>
-<a class="lightgallery" href="/image/image-20250710230043-8k99h5l.png" title="/image/image-20250710230043-8k99h5l.png" data-thumbnail="/image/image-20250710230043-8k99h5l.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250710230043-8k99h5l.png"
-              srcset="/image/image-20250710230043-8k99h5l.png, /image/image-20250710230043-8k99h5l.png 1.5x, /image/image-20250710230043-8k99h5l.png 2x"
-              
-              alt="/image/image-20250710230043-8k99h5l.png" height="60%"  width="60%" >
-      </a>
+<a class="lightgallery" href="/image/image-20250710230043-8k99h5l.png" title="" data-thumbnail="/image/image-20250710230043-8k99h5l.png"><img  loading="lazy" src='/image/image-20250710230043-8k99h5l.png'    height="60%" width="60%"></a>
 <ul>
 <li>每台主机都会有一个<u-b>ARP高速缓存表</u-b>，在要发送消息时，会现在自己的缓存表中查找相应主机的MAC地址
 <ul>
 <li>
 <p>如果没有找到，则需要发送ARP请求报文来获取该MAC地址</p>
-<a class="lightgallery" href="/image/image-20250710230636-tua8bpi.png" title="/image/image-20250710230636-tua8bpi.png" data-thumbnail="/image/image-20250710230636-tua8bpi.png">
-              <img
-                  
-                  loading="lazy"
-                  src="/image/image-20250710230636-tua8bpi.png"
-                  srcset="/image/image-20250710230636-tua8bpi.png, /image/image-20250710230636-tua8bpi.png 1.5x, /image/image-20250710230636-tua8bpi.png 2x"
-                  
-                  alt="/image/image-20250710230636-tua8bpi.png" height="80%"  width="80%" >
-          </a>
+<a class="lightgallery" href="/image/image-20250710230636-tua8bpi.png" title="" data-thumbnail="/image/image-20250710230636-tua8bpi.png"><img  loading="lazy" src='/image/image-20250710230636-tua8bpi.png'    height="80%" width="80%"></a>
 </li>
 <li>
 <p>主机收到ARP请求后，如果与自己的MAC地址不匹配，则丢弃该广播信息；如果确认是自己的MAC地址后，发送ARP响应报文，该报文为单播帧，包含自己的IP地址和MAC地址</p>
-<a class="lightgallery" href="/image/image-20250710230726-1n5gdou.png" title="/image/image-20250710230726-1n5gdou.png" data-thumbnail="/image/image-20250710230726-1n5gdou.png">
-              <img
-                  
-                  loading="lazy"
-                  src="/image/image-20250710230726-1n5gdou.png"
-                  srcset="/image/image-20250710230726-1n5gdou.png, /image/image-20250710230726-1n5gdou.png 1.5x, /image/image-20250710230726-1n5gdou.png 2x"
-                  
-                  alt="/image/image-20250710230726-1n5gdou.png" height="80%"  width="80%" >
-          </a>
+<a class="lightgallery" href="/image/image-20250710230726-1n5gdou.png" title="" data-thumbnail="/image/image-20250710230726-1n5gdou.png"><img  loading="lazy" src='/image/image-20250710230726-1n5gdou.png'    height="80%" width="80%"></a>
 </li>
 <li>
 <p>源主机收到ARP响应报文后，将该信息记录到自己的ARP高速缓存表中；这个时候，重新加载了的缓存表中就有对应的MAC地址了，可以用户网络通信了</p>
@@ -401,15 +366,7 @@
 </li>
 <li>
 <p>ARP协议只能在<u-r>一段链路或一个网络中使用</u-r>，不能跨网络使用，如下的网络结构中，主机H1不能通过ARP协议获取到H2的IP地址</p>
-<a class="lightgallery" href="/image/image-20250711125234-bnhvet1.png" title="/image/image-20250711125234-bnhvet1.png" data-thumbnail="/image/image-20250711125234-bnhvet1.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250711125234-bnhvet1.png"
-              srcset="/image/image-20250711125234-bnhvet1.png, /image/image-20250711125234-bnhvet1.png 1.5x, /image/image-20250711125234-bnhvet1.png 2x"
-              
-              alt="/image/image-20250711125234-bnhvet1.png" height="40%"  width="40%" >
-      </a>
+<a class="lightgallery" href="/image/image-20250711125234-bnhvet1.png" title="" data-thumbnail="/image/image-20250711125234-bnhvet1.png"><img  loading="lazy" src='/image/image-20250711125234-bnhvet1.png'    height="40%" width="40%"></a>
 </li>
 <li>
 <p>除了ARP请求和响应报文外，ARP协议还存在其他类型的报文，如用于检查IP地址冲突的“无故ARP、免费ARP”等</p>
@@ -440,15 +397,7 @@
 <li>
 <p>使用双绞线和集线器hub的<strong>星形以太网</strong></p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250713223234-3fv6q8b.png" title="/image/image-20250713223234-3fv6q8b.png" data-thumbnail="/image/image-20250713223234-3fv6q8b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713223234-3fv6q8b.png"
-            srcset="/image/image-20250713223234-3fv6q8b.png, /image/image-20250713223234-3fv6q8b.png 1.5x, /image/image-20250713223234-3fv6q8b.png 2x"
-            
-            alt="/image/image-20250713223234-3fv6q8b.png" height="30%"  width="30%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713223234-3fv6q8b.png" title="" data-thumbnail="/image/image-20250713223234-3fv6q8b.png"><img  loading="lazy" src='/image/image-20250713223234-3fv6q8b.png'    height="30%" width="30%"></a></li>
 </ul>
 </li>
 <li>
@@ -463,24 +412,8 @@
 <li>
 <p>使用集线器可以对以太网进行扩展（使用集线器在物理层扩展以太网）</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250713223927-ned43uj.png" title="/image/image-20250713223927-ned43uj.png" data-thumbnail="/image/image-20250713223927-ned43uj.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713223927-ned43uj.png"
-            srcset="/image/image-20250713223927-ned43uj.png, /image/image-20250713223927-ned43uj.png 1.5x, /image/image-20250713223927-ned43uj.png 2x"
-            
-            alt="/image/image-20250713223927-ned43uj.png" height="60%"  width="60%" >
-    </a></li>
-<li><a class="lightgallery" href="/image/image-20250713223850-yrw5spi.png" title="/image/image-20250713223850-yrw5spi.png" data-thumbnail="/image/image-20250713223850-yrw5spi.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713223850-yrw5spi.png"
-            srcset="/image/image-20250713223850-yrw5spi.png, /image/image-20250713223850-yrw5spi.png 1.5x, /image/image-20250713223850-yrw5spi.png 2x"
-            
-            alt="/image/image-20250713223850-yrw5spi.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713223927-ned43uj.png" title="" data-thumbnail="/image/image-20250713223927-ned43uj.png"><img  loading="lazy" src='/image/image-20250713223927-ned43uj.png'    height="60%" width="60%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250713223850-yrw5spi.png" title="" data-thumbnail="/image/image-20250713223850-yrw5spi.png"><img  loading="lazy" src='/image/image-20250713223850-yrw5spi.png'    height="60%" width="60%"></a></li>
 </ul>
 </li>
 </ul>
@@ -512,24 +445,8 @@
     <a href="#%e5%af%b9%e6%af%94%e9%9b%86%e7%ba%bf%e5%99%a8%e5%92%8c%e4%ba%a4%e6%8d%a2%e6%9c%ba" class="header-mark"></a>对比集线器和交换机</h4><ul>
 <li>
 <p>主机发送帧的情况：不同机器在相同的广播域，使用起来没有区别</p>
-<p><a class="lightgallery" href="/image/image-20250713234715-0fssvap.png" title="/image/image-20250713234715-0fssvap.png" data-thumbnail="/image/image-20250713234715-0fssvap.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250713234715-0fssvap.png"
-              srcset="/image/image-20250713234715-0fssvap.png, /image/image-20250713234715-0fssvap.png 1.5x, /image/image-20250713234715-0fssvap.png 2x"
-              
-              alt="/image/image-20250713234715-0fssvap.png" height="13%"  width="13%" >
-      </a>
-<a class="lightgallery" href="/image/image-20250713234752-47nhl97.png" title="/image/image-20250713234752-47nhl97.png" data-thumbnail="/image/image-20250713234752-47nhl97.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250713234752-47nhl97.png"
-              srcset="/image/image-20250713234752-47nhl97.png, /image/image-20250713234752-47nhl97.png 1.5x, /image/image-20250713234752-47nhl97.png 2x"
-              
-              alt="/image/image-20250713234752-47nhl97.png" height="17%"  width="17%" >
-      </a></p>
+<p><a class="lightgallery" href="/image/image-20250713234715-0fssvap.png" title="" data-thumbnail="/image/image-20250713234715-0fssvap.png"><img  loading="lazy" src='/image/image-20250713234715-0fssvap.png'    height="13%" width="13%"></a>
+<a class="lightgallery" href="/image/image-20250713234752-47nhl97.png" title="" data-thumbnail="/image/image-20250713234752-47nhl97.png"><img  loading="lazy" src='/image/image-20250713234752-47nhl97.png'    height="17%" width="17%"></a></p>
 </li>
 <li>
 <p>多台主机同时发送帧时</p>
@@ -541,41 +458,17 @@
 <li>
 <p>扩展以太网的区别</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250713235202-yeg85d0.png" title="/image/image-20250713235202-yeg85d0.png" data-thumbnail="/image/image-20250713235202-yeg85d0.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713235202-yeg85d0.png"
-            srcset="/image/image-20250713235202-yeg85d0.png, /image/image-20250713235202-yeg85d0.png 1.5x, /image/image-20250713235202-yeg85d0.png 2x"
-            
-            alt="/image/image-20250713235202-yeg85d0.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713235202-yeg85d0.png" title="" data-thumbnail="/image/image-20250713235202-yeg85d0.png"><img  loading="lazy" src='/image/image-20250713235202-yeg85d0.png'    height="60%" width="60%"></a></li>
 <li>而对于广播帧，效果上看没有区别</li>
 <li>对使用集线器的以太网，各主机都属于同一个广播域，其在扩展后，<strong>参与竞争总线的主机变多了</strong></li>
 <li>即使是，仅使用集线器扩展的以太网，<strong>不仅仅扩展了广播域，也扩展了碰撞域（冲突域）</strong></li>
-<li><a class="lightgallery" href="/image/image-20250713235449-7rrbpve.png" title="/image/image-20250713235449-7rrbpve.png" data-thumbnail="/image/image-20250713235449-7rrbpve.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713235449-7rrbpve.png"
-            srcset="/image/image-20250713235449-7rrbpve.png, /image/image-20250713235449-7rrbpve.png 1.5x, /image/image-20250713235449-7rrbpve.png 2x"
-            
-            alt="/image/image-20250713235449-7rrbpve.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713235449-7rrbpve.png" title="" data-thumbnail="/image/image-20250713235449-7rrbpve.png"><img  loading="lazy" src='/image/image-20250713235449-7rrbpve.png'    height="60%" width="60%"></a></li>
 </ul>
 </li>
 <li>
 <p>小结</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250713235504-2l8ux6b.png" title="/image/image-20250713235504-2l8ux6b.png" data-thumbnail="/image/image-20250713235504-2l8ux6b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250713235504-2l8ux6b.png"
-            srcset="/image/image-20250713235504-2l8ux6b.png, /image/image-20250713235504-2l8ux6b.png 1.5x, /image/image-20250713235504-2l8ux6b.png 2x"
-            
-            alt="/image/image-20250713235504-2l8ux6b.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250713235504-2l8ux6b.png" title="" data-thumbnail="/image/image-20250713235504-2l8ux6b.png"><img  loading="lazy" src='/image/image-20250713235504-2l8ux6b.png'    height="70%" width="70%"></a></li>
 <li>交换机并不比集线器贵，但拥有更好的特性，因而集线器目前已经在市场上所淘汰</li>
 </ul>
 </li>
@@ -591,15 +484,7 @@
 <li>
 <p>以太网交换机是一种即插即用的设备，刚上电启动时，内部的帧交换表时空的；随着网络中各主机间的通信，以太网交换机通过<strong>自学习算法</strong>，自动逐渐建立起来帧交换表</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250714000424-fkfaxc8.png" title="/image/image-20250714000424-fkfaxc8.png" data-thumbnail="/image/image-20250714000424-fkfaxc8.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714000424-fkfaxc8.png"
-            srcset="/image/image-20250714000424-fkfaxc8.png, /image/image-20250714000424-fkfaxc8.png 1.5x, /image/image-20250714000424-fkfaxc8.png 2x"
-            
-            alt="/image/image-20250714000424-fkfaxc8.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250714000424-fkfaxc8.png" title="" data-thumbnail="/image/image-20250714000424-fkfaxc8.png"><img  loading="lazy" src='/image/image-20250714000424-fkfaxc8.png'    height="70%" width="70%"></a></li>
 <li>如图所示，每个交换机通过接口分别连接了3台主机</li>
 <li>为了简单起见，各主机中网卡上固化的MAC地址，仅用一个大写字母表示，各主机互不相同</li>
 <li>为了将重点放在以太网交换机自学习和转发帧的流程上，假设各主机知道网络中其他各主机的MAC地址（无需进行ARP）</li>
@@ -615,15 +500,7 @@
 <p>以太网交换器丢失帧的情况</p>
 <ul>
 <li>给接口1再接一个主机G（省略了集线器没有画出）</li>
-<li><a class="lightgallery" href="/image/image-20250714002039-75lq2kl.png" title="/image/image-20250714002039-75lq2kl.png" data-thumbnail="/image/image-20250714002039-75lq2kl.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002039-75lq2kl.png"
-            srcset="/image/image-20250714002039-75lq2kl.png, /image/image-20250714002039-75lq2kl.png 1.5x, /image/image-20250714002039-75lq2kl.png 2x"
-            
-            alt="/image/image-20250714002039-75lq2kl.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250714002039-75lq2kl.png" title="" data-thumbnail="/image/image-20250714002039-75lq2kl.png"><img  loading="lazy" src='/image/image-20250714002039-75lq2kl.png'    height="70%" width="70%"></a></li>
 <li>现在，主机G给主机A发送帧，该帧通过总线进行传输，主机A和交换机1的接口1都可以收到；主机A收到后确认、接收该帧；</li>
 <li>交换机1收到该帧后，登记源MAC地址G和接口1的相关信息，随后对该帧进行转发，该帧的目的MAC地址是A，在帧交换表中查到的接口号为1，但是该帧正是从接口1进入交换机1的，交换机不会再从该接口将该帧转发出去（因为没有必要），于是丢弃该帧；交换机2不会收到该帧</li>
 </ul>
@@ -637,51 +514,11 @@
 <li>
 <p>习题</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250714002654-nx0l6qa.png" title="/image/image-20250714002654-nx0l6qa.png" data-thumbnail="/image/image-20250714002654-nx0l6qa.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002654-nx0l6qa.png"
-            srcset="/image/image-20250714002654-nx0l6qa.png, /image/image-20250714002654-nx0l6qa.png 1.5x, /image/image-20250714002654-nx0l6qa.png 2x"
-            
-            alt="/image/image-20250714002654-nx0l6qa.png" height="70%"  width="70%" >
-    </a>
-<a class="lightgallery" href="/image/image-20250714002726-rmwoqpl.png" title="/image/image-20250714002726-rmwoqpl.png" data-thumbnail="/image/image-20250714002726-rmwoqpl.png">
-              <img
-                  
-                  loading="lazy"
-                  src="/image/image-20250714002726-rmwoqpl.png"
-                  srcset="/image/image-20250714002726-rmwoqpl.png, /image/image-20250714002726-rmwoqpl.png 1.5x, /image/image-20250714002726-rmwoqpl.png 2x"
-                  
-                  alt="/image/image-20250714002726-rmwoqpl.png" height="70%"  width="70%" >
-          </a></li>
-<li><a class="lightgallery" href="/image/image-20250714002749-vpk9l6r.png" title="/image/image-20250714002749-vpk9l6r.png" data-thumbnail="/image/image-20250714002749-vpk9l6r.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002749-vpk9l6r.png"
-            srcset="/image/image-20250714002749-vpk9l6r.png, /image/image-20250714002749-vpk9l6r.png 1.5x, /image/image-20250714002749-vpk9l6r.png 2x"
-            
-            alt="/image/image-20250714002749-vpk9l6r.png" height="40%"  width="40%" >
-    </a>
-<a class="lightgallery" href="/image/image-20250714002821-y67091b.png" title="/image/image-20250714002821-y67091b.png" data-thumbnail="/image/image-20250714002821-y67091b.png">
-              <img
-                  
-                  loading="lazy"
-                  src="/image/image-20250714002821-y67091b.png"
-                  srcset="/image/image-20250714002821-y67091b.png, /image/image-20250714002821-y67091b.png 1.5x, /image/image-20250714002821-y67091b.png 2x"
-                  
-                  alt="/image/image-20250714002821-y67091b.png" height="60%"  width="60%" >
-          </a></li>
-<li><a class="lightgallery" href="/image/image-20250714002849-3f2v0ne.png" title="/image/image-20250714002849-3f2v0ne.png" data-thumbnail="/image/image-20250714002849-3f2v0ne.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714002849-3f2v0ne.png"
-            srcset="/image/image-20250714002849-3f2v0ne.png, /image/image-20250714002849-3f2v0ne.png 1.5x, /image/image-20250714002849-3f2v0ne.png 2x"
-            
-            alt="/image/image-20250714002849-3f2v0ne.png" height="65%"  width="65%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250714002654-nx0l6qa.png" title="" data-thumbnail="/image/image-20250714002654-nx0l6qa.png"><img  loading="lazy" src='/image/image-20250714002654-nx0l6qa.png'    height="70%" width="70%"></a>
+<a class="lightgallery" href="/image/image-20250714002726-rmwoqpl.png" title="" data-thumbnail="/image/image-20250714002726-rmwoqpl.png"><img  loading="lazy" src='/image/image-20250714002726-rmwoqpl.png'    height="70%" width="70%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250714002749-vpk9l6r.png" title="" data-thumbnail="/image/image-20250714002749-vpk9l6r.png"><img  loading="lazy" src='/image/image-20250714002749-vpk9l6r.png'    height="40%" width="40%"></a>
+<a class="lightgallery" href="/image/image-20250714002821-y67091b.png" title="" data-thumbnail="/image/image-20250714002821-y67091b.png"><img  loading="lazy" src='/image/image-20250714002821-y67091b.png'    height="60%" width="60%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250714002849-3f2v0ne.png" title="" data-thumbnail="/image/image-20250714002849-3f2v0ne.png"><img  loading="lazy" src='/image/image-20250714002849-3f2v0ne.png'    height="65%" width="65%"></a>
 <ul>
 <li>B</li>
 </ul>
@@ -693,51 +530,19 @@
     <a href="#%e4%bb%a5%e5%a4%aa%e7%bd%91%e4%ba%a4%e6%8d%a2%e5%99%a8%e7%9a%84%e7%94%9f%e6%88%90%e5%bc%8f%e5%8d%8f%e8%ae%aestp" class="header-mark"></a>以太网交换器的生成式协议STP</h4><ul>
 <li>
 <p>如何提高以太网的可靠性？</p>
-<p><a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="/image/image-20250714003216-rr8awfc.png" data-thumbnail="/image/image-20250714003216-rr8awfc.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250714003216-rr8awfc.png"
-              srcset="/image/image-20250714003216-rr8awfc.png, /image/image-20250714003216-rr8awfc.png 1.5x, /image/image-20250714003216-rr8awfc.png 2x"
-              
-              alt="/image/image-20250714003216-rr8awfc.png" height="30%"  width="30%" >
-      </a>
-<a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="/image/image-20250714003216-rr8awfc.png" data-thumbnail="/image/image-20250714003216-rr8awfc.png">
-          <img
-              
-              loading="lazy"
-              src="/image/image-20250714003216-rr8awfc.png"
-              srcset="/image/image-20250714003216-rr8awfc.png, /image/image-20250714003216-rr8awfc.png 1.5x, /image/image-20250714003216-rr8awfc.png 2x"
-              
-              alt="/image/image-20250714003216-rr8awfc.png" height="30%"  width="30%" >
-      </a></p>
+<p><a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="" data-thumbnail="/image/image-20250714003216-rr8awfc.png"><img  loading="lazy" src='/image/image-20250714003216-rr8awfc.png'    height="30%" width="30%"></a>
+<a class="lightgallery" href="/image/image-20250714003216-rr8awfc.png" title="" data-thumbnail="/image/image-20250714003216-rr8awfc.png"><img  loading="lazy" src='/image/image-20250714003216-rr8awfc.png'    height="30%" width="30%"></a></p>
 <ul>
 <li>可以通过添加<strong>冗余链路</strong>的方法，来提高以太网的可靠性
 <ul>
 <li>
 <p>如在B和C之间添加一个冗余链路后，哪怕一个链路出现故障，整个网络仍然是通的</p>
-<a class="lightgallery" href="/image/image-20250714003339-3st6fxt.png" title="/image/image-20250714003339-3st6fxt.png" data-thumbnail="/image/image-20250714003339-3st6fxt.png">
-              <img
-                  
-                  loading="lazy"
-                  src="/image/image-20250714003339-3st6fxt.png"
-                  srcset="/image/image-20250714003339-3st6fxt.png, /image/image-20250714003339-3st6fxt.png 1.5x, /image/image-20250714003339-3st6fxt.png 2x"
-                  
-                  alt="/image/image-20250714003339-3st6fxt.png" height="30%"  width="30%" >
-          </a>
+<a class="lightgallery" href="/image/image-20250714003339-3st6fxt.png" title="" data-thumbnail="/image/image-20250714003339-3st6fxt.png"><img  loading="lazy" src='/image/image-20250714003339-3st6fxt.png'    height="30%" width="30%"></a>
 </li>
 <li>
 <p>但是，冗余链路也会带来一些负面效应，形成<strong>网络环路</strong>，而网络环路会带来以下问题</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250714003854-f8cz71g.png" title="/image/image-20250714003854-f8cz71g.png" data-thumbnail="/image/image-20250714003854-f8cz71g.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714003854-f8cz71g.png"
-            srcset="/image/image-20250714003854-f8cz71g.png, /image/image-20250714003854-f8cz71g.png 1.5x, /image/image-20250714003854-f8cz71g.png 2x"
-            
-            alt="/image/image-20250714003854-f8cz71g.png" height="40%"  width="40%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250714003854-f8cz71g.png" title="" data-thumbnail="/image/image-20250714003854-f8cz71g.png"><img  loading="lazy" src='/image/image-20250714003854-f8cz71g.png'    height="40%" width="40%"></a></li>
 <li>相同的广播帧会在各交换机之间反复转发，分别按照顺时针和逆时针方向同时兜圈，这就是所谓的<strong>广播风波</strong></li>
 <li>广播风暴：大量消耗网络资源，使得网络无法正常转发其他数据帧</li>
 <li>主机收到重复的广播帧后也会消耗大量的主机资源</li>
@@ -756,24 +561,8 @@
 </li>
 <li>
 <p>举例</p>
-<p><a class="lightgallery" href="/image/image-20250714004357-8yx1xei.png" title="/image/image-20250714004357-8yx1xei.png" data-thumbnail="/image/image-20250714004357-8yx1xei.png">
-            <img
-                
-                loading="lazy"
-                src="/image/image-20250714004357-8yx1xei.png"
-                srcset="/image/image-20250714004357-8yx1xei.png, /image/image-20250714004357-8yx1xei.png 1.5x, /image/image-20250714004357-8yx1xei.png 2x"
-                
-                alt="/image/image-20250714004357-8yx1xei.png" height="30%"  width="30%" >
-        </a>
-<a class="lightgallery" href="/image/image-20250714004420-rdt9wjx.png" title="/image/image-20250714004420-rdt9wjx.png" data-thumbnail="/image/image-20250714004420-rdt9wjx.png">
-            <img
-                
-                loading="lazy"
-                src="/image/image-20250714004420-rdt9wjx.png"
-                srcset="/image/image-20250714004420-rdt9wjx.png, /image/image-20250714004420-rdt9wjx.png 1.5x, /image/image-20250714004420-rdt9wjx.png 2x"
-                
-                alt="/image/image-20250714004420-rdt9wjx.png" height="30%"  width="30%" >
-        </a></p>
+<p><a class="lightgallery" href="/image/image-20250714004357-8yx1xei.png" title="" data-thumbnail="/image/image-20250714004357-8yx1xei.png"><img  loading="lazy" src='/image/image-20250714004357-8yx1xei.png'    height="30%" width="30%"></a>
+<a class="lightgallery" href="/image/image-20250714004420-rdt9wjx.png" title="" data-thumbnail="/image/image-20250714004420-rdt9wjx.png"><img  loading="lazy" src='/image/image-20250714004420-rdt9wjx.png'    height="30%" width="30%"></a></p>
 <ul>
 <li>当机器如图进行物理连接后，就会形成多个环路</li>
 <li>实际上，各交换机之间，按照生成树协议中规定的生成树算法，交互一些参数后，每个交换机就可以判断出自己应该阻塞自己的哪些接口，如右图所示，形成没有环路的网络</li>
@@ -783,17 +572,11 @@
 </ul>
 <a target="_blank" href="/posts/net/n05_stp/" title="软考备考 | 生成树协议" class="friend-link" rel="noopener noreferrer">
         <div class="friend-link-div">
-            <div class="friend-link-avatar"><img
-            
-            loading="lazy"
-            src="https://zhangzifan.com/uploads/2018/04/link.png"
-            srcset="https://zhangzifan.com/uploads/2018/04/link.png, https://zhangzifan.com/uploads/2018/04/link.png 1.5x, https://zhangzifan.com/uploads/2018/04/link.png 2x"
-            sizes="auto"
-            alt="https://zhangzifan.com/uploads/2018/04/link.png"
-            title="https://zhangzifan.com/uploads/2018/04/link.png" ></div>
+            <div class="friend-link-avatar"><img   src='https://zhangzifan.com/uploads/2018/04/link.png'     ></div>
             <div class="friend-link-info">
                 <div class="friend-name-div">
-                    <i class="fas fa-user-circle fa-fw"></i>
+                    <svg class="icon"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg>
                     <i class="friend-name">软考备考 | 生成树协议</i>
                 </div>
                 <p class="friend-bio"></p>
@@ -831,15 +614,7 @@
 <li>
 <p>因而，除非不得以，网络中的主机应尽量不使用广播；但实际上，网络中会频繁出现广播信息</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714005559-q54pmz9.png" title="image" data-thumbnail="/image/image-20250714005559-q54pmz9.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714005559-q54pmz9.png"
-            srcset="/image/image-20250714005559-q54pmz9.png, /image/image-20250714005559-q54pmz9.png 1.5x, /image/image-20250714005559-q54pmz9.png 2x"
-            
-            alt="/image/image-20250714005559-q54pmz9.png" height="474"  width="954" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250714005559-q54pmz9.png'   alt="image" height="474" width="954">​</li>
 </ul>
 </li>
 </ul>
@@ -858,15 +633,7 @@
 <li>
 <p>使用路由器可以隔离广播域</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714005658-t2nfkhy.png" title="image" data-thumbnail="/image/image-20250714005658-t2nfkhy.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714005658-t2nfkhy.png"
-            srcset="/image/image-20250714005658-t2nfkhy.png, /image/image-20250714005658-t2nfkhy.png 1.5x, /image/image-20250714005658-t2nfkhy.png 2x"
-            
-            alt="/image/image-20250714005658-t2nfkhy.png" height="302"  width="840" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250714005658-t2nfkhy.png'   alt="image" height="302" width="840">​</li>
 <li>路由器工作在网络结构的第三层（网络层）</li>
 <li>由于路由器默认情况下，不对广播数据包进行转发，从而进行隔离</li>
 <li>但路由器的成本较高，在局域网内部全部使用路由器来隔离广播域时不现实的</li>
@@ -878,15 +645,7 @@
 <li>
 <p>虚拟局域网VLAN（Virtual Local Area Network）是一种<u>将局域网内的设备分成与物理位置无关的逻辑组</u>的技术，这些逻辑组具有某些共同的需求</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250714010103-p3726in.png" title="image" data-thumbnail="/image/image-20250714010103-p3726in.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714010103-p3726in.png"
-            srcset="/image/image-20250714010103-p3726in.png, /image/image-20250714010103-p3726in.png 1.5x, /image/image-20250714010103-p3726in.png 2x"
-            
-            alt="/image/image-20250714010103-p3726in.png" height="622"  width="1120" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250714010103-p3726in.png'   alt="image" height="622" width="1120">​</li>
 <li>相同虚拟网络下的设备可以广播通信，不同的虚拟局域网下设备不可以广播通信</li>
 </ul>
 </li>
@@ -905,15 +664,7 @@
 <p>也称为<u><strong>Dot One Q帧</strong></u>，其是对以太网MAC帧格式进行了扩展，插入了4字节的VLAN标记</p>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250714010422-1438xgv.png" title="image" data-thumbnail="/image/image-20250714010422-1438xgv.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250714010422-1438xgv.png"
-            srcset="/image/image-20250714010422-1438xgv.png, /image/image-20250714010422-1438xgv.png 1.5x, /image/image-20250714010422-1438xgv.png 2x"
-            
-            alt="/image/image-20250714010422-1438xgv.png" height="180"  width="1490" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250714010422-1438xgv.png'   alt="image" height="180" width="1490">​</p>
 </li>
 <li>
 <p>VLAN标记的最后12比特称为VLAN表示VID，它唯一标志了以太网帧属于哪一个VLAN</p>
@@ -960,24 +711,8 @@
 <li>交换机上电后，默认的端口类型为Access</li>
 <li>Access端口接收处理帧的方法为：一般<u>只接受未打标签的普通以太网MAC帧</u>，根据接收帧的端口的PVID给帧“打标签”，即插入4字节的VLAN标记字段，字段中VID取值与端口的PVID取值相同</li>
 <li>Access端口发送处理方法：<span data-type="text" style="background-color: var(--b3-card-error-background); color: var(--b3-card-error-color);">若帧中的VID与端口的PVID相等，则去标签并转发该帧，否则不转发</span></li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715093258-bb1528d.png" title="image" data-thumbnail="/image/image-20250715093258-bb1528d.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715093258-bb1528d.png"
-            srcset="/image/image-20250715093258-bb1528d.png, /image/image-20250715093258-bb1528d.png 1.5x, /image/image-20250715093258-bb1528d.png 2x"
-            
-            alt="/image/image-20250715093258-bb1528d.png" height="358"  width="660" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715093402-al3p46t.png" title="image" data-thumbnail="/image/image-20250715093402-al3p46t.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715093402-al3p46t.png"
-            srcset="/image/image-20250715093402-al3p46t.png, /image/image-20250715093402-al3p46t.png 1.5x, /image/image-20250715093402-al3p46t.png 2x"
-            
-            alt="/image/image-20250715093402-al3p46t.png" height="382"  width="762" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715093258-bb1528d.png'   alt="image" height="358" width="660">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715093402-al3p46t.png'   alt="image" height="382" width="762">​</li>
 </ul>
 </li>
 <li>
@@ -1000,41 +735,17 @@
 <p>Trunk端口接收处理方法为：接收到未打标签的帧后，根据接收帧端口的PVID给帧打标签，即插入4字节VLAN标记字段，字段中的VID取值与端口的PVID取值相同</p>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250715094059-vubicxt.png" title="image" data-thumbnail="/image/image-20250715094059-vubicxt.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715094059-vubicxt.png"
-            srcset="/image/image-20250715094059-vubicxt.png, /image/image-20250715094059-vubicxt.png 1.5x, /image/image-20250715094059-vubicxt.png 2x"
-            
-            alt="/image/image-20250715094059-vubicxt.png" height="612"  width="678" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250715094059-vubicxt.png'   alt="image" height="612" width="678">​</p>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250715094212-fha0g95.png" title="image" data-thumbnail="/image/image-20250715094212-fha0g95.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715094212-fha0g95.png"
-            srcset="/image/image-20250715094212-fha0g95.png, /image/image-20250715094212-fha0g95.png 1.5x, /image/image-20250715094212-fha0g95.png 2x"
-            
-            alt="/image/image-20250715094212-fha0g95.png" height="606"  width="672" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250715094212-fha0g95.png'   alt="image" height="606" width="672">​</p>
 </li>
 </ul>
 </li>
 <li>
 <p>练习</p>
 <ul>
-<li><figure><a class="lightgallery" href="/image/image-20250715094532-nke8jz7.png" title="image" data-thumbnail="/image/image-20250715094532-nke8jz7.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715094532-nke8jz7.png"
-            srcset="/image/image-20250715094532-nke8jz7.png, /image/image-20250715094532-nke8jz7.png 1.5x, /image/image-20250715094532-nke8jz7.png 2x"
-            
-            alt="/image/image-20250715094532-nke8jz7.png" height="624"  width="1550" >
-    </a></figure>​</li>
+<li><img class="tw-inline" loading="lazy" src='/image/image-20250715094532-nke8jz7.png'   alt="image" height="624" width="1550">​</li>
 </ul>
 </li>
 <li>
@@ -1068,15 +779,7 @@
 <li>
 <p>应用举例</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715095150-zo7cv5x.png" title="image" data-thumbnail="/image/image-20250715095150-zo7cv5x.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715095150-zo7cv5x.png"
-            srcset="/image/image-20250715095150-zo7cv5x.png, /image/image-20250715095150-zo7cv5x.png 1.5x, /image/image-20250715095150-zo7cv5x.png 2x"
-            
-            alt="/image/image-20250715095150-zo7cv5x.png" height="458"  width="752" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715095150-zo7cv5x.png'   alt="image" height="458" width="752">​</li>
 </ul>
 </li>
 <li>
@@ -1094,16 +797,10 @@
 <p>‍</p>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -1113,39 +810,86 @@
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/net/n04_csma_cd/" class="prev" rel="prev" title="网络 | 04. 媒体接入控制"><i class="fas fa-angle-left fa-fw"></i>网络 | 04. 媒体接入控制</a>
-            <a href="/posts/net/n06_net_route/" class="next" rel="next" title="网络 | 06. 网络层与IP数据报的路由与交付">网络 | 06. 网络层与IP数据报的路由与交付<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n04_csma_cd/" class="prev" rel="prev" title="网络 | 04. 媒体接入控制"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络 | 04. 媒体接入控制</a>
+            <a href="/posts/net/n06_net_route/" class="next" rel="next" title="网络 | 06. 网络层与IP数据报的路由与交付">网络 | 06. 网络层与IP数据报的路由与交付<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

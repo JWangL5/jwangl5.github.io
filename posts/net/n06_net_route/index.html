@@ -1,82 +1,117 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>网络 | 06. 网络层与IP数据报的路由与交付 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 06. 网络层与IP数据报的路由与交付" />
-<meta property="og:description" content="250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/net/n06_net_route/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-07-15T00:00:00+08:00" />
-<meta property="article:modified_time" content="2025-07-15T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>网络 | 06. 网络层与IP数据报的路由与交付 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n06_net_route/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络 | 06. 网络层与IP数据报的路由与交付">
+  <meta property="og:description" content="250715 网络层与IPv4 网络层">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-15T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-07-15T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 06. 网络层与IP数据报的路由与交付"/>
-<meta name="twitter:description" content="250715 网络层与IPv4 网络层 主要任务是实现网络互联，进而实现数据包在各网络之间的传输 如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络 | 06. 网络层与IP数据报的路由与交付">
+  <meta name="twitter:description" content="250715 网络层与IPv4 网络层">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/net/n06_net_route/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n07_ip_protocol/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/net/n06_net_route/" /><link rel="prev" href="http://localhost:1313/posts/net/n05_mac_ip_arp/" /><link rel="next" href="http://localhost:1313/posts/net/n07_ip_protocol/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 06. 网络层与IP数据报的路由与交付",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n06_net_route\/"
+            "@id": "http://localhost:1313/posts/net/n06_net_route/"
         },"genre": "posts","wordcount":  5590 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/net\/n06_net_route\/","datePublished": "2025-07-15T00:00:00+08:00","dateModified": "2025-07-15T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n06_net_route/","datePublished": "2025-07-15T00:00:00+08:00","dateModified": "2025-07-15T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +122,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,15 +153,32 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 06. 网络层与IP数据报的路由与交付</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#250715-网络层与ipv4">250715 网络层与IPv4</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-07-15" data-pagefind-body>网络 | 06. 网络层与IP数据报的路由与交付</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5590 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h3 id="250715-网络层与ipv4" class="headerLink">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-07-15">2025-07-15</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 5590 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 25 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><h3 id="250715-网络层与ipv4" class="headerLink">
     <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><ul>
 <li>
 <p>网络层</p>
@@ -131,15 +189,7 @@
 <li>
 <p>如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现物理层和数据链路层即可；但如果需要将其互连起来，形成一个更大的互联网，就需要使用网络层互连设备 路由器，就必须实现网络层</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715095644-mbggtco.png" title="image" data-thumbnail="/image/image-20250715095644-mbggtco.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715095644-mbggtco.png"
-            srcset="/image/image-20250715095644-mbggtco.png, /image/image-20250715095644-mbggtco.png 1.5x, /image/image-20250715095644-mbggtco.png 2x"
-            
-            alt="/image/image-20250715095644-mbggtco.png" height="298"  width="520" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715095644-mbggtco.png'   alt="image" height="298" width="520">​</li>
 </ul>
 </li>
 <li>
@@ -157,15 +207,7 @@
 <p>网络层寻址问题</p>
 <ul>
 <li>TCP/IP协议体系的网际层使用IP地址</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715100457-8gitbz1.png" title="image" data-thumbnail="/image/image-20250715100457-8gitbz1.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715100457-8gitbz1.png"
-            srcset="/image/image-20250715100457-8gitbz1.png, /image/image-20250715100457-8gitbz1.png 1.5x, /image/image-20250715100457-8gitbz1.png 2x"
-            
-            alt="/image/image-20250715100457-8gitbz1.png" height="398"  width="956" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715100457-8gitbz1.png'   alt="image" height="398" width="956">​</li>
 <li>前几个数字相同，表示网络编号，后一个数字不同，表示该网络中不同的路由器接口</li>
 </ul>
 </li>
@@ -191,15 +233,7 @@
 <li>
 <p>由于TCP/IP协议栈的网络层使用<strong>网际协议IP</strong>，它是整个协议栈的核心协议，因此在TCP/IP协议栈中网络层常称为网际层</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715101333-ghy5ryj.png" title="image" data-thumbnail="/image/image-20250715101333-ghy5ryj.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715101333-ghy5ryj.png"
-            srcset="/image/image-20250715101333-ghy5ryj.png, /image/image-20250715101333-ghy5ryj.png 1.5x, /image/image-20250715101333-ghy5ryj.png 2x"
-            
-            alt="/image/image-20250715101333-ghy5ryj.png" height="488"  width="1102" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715101333-ghy5ryj.png'   alt="image" height="488" width="1102">​</li>
 </ul>
 </li>
 </ul>
@@ -240,47 +274,15 @@
 <li>
 <p>概述</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715103449-a21onxp.png" title="image" data-thumbnail="/image/image-20250715103449-a21onxp.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715103449-a21onxp.png"
-            srcset="/image/image-20250715103449-a21onxp.png, /image/image-20250715103449-a21onxp.png 1.5x, /image/image-20250715103449-a21onxp.png 2x"
-            
-            alt="/image/image-20250715103449-a21onxp.png" height="662"  width="1344" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715103449-a21onxp.png'   alt="image" height="662" width="1344">​</li>
 </ul>
 </li>
 <li>
 <p>表示方法：点分十进制表示</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715103544-ih2eetc.png" title="image" data-thumbnail="/image/image-20250715103544-ih2eetc.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715103544-ih2eetc.png"
-            srcset="/image/image-20250715103544-ih2eetc.png, /image/image-20250715103544-ih2eetc.png 1.5x, /image/image-20250715103544-ih2eetc.png 2x"
-            
-            alt="/image/image-20250715103544-ih2eetc.png" height="700"  width="1500" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715103618-pfst574.png" title="image" data-thumbnail="/image/image-20250715103618-pfst574.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715103618-pfst574.png"
-            srcset="/image/image-20250715103618-pfst574.png, /image/image-20250715103618-pfst574.png 1.5x, /image/image-20250715103618-pfst574.png 2x"
-            
-            alt="/image/image-20250715103618-pfst574.png" height="712"  width="1506" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715103650-xj6zt7f.png" title="image" data-thumbnail="/image/image-20250715103650-xj6zt7f.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715103650-xj6zt7f.png"
-            srcset="/image/image-20250715103650-xj6zt7f.png, /image/image-20250715103650-xj6zt7f.png 1.5x, /image/image-20250715103650-xj6zt7f.png 2x"
-            
-            alt="/image/image-20250715103650-xj6zt7f.png" height="684"  width="1492" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715103544-ih2eetc.png'   alt="image" height="700" width="1500">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715103618-pfst574.png'   alt="image" height="712" width="1506">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715103650-xj6zt7f.png'   alt="image" height="684" width="1492">​</li>
 </ul>
 </li>
 <li>
@@ -290,15 +292,7 @@
 <p>5类地址（第一个历史阶段）</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250715103758-74m3l3d.png" title="image" data-thumbnail="/image/image-20250715103758-74m3l3d.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715103758-74m3l3d.png"
-            srcset="/image/image-20250715103758-74m3l3d.png, /image/image-20250715103758-74m3l3d.png 1.5x, /image/image-20250715103758-74m3l3d.png 2x"
-            
-            alt="/image/image-20250715103758-74m3l3d.png" height="698"  width="1546" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250715103758-74m3l3d.png'   alt="image" height="698" width="1546">​</p>
 </li>
 <li>
 <p>A类</p>
@@ -351,33 +345,9 @@
 <li>
 <p>练习</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715121700-3wecws0.png" title="image" data-thumbnail="/image/image-20250715121700-3wecws0.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715121700-3wecws0.png"
-            srcset="/image/image-20250715121700-3wecws0.png, /image/image-20250715121700-3wecws0.png 1.5x, /image/image-20250715121700-3wecws0.png 2x"
-            
-            alt="/image/image-20250715121700-3wecws0.png" height="724"  width="1476" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715121819-kqmhc6p.png" title="image" data-thumbnail="/image/image-20250715121819-kqmhc6p.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715121819-kqmhc6p.png"
-            srcset="/image/image-20250715121819-kqmhc6p.png, /image/image-20250715121819-kqmhc6p.png 1.5x, /image/image-20250715121819-kqmhc6p.png 2x"
-            
-            alt="/image/image-20250715121819-kqmhc6p.png" height="520"  width="1278" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250715122002-8des4g1.png" title="image" data-thumbnail="/image/image-20250715122002-8des4g1.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250715122002-8des4g1.png"
-            srcset="/image/image-20250715122002-8des4g1.png, /image/image-20250715122002-8des4g1.png 1.5x, /image/image-20250715122002-8des4g1.png 2x"
-            
-            alt="/image/image-20250715122002-8des4g1.png" height="714"  width="1494" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715121700-3wecws0.png'   alt="image" height="724" width="1476">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715121819-kqmhc6p.png'   alt="image" height="520" width="1278">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250715122002-8des4g1.png'   alt="image" height="714" width="1494">​</li>
 </ul>
 </li>
 </ul>
@@ -411,15 +381,7 @@
 <li>
 <p>例如，可以借用16位主机号中的8位作为子网号，就可以将剩余IP地址划分开，分给不同的网络</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731101715-4s91oz2.png" title="image" data-thumbnail="/image/image-20250731101715-4s91oz2.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731101715-4s91oz2.png"
-            srcset="/image/image-20250731101715-4s91oz2.png, /image/image-20250731101715-4s91oz2.png 1.5x, /image/image-20250731101715-4s91oz2.png 2x"
-            
-            alt="/image/image-20250731101715-4s91oz2.png" height="742"  width="1372" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731101715-4s91oz2.png'   alt="image" height="742" width="1372">​</li>
 </ul>
 </li>
 </ul>
@@ -434,70 +396,22 @@
 <li>32位划分子网的IP地址：网络号+子网号+主机号</li>
 <li>子网掩码使用连续的比特1来对应网络号和子网号，用连续的比特0来对应主机号</li>
 <li>将划分子网的IP地址，与其相应的子网掩码进行逻辑与运算，就可以得到IPv4地址所在子网的网络地址</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731102223-6jo9lld.png" title="image" data-thumbnail="/image/image-20250731102223-6jo9lld.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731102223-6jo9lld.png"
-            srcset="/image/image-20250731102223-6jo9lld.png, /image/image-20250731102223-6jo9lld.png 1.5x, /image/image-20250731102223-6jo9lld.png 2x"
-            
-            alt="/image/image-20250731102223-6jo9lld.png" height="326"  width="1558" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731102223-6jo9lld.png'   alt="image" height="326" width="1558">​</li>
 </ul>
 </li>
 <li>
 <p>举例</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731102340-88j8fo6.png" title="image" data-thumbnail="/image/image-20250731102340-88j8fo6.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731102340-88j8fo6.png"
-            srcset="/image/image-20250731102340-88j8fo6.png, /image/image-20250731102340-88j8fo6.png 1.5x, /image/image-20250731102340-88j8fo6.png 2x"
-            
-            alt="/image/image-20250731102340-88j8fo6.png" height="730"  width="1508" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731102538-v9kfymi.png" title="image" data-thumbnail="/image/image-20250731102538-v9kfymi.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731102538-v9kfymi.png"
-            srcset="/image/image-20250731102538-v9kfymi.png, /image/image-20250731102538-v9kfymi.png 1.5x, /image/image-20250731102538-v9kfymi.png 2x"
-            
-            alt="/image/image-20250731102538-v9kfymi.png" height="600"  width="1606" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731102614-3nrodwu.png" title="image" data-thumbnail="/image/image-20250731102614-3nrodwu.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731102614-3nrodwu.png"
-            srcset="/image/image-20250731102614-3nrodwu.png, /image/image-20250731102614-3nrodwu.png 1.5x, /image/image-20250731102614-3nrodwu.png 2x"
-            
-            alt="/image/image-20250731102614-3nrodwu.png" height="738"  width="1502" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731103415-sd07329.png" title="image" data-thumbnail="/image/image-20250731103415-sd07329.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731103415-sd07329.png"
-            srcset="/image/image-20250731103415-sd07329.png, /image/image-20250731103415-sd07329.png 1.5x, /image/image-20250731103415-sd07329.png 2x"
-            
-            alt="/image/image-20250731103415-sd07329.png" height="142"  width="1356" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731102340-88j8fo6.png'   alt="image" height="730" width="1508">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731102538-v9kfymi.png'   alt="image" height="600" width="1606">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731102614-3nrodwu.png'   alt="image" height="738" width="1502">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731103415-sd07329.png'   alt="image" height="142" width="1356">​</li>
 </ul>
 </li>
 <li>
 <p>默认子网掩码是指，在未划分子网情况下使用的子网掩码</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731103608-kt4aryh.png" title="image" data-thumbnail="/image/image-20250731103608-kt4aryh.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731103608-kt4aryh.png"
-            srcset="/image/image-20250731103608-kt4aryh.png, /image/image-20250731103608-kt4aryh.png 1.5x, /image/image-20250731103608-kt4aryh.png 2x"
-            
-            alt="/image/image-20250731103608-kt4aryh.png" height="734"  width="1104" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731103608-kt4aryh.png'   alt="image" height="734" width="1104">​</li>
 </ul>
 </li>
 </ul>
@@ -510,52 +424,20 @@
 <li>
 <p>问题引入</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731103752-9gagezx.png" title="image" data-thumbnail="/image/image-20250731103752-9gagezx.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731103752-9gagezx.png"
-            srcset="/image/image-20250731103752-9gagezx.png, /image/image-20250731103752-9gagezx.png 1.5x, /image/image-20250731103752-9gagezx.png 2x"
-            
-            alt="/image/image-20250731103752-9gagezx.png" height="566"  width="1298" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731103752-9gagezx.png'   alt="image" height="566" width="1298">​</li>
 </ul>
 </li>
 <li>
 <p>CIDR</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250731103857-sllosfq.png" title="image" data-thumbnail="/image/image-20250731103857-sllosfq.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731103857-sllosfq.png"
-            srcset="/image/image-20250731103857-sllosfq.png, /image/image-20250731103857-sllosfq.png 1.5x, /image/image-20250731103857-sllosfq.png 2x"
-            
-            alt="/image/image-20250731103857-sllosfq.png" height="724"  width="1452" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250731103857-sllosfq.png'   alt="image" height="724" width="1452">​</p>
 </li>
 <li>
 <p>举例</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731104008-yizmi2g.png" title="image" data-thumbnail="/image/image-20250731104008-yizmi2g.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731104008-yizmi2g.png"
-            srcset="/image/image-20250731104008-yizmi2g.png, /image/image-20250731104008-yizmi2g.png 1.5x, /image/image-20250731104008-yizmi2g.png 2x"
-            
-            alt="/image/image-20250731104008-yizmi2g.png" height="748"  width="1526" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731104518-5zzaakv.png" title="image" data-thumbnail="/image/image-20250731104518-5zzaakv.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731104518-5zzaakv.png"
-            srcset="/image/image-20250731104518-5zzaakv.png, /image/image-20250731104518-5zzaakv.png 1.5x, /image/image-20250731104518-5zzaakv.png 2x"
-            
-            alt="/image/image-20250731104518-5zzaakv.png" height="740"  width="1484" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731104008-yizmi2g.png'   alt="image" height="748" width="1526">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731104518-5zzaakv.png'   alt="image" height="740" width="1484">​</li>
 </ul>
 </li>
 </ul>
@@ -564,37 +446,13 @@
 <p>路由聚合</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250731104707-aj4wwaq.png" title="image" data-thumbnail="/image/image-20250731104707-aj4wwaq.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731104707-aj4wwaq.png"
-            srcset="/image/image-20250731104707-aj4wwaq.png, /image/image-20250731104707-aj4wwaq.png 1.5x, /image/image-20250731104707-aj4wwaq.png 2x"
-            
-            alt="/image/image-20250731104707-aj4wwaq.png" height="772"  width="1540" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250731104707-aj4wwaq.png'   alt="image" height="772" width="1540">​</p>
 </li>
 <li>
 <p>练习</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731104815-nml75sl.png" title="image" data-thumbnail="/image/image-20250731104815-nml75sl.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731104815-nml75sl.png"
-            srcset="/image/image-20250731104815-nml75sl.png, /image/image-20250731104815-nml75sl.png 1.5x, /image/image-20250731104815-nml75sl.png 2x"
-            
-            alt="/image/image-20250731104815-nml75sl.png" height="708"  width="1392" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731105049-9xcd4iz.png" title="image" data-thumbnail="/image/image-20250731105049-9xcd4iz.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731105049-9xcd4iz.png"
-            srcset="/image/image-20250731105049-9xcd4iz.png, /image/image-20250731105049-9xcd4iz.png 1.5x, /image/image-20250731105049-9xcd4iz.png 2x"
-            
-            alt="/image/image-20250731105049-9xcd4iz.png" height="738"  width="1308" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731104815-nml75sl.png'   alt="image" height="708" width="1392">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731105049-9xcd4iz.png'   alt="image" height="738" width="1308">​</li>
 </ul>
 </li>
 </ul>
@@ -624,33 +482,9 @@
 <li>
 <p>举例</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731121449-01kbgda.png" title="image" data-thumbnail="/image/image-20250731121449-01kbgda.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731121449-01kbgda.png"
-            srcset="/image/image-20250731121449-01kbgda.png, /image/image-20250731121449-01kbgda.png 1.5x, /image/image-20250731121449-01kbgda.png 2x"
-            
-            alt="/image/image-20250731121449-01kbgda.png" height="654"  width="1508" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731121540-wcn5q9b.png" title="image" data-thumbnail="/image/image-20250731121540-wcn5q9b.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731121540-wcn5q9b.png"
-            srcset="/image/image-20250731121540-wcn5q9b.png, /image/image-20250731121540-wcn5q9b.png 1.5x, /image/image-20250731121540-wcn5q9b.png 2x"
-            
-            alt="/image/image-20250731121540-wcn5q9b.png" height="528"  width="1522" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731121709-662y75y.png" title="image" data-thumbnail="/image/image-20250731121709-662y75y.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731121709-662y75y.png"
-            srcset="/image/image-20250731121709-662y75y.png, /image/image-20250731121709-662y75y.png 1.5x, /image/image-20250731121709-662y75y.png 2x"
-            
-            alt="/image/image-20250731121709-662y75y.png" height="494"  width="854" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731121449-01kbgda.png'   alt="image" height="654" width="1508">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731121540-wcn5q9b.png'   alt="image" height="528" width="1522">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731121709-662y75y.png'   alt="image" height="494" width="854">​</li>
 </ul>
 </li>
 </ul>
@@ -667,24 +501,8 @@
 <li>
 <p>举例：</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731121758-oh7rqma.png" title="image" data-thumbnail="/image/image-20250731121758-oh7rqma.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731121758-oh7rqma.png"
-            srcset="/image/image-20250731121758-oh7rqma.png, /image/image-20250731121758-oh7rqma.png 1.5x, /image/image-20250731121758-oh7rqma.png 2x"
-            
-            alt="/image/image-20250731121758-oh7rqma.png" height="654"  width="1494" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731122047-wzg3vkn.png" title="image" data-thumbnail="/image/image-20250731122047-wzg3vkn.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731122047-wzg3vkn.png"
-            srcset="/image/image-20250731122047-wzg3vkn.png, /image/image-20250731122047-wzg3vkn.png 1.5x, /image/image-20250731122047-wzg3vkn.png 2x"
-            
-            alt="/image/image-20250731122047-wzg3vkn.png" height="644"  width="1470" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731121758-oh7rqma.png'   alt="image" height="654" width="1494">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731122047-wzg3vkn.png'   alt="image" height="644" width="1470">​</li>
 </ul>
 </li>
 </ul>
@@ -702,15 +520,7 @@
 <p>IP数据报的转发与发送过程</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250731122505-unm663s.png" title="image" data-thumbnail="/image/image-20250731122505-unm663s.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731122505-unm663s.png"
-            srcset="/image/image-20250731122505-unm663s.png, /image/image-20250731122505-unm663s.png 1.5x, /image/image-20250731122505-unm663s.png 2x"
-            
-            alt="/image/image-20250731122505-unm663s.png" height="186"  width="1346" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250731122505-unm663s.png'   alt="image" height="186" width="1346">​</p>
 </li>
 <li>
 <p>2个过程：主机发送IP数据报，路由器转发IP数据报</p>
@@ -725,15 +535,7 @@
 <p><strong>在不同网络中的数据，需要通过路由器间接交付</strong></p>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250731122649-osafutv.png" title="image" data-thumbnail="/image/image-20250731122649-osafutv.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731122649-osafutv.png"
-            srcset="/image/image-20250731122649-osafutv.png, /image/image-20250731122649-osafutv.png 1.5x, /image/image-20250731122649-osafutv.png 2x"
-            
-            alt="/image/image-20250731122649-osafutv.png" height="582"  width="1418" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250731122649-osafutv.png'   alt="image" height="582" width="1418">​</p>
 </li>
 <li>
 <p>源主机如何知道目的主机是否与自己在同一个网络中？</p>
@@ -746,15 +548,7 @@
 <p><strong>当网络不通时，需要通过路由器进行转发</strong>，这时源主机怎么知道是否有路由器连接目的主机？以及怎么找到是哪个路由器呢？</p>
 <ul>
 <li>每个子网中，都需要被指定一台路由器，数据需要经由该路由器与外界进行转发；这个路由器也被称做<strong>默认网关</strong></li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731143344-8nq6a8r.png" title="image" data-thumbnail="/image/image-20250731143344-8nq6a8r.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731143344-8nq6a8r.png"
-            srcset="/image/image-20250731143344-8nq6a8r.png, /image/image-20250731143344-8nq6a8r.png 1.5x, /image/image-20250731143344-8nq6a8r.png 2x"
-            
-            alt="/image/image-20250731143344-8nq6a8r.png" height="600"  width="1520" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731143344-8nq6a8r.png'   alt="image" height="600" width="1520">​</li>
 </ul>
 </li>
 <li>
@@ -775,15 +569,7 @@
 <ul>
 <li>若找到匹配的条目，则转发给条目中指示的下一跳（可能自己的另一个接口，或者另一个直连的路由器）</li>
 <li>若找不到，则丢弃该IP数据报并通告源主机</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250731144310-hyxegrt.png" title="image" data-thumbnail="/image/image-20250731144310-hyxegrt.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250731144310-hyxegrt.png"
-            srcset="/image/image-20250731144310-hyxegrt.png, /image/image-20250731144310-hyxegrt.png 1.5x, /image/image-20250731144310-hyxegrt.png 2x"
-            
-            alt="/image/image-20250731144310-hyxegrt.png" height="750"  width="1424" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250731144310-hyxegrt.png'   alt="image" height="750" width="1424">​</li>
 <li>这里其实还有一个关键问题，就是路由表结构的设计（可以是管理员配置的静态路由，也可以是路由器自动生成的动态路由），从而确保查询速度(之后进行讨论)</li>
 </ul>
 </li>
@@ -791,56 +577,16 @@
 <p>路由器对广播域的隔离：当源主机发送广播数据报时，当其被路由器接收时，不会进行转发，否则会出现广播风暴</p>
 <ul>
 <li>例如主机A发送了一个广播数据报，该网络中的所有机器都可以收到该广播，但是路由器在收到之后并不会转发</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806230702-b14sriq.png" title="image" data-thumbnail="/image/image-20250806230702-b14sriq.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806230702-b14sriq.png"
-            srcset="/image/image-20250806230702-b14sriq.png, /image/image-20250806230702-b14sriq.png 1.5x, /image/image-20250806230702-b14sriq.png 2x"
-            
-            alt="/image/image-20250806230702-b14sriq.png" height="682"  width="1594" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806230751-2chot5d.png" title="image" data-thumbnail="/image/image-20250806230751-2chot5d.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806230751-2chot5d.png"
-            srcset="/image/image-20250806230751-2chot5d.png, /image/image-20250806230751-2chot5d.png 1.5x, /image/image-20250806230751-2chot5d.png 2x"
-            
-            alt="/image/image-20250806230751-2chot5d.png" height="804"  width="1604" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806230702-b14sriq.png'   alt="image" height="682" width="1594">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806230751-2chot5d.png'   alt="image" height="804" width="1604">​</li>
 </ul>
 </li>
 <li>
 <p>练习</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806230844-r5uwhmt.png" title="image" data-thumbnail="/image/image-20250806230844-r5uwhmt.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806230844-r5uwhmt.png"
-            srcset="/image/image-20250806230844-r5uwhmt.png, /image/image-20250806230844-r5uwhmt.png 1.5x, /image/image-20250806230844-r5uwhmt.png 2x"
-            
-            alt="/image/image-20250806230844-r5uwhmt.png" height="540"  width="1378" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806231050-20qc691.png" title="image" data-thumbnail="/image/image-20250806231050-20qc691.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806231050-20qc691.png"
-            srcset="/image/image-20250806231050-20qc691.png, /image/image-20250806231050-20qc691.png 1.5x, /image/image-20250806231050-20qc691.png 2x"
-            
-            alt="/image/image-20250806231050-20qc691.png" height="822"  width="1448" >
-    </a></figure>​</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806231323-o1obuqs.png" title="image" data-thumbnail="/image/image-20250806231323-o1obuqs.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806231323-o1obuqs.png"
-            srcset="/image/image-20250806231323-o1obuqs.png, /image/image-20250806231323-o1obuqs.png 1.5x, /image/image-20250806231323-o1obuqs.png 2x"
-            
-            alt="/image/image-20250806231323-o1obuqs.png" height="844"  width="1726" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806230844-r5uwhmt.png'   alt="image" height="540" width="1378">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806231050-20qc691.png'   alt="image" height="822" width="1448">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806231323-o1obuqs.png'   alt="image" height="844" width="1726">​</li>
 </ul>
 </li>
 </ul>
@@ -859,15 +605,7 @@
 <p>静态路由配置</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250806231820-r69pv9w.png" title="image" data-thumbnail="/image/image-20250806231820-r69pv9w.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806231820-r69pv9w.png"
-            srcset="/image/image-20250806231820-r69pv9w.png, /image/image-20250806231820-r69pv9w.png 1.5x, /image/image-20250806231820-r69pv9w.png 2x"
-            
-            alt="/image/image-20250806231820-r69pv9w.png" height="702"  width="1688" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250806231820-r69pv9w.png'   alt="image" height="702" width="1688">​</p>
 </li>
 <li>
 <p>默认路由</p>
@@ -876,15 +614,7 @@
 <li>但是，因特网中包含有众多的网络，如果每一个网络都需要配置路由条目，那人工配置就会有巨大的工作量，且极大地降低了查表转发速度</li>
 <li>实际上，对于具有相同下一跳的不同目的网络的路由条目，可以使用默认路由条目来替代</li>
 <li>默认路由条目的目的网络地址为0.0.0.0，地址掩码也为0.0.0.0，其CIDR形式为0.0.0.0/0</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806232718-f2qxo66.png" title="image" data-thumbnail="/image/image-20250806232718-f2qxo66.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806232718-f2qxo66.png"
-            srcset="/image/image-20250806232718-f2qxo66.png, /image/image-20250806232718-f2qxo66.png 1.5x, /image/image-20250806232718-f2qxo66.png 2x"
-            
-            alt="/image/image-20250806232718-f2qxo66.png" height="798"  width="1690" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806232718-f2qxo66.png'   alt="image" height="798" width="1690">​</li>
 </ul>
 </li>
 <li>
@@ -892,15 +622,7 @@
 <ul>
 <li>一般用于网络管理人员对网络的管理和测试；或者在特定安全问题背景下，也可以采用特定的主机路由</li>
 <li>在特定主机路由条目中，其目的网络地址为该主机的IP地址，地址掩码为255.255.255.255（CIDR为32）</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806233038-ha6ba19.png" title="image" data-thumbnail="/image/image-20250806233038-ha6ba19.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806233038-ha6ba19.png"
-            srcset="/image/image-20250806233038-ha6ba19.png, /image/image-20250806233038-ha6ba19.png 1.5x, /image/image-20250806233038-ha6ba19.png 2x"
-            
-            alt="/image/image-20250806233038-ha6ba19.png" height="794"  width="1700" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806233038-ha6ba19.png'   alt="image" height="794" width="1700">​</li>
 </ul>
 </li>
 <li>
@@ -917,55 +639,23 @@
 <li>
 <p>正确配置</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806233220-1yyn1ee.png" title="image" data-thumbnail="/image/image-20250806233220-1yyn1ee.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806233220-1yyn1ee.png"
-            srcset="/image/image-20250806233220-1yyn1ee.png, /image/image-20250806233220-1yyn1ee.png 1.5x, /image/image-20250806233220-1yyn1ee.png 2x"
-            
-            alt="/image/image-20250806233220-1yyn1ee.png" height="674"  width="1684" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806233220-1yyn1ee.png'   alt="image" height="674" width="1684">​</li>
 </ul>
 </li>
 <li>
 <p>直接配置错误导致的环路</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806233307-stcfxag.png" title="image" data-thumbnail="/image/image-20250806233307-stcfxag.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806233307-stcfxag.png"
-            srcset="/image/image-20250806233307-stcfxag.png, /image/image-20250806233307-stcfxag.png 1.5x, /image/image-20250806233307-stcfxag.png 2x"
-            
-            alt="/image/image-20250806233307-stcfxag.png" height="728"  width="1690" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806233307-stcfxag.png'   alt="image" height="728" width="1690">​</li>
 <li>为了防止IP数据包在路由环路中永远兜圈，在IP数据报首部设有生存事件TTL字段，IP数据报进入路由器后，TTL字段的值减1，若TTL的值不等于0，则被路由器转发，否则被丢弃</li>
 </ul>
 </li>
 <li>
 <p>聚合不存在网络导致的环路</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806233611-rpo95bc.png" title="image" data-thumbnail="/image/image-20250806233611-rpo95bc.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806233611-rpo95bc.png"
-            srcset="/image/image-20250806233611-rpo95bc.png, /image/image-20250806233611-rpo95bc.png 1.5x, /image/image-20250806233611-rpo95bc.png 2x"
-            
-            alt="/image/image-20250806233611-rpo95bc.png" height="786"  width="1626" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806233611-rpo95bc.png'   alt="image" height="786" width="1626">​</li>
 <li>在使用聚合路由时，其可能会出现部分不存在的网络，其会通过默认路由再被返回来</li>
 <li>可以使用黑洞路由的配置方法来排除这些不存在的网络（当下一跳地址为null0时，路由器丢弃该数据）</li>
-<li>​<figure><a class="lightgallery" href="/image/image-20250806233743-tqzthmu.png" title="image" data-thumbnail="/image/image-20250806233743-tqzthmu.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806233743-tqzthmu.png"
-            srcset="/image/image-20250806233743-tqzthmu.png, /image/image-20250806233743-tqzthmu.png 1.5x, /image/image-20250806233743-tqzthmu.png 2x"
-            
-            alt="/image/image-20250806233743-tqzthmu.png" height="850"  width="1636" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250806233743-tqzthmu.png'   alt="image" height="850" width="1636">​</li>
 </ul>
 </li>
 <li>
@@ -985,15 +675,7 @@
 </ul>
 </li>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250806234307-5ng0c0h.png" title="image" data-thumbnail="/image/image-20250806234307-5ng0c0h.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250806234307-5ng0c0h.png"
-            srcset="/image/image-20250806234307-5ng0c0h.png, /image/image-20250806234307-5ng0c0h.png 1.5x, /image/image-20250806234307-5ng0c0h.png 2x"
-            
-            alt="/image/image-20250806234307-5ng0c0h.png" height="724"  width="1508" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250806234307-5ng0c0h.png'   alt="image" height="724" width="1508">​</p>
 </li>
 </ul>
 </li>
@@ -1010,30 +692,14 @@
 <li>
 <p>因特网是全球最大的互联网络，其主要有3大特点：自适应、分布式、分层次</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250807002629-jtir2af.png" title="image" data-thumbnail="/image/image-20250807002629-jtir2af.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250807002629-jtir2af.png"
-            srcset="/image/image-20250807002629-jtir2af.png, /image/image-20250807002629-jtir2af.png 1.5x, /image/image-20250807002629-jtir2af.png 2x"
-            
-            alt="/image/image-20250807002629-jtir2af.png" height="596"  width="1520" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807002629-jtir2af.png'   alt="image" height="596" width="1520">​</li>
 </ul>
 </li>
 <li>
 <p>因特网采用的分层次路由选择协议（两类，内部网关或外部网关）</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250807003025-zyri671.png" title="image" data-thumbnail="/image/image-20250807003025-zyri671.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250807003025-zyri671.png"
-            srcset="/image/image-20250807003025-zyri671.png, /image/image-20250807003025-zyri671.png 1.5x, /image/image-20250807003025-zyri671.png 2x"
-            
-            alt="/image/image-20250807003025-zyri671.png" height="520"  width="1560" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807003025-zyri671.png'   alt="image" height="520" width="1560">​</p>
 </li>
 <li>
 <p>以前RFC文档叫做网关Internal/External Gateway Protocol，现在也可以叫做路由器协议，即Router，简写为ERP或IRP</p>
@@ -1044,15 +710,7 @@
 <li>
 <p>常见的路由选择协议</p>
 <ul>
-<li>​<figure><a class="lightgallery" href="/image/image-20250807003219-vjesz2h.png" title="image" data-thumbnail="/image/image-20250807003219-vjesz2h.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250807003219-vjesz2h.png"
-            srcset="/image/image-20250807003219-vjesz2h.png, /image/image-20250807003219-vjesz2h.png 1.5x, /image/image-20250807003219-vjesz2h.png 2x"
-            
-            alt="/image/image-20250807003219-vjesz2h.png" height="616"  width="1662" >
-    </a></figure>​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807003219-vjesz2h.png'   alt="image" height="616" width="1662">​</li>
 </ul>
 </li>
 </ul>
@@ -1061,15 +719,7 @@
 <p>路由器基本结构（路由选择部分，分组转发部分）</p>
 <ul>
 <li>
-<p>​<figure><a class="lightgallery" href="/image/image-20250807003420-u9dp8it.png" title="image" data-thumbnail="/image/image-20250807003420-u9dp8it.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250807003420-u9dp8it.png"
-            srcset="/image/image-20250807003420-u9dp8it.png, /image/image-20250807003420-u9dp8it.png 1.5x, /image/image-20250807003420-u9dp8it.png 2x"
-            
-            alt="/image/image-20250807003420-u9dp8it.png" height="728"  width="1494" >
-    </a></figure>​</p>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807003420-u9dp8it.png'   alt="image" height="728" width="1494">​</p>
 </li>
 <li>
 <p>路由选择部分的核心是路由转发处理机</p>
@@ -1134,16 +784,10 @@
 <p>‍</p>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -1153,39 +797,86 @@
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/net/n05_mac_ip_arp/" class="prev" rel="prev" title="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网"><i class="fas fa-angle-left fa-fw"></i>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</a>
-            <a href="/posts/net/n07_ip_protocol/" class="next" rel="next" title="网络 | 07. IP数据报与IP协议">网络 | 07. IP数据报与IP协议<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n05_mac_ip_arp/" class="prev" rel="prev" title="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</a>
+            <a href="/posts/net/n07_ip_protocol/" class="next" rel="next" title="网络 | 07. IP数据报与IP协议">网络 | 07. IP数据报与IP协议<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

@@ -1,82 +1,117 @@
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>网络 | 01. 计算机网络基础绪论与体系架构 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="网络 | 01. 计算机网络基础绪论与体系架构" />
-<meta property="og:description" content="基本概念 基本概念：node、link、网络、互联网、因特网 网络（Network）由若干结点（Node）和连接这些结点的链路（Link）组成。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jwangl5.github.io/posts/net/n01_introduction/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-05-28T00:00:00+08:00" />
-<meta property="article:modified_time" content="2025-05-28T00:00:00+08:00" />
+    <meta name="robots" content="noodp" /><title>网络 | 01. 计算机网络基础绪论与体系架构 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n01_introduction/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络 | 01. 计算机网络基础绪论与体系架构">
+  <meta property="og:description" content="基本概念 基本概念：node、link、网络、互联网、因特网">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-28T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-05-28T00:00:00+08:00">
 
-
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="网络 | 01. 计算机网络基础绪论与体系架构"/>
-<meta name="twitter:description" content="基本概念 基本概念：node、link、网络、互联网、因特网 网络（Network）由若干结点（Node）和连接这些结点的链路（Link）组成。"/>
-<meta name="twitter:site" content="@JWangL5"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络 | 01. 计算机网络基础绪论与体系架构">
+  <meta name="twitter:description" content="基本概念 基本概念：node、link、网络、互联网、因特网">
+      <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://jwangl5.github.io/posts/net/n01_introduction/" /><link rel="prev" href="https://jwangl5.github.io/posts/book/being_logical/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n02_physical_layer/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="http://localhost:1313/posts/net/n01_introduction/" /><link rel="prev" href="http://localhost:1313/posts/book/being_logical/" /><link rel="next" href="http://localhost:1313/posts/net/n02_physical_layer/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 01. 计算机网络基础绪论与体系架构",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/jwangl5.github.io\/posts\/net\/n01_introduction\/"
+            "@id": "http://localhost:1313/posts/net/n01_introduction/"
         },"genre": "posts","wordcount":  3161 ,
-        "url": "https:\/\/jwangl5.github.io\/posts\/net\/n01_introduction\/","datePublished": "2025-05-28T00:00:00+08:00","dateModified": "2025-05-28T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n01_introduction/","datePublished": "2025-05-28T00:00:00+08:00","dateModified": "2025-05-28T00:00:00+08:00","publisher": {
             "@type": "Organization",
-            "name": "卢旺"},"authors": [{
+            "name": "卢旺"},"author": [{
                         "@type": "Person",
-                        "name": "卢旺"                    
+                        "name": "卢旺",
+                        "url":  null 
                     }],"description": ""
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    }</script></head>
 
-<body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('' === 'light' || '' === 'dark' || '' === 'black') setTheme(''), saveTheme(''); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/galleries/"> 相册 </a><a class="menu-item" href="/about/"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
         </div>
     </div>
-</header><header class="mobile" id="header-mobile">
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
@@ -87,24 +122,30 @@
             </div>
         </div>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/galleries/" title="">相册</a><a class="menu-item" href="/about/" title="">关于我</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
     </div>
 </header>
 <div class="search-dropdown desktop">
@@ -112,15 +153,47 @@
 </div>
 <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">网络 | 01. 计算机网络基础绪论与体系架构</h1><div class="post-meta">
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基本概念">基本概念</a></li>
+        <li><a href="#三种交换方式">三种交换方式</a></li>
+        <li><a href="#网络的定义和分类">网络的定义和分类</a></li>
+        <li><a href="#网络性能指标8个">网络性能指标（8个）</a>
+          <ul>
+            <li><a href="#速率">速率</a></li>
+            <li><a href="#带宽">带宽</a></li>
+            <li><a href="#吞吐量">吞吐量</a></li>
+            <li><a href="#时延">时延</a></li>
+            <li><a href="#时延带宽积">时延带宽积</a></li>
+            <li><a href="#往返时间rtt-round-trip-time">往返时间（RTT, round trip time）</a></li>
+            <li><a href="#利用率">利用率</a></li>
+            <li><a href="#丢包率">丢包率</a></li>
+          </ul>
+        </li>
+        <li><a href="#计算机网络体系结构">计算机网络体系结构</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-05-28" data-pagefind-body>网络 | 01. 计算机网络基础绪论与体系架构</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA'>卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="far fa-folder fa-fw"></i>计算机网络</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2025-05-28">2025-05-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2025-05-28">2025-05-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3161 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="content" id="content"><h3 id="基本概念" class="headerLink">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-05-28">2025-05-28</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-05-28">2025-05-28</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 3161 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 14 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><h3 id="基本概念" class="headerLink">
     <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h3><ul>
 <li>
 <p>基本概念：node、link、网络、互联网、因特网</p>
@@ -149,15 +222,7 @@
     <a href="#%e4%b8%89%e7%a7%8d%e4%ba%a4%e6%8d%a2%e6%96%b9%e5%bc%8f" class="header-mark"></a>三种交换方式</h3><ul>
 <li>电路交换（Circuit Switching）：直接用线将两个机器连接起来；电话交换机（有点像是之前说的集线器）；电信网
 <ul>
-<li><a class="lightgallery" href="/image/image-20250608025229-57615zf.png" title="/image/image-20250608025229-57615zf.png" data-thumbnail="/image/image-20250608025229-57615zf.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608025229-57615zf.png"
-            srcset="/image/image-20250608025229-57615zf.png, /image/image-20250608025229-57615zf.png 1.5x, /image/image-20250608025229-57615zf.png 2x"
-            
-            alt="/image/image-20250608025229-57615zf.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608025229-57615zf.png" title="" data-thumbnail="/image/image-20250608025229-57615zf.png"><img  loading="lazy" src='/image/image-20250608025229-57615zf.png'    height="80%" width="80%"></a></li>
 <li>拨号建立连接（分配资源） -&gt; 通话（始终占用通信资源） -&gt; 释放连接（归还通信资源）</li>
 <li>计算机数据是突发式的，其使用电路交换效率会很低</li>
 </ul>
@@ -170,24 +235,8 @@
 </ul>
 </li>
 <li>报文交换（已经被时代淘汰了）：直接发送，不需要建立连接；不限制大小，需要有较大的缓存空间；可以同时发送给多个地址</li>
-<li><a class="lightgallery" href="/image/image-20250608025749-cfqo4yu.png" title="/image/image-20250608025749-cfqo4yu.png" data-thumbnail="/image/image-20250608025749-cfqo4yu.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608025749-cfqo4yu.png"
-            srcset="/image/image-20250608025749-cfqo4yu.png, /image/image-20250608025749-cfqo4yu.png 1.5x, /image/image-20250608025749-cfqo4yu.png 2x"
-            
-            alt="/image/image-20250608025749-cfqo4yu.png" height="80%"  width="80%" >
-    </a></li>
-<li><a class="lightgallery" href="/image/image-20250608030152-tbw6xjv.png" title="/image/image-20250608030152-tbw6xjv.png" data-thumbnail="/image/image-20250608030152-tbw6xjv.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608030152-tbw6xjv.png"
-            srcset="/image/image-20250608030152-tbw6xjv.png, /image/image-20250608030152-tbw6xjv.png 1.5x, /image/image-20250608030152-tbw6xjv.png 2x"
-            
-            alt="/image/image-20250608030152-tbw6xjv.png" height="100%"  width="100%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608025749-cfqo4yu.png" title="" data-thumbnail="/image/image-20250608025749-cfqo4yu.png"><img  loading="lazy" src='/image/image-20250608025749-cfqo4yu.png'    height="80%" width="80%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250608030152-tbw6xjv.png" title="" data-thumbnail="/image/image-20250608030152-tbw6xjv.png"><img  loading="lazy" src='/image/image-20250608030152-tbw6xjv.png'    height="100%" width="100%"></a></li>
 </ul>
 <h3 id="网络的定义和分类" class="headerLink">
     <a href="#%e7%bd%91%e7%bb%9c%e7%9a%84%e5%ae%9a%e4%b9%89%e5%92%8c%e5%88%86%e7%b1%bb" class="header-mark"></a>网络的定义和分类</h3><ul>
@@ -214,15 +263,7 @@
     <a href="#%e9%80%9f%e7%8e%87" class="header-mark"></a>速率</h4><ul>
 <li>比特，数据量单位，8bit=1Byte，KB，MB，GB，TB，以2的次方来计算</li>
 <li>比特率，数据传输速度的单位，bit/s，kb/s，Mb/s，Gb/s，Tb/s，需要注意的是，速度单位中的kmgt是10的次方，且为小写b（bit）</li>
-<li><a class="lightgallery" href="/image/image-20250608031753-y7t0qf2.png" title="/image/image-20250608031753-y7t0qf2.png" data-thumbnail="/image/image-20250608031753-y7t0qf2.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608031753-y7t0qf2.png"
-            srcset="/image/image-20250608031753-y7t0qf2.png, /image/image-20250608031753-y7t0qf2.png 1.5x, /image/image-20250608031753-y7t0qf2.png 2x"
-            
-            alt="/image/image-20250608031753-y7t0qf2.png" height="100%"  width="100%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608031753-y7t0qf2.png" title="" data-thumbnail="/image/image-20250608031753-y7t0qf2.png"><img  loading="lazy" src='/image/image-20250608031753-y7t0qf2.png'    height="100%" width="100%"></a></li>
 <li>有一个待发送的数据块，大小为100MB，网卡的发送速率为100Mbps，则网卡发送完该数据块需要多长时间？
 <ul>
 <li>$$
@@ -231,15 +272,7 @@ $$</li>
 <li>做题的时候，需要注意大小写的bB、量级字母出现在速度还是数据量上</li>
 </ul>
 </li>
-<li><a class="lightgallery" href="/image/image-20250608032047-66rkqxy.png" title="/image/image-20250608032047-66rkqxy.png" data-thumbnail="/image/image-20250608032047-66rkqxy.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608032047-66rkqxy.png"
-            srcset="/image/image-20250608032047-66rkqxy.png, /image/image-20250608032047-66rkqxy.png 1.5x, /image/image-20250608032047-66rkqxy.png 2x"
-            
-            alt="/image/image-20250608032047-66rkqxy.png" height="100%"  width="100%" >
-    </a>
+<li><a class="lightgallery" href="/image/image-20250608032047-66rkqxy.png" title="" data-thumbnail="/image/image-20250608032047-66rkqxy.png"><img  loading="lazy" src='/image/image-20250608032047-66rkqxy.png'    height="100%" width="100%"></a>
 <ul>
 <li>应该是选D，没有给标答</li>
 </ul>
@@ -249,15 +282,7 @@ $$</li>
     <a href="#%e5%b8%a6%e5%ae%bd" class="header-mark"></a>带宽</h4><ul>
 <li>所能传送数据的能力；两点间传输的最高数据率（单位和速率一致）</li>
 <li>这个概念和在模拟信号中的说法不一样</li>
-<li><a class="lightgallery" href="/image/image-20250608032724-cashneu.png" title="/image/image-20250608032724-cashneu.png" data-thumbnail="/image/image-20250608032724-cashneu.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608032724-cashneu.png"
-            srcset="/image/image-20250608032724-cashneu.png, /image/image-20250608032724-cashneu.png 1.5x, /image/image-20250608032724-cashneu.png 2x"
-            
-            alt="/image/image-20250608032724-cashneu.png" height="70%"  width="70%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608032724-cashneu.png" title="" data-thumbnail="/image/image-20250608032724-cashneu.png"><img  loading="lazy" src='/image/image-20250608032724-cashneu.png'    height="70%" width="70%"></a></li>
 </ul>
 <h4 id="吞吐量" class="headerLink">
     <a href="#%e5%90%9e%e5%90%90%e9%87%8f" class="header-mark"></a>吞吐量</h4><ul>
@@ -267,47 +292,15 @@ $$</li>
 <h4 id="时延" class="headerLink">
     <a href="#%e6%97%b6%e5%bb%b6" class="header-mark"></a>时延</h4><ul>
 <li>发送时延=分组长度b / 发送速率（b/s）</li>
-<li><a class="lightgallery" href="/image/image-20250608033115-tiex8dg.png" title="/image/image-20250608033115-tiex8dg.png" data-thumbnail="/image/image-20250608033115-tiex8dg.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608033115-tiex8dg.png"
-            srcset="/image/image-20250608033115-tiex8dg.png, /image/image-20250608033115-tiex8dg.png 1.5x, /image/image-20250608033115-tiex8dg.png 2x"
-            
-            alt="/image/image-20250608033115-tiex8dg.png" height="40%"  width="40%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608033115-tiex8dg.png" title="" data-thumbnail="/image/image-20250608033115-tiex8dg.png"><img  loading="lazy" src='/image/image-20250608033115-tiex8dg.png'    height="40%" width="40%"></a></li>
 <li>（传播时延=信道长度/电磁波传输速度、处理时延不方便计算，通常忽略不计）✖️多个</li>
-<li><a class="lightgallery" href="/image/image-20250608033231-1c0nrqb.png" title="/image/image-20250608033231-1c0nrqb.png" data-thumbnail="/image/image-20250608033231-1c0nrqb.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608033231-1c0nrqb.png"
-            srcset="/image/image-20250608033231-1c0nrqb.png, /image/image-20250608033231-1c0nrqb.png 1.5x, /image/image-20250608033231-1c0nrqb.png 2x"
-            
-            alt="/image/image-20250608033231-1c0nrqb.png" height="20%"  width="20%" >
-    </a></li>
-<li><a class="lightgallery" href="/image/image-20250608033359-f2qq2yi.png" title="/image/image-20250608033359-f2qq2yi.png" data-thumbnail="/image/image-20250608033359-f2qq2yi.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608033359-f2qq2yi.png"
-            srcset="/image/image-20250608033359-f2qq2yi.png, /image/image-20250608033359-f2qq2yi.png 1.5x, /image/image-20250608033359-f2qq2yi.png 2x"
-            
-            alt="/image/image-20250608033359-f2qq2yi.png" height="100%"  width="100%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608033231-1c0nrqb.png" title="" data-thumbnail="/image/image-20250608033231-1c0nrqb.png"><img  loading="lazy" src='/image/image-20250608033231-1c0nrqb.png'    height="20%" width="20%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250608033359-f2qq2yi.png" title="" data-thumbnail="/image/image-20250608033359-f2qq2yi.png"><img  loading="lazy" src='/image/image-20250608033359-f2qq2yi.png'    height="100%" width="100%"></a></li>
 <li>大数据包，发送时延占主导；小数据包，传播时延占主导</li>
 </ul>
 <h4 id="时延带宽积" class="headerLink">
     <a href="#%e6%97%b6%e5%bb%b6%e5%b8%a6%e5%ae%bd%e7%a7%af" class="header-mark"></a>时延带宽积</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250608033534-42hf2sp.png" title="/image/image-20250608033534-42hf2sp.png" data-thumbnail="/image/image-20250608033534-42hf2sp.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608033534-42hf2sp.png"
-            srcset="/image/image-20250608033534-42hf2sp.png, /image/image-20250608033534-42hf2sp.png 1.5x, /image/image-20250608033534-42hf2sp.png 2x"
-            
-            alt="/image/image-20250608033534-42hf2sp.png" height="60%"  width="60%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608033534-42hf2sp.png" title="" data-thumbnail="/image/image-20250608033534-42hf2sp.png"><img  loading="lazy" src='/image/image-20250608033534-42hf2sp.png'    height="60%" width="60%"></a></li>
 <li>可以理解为管道的“体积”；链路长度！</li>
 </ul>
 <h4 id="往返时间rtt-round-trip-time" class="headerLink">
@@ -317,15 +310,7 @@ $$</li>
 </ul>
 <h4 id="利用率" class="headerLink">
     <a href="#%e5%88%a9%e7%94%a8%e7%8e%87" class="header-mark"></a>利用率</h4><ul>
-<li><a class="lightgallery" href="/image/image-20250608033900-h0qy8u6.png" title="/image/image-20250608033900-h0qy8u6.png" data-thumbnail="/image/image-20250608033900-h0qy8u6.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250608033900-h0qy8u6.png"
-            srcset="/image/image-20250608033900-h0qy8u6.png, /image/image-20250608033900-h0qy8u6.png 1.5x, /image/image-20250608033900-h0qy8u6.png 2x"
-            
-            alt="/image/image-20250608033900-h0qy8u6.png" height="100%"  width="100%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250608033900-h0qy8u6.png" title="" data-thumbnail="/image/image-20250608033900-h0qy8u6.png"><img  loading="lazy" src='/image/image-20250608033900-h0qy8u6.png'    height="100%" width="100%"></a></li>
 <li>不宜太高或太低</li>
 </ul>
 <h4 id="丢包率" class="headerLink">
@@ -355,29 +340,13 @@ $$</li>
 <p>因特网自1983年使用TCP/IP体系结构，虽然早期由学者制定，但也逐步被市场占领</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250616225937-buitlld.png" title="/image/image-20250616225937-buitlld.png" data-thumbnail="/image/image-20250616225937-buitlld.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616225937-buitlld.png"
-            srcset="/image/image-20250616225937-buitlld.png, /image/image-20250616225937-buitlld.png 1.5x, /image/image-20250616225937-buitlld.png 2x"
-            
-            alt="/image/image-20250616225937-buitlld.png" height="40%"  width="40%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250616225937-buitlld.png" title="" data-thumbnail="/image/image-20250616225937-buitlld.png"><img  loading="lazy" src='/image/image-20250616225937-buitlld.png'    height="40%" width="40%"></a>
 </li>
 <li>
 <p>路由器往往只含有网络接口层和网际层，而用户电脑一般则具有全部的四层</p>
 </li>
 <li>
-<a class="lightgallery" href="/image/image-20250616230150-plyvptr.png" title="/image/image-20250616230150-plyvptr.png" data-thumbnail="/image/image-20250616230150-plyvptr.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616230150-plyvptr.png"
-            srcset="/image/image-20250616230150-plyvptr.png, /image/image-20250616230150-plyvptr.png 1.5x, /image/image-20250616230150-plyvptr.png 2x"
-            
-            alt="/image/image-20250616230150-plyvptr.png" height="75%"  width="75%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250616230150-plyvptr.png" title="" data-thumbnail="/image/image-20250616230150-plyvptr.png"><img  loading="lazy" src='/image/image-20250616230150-plyvptr.png'    height="75%" width="75%"></a>
 <ul>
 <li>其中TCP是可信传输，UDP是不可信传输协议</li>
 <li>TCP/IP协议族，协议栈</li>
@@ -395,15 +364,7 @@ $$</li>
 <li>网络层：在局域网和主机互联之后，网络和主机共同编组的问题（IP地址）；原主机和目的主机之间可能不止一条路径，路由器需要确定如何转发，如何选择路由；</li>
 <li>运输层：同一个主机上的多个不同进程，在信息来临时，如何确定交接给谁？如果数据传输时出现问题，如何让处理？</li>
 <li>通过应用间进程的交互来完成特定的网络应用交互，如http、smtp等</li>
-<li><a class="lightgallery" href="/image/image-20250616231408-9m4reco.png" title="/image/image-20250616231408-9m4reco.png" data-thumbnail="/image/image-20250616231408-9m4reco.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616231408-9m4reco.png"
-            srcset="/image/image-20250616231408-9m4reco.png, /image/image-20250616231408-9m4reco.png 1.5x, /image/image-20250616231408-9m4reco.png 2x"
-            
-            alt="/image/image-20250616231408-9m4reco.png" height="65%"  width="65%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250616231408-9m4reco.png" title="" data-thumbnail="/image/image-20250616231408-9m4reco.png"><img  loading="lazy" src='/image/image-20250616231408-9m4reco.png'    height="65%" width="65%"></a></li>
 </ul>
 </li>
 <li>
@@ -430,15 +391,7 @@ $$</li>
 <li>协议：控制两个对等实体进行**<u>逻辑通信</u>**的规则的集合
 <ul>
 <li>需要注意的是，这里的通信并不真实存在，只是抽象出来为了方便处理信息</li>
-<li><a class="lightgallery" href="/image/image-20250616233046-8hq9p8j.png" title="/image/image-20250616233046-8hq9p8j.png" data-thumbnail="/image/image-20250616233046-8hq9p8j.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616233046-8hq9p8j.png"
-            srcset="/image/image-20250616233046-8hq9p8j.png, /image/image-20250616233046-8hq9p8j.png 1.5x, /image/image-20250616233046-8hq9p8j.png 2x"
-            
-            alt="/image/image-20250616233046-8hq9p8j.png" height="80%"  width="80%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250616233046-8hq9p8j.png" title="" data-thumbnail="/image/image-20250616233046-8hq9p8j.png"><img  loading="lazy" src='/image/image-20250616233046-8hq9p8j.png'    height="80%" width="80%"></a></li>
 <li>协议的三大要素
 <ul>
 <li>语法：定义所交换信息交换的格式，哪些字段、何种顺序、多少长度等</li>
@@ -451,15 +404,7 @@ $$</li>
 <li>服务：在协议控制下，两个对等实体间的逻辑通信似的本层能够向上一层提供服务，如物理层给链路层提供服务
 <ul>
 <li>
-<a class="lightgallery" href="/image/image-20250616233551-7dagho3.png" title="/image/image-20250616233551-7dagho3.png" data-thumbnail="/image/image-20250616233551-7dagho3.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616233551-7dagho3.png"
-            srcset="/image/image-20250616233551-7dagho3.png, /image/image-20250616233551-7dagho3.png 1.5x, /image/image-20250616233551-7dagho3.png 2x"
-            
-            alt="/image/image-20250616233551-7dagho3.png" height="80%"  width="80%" >
-    </a>
+<a class="lightgallery" href="/image/image-20250616233551-7dagho3.png" title="" data-thumbnail="/image/image-20250616233551-7dagho3.png"><img  loading="lazy" src='/image/image-20250616233551-7dagho3.png'    height="80%" width="80%"></a>
 </li>
 <li>
 <p>由图，协议是水平的，服务是垂直的</p>
@@ -479,15 +424,7 @@ $$</li>
 <li>
 <p><span data-type="text" style="color: var(--b3-font-color8);">协议数据单元 PDU</span>：对等层次之间传送的数据包；<span data-type="text" style="color: var(--b3-font-color8);">服务数据单元 SDU</span>：同一系统内，层与层之间交换的数据包</p>
 <ul>
-<li><a class="lightgallery" href="/image/image-20250616234337-ds97e3h.png" title="/image/image-20250616234337-ds97e3h.png" data-thumbnail="/image/image-20250616234337-ds97e3h.png">
-        <img
-            
-            loading="lazy"
-            src="/image/image-20250616234337-ds97e3h.png"
-            srcset="/image/image-20250616234337-ds97e3h.png, /image/image-20250616234337-ds97e3h.png 1.5x, /image/image-20250616234337-ds97e3h.png 2x"
-            
-            alt="/image/image-20250616234337-ds97e3h.png" height="90%"  width="90%" >
-    </a></li>
+<li><a class="lightgallery" href="/image/image-20250616234337-ds97e3h.png" title="" data-thumbnail="/image/image-20250616234337-ds97e3h.png"><img  loading="lazy" src='/image/image-20250616234337-ds97e3h.png'    height="90%" width="90%"></a></li>
 <li>多个SDU可以合成为一个PDU，一个SDU也可以划分为几个PDU
 ‍</li>
 </ul>
@@ -499,16 +436,10 @@ $$</li>
 </ul>
 </div>
 
-        <div class="sponsor">
-        <div class="sponsor-avatar"><img
-        
-        loading="lazy"
-        src="/avater.jpg"
-        srcset="/avater.jpg, /avater.jpg 1.5x, /avater.jpg 2x"
-        sizes="auto"
-        alt="/avater.jpg"
-        title="/avater.jpg" height="959"   width="959" ></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
-                <i class="far fa-heart fa-fw icon" style="color: #ec6cb9;"></i>
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
                 <span>赞赏</span>
             </a></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -518,39 +449,86 @@ $$</li>
             </div>
             <div class="post-info-license"></div>
         </div>
-        <div class="post-info-line">
+        <div class="post-info-line print:!tw-hidden">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
     <div class="post-info-more">
         <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/book/being_logical/" class="prev" rel="prev" title="Book | 《简单逻辑学》阅读笔记（🔖Reading...） "><i class="fas fa-angle-left fa-fw"></i>Book | 《简单逻辑学》阅读笔记（🔖Reading...） </a>
-            <a href="/posts/net/n02_physical_layer/" class="next" rel="next" title="网络 | 02. 物理层与数据传输">网络 | 02. 物理层与数据传输<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/book/being_logical/" class="prev" rel="prev" title="Book | 《简单逻辑学》阅读笔记（🔖Reading...） "><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>Book | 《简单逻辑学》阅读笔记（🔖Reading...） </a>
+            <a href="/posts/net/n02_physical_layer/" class="next" rel="next" title="网络 | 02. 物理层与数据传输">网络 | 02. 物理层与数据传输<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
 </div>
-</article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2023 - 2025</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" target="_blank">CC BY-NC-ND 4.0</a></span></div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
-        </div></footer></div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"useExtendedSearch":false},"table":{"sort":true}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
 </body>
 
 </html>

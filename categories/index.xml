@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Categories - 分类 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Categories - 分类 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/" rel="self" type="application/rss+xml" /><item>
     <title>编程笔记</title>
-    <link>https://jwangl5.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
+    <link>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
+    </author><guid>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>计算机网络</title>
-    <link>https://jwangl5.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+    <link>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
     <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
+    </author><guid>http://localhost:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>目披手抄</title>
-    <link>https://jwangl5.github.io/categories/%E7%9B%AE%E6%8A%AB%E6%89%8B%E6%8A%84/</link>
+    <link>http://localhost:1313/categories/%E7%9B%AE%E6%8A%AB%E6%89%8B%E6%8A%84/</link>
     <pubDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E7%9B%AE%E6%8A%AB%E6%89%8B%E6%8A%84/</guid>
+    </author><guid>http://localhost:1313/categories/%E7%9B%AE%E6%8A%AB%E6%89%8B%E6%8A%84/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>语言学习</title>
-    <link>https://jwangl5.github.io/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</link>
+    <link>http://localhost:1313/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</link>
     <pubDate>Wed, 15 May 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</guid>
+    </author><guid>http://localhost:1313/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>分子细胞生物学</title>
-    <link>https://jwangl5.github.io/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</link>
+    <link>http://localhost:1313/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</link>
     <pubDate>Tue, 16 Jan 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</guid>
+    </author><guid>http://localhost:1313/categories/%E5%88%86%E5%AD%90%E7%BB%86%E8%83%9E%E7%94%9F%E7%89%A9%E5%AD%A6/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>游戏经验</title>
-    <link>https://jwangl5.github.io/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/</link>
+    <link>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/</link>
     <pubDate>Thu, 28 Dec 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/</guid>
+    </author><guid>http://localhost:1313/categories/%E6%B8%B8%E6%88%8F%E7%BB%8F%E9%AA%8C/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>数学物理化学</title>
-    <link>https://jwangl5.github.io/categories/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/</link>
+    <link>http://localhost:1313/categories/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/</link>
     <pubDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/</guid>
+    </author><guid>http://localhost:1313/categories/%E6%95%B0%E5%AD%A6%E7%89%A9%E7%90%86%E5%8C%96%E5%AD%A6/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>前端技术</title>
-    <link>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
+    <link>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</link>
     <pubDate>Wed, 27 Sep 2023 00:17:49 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</guid>
+    </author><guid>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>生物信息</title>
-    <link>https://jwangl5.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</link>
+    <link>http://localhost:1313/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</link>
     <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</guid>
+    </author><guid>http://localhost:1313/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>实验方法</title>
-    <link>https://jwangl5.github.io/categories/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/</link>
+    <link>http://localhost:1313/categories/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/</link>
     <pubDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/categories/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/</guid>
+    </author><guid>http://localhost:1313/categories/%E5%AE%9E%E9%AA%8C%E6%96%B9%E6%B3%95/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
