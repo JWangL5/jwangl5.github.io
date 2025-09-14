@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Authors - 作者 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/authors/</link>
+        <link>http://localhost:1313/authors/</link>
         <description>Authors - 作者 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/authors/" rel="self" type="application/rss+xml" /><item>
     <title>卢旺</title>
-    <link>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</link>
+    <link>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</guid>
+    </author><guid>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

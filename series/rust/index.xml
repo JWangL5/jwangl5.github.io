@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Rust语言编程笔记 - 系列 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/series/rust/</link>
+        <link>http://localhost:1313/series/rust/</link>
         <description>Rust语言编程笔记 - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/rust/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/rust/" rel="self" type="application/rss+xml" /><item>
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_04/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_04/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_04/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_04/</guid>
     <description><![CDATA[<h3 id="250829-闭包" class="headerLink">
     <a href="#250829-%e9%97%ad%e5%8c%85" class="header-mark"></a>250829 闭包</h3><h4 id="问题引入" class="headerLink">
     <a href="#%e9%97%ae%e9%a2%98%e5%bc%95%e5%85%a5" class="header-mark"></a>问题引入</h4><ul>
@@ -16,9 +16,9 @@
 <p>Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一</p>]]></description>
 </item><item>
     <title>Rust | 03. 泛型、Trait、生命周期、自动化测试</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_03/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_03/</link>
     <pubDate>Tue, 26 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_03/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_03/</guid>
     <description><![CDATA[<h3 id="250827-代码复用" class="headerLink">
     <a href="#250827-%e4%bb%a3%e7%a0%81%e5%a4%8d%e7%94%a8" class="header-mark"></a>250827 代码复用</h3><h4 id="泛型" class="headerLink">
     <a href="#%e6%b3%9b%e5%9e%8b" class="header-mark"></a>泛型</h4><ul>
@@ -28,7 +28,7 @@
 <li>通常，泛型的声明是在使用前的<code>&lt;&gt;</code>中，通常使用一个字母来命名（驼峰法Type），其不仅仅可以用在函数中，也可以用于结构体或枚举的定义中，其可以同时存在多个（但太多了会不宜阅读，代码应该进一步分解为更小的单元）</li>
 <li>在给结构体或枚举类型实现方法时，如果方法是针对泛型的，应在impl关键字后加上泛型标注，如<code>impl&lt;T&gt; Point&lt;T&gt; { fn x(&amp;self)-&gt;&amp;T {&amp;self.x} }</code>，如果说只是针对某一具体的类型来实现，则只需要在结构体名称后标注<code>impl Point&lt;i32&gt; {fn x1(&amp;self)-&gt;i32 {&amp;self.x}}</code></li>
 <li>struct里的泛型类型参数可以和方法的泛型参数不同，例如
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -50,9 +50,9 @@
           <p class="tw-select-none !tw-my-1">rust</p>]]></description>
 </item><item>
     <title>Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_02/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_02/</link>
     <pubDate>Mon, 08 Jan 2024 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_02/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_02/</guid>
     <description><![CDATA[<h3 id="240108-package-crate-module" class="headerLink">
     <a href="#240108-package-crate-module" class="header-mark"></a><strong>240108 Package, Crate, Module</strong></h3><ul>
 <li>代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下：
@@ -70,9 +70,9 @@
 <p><strong>Crate</strong>有两种类型，即binary或library；Crate root是指源代码文件，Rust编译器会从这里开始，组成你Crate的根Module；一个Package包含了一个Cargo.toml文件（用于描述了如何构建这些Crates），一个package只能包含0-1个library crate，以及任意数量的binary crates，另外，一个library至少包含一个crate（library或binary）</p>]]></description>
 </item><item>
     <title>Rust | 01. 安装、基础、所有权、结构体、枚举</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_01/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_01/</link>
     <pubDate>Sun, 07 Jan 2024 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_01/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_01/</guid>
     <description><![CDATA[<h3 id="240105-安装和简单上手" class="headerLink">
     <a href="#240105-%e5%ae%89%e8%a3%85%e5%92%8c%e7%ae%80%e5%8d%95%e4%b8%8a%e6%89%8b" class="header-mark"></a><strong>240105 安装和简单上手</strong></h3><h4 id="安装" class="headerLink">
     <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装</h4><p>官网直接下载安装即可，有如下命令行可以使用：</p>

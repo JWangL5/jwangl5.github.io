@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_04/">
+    <meta name="robots" content="noodp" /><title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/rust/rust_note_04/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程">
   <meta property="og:description" content="250829 闭包 问题引入 Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一">
@@ -13,9 +13,9 @@
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-08-28T00:17:49+08:00">
     <meta property="article:modified_time" content="2025-08-28T00:17:49+08:00">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_03/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_02/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_03/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_02/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_01/">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程">
@@ -28,15 +28,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/rust/rust_note_04/" /><link rel="prev" href="https://jwangl5.github.io/posts/rust/rust_note_03/" />
+<link rel="canonical" href="http://localhost:1313/posts/rust/rust_note_04/" /><link rel="prev" href="http://localhost:1313/posts/rust/rust_note_03/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/rust/rust_note_04/"
+            "@id": "http://localhost:1313/posts/rust/rust_note_04/"
         },"genre": "posts","wordcount":  2069 ,
-        "url": "https://jwangl5.github.io/posts/rust/rust_note_04/","datePublished": "2025-08-28T00:17:49+08:00","dateModified": "2025-08-28T00:17:49+08:00","publisher": {
+        "url": "http://localhost:1313/posts/rust/rust_note_04/","datePublished": "2025-08-28T00:17:49+08:00","dateModified": "2025-08-28T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -180,7 +180,7 @@
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-08-28" data-pagefind-body>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
-        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v340a6 6 0 0 1-6 6zm-42-92v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm-252 12c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36z"/></svg>Rust语言编程笔记</a></span></div>
@@ -224,7 +224,7 @@
 </li>
 <li>
 <p>看如下例子，要求程序根据用户的健康参数动态地生成运动推荐，在该实现中，假定计算过程需要几秒钟时间才能完成，程序当下的目标是不让用户发生不必要的等待，<u-b>仅在必要时调用该算法一次</u-b></p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -357,7 +357,7 @@
     <a href="#%e9%97%ad%e5%8c%85%e7%9a%84%e5%ae%9a%e4%b9%89" class="header-mark"></a>闭包的定义</h4><ul>
 <li>
 <p>闭包的定义方法如下<code>let res = |parameters|{function body};</code>，这里等号左边为函数的执行结果，等号的右边为一个匿名函数，参数用<code>|</code>包裹，但是不强制要求标注参数和返回值的类型，其通常很短，在狭小的上下文中工作，编译器通常能推断出类型。此外，其存在与变量中，甚至不需要命名，就不会暴露给外部用户。函数体的写法和其他地方是一样的。在当下函数的定义阶段，其并不会执行，<code>res</code>值为暂时为函数的定义，其只有在遇到<code>(arguements)</code>时才会执行。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -454,7 +454,7 @@
 </li>
 <li>
 <p>需要注意的时，闭包的定义最终只会为参数/返回值推断出唯一具体的类型。如果第3、4行都不存在，即闭包未被调用时，函数会报错，因为编译器无法推断出其类型；当程序读到第3行时，闭包的参数类型就被界定为字符串类型，第4行会报错。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -555,7 +555,7 @@
 </li>
 <li>
 <p>上面问题的代码可以做如下修改：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -717,7 +717,7 @@
     <a href="#%e6%8d%95%e8%8e%b7%e4%b8%8a%e4%b8%8b%e6%96%87%e7%8e%af%e5%a2%83" class="header-mark"></a>捕获上下文环境</h4><ul>
 <li>
 <p>闭包的另一个特点是其可以访问其定义位置作用域内的变量，而其他常规函数则没有这个能力。看如下例子，当需要判断环境中某个特定值作为函数定义的一部分时，上下文环境中的变量是不可以进入到函数定义作用域内的。需要注意的是，闭包在捕获周围变量时，是会有额外内存开销的，这个也跟普通函数不同。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -831,7 +831,7 @@
     <a href="#move%e5%85%b3%e9%94%ae%e5%ad%97" class="header-mark"></a>move关键字</h4><ul>
 <li>
 <p>在参数列表前使用<code>move</code>关键字，可以强制闭包取得它所使用的环境值的所有权。当将闭包传递给新线程以移动数据使其归新线程所有时，这个技术就很有用。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 

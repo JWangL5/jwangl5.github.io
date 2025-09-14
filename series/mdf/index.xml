@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Molecular Driving Forces精读笔记 - 系列 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/series/mdf/</link>
+        <link>http://localhost:1313/series/mdf/</link>
         <description>Molecular Driving Forces精读笔记 - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/mdf/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/mdf/" rel="self" type="application/rss+xml" /><item>
     <title>MDF | 03. 热，功和能量</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</link>
+    <link>http://localhost:1313/posts/mdf/mdf_03_heat_work_energy/</link>
     <pubDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_03_heat_work_energy/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/mdf/mdf_03_heat_work_energy/</guid>
     <description><![CDATA[<p><img class="tw-inline" loading="lazy" src='/image/MDF-banner.jpg'    height="300" width="1200"></p>
 <h3 id="能量与机械力" class="headerLink">
     <a href="#%e8%83%bd%e9%87%8f%e4%b8%8e%e6%9c%ba%e6%a2%b0%e5%8a%9b" class="header-mark"></a>能量与机械力</h3><ul>
@@ -16,9 +16,9 @@
 <p>能量是表征系统做功能力的物理量，其是守恒的，不会凭空消失或出现，只能转移到其他物体或转化为其他形式（热力学第一定律）</p>]]></description>
 </item><item>
     <title>MDF | 02. 极值原理与平衡状态</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
+    <link>http://localhost:1313/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</link>
     <pubDate>Wed, 04 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/mdf/mdf_02_extremun_principles_predict_equilibria/</guid>
     <description><![CDATA[<p><img class="tw-inline" loading="lazy" src='/image/MDF-banner.jpg'    height="300" width="1200"></p>
 <h3 id="极值原理extremum-principles" class="headerLink">
     <a href="#%e6%9e%81%e5%80%bc%e5%8e%9f%e7%90%86extremum-principles" class="header-mark"></a>极值原理（Extremum Principles）</h3><ul>
@@ -26,9 +26,9 @@
 <p>分子会通过构象变化、物理化学反应来改变两个关键的参数，一个是使得能量最低，另一个是熵最大。反过来，我们可以通过计算能量和熵，并且在数学上使函数达到极值，从而来预测分子的运动趋势，这一思路被称为<strong>极值原理</strong></p>]]></description>
 </item><item>
     <title>MDF | 01. 概率是热力学的基础</title>
-    <link>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</link>
+    <link>http://localhost:1313/posts/mdf/mdf_01_principles_of_probability/</link>
     <pubDate>Sat, 30 Sep 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/mdf/mdf_01_principles_of_probability/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/mdf/mdf_01_principles_of_probability/</guid>
     <description><![CDATA[<p><img class="tw-inline" loading="lazy" src='/image/MDF-banner.jpg'    height="300" width="1200"></p>
 <h3 id="对统计热力学的基本认识" class="headerLink">
     <a href="#%e5%af%b9%e7%bb%9f%e8%ae%a1%e7%83%ad%e5%8a%9b%e5%ad%a6%e7%9a%84%e5%9f%ba%e6%9c%ac%e8%ae%a4%e8%af%86" class="header-mark"></a>对统计热力学的基本认识</h3><ul>

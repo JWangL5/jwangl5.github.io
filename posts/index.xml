@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/posts/</link>
+        <link>http://localhost:1313/posts/</link>
         <description>所有文章 | JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_04/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_04/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_04/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_04/</guid>
     <description><![CDATA[<h3 id="250829-闭包" class="headerLink">
     <a href="#250829-%e9%97%ad%e5%8c%85" class="header-mark"></a>250829 闭包</h3><h4 id="问题引入" class="headerLink">
     <a href="#%e9%97%ae%e9%a2%98%e5%bc%95%e5%85%a5" class="header-mark"></a>问题引入</h4><ul>
@@ -16,9 +16,9 @@
 <p>Rust在设计过程中也受函数式编程的影响（将函数作为变量、参数或返回值的思想），闭包就是其产物之一</p>]]></description>
 </item><item>
     <title>Rust | 03. 泛型、Trait、生命周期、自动化测试</title>
-    <link>https://jwangl5.github.io/posts/rust/rust_note_03/</link>
+    <link>http://localhost:1313/posts/rust/rust_note_03/</link>
     <pubDate>Tue, 26 Aug 2025 00:17:49 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/rust/rust_note_03/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/rust/rust_note_03/</guid>
     <description><![CDATA[<h3 id="250827-代码复用" class="headerLink">
     <a href="#250827-%e4%bb%a3%e7%a0%81%e5%a4%8d%e7%94%a8" class="header-mark"></a>250827 代码复用</h3><h4 id="泛型" class="headerLink">
     <a href="#%e6%b3%9b%e5%9e%8b" class="header-mark"></a>泛型</h4><ul>
@@ -28,7 +28,7 @@
 <li>通常，泛型的声明是在使用前的<code>&lt;&gt;</code>中，通常使用一个字母来命名（驼峰法Type），其不仅仅可以用在函数中，也可以用于结构体或枚举的定义中，其可以同时存在多个（但太多了会不宜阅读，代码应该进一步分解为更小的单元）</li>
 <li>在给结构体或枚举类型实现方法时，如果方法是针对泛型的，应在impl关键字后加上泛型标注，如<code>impl&lt;T&gt; Point&lt;T&gt; { fn x(&amp;self)-&gt;&amp;T {&amp;self.x} }</code>，如果说只是针对某一具体的类型来实现，则只需要在结构体名称后标注<code>impl Point&lt;i32&gt; {fn x1(&amp;self)-&gt;i32 {&amp;self.x}}</code></li>
 <li>struct里的泛型类型参数可以和方法的泛型参数不同，例如
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -50,9 +50,9 @@
           <p class="tw-select-none !tw-my-1">rust</p>]]></description>
 </item><item>
     <title>软考备考 | 海明码</title>
-    <link>https://jwangl5.github.io/posts/net/n03_hamming/</link>
+    <link>http://localhost:1313/posts/net/n03_hamming/</link>
     <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n03_hamming/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n03_hamming/</guid>
     <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
@@ -124,13 +124,13 @@
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250822 海明码.pdf';
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250822 海明码.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
 
 
 var pdfDoc = null,
@@ -233,9 +233,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>软考备考 | 常见协议速查表</title>
-    <link>https://jwangl5.github.io/posts/net/n00_protocols/</link>
+    <link>http://localhost:1313/posts/net/n00_protocols/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n00_protocols/</guid>
     <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
@@ -307,13 +307,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 Protocols.pdf';
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 Protocols.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
 
 
 var pdfDoc = null,
@@ -416,9 +416,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>软考备考 | 生成树协议STP</title>
-    <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
+    <link>http://localhost:1313/posts/net/n05_stp/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n05_stp/</guid>
     <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
@@ -490,13 +490,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 STP.pdf';
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 STP.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
 
 
 var pdfDoc = null,
@@ -599,9 +599,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>软考备考 | 以太网物理层规范</title>
-    <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
+    <link>http://localhost:1313/posts/net/n02_ethernet/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_ethernet/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n02_ethernet/</guid>
     <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
@@ -673,13 +673,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 以太网物理层规范.pdf';
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250820 以太网物理层规范.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
 
 
 var pdfDoc = null,
@@ -782,9 +782,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>软考备考 | 奈氏准则与香农公式</title>
-    <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
+    <link>http://localhost:1313/posts/net/n02_nyquist_shannon/</link>
     <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n02_nyquist_shannon/</guid>
     <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
@@ -856,13 +856,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 (function() {
 
 
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250813 奈氏准则.pdf';
+var url = "http:\/\/localhost:1313\/" + '\/files\/net\/250813 奈氏准则.pdf';
 
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = "http:\/\/localhost:1313\/" + '/js/pdf-js/build/pdf.worker.js';
 
 
 var pdfDoc = null,
@@ -965,21 +965,21 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>网络 | 08. 运输层TCP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
+    <link>http://localhost:1313/posts/net/n08_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n08_tcp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络 | 09. 应用层</title>
-    <link>https://jwangl5.github.io/posts/net/n09_application/</link>
+    <link>http://localhost:1313/posts/net/n09_application/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n09_application/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络 | 07. IP数据报与IP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
+    <link>http://localhost:1313/posts/net/n07_ip_protocol/</link>
     <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/net/n07_ip_protocol/</guid>
     <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
     <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
 <li>

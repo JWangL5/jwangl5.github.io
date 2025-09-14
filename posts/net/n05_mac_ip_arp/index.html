@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/">
+    <meta name="robots" content="noodp" /><title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/net/n05_mac_ip_arp/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网">
   <meta property="og:description" content="250710 MAC地址、IP地址、ARP协议 MAC地址 基本概念 MAC地址是以太网的MAC子层所使用的地址，属于数据链路层 IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层 ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址 尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论 MAC地址 使用点对点信道的数据链路层不需要地址（一条线连接两个机器时） 使用广播信道的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机 每个主机必须有一个唯一的标识（即数据链路层地址），从而搞清楚发送主机和接收主机是谁 在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于媒体接入控制（MAC，Media Acess Control），因此这类地址被称为MAC地址 MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址 MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层 一般情况下，用户主机会包含两个网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址 而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址 综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识 IEEE 802局域网的MAC地址格式 由48比特构成，每8个比特为1个字节，共6个字节">
@@ -25,15 +25,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/net/n05_mac_ip_arp/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n04_csma_cd/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n06_net_route/" />
+<link rel="canonical" href="http://localhost:1313/posts/net/n05_mac_ip_arp/" /><link rel="prev" href="http://localhost:1313/posts/net/n04_csma_cd/" /><link rel="next" href="http://localhost:1313/posts/net/n06_net_route/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/net/n05_mac_ip_arp/"
+            "@id": "http://localhost:1313/posts/net/n05_mac_ip_arp/"
         },"genre": "posts","wordcount":  7215 ,
-        "url": "https://jwangl5.github.io/posts/net/n05_mac_ip_arp/","datePublished": "2025-07-10T00:00:00+08:00","dateModified": "2025-07-10T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/net/n05_mac_ip_arp/","datePublished": "2025-07-10T00:00:00+08:00","dateModified": "2025-07-10T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -196,7 +196,7 @@
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-07-10" data-pagefind-body>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
-        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>计算机网络</a></span></div>
             <div class="post-meta-line"><svg class="icon"

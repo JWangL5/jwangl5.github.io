@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>用TypeScript写的贪吃蛇小游戏（可直接游戏） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/">
+    <meta name="robots" content="noodp" /><title>用TypeScript写的贪吃蛇小游戏（可直接游戏） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/greedysnake_game_code_in_typescript/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="用TypeScript写的贪吃蛇小游戏（可直接游戏）">
   <meta property="og:description" content="最近在学习TypeScript的时候，跟着B站课写的一个小脚本，十分有趣！李立超老师确实深入简出，收获颇丰！">
@@ -25,15 +25,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/" /><link rel="prev" href="https://jwangl5.github.io/posts/method/dna_clone/" /><link rel="next" href="https://jwangl5.github.io/posts/binomial_and_poisson_distribution/" />
+<link rel="canonical" href="http://localhost:1313/posts/greedysnake_game_code_in_typescript/" /><link rel="prev" href="http://localhost:1313/posts/method/dna_clone/" /><link rel="next" href="http://localhost:1313/posts/binomial_and_poisson_distribution/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "用TypeScript写的贪吃蛇小游戏（可直接游戏）",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/"
+            "@id": "http://localhost:1313/posts/greedysnake_game_code_in_typescript/"
         },"genre": "posts","wordcount":  1245 ,
-        "url": "https://jwangl5.github.io/posts/greedysnake_game_code_in_typescript/","datePublished": "2023-08-04T00:17:49+08:00","dateModified": "2023-08-04T00:17:49+08:00","publisher": {
+        "url": "http://localhost:1313/posts/greedysnake_game_code_in_typescript/","datePublished": "2023-08-04T00:17:49+08:00","dateModified": "2023-08-04T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -180,7 +180,7 @@
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2023-08-04" data-pagefind-body>用TypeScript写的贪吃蛇小游戏（可直接游戏）</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
-        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>前端技术</a></span></div>
             <div class="post-meta-line"><svg class="icon"
@@ -214,7 +214,7 @@
 </div>
 <hr>
 <p>下面是关键的源码</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -324,7 +324,7 @@
 </span></span><span class="line"><span class="cl">                index.less</span></span></code></pre>
 </div>
 <h3 id="packagejson" class="headerLink">
-    <a href="#packagejson" class="header-mark"></a>package.json</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#packagejson" class="header-mark"></a>package.json</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -423,7 +423,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
 </div>
 <h3 id="packagejson-1" class="headerLink">
-    <a href="#packagejson-1" class="header-mark"></a>package.json</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#packagejson-1" class="header-mark"></a>package.json</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -548,7 +548,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
 </div>
 <h3 id="webpackconfigjs" class="headerLink">
-    <a href="#webpackconfigjs" class="header-mark"></a>webpack.config.js</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#webpackconfigjs" class="header-mark"></a>webpack.config.js</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -713,7 +713,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre>
 </div>
 <h3 id="srcindexhtml" class="headerLink">
-    <a href="#srcindexhtml" class="header-mark"></a>src/index.html</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcindexhtml" class="header-mark"></a>src/index.html</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -834,7 +834,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></span></span></code></pre>
 </div>
 <h3 id="scrindexts" class="headerLink">
-    <a href="#scrindexts" class="header-mark"></a>scr/index.ts</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#scrindexts" class="header-mark"></a>scr/index.ts</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -929,7 +929,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">gc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GameControl</span><span class="p">();</span></span></span></code></pre>
 </div>
 <h3 id="srcmodulesfoodts" class="headerLink">
-    <a href="#srcmodulesfoodts" class="header-mark"></a>src/modules/Food.ts</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcmodulesfoodts" class="header-mark"></a>src/modules/Food.ts</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1044,7 +1044,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Food</span><span class="p">;</span></span></span></code></pre>
 </div>
 <h3 id="srcmodulessnakets" class="headerLink">
-    <a href="#srcmodulessnakets" class="header-mark"></a>src/modules/Snake.ts</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcmodulessnakets" class="header-mark"></a>src/modules/Snake.ts</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1221,7 +1221,7 @@
 </span></span><span class="line"><span class="cl"><span class="na">export</span> <span class="na">default</span> <span class="na">Snake</span><span class="err">;</span></span></span></code></pre>
 </div>
 <h3 id="srcmodulesscorepannelts" class="headerLink">
-    <a href="#srcmodulesscorepannelts" class="header-mark"></a>src/modules/ScorePannel.ts</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcmodulesscorepannelts" class="header-mark"></a>src/modules/ScorePannel.ts</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1343,7 +1343,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">ScorePanel</span><span class="p">;</span></span></span></code></pre>
 </div>
 <h3 id="srcmodulesgamecontrolts" class="headerLink">
-    <a href="#srcmodulesgamecontrolts" class="header-mark"></a>src/modules/GameControl.ts</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcmodulesgamecontrolts" class="header-mark"></a>src/modules/GameControl.ts</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1513,7 +1513,7 @@
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">GameControl</span><span class="p">;</span></span></span></code></pre>
 </div>
 <h3 id="srcstyleindexless" class="headerLink">
-    <a href="#srcstyleindexless" class="header-mark"></a>src/style/index.less</h3><div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+    <a href="#srcstyleindexless" class="header-mark"></a>src/style/index.less</h3><div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 

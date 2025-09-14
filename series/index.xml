@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Series - 系列 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/series/</link>
+        <link>http://localhost:1313/series/</link>
         <description>Series - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/" rel="self" type="application/rss+xml" /><item>
     <title>Rust语言编程笔记</title>
-    <link>https://jwangl5.github.io/series/rust/</link>
+    <link>http://localhost:1313/series/rust/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/rust/</guid>
+    </author><guid>http://localhost:1313/series/rust/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>读书笔记</title>
-    <link>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <link>http://localhost:1313/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Wed, 31 Jul 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+    </author><guid>http://localhost:1313/series/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>托福备考学习材料</title>
-    <link>https://jwangl5.github.io/series/toefl/</link>
+    <link>http://localhost:1313/series/toefl/</link>
     <pubDate>Wed, 15 May 2024 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/toefl/</guid>
+    </author><guid>http://localhost:1313/series/toefl/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>IELTS</title>
-    <link>https://jwangl5.github.io/series/ielts/</link>
+    <link>http://localhost:1313/series/ielts/</link>
     <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/ielts/</guid>
+    </author><guid>http://localhost:1313/series/ielts/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Molecular Driving Forces精读笔记</title>
-    <link>https://jwangl5.github.io/series/mdf/</link>
+    <link>http://localhost:1313/series/mdf/</link>
     <pubDate>Fri, 06 Oct 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/mdf/</guid>
+    </author><guid>http://localhost:1313/series/mdf/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Python Scripts</title>
-    <link>https://jwangl5.github.io/series/python-scripts/</link>
+    <link>http://localhost:1313/series/python-scripts/</link>
     <pubDate>Mon, 18 Sep 2023 16:58:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/python-scripts/</guid>
+    </author><guid>http://localhost:1313/series/python-scripts/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Genshin Impact</title>
-    <link>https://jwangl5.github.io/series/genshin-impact/</link>
+    <link>http://localhost:1313/series/genshin-impact/</link>
     <pubDate>Sun, 17 Sep 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/genshin-impact/</guid>
+    </author><guid>http://localhost:1313/series/genshin-impact/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>实验Protocol下载</title>
-    <link>https://jwangl5.github.io/series/protocol/</link>
+    <link>http://localhost:1313/series/protocol/</link>
     <pubDate>Fri, 15 Sep 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/protocol/</guid>
+    </author><guid>http://localhost:1313/series/protocol/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>BioModel</title>
-    <link>https://jwangl5.github.io/series/biomodel/</link>
+    <link>http://localhost:1313/series/biomodel/</link>
     <pubDate>Fri, 04 Aug 2023 00:17:49 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/biomodel/</guid>
+    </author><guid>http://localhost:1313/series/biomodel/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>R Scripts</title>
-    <link>https://jwangl5.github.io/series/r-scripts/</link>
+    <link>http://localhost:1313/series/r-scripts/</link>
     <pubDate>Sat, 28 Jan 2023 00:00:00 &#43;0800</pubDate><author>
         <name>卢旺</name>
-    </author><guid>https://jwangl5.github.io/series/r-scripts/</guid>
+    </author><guid>http://localhost:1313/series/r-scripts/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/rust/rust_note_02/">
+    <meta name="robots" content="noodp" /><title>Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/rust/rust_note_02/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理">
   <meta property="og:description" content="240108 Package, Crate, Module 代码组织需要包括哪些细节可以暴露，哪些细节可以私有，作用域内哪些名称有效等等；Rust的代码组织（也可以叫模块系统）如下： Package（包），是Cargo的特性，让你构建、测试、共享crate Crate（单元包），一个模块树，它可以产生一个library或可执行文件 Module（模块）、use，让你控制代码的组织、作用域、私有路径 Path（路径），是为Struct、function、module等项命名的方式 Package和Crate Crate有两种类型，即binary或library；Crate root是指源代码文件，Rust编译器会从这里开始，组成你Crate的根Module；一个Package包含了一个Cargo.toml文件（用于描述了如何构建这些Crates），一个package只能包含0-1个library crate，以及任意数量的binary crates，另外，一个library至少包含一个crate（library或binary）">
@@ -13,9 +13,9 @@
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-01-08T00:17:49+08:00">
     <meta property="article:modified_time" content="2025-08-26T00:17:49+08:00">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_04/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_03/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/rust/rust_note_01/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_04/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_03/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/rust/rust_note_01/">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理">
@@ -28,15 +28,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/rust/rust_note_02/" /><link rel="prev" href="https://jwangl5.github.io/posts/rust/rust_note_01/" /><link rel="next" href="https://jwangl5.github.io/posts/cell-biology/kinetochore/" />
+<link rel="canonical" href="http://localhost:1313/posts/rust/rust_note_02/" /><link rel="prev" href="http://localhost:1313/posts/rust/rust_note_01/" /><link rel="next" href="http://localhost:1313/posts/cell-biology/kinetochore/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/rust/rust_note_02/"
+            "@id": "http://localhost:1313/posts/rust/rust_note_02/"
         },"genre": "posts","wordcount":  8423 ,
-        "url": "https://jwangl5.github.io/posts/rust/rust_note_02/","datePublished": "2024-01-08T00:17:49+08:00","dateModified": "2025-08-26T00:17:49+08:00","publisher": {
+        "url": "http://localhost:1313/posts/rust/rust_note_02/","datePublished": "2024-01-08T00:17:49+08:00","dateModified": "2025-08-26T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -194,7 +194,7 @@
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2024-01-08" data-pagefind-body>Rust | 02. 包管理、集合（String、Vector、HashMap）、错误处理</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
-        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>编程笔记</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/rust/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v340a6 6 0 0 1-6 6zm-42-92v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm-252 12c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36z"/></svg>Rust语言编程笔记</a></span></div>
@@ -265,7 +265,7 @@
 </li>
 <li>
 <p>定义<strong>Module</strong>可以控制作用域和私有性：在一个crate内，将代码进行分组，增强可读性，易于复用，可以使用public、private关键字控制项目（item）的私有性；使用mod关键字建立module，其可以嵌套，类似于如下的实例</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -380,7 +380,7 @@
 </li>
 <li>
 <p>路径至少由一个标识符组成，标识符之间用::分隔，例如</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -501,7 +501,7 @@
 </li>
 <li>
 <p><strong>super关键字</strong>用于访问父级模块中的内容，相当于文件系统中的两个点..</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -602,7 +602,7 @@
 </li>
 <li>
 <p>当将pub关键字放在struct前，struct就是公共的，但字段如果没有加pub修饰时，字段仍旧是私有的；即是说，struct的字段需要单独设置pub来变成共有</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -723,7 +723,7 @@
     <a href="#use%e5%85%b3%e9%94%ae%e5%ad%97" class="header-mark"></a>use关键字</h4><ul>
 <li>
 <p>可以使用use关键字将路径导入到当前作用域内（类似Linux的符号链接），但仍旧遵循私有原则</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -833,7 +833,7 @@
 </li>
 <li>
 <p>但对于引入struct、enum类型时，可以直接指定完整路径到其本身；但对于同名条目，还是需要指定到父级，否则会混淆</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -928,7 +928,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1026,7 +1026,7 @@
 </li>
 <li>
 <p><strong>as关键字</strong>可以为引入的路径指定一个本地的别名</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1124,7 +1124,7 @@
 </li>
 <li>
 <p>使用use将路径（名称）导入到作用域后，该名称在此作用域内是私有的。例如下面的代码，函数<code>eat_at_restaurant()</code>对于外部代码而言是公开的；但名称hosting却对外面是默认私有的，需要在use语句前使用pub关键字，将其公开</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1234,7 +1234,7 @@
 <li>
 <p>可以使用嵌套语句，来在同一行内同时引入相同包/模块下的多个条目，其格式为：</p>
 <center>use 路径相同部分::{路径, 不同, 部分}</center>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1328,7 +1328,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="p">{</span><span class="n">cmp</span>::<span class="n">Ordering</span><span class="p">,</span><span class="w"> </span><span class="n">io</span><span class="p">};</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1425,7 +1425,7 @@
 </li>
 <li>
 <p>可以使用通配符*，可以将路径中所有公共条目都引入到当前作用域内；需要注意的是，通配符需要谨慎使用，其仅仅在测试阶段（将所有需要测试代码引入到tests模块）或预导入模块（prelude）</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1525,7 +1525,7 @@
 </li>
 <li>
 <p>可以在<code>\Users\user\.cargo\config</code>目录下写配置文件来更换清华源</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1633,7 +1633,7 @@
     <a href="#%e6%a8%a1%e5%9d%97%e6%8b%86%e5%88%86%e5%88%b0%e4%b8%8d%e5%90%8c%e6%96%87%e4%bb%b6" class="header-mark"></a>模块拆分到不同文件</h4><ul>
 <li>
 <p>定义模块时，模块名后可以直接写分号<code>;</code>，而不是代码块，此时Rust会从与模块同名的文件中加载内容（即实现了将模块拆分到不同的文件内）</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1731,7 +1731,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">│</span><span class="w">   </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">└─</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">rs</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1829,7 +1829,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">│</span><span class="w">   </span><span class="k">mod</span> <span class="nn">front_of_house</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">└─</span><span class="w"> </span><span class="n">main</span><span class="p">.</span><span class="n">rs</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1935,7 +1935,7 @@
     <a href="#vector" class="header-mark"></a>Vector</h4><ul>
 <li>
 <p>可以使用Vector类型存储 <strong>类型相同</strong>的多个值，写作Vec&lt;T&gt;，其由标准库提供</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2029,7 +2029,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 因为初始化时为空，编译器无法推断类型，需要手动标注i32类型
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2126,7 +2126,7 @@
 </li>
 <li>
 <p>使用<code>push()</code>函数向其中添加元素</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2224,7 +2224,7 @@
 </li>
 <li>
 <p>使用索引或<code>get()</code>方法获得其中的元素，索引从0开始，超出索引范围后会引发程序崩溃，而get方法返回Option枚举类型，需要手动处理</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2327,7 +2327,7 @@
 </li>
 <li>
 <p>所有权和借用规则要求，不能在同一作用域内同时拥有可变和不可变引用，该规则仍旧适合vector；因为Vector的其元素成集合统一存储在heap上，因而不能只考虑一个元素是否可变，而需要关注整个vector是否可变</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2444,7 +2444,7 @@
 </li>
 <li>
 <p>PS：在使用该方法定义Vector时，需要知道详尽的数据类型，不能存在类型未知的情况；<strong>Trait对象</strong>对于解决该问题有帮助</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2564,7 +2564,7 @@
 </li>
 <li>
 <p>而字符串String是来自标准库，是可增长、可修改、可拥有的类型；由于其本身就是Byte的集合，因而许多Vec&lt;T&gt;的操作也都可用于String，可以使用String::new()创建字符串，也可以直接使用<code>to_string()</code>方法（该方法可用于实现了Display trait的类型，包含字符串字面值）或<code>String::from()</code>函数创建初始化一个字符串</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2669,7 +2669,7 @@
 </li>
 <li>
 <p>使用<code>push()</code>方法，可以把单个字符添加到字符串尾部</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2768,7 +2768,7 @@
 </li>
 <li>
 <p>使用<code>+</code>运算符直接拼接字符串，其相当于使用了类似签名<code>fn add(self, s:&amp;str) -&gt; String {...}</code>这样的方法（实际上是一个泛型，会更复杂），因而需要加号前为字符串，加号后为字符串切片，在相加后前面的变量所有权移交到add内部，离开后会失效，而后面的变量则可以继续保留所有权而可以继续使用</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2869,7 +2869,7 @@
 </li>
 <li>
 <p>也可以使用<code>format!</code>宏来完成字符串的拼接，其更灵活也不会取得任何参数的所有权</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2972,7 +2972,7 @@
 </li>
 <li>
 <p>按照索引语法访问String的某部分时会报错，即是说Rust字符串不支持索引语法访问；实际上，String是对Vec&lt;u8&gt;的包装，可以使用<code>len()</code>方法返回其<strong>字节长度</strong></p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3073,7 +3073,7 @@
 </li>
 <li>
 <p>Rust有三种看待字符串的方式：字节Bytes、标量值Scalar values和字形簇Grapheme cluster；其中字形簇才是最接近我们所理解的“字母”；可以使用<code>bytes()</code>、<code>chars()</code>方法获得其字节和标量值的迭代器，用于遍历字符串；对于字形簇的获取，其很复杂，标准库为提供</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3180,7 +3180,7 @@
 </li>
 <li>
 <p>可以使用[]和一个范围来创建字符串的切片（切割字符串），但是需要谨慎使用，如果切割时跨越了字符边界，程序就会panic</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3287,7 +3287,7 @@
 </li>
 <li>
 <p>可以使用<code>new()</code>函数创建HashMap，使用<code>insert()</code>方法插入键值对，如果没有数据初始化或随后插入数据的话，需要指定数据类型；HashMap是同构的，其所有的Key类型相同，所有的Value类型相同；标准库对其支持很少，没有内置的宏来创建HashMap</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3386,7 +3386,7 @@
 </li>
 <li>
 <p>也可以使用<code>collect()</code>方法来创建HashMap，需要手动指定collect之后的数据类型</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3489,7 +3489,7 @@
 <li>对于实现了Copy trait的类型（例如i32），值会被复制到HashMap中</li>
 <li>对于拥有所有权的值（例如String），值会被移动，所有权会转移给HashMap</li>
 </ul>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3595,7 +3595,7 @@
 </li>
 <li>
 <p>HashMap值的访问可以使用<code>get()</code>方法，其可以返回一个<code>Option&lt;T&gt;</code>枚举类型；可以使用for循环遍历HashMap的引用，保留其所有权</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3710,7 +3710,7 @@
 <li>可以直接插入(k, v)，当k相同时，v会将原来值覆盖掉</li>
 <li>使用entry检查指定的k是否有对应的v，其参数为k，返回值为enum Entry类型（存在时返回值的可变引用），配合<code>or_insert()</code>方法来更新值</li>
 </ul>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3814,7 +3814,7 @@
 </li>
 <li>
 <p>一个文本计数的案例</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3933,7 +3933,7 @@
     <a href="#panic%e5%92%8c%e4%b8%8d%e5%8f%af%e6%81%a2%e5%a4%8d%e7%9a%84%e9%94%99%e8%af%af" class="header-mark"></a><code>panic!</code>和不可恢复的错误</h4><ul>
 <li>
 <p><code>panic!()</code>可以是自己写的，也可以是程序依赖代码调用的；使用<code>set RUST_BACKTRACE=1 &amp;&amp; cargo run</code>命令可以在执行代码的同时查看到错误的回溯信息（找到panic!的发生位置）</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4031,7 +4031,7 @@
 </li>
 <li>
 <p>当<code>panic!</code>执行时，程序会做以下操作：打印错误信息、展开（unwind）并清理调用栈（stack）、退出程序；展开调用栈的操作意味着Rust沿着调用栈往回走，清理而每个遇到的函数中的数据，其工作量巨大；可以手动设置立即中止（abort）调用栈，不由程序进行清理而是直接停止程序，交由操作系统对内存进行清理，这样的配制可以让二进制文件更小；设置的方法是在Cargo.toml中修改profile设置，添加panic=&lsquo;abort&rsquo;即可</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4129,7 +4129,7 @@
 </li>
 <li>
 <p>有的时候，你可以获得比编译器多的信息，肯定其结果不会发生错误的时候，也可以使用unwrap()处理数据类型的转化，如下场景中，手动输入的IP地址一定是对的，但parse()方法仍旧返回Result类型，可以直接使用unwrap()获取需要的结果</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4239,7 +4239,7 @@
 </li>
 <li>
 <p>为了验证值的合法性，可以创建新的类型，把验证逻辑放在实例的构造函数里；这里对之前猜数游戏的案例做部分修改</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4359,7 +4359,7 @@
 </ul>
 <h4 id="result枚举" class="headerLink">
     <a href="#result%e6%9e%9a%e4%b8%be" class="header-mark"></a>Result枚举</h4><p>其定义结构如下，有两个变体，分别绑定了一个泛型参数。可以理解为，T为操作成功情况下，Ok变体里返回的数据的类型，E为操作失败情况下，Err变体里返回的错误的类型。使用match处理Result，当需要解析错误时也可以使用match做进一步的区分。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4456,7 +4456,7 @@
 <ul>
 <li>
 <p>例如下面的例子，File::open()返回的结果就是一个Result枚举类型，如果文件存在并读取成功，其返回的是File类型，如果不存在则返回Err；使用match处理Result，值得关注的是，Result及其变体类型，同Option一样，由prelude带入作用域，不需要额外手动标注；可以使用<code>unwrap()</code>方法来快速match不同类型并返回系统报告信息（match+panic!）；也可以使用<code>expect()</code>方法在解析错误的同时打印自定义的错误信息</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4556,7 +4556,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&#34;hello.txt&#34;</span><span class="p">).</span><span class="n">expect</span><span class="p">(</span><span class="s">&#34;无法打开文件&#34;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4663,7 +4663,7 @@
 <ul>
 <li>在本例中嵌套了好几层<code>match</code>，其代码不够直观，之后会学习闭包（closure）来优化这一段代码（调用<code>unwrap_or_else()</code>）</li>
 </ul>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4764,7 +4764,7 @@
 </li>
 <li>
 <p>传播错误：在错误发生时，不仅仅可以在函数中处理该错误，也可以把错误返回给函数的调用者，让其解决该错误（相当于java中的<code>throw</code>），其代码逻辑如下</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -4878,7 +4878,7 @@
 </li>
 <li>
 <p>Rust提供<code>?</code>操作符来快速解析结果并抛出异常，其效果等同于match+return；这里值得注意的是，<code>?</code>运算符只可以用在返回Result类型的函数中，其在执行时，会隐式地将捕获到的错误交由<code>from</code>函数进行处理和转化，将捕获到的错误类型转化为<strong>当前函数返回类型所定义的错误类型</strong>；from是Trait std::convert::From上的函数，用于错误之间的转化，只有此错误类型实现了目标类型的from函数，<code>?</code>才可以将不同错误原因，返回为同一种错误类型；此外，<code>?</code>还支持链式调用</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 

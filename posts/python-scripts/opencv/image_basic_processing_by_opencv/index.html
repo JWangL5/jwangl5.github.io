@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/">
+    <meta name="robots" content="noodp" /><title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="OpenCV | 空间域处理之邻域操作/几何变换/形态学操作">
   <meta property="og:description" content="在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：">
@@ -13,8 +13,8 @@
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2020-04-07T00:00:00+08:00">
     <meta property="article:modified_time" content="2020-04-07T00:00:00+08:00">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/">
-      <meta property="og:see_also" content="https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/">
+      <meta property="og:see_also" content="http://localhost:1313/posts/python-scripts/opencv/image_display_and_storage_by_opencv/">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="OpenCV | 空间域处理之邻域操作/几何变换/形态学操作">
@@ -27,15 +27,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/" /><link rel="prev" href="https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/" /><link rel="next" href="https://jwangl5.github.io/posts/python-scripts/python_script_for_bilibili_danmu/" />
+<link rel="canonical" href="http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/" /><link rel="prev" href="http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/" /><link rel="next" href="http://localhost:1313/posts/python-scripts/python_script_for_bilibili_danmu/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
         "headline": "OpenCV | 空间域处理之邻域操作/几何变换/形态学操作",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/"
+            "@id": "http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/"
         },"genre": "posts","wordcount":  7731 ,
-        "url": "https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/","datePublished": "2020-04-07T00:00:00+08:00","dateModified": "2020-04-07T00:00:00+08:00","publisher": {
+        "url": "http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/","datePublished": "2020-04-07T00:00:00+08:00","dateModified": "2020-04-07T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -204,7 +204,7 @@
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2020-04-07" data-pagefind-body>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
-        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+        <span class='screen-reader-text'>  </span><a href='http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>图像处理</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/opencv/"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v340a6 6 0 0 1-6 6zm-42-92v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm-252 12c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36z"/></svg>Opencv</a></span></div>
@@ -276,7 +276,7 @@ $$</p>
     <a href="#%e5%9d%87%e5%80%bc%e6%bb%a4%e6%b3%a2" class="header-mark"></a>均值滤波</h3><p>均值滤波相当于对邻域空间求平均数操作，其使用$1/N$作为所有元素的值（所有参数和为1）；</p>
 <p>在opencv中，我们有两种方法使用均值，一个是借助Numpy构建卷积核然后调用<code>cv2.filter2D()</code>函数，另外opencv也对常用的滤波器提供了现成的方法，<code>cv2.boxblur(img, kernel-size)</code>或<code>cv2.blur(img, kernel-size)</code>完成，kernel-size为元组表示的卷积核尺寸，其卷积核不仅仅可以为正方形，也可以为矩形，如<code>(1, 10)</code>（瘦高卷积核）可以实现垂直方向上的模糊、矮胖卷积核实现水平方向的模糊；</p>
 <p>如下使用5×5卷积核的测试效果，已然可见其边界已不再清楚：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -386,7 +386,7 @@ $$</p>
 <h3 id="中值滤波" class="headerLink">
     <a href="#%e4%b8%ad%e5%80%bc%e6%bb%a4%e6%b3%a2" class="header-mark"></a>中值滤波</h3><p>中值滤波是将卷积框内的像素值排序，然后取中位数作为该位置结果的一种滤波操作，其要求卷积核尺寸为奇数；</p>
 <p>中值滤波最为人称道的应用场景在于去除含黑白细点的椒盐噪声，可以通过如下函数给图片添加上一定比例的黑白碎点模拟椒盐噪声：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -491,7 +491,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">output</span></span></span></code></pre>
 </div>
 <p>在opencv中实现中值滤波效果的函数是<code>cv2.medianBlur(img, size)</code>，其参数传入原图和卷积核的边长即可，如下为中值滤波的测试代码和测试效果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -619,7 +619,7 @@ $$
 </li>
 </ul>
 <p>可以使用如下函数模拟高斯噪声：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -724,7 +724,7 @@ $$
 <p>opencv提供了<code>cv2.getGaussianKernel()</code>方法构建一个高斯核，提供了<code>cv2.GaussianBlur()</code>方法来实现高斯滤波，其有如下参数：</p>
 <p><img class="tw-inline" loading="lazy" src='image/CSDN-20200407161759312.png#pic_center'     ></p>
 <p>其中，src为原图像，ksize为高斯核的尺寸，以元组形式表示；sigmaX为在x方向上的标准差，sigmaY为y方向上的标准差，在sigmaX不为0时，sigmaY默认与sigmaX相等；如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -839,7 +839,7 @@ $$
 </ul>
 <h3 id="双边滤波" class="headerLink">
     <a href="#%e5%8f%8c%e8%be%b9%e6%bb%a4%e6%b3%a2" class="header-mark"></a>双边滤波</h3><p>双边滤波是高斯滤波器的一种改进形式，其不仅仅考虑了像素之间的空间关系，也考虑像素值之间灰度值的相似性。双边滤波同时使用<strong>空间高斯权重</strong>和<strong>灰度值相似性高斯权重</strong>。空间高斯函数确保只有邻近区域的像素对中心点有影响，灰度值相似性高斯函数确保只有与中心像素灰度值相近的才会被用来做模糊运算。</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -964,7 +964,7 @@ kernel_x=\begin{bmatrix} -1 &amp; 1 \end {bmatrix},
 kernel_y=\begin{bmatrix} -1 \\ 1 \end {bmatrix}
 $$
 $kernel_x$为水平梯度，检测垂直边缘；$kernel_y$为垂直梯度，检测水平边缘；如下代码使用了基础卷积核的2倍以使检测效果增强显示；</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1085,7 +1085,7 @@ kernel_{rl}=\begin{bmatrix} -1 &amp; -1 &amp; 0 \\ -1 &amp; 0 &amp; 1 \\ 0 &amp;
 $$
 其中，$kernel_x$由水平梯度扩展而来检测垂直边缘；$kernel_y$由垂直梯度扩展而来检水平边缘；$kernel_{lr}$梯度为左下右上方向，可以检测左上右下边缘；$kernel_{rl}$梯度为左上右下方向，可以检测左下右上边缘；</p>
 <p>如下为构建卷积核并执行Prewitt滤波操作的代码和测试结果，dst为左右滤波结果的加和：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1214,7 +1214,7 @@ $$</p>
 kernel_y=\begin{bmatrix} 1 &amp; 2 &amp; 1 \end {bmatrix} \times \begin{bmatrix} -1 \ 0 \ 1 \end {bmatrix}=\begin{bmatrix} -1 &amp; -2 &amp; -1 \\ 0 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 1 \end {bmatrix}
 $$
 如下为构建卷积核和执行Sobel滤波的代码和测试结果（原图和前面一致）：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1339,7 +1339,7 @@ kernel_x=\begin{bmatrix} -3 &amp; 0 &amp; 3 \\ -10 &amp; 0 &amp; 10 \\ -3 &amp; 
 kernel_y=\begin{bmatrix} -3 &amp; -10 &amp; -3 \\ 0 &amp; 0 &amp; 0 \\ 3 &amp; 10 &amp; 3 \end {bmatrix}\
 $$
 如下为测试代码和结果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1456,7 +1456,7 @@ $$</p>
 <li>在表示图像Mat的格式时还会在后面写上Cx表示含有x个通道</li>
 </ul>
 <p>一般图的深度为<code>np.int8/CV_8U</code>，即8位二进制数表示的整数（0-255），在当Sobel算子进行求导操作时，负数值丢失为0，这样就仅能检测由黑至白的边界，而不能检测由白至黑的边界，如下为使用一个白色box的图所作的测试效果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1566,7 +1566,7 @@ $$</p>
 <p><img class="tw-inline" loading="lazy" src='image/CSDN-20200407155834767.png#pic_center'     >
 为了解决这一问题，我们需要改换图像的深度，以获得完全的信息，如可以将图像深度改为 <code>cv2.CV_16S</code>或<code>cv2.CV_64F</code> 来保留负数的结果，最后在显示时再使用<code>np.absolute()</code>将其取绝对值展示，或使用<code>cv2.convertScaleAbs()</code>再将其转化为<code>CV_8U</code>展示：</p>
 <p>如下为测试代码：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1686,7 +1686,7 @@ $$</p>
 2D_8 = \begin{bmatrix} 1 &amp; 1 &amp; 1 \\ 1 &amp; -8 &amp; 1 \\ 1 &amp; 1 &amp; 1 \end {bmatrix}
 $$
 如下为Laplacian滤波的检测代码和结果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1798,7 +1798,7 @@ $$
 <p>需要注意的是，opencv还提供了<code>cv2.Laplacian()</code>函数，其同样可以完成Laplacian滤波的工作，其具体的用法与<code>cv2.Sobel()</code>一致，这里不再赘述；</p>
 <h3 id="锐化滤波" class="headerLink">
     <a href="#%e9%94%90%e5%8c%96%e6%bb%a4%e6%b3%a2" class="header-mark"></a>锐化滤波</h3><p>锐化内核强调在相邻的像素值的差异，可以使图像看起来更生动；如下为测试代码和结果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -1923,7 +1923,7 @@ $$
 \end{bmatrix}
 $$
 你可以使用Numpy数组构建这个矩阵（数据类型是<code>np.float32</code>），然后把它传给函数<code>cv2.warpAffine()</code>，下例即将原图移动了（100,50）个像素：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2046,7 +2046,7 @@ $$
 <li>缩放因子，小于1时缩小，大于1时放大</li>
 </ul>
 <p>下面的例子是在不缩放的情况下，以(0, rows)点（左下角）为中心，将图像逆时针旋转30度：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2153,7 +2153,7 @@ $$
 <h3 id="仿射变换" class="headerLink">
     <a href="#%e4%bb%bf%e5%b0%84%e5%8f%98%e6%8d%a2" class="header-mark"></a>仿射变换</h3><p>三点确定一个平面，当给出原图像中的三个点以及他们在输出图像中的位置，可以将原图进行仿射变换；在仿射变换后，原图中所有的平行线在结果图像中同样平行；可以将变换前后的点集传入<code>cv2.getAffineTransform</code>函数，创建一个2x3的变换矩阵，后将这个矩阵会被传给函数 <code>cv2.warpAffine()</code>得到变换结果；</p>
 <p>具体看下面的例子（蓝色的点为选择的点坐标）：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2262,7 +2262,7 @@ $$
 <p><img class="tw-inline" loading="lazy" src='image/CSDN-20200407160353311.png#pic_center'     ></p>
 <h3 id="透视变换" class="headerLink">
     <a href="#%e9%80%8f%e8%a7%86%e5%8f%98%e6%8d%a2" class="header-mark"></a>透视变换</h3><p>在给出4个不共线的点时，我们可以对齐作透视变换，指定其变换前后的位置传入<code>cv2.getPerspectiveTransform()</code>函数可以构建一个3×3的变换矩阵，将其传入<code>cv2.warpPerspective()</code>函数可以得到变换后的结果；具体的测试代码和效果图如下：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2420,7 +2420,7 @@ $$
     </tbody>
   </table>
 </div>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2534,7 +2534,7 @@ $$
 <li>形状参数可以为<code>cv2.MORPH_ELLIPSE</code>（椭圆）、<code>cv2.MORPH_RECT</code>（矩形）、<code>cv2.MORPH_CROSS</code>（十字）等；卷积核大小为元组形式；</li>
 </ul>
 <p>如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2642,7 +2642,7 @@ $$
 <p>从效果图可见，其不仅减小了噪声点的大小，也断开了字体中的细线连接；</p>
 <h3 id="膨胀" class="headerLink">
     <a href="#%e8%86%a8%e8%83%80" class="header-mark"></a>膨胀</h3><p>与腐蚀相反，膨胀操作为：“与卷积核对应的原图像的像素值中只要有一个是 1，中心元素的像素值就是 1”，所以这个操作会扩展图像中的白色区域（前景）；opencv中有<code>cv2.dilate()</code>方法来完成膨胀操作，其用法与腐蚀相同；如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2751,7 +2751,7 @@ $$
     <a href="#%e5%bc%80%e8%bf%90%e7%ae%97--%e9%97%ad%e8%bf%90%e7%ae%97" class="header-mark"></a>开运算 / 闭运算</h3><p>先腐蚀再膨胀的操作称为开运算，其往往被用于去除噪声，因为腐蚀在去掉白噪声的同时，也会使前景对象变小，对其进行膨胀操作可使前景恢复而不影响噪声；</p>
 <p>先膨胀再腐蚀的操作叫做闭运算，其可以填充白色前景中的黑色小洞；</p>
 <p>opencv中使用<code>cv2.morphologyEx()</code>函数传入<code>cv2.MORPH_OPEN</code>或<code>cv2.MORPH_CLOSE</code>参数时进行开运算/闭运算操作；如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2861,7 +2861,7 @@ $$
 <p><img class="tw-inline" loading="lazy" src='image/CSDN-20200407160646823.png#pic_center'     ></p>
 <h3 id="礼帽--黑帽" class="headerLink">
     <a href="#%e7%a4%bc%e5%b8%bd--%e9%bb%91%e5%b8%bd" class="header-mark"></a>礼帽 / 黑帽</h3><p>礼帽（又称顶帽），是原图与开运算之间的差值；opencv中使用<code>cv2.morphologyEx()</code>函数传入<code>cv2.MORPH_TOPHAT</code>参数时进行礼帽操作；如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -2970,7 +2970,7 @@ $$
 </div>
 <p><img class="tw-inline" loading="lazy" src='image/CSDN-20200407160715752.png#pic_center'     ></p>
 <p>黑帽是原图与闭运算之间差值；opencv中使用<code>cv2.morphologyEx()</code>函数传入<code>cv2.MORPH_BLACKHAT</code>参数时进行礼帽操作；如下为测试代码和效果图：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
@@ -3081,7 +3081,7 @@ $$
 <h3 id="形态学梯度" class="headerLink">
     <a href="#%e5%bd%a2%e6%80%81%e5%ad%a6%e6%a2%af%e5%ba%a6" class="header-mark"></a>形态学梯度</h3><p>opencv中使用<code>cv2.morphologyEx()</code>函数传入<code>cv2.MORPH_GRADIENT</code>参数时求解形态学的梯度，其被定义为膨胀后图像减去腐蚀后图像所得到的边框；</p>
 <p>此外，也有内部梯度（原图减腐蚀）和外部梯度（膨胀减原图）的说法，其可以通过<code>cv2.substract(img1, img2)</code>实现；如下为测试结果：</p>
-<div class="code-block highlight is-open show-line-numbers  tw-group tw-my-2">
+<div class="code-block highlight is-open show-line-numbers is-wrap tw-group tw-my-2">
   <div class="
     
     tw-flex 
