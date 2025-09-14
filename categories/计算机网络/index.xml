@@ -9,7 +9,12 @@
     <link>https://jwangl5.github.io/posts/net/n03_hamming/</link>
     <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n03_hamming/</guid>
-    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -192,7 +197,12 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n00_protocols/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
-    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -375,7 +385,12 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
-    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -558,7 +573,12 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_ethernet/</guid>
-    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -741,7 +761,12 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
     <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</guid>
-    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -920,13 +945,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 
 </script>]]></description>
 </item><item>
-    <title>网络 | 08. 运输层TCP协议</title>
+    <title>网络笔记 | 08. 运输层TCP协议</title>
     <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>网络 | 09. 应用层</title>
+    <title>网络笔记 | 09. 应用层</title>
     <link>https://jwangl5.github.io/posts/net/n09_application/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
@@ -936,12 +961,17 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
     <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
-    <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<h3 id="250806-ip数据报与ip协议" class="headerLink">
     <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
 <li>
 <p>IPv4数据报（IP数据报）首部格式</p>]]></description>
 </item><item>
-    <title>网络 | 06. 网络层与IP数据报的路由与交付</title>
+    <title>网络笔记 | 06. 网络层与IP数据报的路由与交付</title>
     <link>https://jwangl5.github.io/posts/net/n06_net_route/</link>
     <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
@@ -950,7 +980,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 <li>
 <p>网络层</p>]]></description>
 </item><item>
-    <title>网络 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
+    <title>网络笔记 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
     <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
     <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
