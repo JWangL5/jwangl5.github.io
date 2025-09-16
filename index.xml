@@ -1025,7 +1025,11 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n06_net_route/</link>
     <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
-    <description><![CDATA[<h3 id="250715-网络层与ipv4" class="headerLink">
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap1.png" title="" data-thumbnail="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap1.png" data-sub-html="<h2>网络层内容框架</h2>"><img  loading="lazy" src='/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap1.png'    height="85%" width="85%"></a><figcaption class="image-caption">网络层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="250715-网络层与ipv4" class="headerLink">
     <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><h4 id="网络层" class="headerLink">
     <a href="#%e7%bd%91%e7%bb%9c%e5%b1%82" class="header-mark"></a>网络层</h4><ul>
 <li>主要任务是实现网络互联，进而实现数据包在各网络之间的传输</li>
