@@ -4,7 +4,21 @@
         <link>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</link>
         <description>卢旺 - 作者 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/" rel="self" type="application/rss+xml" /><item>
+    <title>网络笔记 | 07. 路由选择算法</title>
+    <link>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</link>
+    <pubDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</guid>
+    <description><![CDATA[<ul>
+<li>具体的路由选择协议算法
+<ul>
+<li>路由信息协议RIP</li>
+<li>开放最短路径优先OSPF</li>
+<li>边界网关协议BGP</li>
+</ul>
+</li>
+</ul>]]></description>
+</item><item>
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</title>
     <link>https://jwangl5.github.io/posts/rust/rust_note_04/</link>
     <pubDate>Thu, 28 Aug 2025 00:17:49 &#43;0800</pubDate><author>
@@ -985,9 +999,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>网络笔记 | 08. 运输层TCP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
+    <link>https://jwangl5.github.io/posts/net/n10_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_tcp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络笔记 | 09. 应用层</title>
@@ -995,14 +1009,5 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
     <description><![CDATA[]]></description>
-</item><item>
-    <title>网络笔记 | 07. IP数据报与IP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
-    <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
-    <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
-    <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
-<li>
-<p>IPv4数据报（IP数据报）首部格式</p>]]></description>
 </item></channel>
 </rss>

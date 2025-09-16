@@ -4,7 +4,21 @@
         <link>https://jwangl5.github.io/series/net/</link>
         <description>计算机网络 - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/net/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/net/" rel="self" type="application/rss+xml" /><item>
+    <title>网络笔记 | 07. 路由选择算法</title>
+    <link>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</link>
+    <pubDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</guid>
+    <description><![CDATA[<ul>
+<li>具体的路由选择协议算法
+<ul>
+<li>路由信息协议RIP</li>
+<li>开放最短路径优先OSPF</li>
+<li>边界网关协议BGP</li>
+</ul>
+</li>
+</ul>]]></description>
+</item><item>
     <title>软考备考 | 海明码</title>
     <link>https://jwangl5.github.io/posts/net/n03_hamming/</link>
     <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
@@ -941,9 +955,9 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 </script>]]></description>
 </item><item>
     <title>网络笔记 | 08. 运输层TCP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
+    <link>https://jwangl5.github.io/posts/net/n10_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_tcp/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络笔记 | 09. 应用层</title>
@@ -952,10 +966,10 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>网络笔记 | 07. IP数据报与IP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
+    <title>网络笔记 | 08. IP数据报与IP协议</title>
+    <link>https://jwangl5.github.io/posts/net/n08_ip_protocol/</link>
     <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_ip_protocol/</guid>
     <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
     <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
 <li>
@@ -966,19 +980,55 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
     <description><![CDATA[<h3 id="250715-网络层与ipv4" class="headerLink">
-    <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><ul>
+    <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><h4 id="网络层" class="headerLink">
+    <a href="#%e7%bd%91%e7%bb%9c%e5%b1%82" class="header-mark"></a>网络层</h4><ul>
+<li>主要任务是实现网络互联，进而实现数据包在各网络之间的传输</li>
+<li>如这样的异构型网络，如果其仅需要在网络内部通信，其只需要实现物理层和数据链路层即可；但如果需要将其互连起来，形成一个更大的互联网，就需要使用网络层互连设备<c-pink>路由器</c-pink>，就必须实现网络层</li>
+</ul>
+<figure><img src="/image/image-20250715095644-mbggtco.png" width="40%" height="40%">
+</figure>
+
+<ul>
+<li>网络层需要解决的主要问题
+<ul>
+<li>网络层向运输层提供怎样的服务（可靠传输还是不可靠传输）
+<ul>
+<li>常见传输错误：传输过程中误码、路由器繁忙而被丢弃、按序发送的数据包不能按序到达接收方</li>
+<li>如果网络层对上述传输错误采取措施，则提供可靠服务；否则为不可靠服务</li>
+<li>不同网络采取的协议可能不同，例如因特网使用的TCP/IP协议体系的网际层，提供的是无连接的、不可靠的数据报服务；而ATM、帧中继和X.25的网络层提供的都是面向连接的、可靠的虚电路服务</li>
+</ul>
+</li>
+<li>网络层寻址问题
+<ul>
+<li>TCP/IP协议体系的网际层使用IP地址
+<figure><img src="/image/image-20250715100457-8gitbz1.png" width="50%" height="50%">
+      </figure>
+</li>
+<li>前几个数字相同，表示网络编号，后一个数字不同，表示该网络中不同的路由器接口</li>
+</ul>
+</li>
+<li>路由选择问题
+<ul>
+<li>在确定收发方后，仍旧可能有多个路径发送该数据包，如何确定？</li>
+<li>依据数据包中的目的地址和路由器中的<c-pink>路由表</c-pink></li>
+<li>路由表可以由用户或网络管理员进行人工配置，但这种方法只适用于规模较小、且网络拓扑不改变的小型互联网</li>
+<li>也可以选择合适的路由选择协议，由路由器执行路由选择协议中所规定的路由选择算法，而自动得出路由表中的路由记录，这种方法适用于网络规模较大，且拓扑经常改变的大型互联网</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="tcpip协议栈" class="headerLink">
+    <a href="#tcpip%e5%8d%8f%e8%ae%ae%e6%a0%88" class="header-mark"></a>TCP/IP协议栈</h4><ul>
+<li>因特网时目前全世界用户数量最多的互联网，它使用TCP/IP协议栈（以IP协议为核心的一些列有层次的通信协议）</li>
+<li>由于TCP/IP协议栈的网络层使用<strong>网际协议IP</strong>，它是整个协议栈的核心协议，因此在TCP/IP协议栈中网络层常称为网际层
+<figure><img src="/image/image-20250715101333-ghy5ryj.png" width="40%" height="40%">
+  </figure>
+</li>
+</ul>
+<h4 id="网络层提供的两种服务" class="headerLink">
+    <a href="#%e7%bd%91%e7%bb%9c%e5%b1%82%e6%8f%90%e4%be%9b%e7%9a%84%e4%b8%a4%e7%a7%8d%e6%9c%8d%e5%8a%a1" class="header-mark"></a>网络层提供的两种服务</h4><ul>
 <li>
-<p>网络层</p>]]></description>
-</item><item>
-    <title>网络笔记 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
-    <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
-    <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
-    <description><![CDATA[<center>
-<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" title="" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" data-sub-html="<h2>数据链路层框架之编址问题</h2>"><img  loading="lazy" src='/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png'    height="85%" width="85%"></a><figcaption class="image-caption">数据链路层框架之编址问题</figcaption>
-    </figure>
-</center>
-<blockquote>
-  <p>在这一部分，解决的是当网络中如何寻找到目标的问题，即如何编址的问题。其中MAC地址是唯一的主机地址，可以在网络内部实现高效地寻址。但在网络间的通信中，使用IP地址对网络以及网络内部接口进行编号，可以实现在网络间的信息转发。</p>]]></description>
+<p>面向连接的虚电路服务</p>]]></description>
 </item></channel>
 </rss>

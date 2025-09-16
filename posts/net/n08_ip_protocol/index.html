@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>网络笔记 | 08. IP数据报与IP协议 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/net/n08_ip_protocol/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络笔记 | 08. IP数据报与IP协议">
+  <meta property="og:description" content="250806 IP数据报与IP协议 IPv4数据报（IP数据报）首部格式">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-06T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-08-06T00:00:00+08:00">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n07_net_route_algorithm/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n03_hamming/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n00_protocols/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n05_stp/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n02_ethernet/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n02_nyquist_shannon/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n10_tcp/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络笔记 | 08. IP数据报与IP协议">
+  <meta name="twitter:description" content="250806 IP数据报与IP协议 IPv4数据报（IP数据报）首部格式">
+      <meta name="twitter:site" content="@JWangL5">
+<meta name="application-name" content="JWangL5&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="https://jwangl5.github.io/posts/net/n08_ip_protocol/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n06_net_route/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n09_application/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
+        "headline": "网络笔记 | 08. IP数据报与IP协议",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://jwangl5.github.io/posts/net/n08_ip_protocol/"
+        },"genre": "posts","wordcount":  4692 ,
+        "url": "https://jwangl5.github.io/posts/net/n08_ip_protocol/","datePublished": "2025-08-06T00:00:00+08:00","dateModified": "2025-08-06T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"author": [{
+                        "@type": "Person",
+                        "name": "卢旺",
+                        "url":  null 
+                    }],"description": ""
+    }</script></head>
+
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
+        </div>
+    </div>
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#250806-ip数据报与ip协议">250806 IP数据报与IP协议</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-08-06" data-pagefind-body>网络笔记 | 08. IP数据报与IP协议</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%9C%BA%E6%9E%A2%E7%BB%87%E5%BA%8F/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>机枢织序</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/net/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v340a6 6 0 0 1-6 6zm-42-92v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm-252 12c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-08-06">2025-08-06</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-08-06">2025-08-06</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 4692 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 21 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><h3 id="250806-ip数据报与ip协议" class="headerLink">
+    <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
+<li>
+<p>IPv4数据报（IP数据报）首部格式</p>
+<ul>
+<li>
+<p>IP数据报是实现IP协议主要功能的基础，其结构如下</p>
+<ul>
+<li>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807005136-eexolqu.png'   alt="image" height="362" width="1048">​</p>
+</li>
+<li>
+<p>有两部分组成，20字节的固定部分（必须包含的部分），和最大40字节的可变部分（可选的字段用于增加额外的功能）</p>
+</li>
+<li>
+<p>IP数据报常以32个比特（4字节）为单位进行表述，即图中的1行</p>
+</li>
+<li>
+<p>图中每个小格子称为字段/域，每个字段或某些字段的组合用来表达IP协议的相关功能</p>
+<ul>
+<li>
+<p>版本，占4比特，表示IP协议的版本，通信双方所使用的IP协议版本必须一致，目前广泛使用的IP协议版本号为4（即IPv4）</p>
+</li>
+<li>
+<p>首部长度字段， 占4比特，表示IP数据报收首部的长度，其取值以4字节为单位，最小十进制值为5（20字节的固定部分/4），最大十进制值为15（20+40字节/4）</p>
+</li>
+<li>
+<p>可选字段，长度从1-40字节不等，用来支持排错、测量及安全等措施；可选字段增加了IP数据报的功能，但这同时也使得IP数据报的首部长度成为可变的，这增加了每一个路由器处理IP数据报的开销，实际上可选字段很少被使用</p>
+</li>
+<li>
+<p>填充字段，可变字段长度不一定是4的整数不，用该字段填充0，确保首部长度为4字节的整数倍</p>
+</li>
+<li>
+<p>区分服务字段，占8比特，用来获得更好的服务</p>
+<ul>
+<li>该字段在就就标准中叫做服务类型，但实际上一直没有被使用过；</li>
+<li>1998年，因特网工程任务组IEFT把这个字段改名为区分服务，利用该字段的不同数值，可提供不同等级的服务质量；</li>
+<li>只有在使用区分服务时，该字段才起作用，一般情况下都不使用该字段</li>
+</ul>
+</li>
+<li>
+<p>总长度字段占16比特，用于表示IP数据报的总长度（首部+数据载荷），以字节为单位，最大取值为65535（实际上很少传送这么长的IP数据报）</p>
+<ul>
+<li><img class="tw-inline" loading="lazy" src='/image/image-20250807010518-vyxsubb.png'   alt="image" height="756" width="1618">​</li>
+</ul>
+</li>
+<li>
+<p>标识、标志、片偏移</p>
+<ul>
+<li>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807010625-lge8m9s.png'   alt="image" height="770" width="1048">​</p>
+</li>
+<li>
+<p>标识字段，占16比特，属于同一个IP数据报的各分片数据报应该具有相同的标识；IP软件维持一个计数器，每产生一个数据报，计数器值加1，并将此值赋给标识字段</p>
+</li>
+<li>
+<p>标志字段，占3比特，各比特含义如下</p>
+<ul>
+<li>DF位：1表示不允许分片，0表示允许分片</li>
+<li>MF位：1表示后面还有分片，0表示这是最后一个分片</li>
+<li>保留位：必须设置为0</li>
+</ul>
+</li>
+<li>
+<p>片偏移字段，占13比特，指出分片数据报的数据载荷部分偏移其在原始数据报的位置有多少个单位（以8个字节为单位）</p>
+</li>
+<li>
+<p>举例</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807011349-5nnuqo6.png'   alt="image" height="716" width="1534">​</li>
+<li><img class="tw-inline" loading="lazy" src='/image/image-20250807011450-m187an1.png'   alt="image" height="728" width="1516">​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>生存时间TTL，占8比特，最初以秒为单位，最大生存周期为255秒</p>
+<ul>
+<li>由路由器转发IP数据报时，将IP数据报首部中的该字段值减去IP数据报在本路由器上所耗费的事件，若不为0就转发，否则丢弃</li>
+<li>现在以“跳数”为单位，路由器转发IP数据报时，将IP数据报首部中的该字段值减1，若不为0就转发，否则丢弃</li>
+</ul>
+</li>
+<li>
+<p>协议字段，指明IPv4数据报的数据部分是何种协议数据单元，常用的一些协议和相应的协议字段值如下</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807012831-2kbomrd.png'   alt="image" height="86" width="754">​</li>
+</ul>
+</li>
+<li>
+<p>首部检验和，占16比特，用于检测首部在传输过程中是否出现差错，其原理比CRC检验码（循环冗余检错码）简单，称为因特网检验和</p>
+<ul>
+<li>IP数据报每经过一个路由器，路由器都要重新计算首部检验和，因为某些字段（生存时间、标志、片偏移等）的取值可能发生变化</li>
+<li>由于IP层本身不提供可靠传输服务，摒弃计算首部校验和是一项耗时的操作，因此在IPv6中，路由器不在计算首部检验和，从而更快转发IP数据报</li>
+</ul>
+</li>
+<li>
+<p>源IP地址和目的IP地址字段，各占32比特，用来填写IP数据报发送的源主机和目的主机的IP地址</p>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807013715-kudqynw.png'   alt="image" height="800" width="1558">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807013957-9n9yk5n.png'   alt="image" height="772" width="1680">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807014056-1xcbw7i.png'   alt="image" height="646" width="1674">​</li>
+<li><img class="tw-inline" loading="lazy" src='/image/image-20250807014130-i1kmuub.png'   alt="image" height="130" width="860">​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>网际控制报文协议ICMP</p>
+<ul>
+<li>
+<p>为了更有效地转发IP数据报，并提高交付成功的机会，在网际层是用了网际控制报文协议ICMP（Internet Control Message Protocol）</p>
+</li>
+<li>
+<p>主机或路由器使用ICMP协议来发送差错报告报文和询问报文，其被封装在IP数据报中发送</p>
+<ul>
+<li>
+<p>ICMP差错报告报文有以下5种</p>
+<ul>
+<li>
+<p>终点不可达</p>
+<ul>
+<li>当路由器或主机<strong>不能交付数据报</strong>时，就向源点发送终点不可达报文。具体可再根据引CMP的代码字段细分为目的网络不可达<br>
+目的主机不可达、目的协议不可达、目的端口不可达、目的网络未知、目的主机未知等13种错误</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807021713-tp5lyf8.png'   alt="image" height="438" width="1314">​</li>
+</ul>
+</li>
+<li>
+<p>源点抑制</p>
+<ul>
+<li>当路由器或主机由于<strong>拥塞</strong>而丢弃数据报时，就向源点发送源点抑制报文，使源点知道应当把数据报的发送速率放慢</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807021805-6r23h5n.png'   alt="image" height="448" width="1312">​</li>
+</ul>
+</li>
+<li>
+<p>时间超过</p>
+<ul>
+<li>当路由器收到一个目的IP不为自己的IP数据报时，会将其生存时间<strong>TTL字段值</strong>减1，若结果不为0，则转发该IP数据报；若结果为0，除丢弃该IP数据报外，还要向源点发送事件超过报文</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807022117-i5pq4hm.png'   alt="image" height="412" width="1312">​</li>
+<li>另外，当重点在预先规定的事件内不能收到一个数据报的全部报片时，就把已收到的数据报片全都丢弃，也会向源点发送事件超过报文</li>
+</ul>
+</li>
+<li>
+<p>参数问题</p>
+<ul>
+<li>当路由器或目的主机收到IP数据报后，根据其首部中的检验和字段，发现首部在传输过程中出现了<strong>误码</strong>，就丢弃该数据报，并向源点发送参数问题报文</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807022259-p66ww24.png'   alt="image" height="506" width="524">​</li>
+</ul>
+</li>
+<li>
+<p>改变路由（重定向）</p>
+<ul>
+<li>路由器把改变路由报文发送给主机，让主机知道下次应将数据发送给另外的路由器（可通过更过的路由进行转发）</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807022346-ut4d5um.png'   alt="image" height="416" width="1450">​</li>
+</ul>
+</li>
+<li>
+<p>以下情况，不应发送ICMP差错报告报文</p>
+<ul>
+<li>对ICMP差错报告报文不再发送ICMP差错报告报文</li>
+<li>对第一个分片的数据报片的所有后续数据报片，都不发送ICMP差错报告报文</li>
+<li>对具有多播地址的数据报都不发送ICMP报告报文</li>
+<li>对具有特殊地址（如127.0.0.0或0.0.0.0）的数据报不发送ICMP差错报告报文</li>
+</ul>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807022825-dztn7nv.png'   alt="image" height="268" width="1416">​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>询问报文有2种</p>
+<ul>
+<li>
+<p>回送请求和回答</p>
+<ul>
+<li>ICMP回送请求报文是由主机或路由器向一个特定的目的主机发出的询问，收到此报文的主机必须给源主机或路由器发送ICMP回送回答报文</li>
+<li>这种询问报文用来测试目的站是否可达，及了解其有关状态</li>
+</ul>
+</li>
+<li>
+<p>时间戳请求和回答</p>
+<ul>
+<li>ICMP事件戳请求报文是请某个主机或路由器回答当前的日期和时间</li>
+<li>在ICMP时间戳回答报文中，有一个32位的字段，其中写入的整数代表从1900年1月1日起，到当前时刻一共有多少秒</li>
+<li>这种询问报文用来进行时钟同步和测量时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ICMP应用举例</p>
+<ul>
+<li>
+<p>分组网间探测PING（Packet InterNet Groper）</p>
+<ul>
+<li>用来测试主机或路由器之间的连通性</li>
+<li>应用层直接使用网际层的ICMP（没有通过运输层的TCP或UDP）</li>
+<li>使用的ICMP回送请求和回答报文</li>
+</ul>
+</li>
+<li>
+<p>跟踪路由（trace route，tracert）</p>
+<ul>
+<li>
+<p>用来测试IP数据报从源主机达到目的主机都要经过哪些路由器</p>
+</li>
+<li>
+<p>windows版本使用<code>tracert</code>​命令，应用层也是直接使用了网际层ICMP的回送请求和回答报文，以及差错报告报文</p>
+</li>
+<li>
+<p>在unix版本中，使用<code>traceroute</code>​命令，在运输层使用UDP协议，仅使用ICMP的差错报告报文</p>
+</li>
+<li>
+<p>实现原理</p>
+<ul>
+<li>可以直接发送一个TTL=1的回送请求报文，其在达到第一个路由器后，会返回一个差错报告（时间超过），这样主机就知道第一个路由器是谁了</li>
+<li>下一轮则发送TTL=2的请求，知道下一个节点</li>
+<li>当到达最后目的主机之后，解析该数据，发现其内部是一个ICMP回送请求报文，于是向源主机返回ICMP回送请求回答报文，由此知道最后一站在哪里</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>虚拟专用网VPN（Virtual Private Network）</p>
+<ul>
+<li>
+<p>若需要让两个异地的网络之间相互通信</p>
+<ul>
+<li>最简单方便的方法是租用电信公司的通信线路，但租金很高</li>
+<li>也可以通过公用的因特网，作为本机构各专用网之间的通信载体，这样的专用网又称为虚拟专用网</li>
+</ul>
+</li>
+<li>
+<p>虚拟专用网内部的各主机，如何分配IP地址</p>
+<ul>
+<li>
+<p>由于IPv4地址的紧缺，一个机构能申请到的IPv4地址数量往往小于本机构所拥有的主机数量；因此，虚拟专用网中的各主机所分配的地址应该是<u><strong>本机构可自由分配的专用地址</strong></u>，而不是需要申请的、在因特网上使用的公有地址</p>
+</li>
+<li>
+<p>可以在因特网数字分配机构IANA的官方网站，查看IPv4地址空间中特殊地址的分配方案</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807123511-95pdk1a.png'   alt="image" height="506" width="1596">​</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807123553-lg28ije.png'   alt="image" height="214" width="766">​</li>
+<li>如图所示的三个网络地址，就是无需申请的、可自由分配的专用地址，也称为<strong>私有地址</strong></li>
+<li>私有地址只能用于一个机构的内部通信，不能用于和因特网上的主机进行通信（即是说，只能用做本地地址，而不能用于全球地址）</li>
+<li>在因特网中的所有路由器，对目的地址是私有地址的IP数据报一律不进行转发</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>作用过程</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807135946-vyyi292.png'   alt="image" height="564" width="1580">​</li>
+<li>两个子网络，各自至少需要一个路由器具有合法的全球IP地址，这样他俩才能利用因特网进行通信</li>
+<li>当需要通信时，源主机会将数据封装为IP数据报发送给路由器R1，其填写的IP地址为内部IP地址</li>
+<li>路由器R1收到该数据报后，发现其目的网络必须通过因特网才能到达，就将该IP数据报进行加密（确保安全），重新添加IP数据报的首部，封装称为在因特网上发送的外部数据报，其IP地址填写为全球地址</li>
+<li>当路由器R2在收到该信息后，将其解密，恢复出内部的IP数据报，提取出目的地址，将其发送给相应的主机</li>
+<li>这样做之后，虽然数据报可能通过因特网的多个路由器，但从逻辑上看，就像R1和R2之间有一条直通的点对点链路一样，在本机构的专用网上进行传输，因而该技术也被称为<strong>IP隧道技术</strong></li>
+</ul>
+</li>
+<li>
+<p>不同类型</p>
+<ul>
+<li>同一机构内，不同部门的内部网络所构成的虚拟专用网VPN，又称为<strong>内联网VPN</strong></li>
+<li>有时一个机构的VPN需要有某些外部机构（通常是合作伙伴）参加进来，这样的VPN称为<strong>外联网VPN</strong></li>
+<li>在外地工作的员工需要访问公司内部的专用网络时，只要在任何地点接入到因特网，运行驻留在员工PC中的VPN软件，在员工PC和公司的主机之间建立VPN隧道，即可访问专用网络中的资源，这种VPN称为<strong>远程接入VPN</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>网络地址转换NAT（Network Address Translation）</p>
+<ul>
+<li>
+<p>虽然因特网采用了无分类编址方式来减缓IPv4地址空间耗尽的速度，但由于因特网用户数目的激增，特别是大量小型办公室网络和家庭网络接入因特网的需求不断增加，IPv4地址空间即将面临耗尽的危险仍然没有被解除</p>
+</li>
+<li>
+<p>1994年提出了一种网络地址转换NAT的方法再次缓解了IPv4地址空间即将耗尽的问题</p>
+</li>
+<li>
+<p>NAT能使大量<u>使用内部专用地址的专用网络用户</u>共享<u>少量外部全球地址</u>来访问因特网上的主机和资源 #Q#​ 没看懂这句话</p>
+</li>
+<li>
+<p>举例</p>
+<ul>
+<li>
+<p>核心问题：内部专用网络中的主机，如何访问外部因特网上的主机？</p>
+<ul>
+<li>这需要在连接外部因特网的路由器上，安装NAT软件，此时路由器称为NAT路由器，其至少拥有1个有效的全球IP地址</li>
+<li>此时，所有使用私有地址的主机，在和外界通信时，都要在NAT路由器上将其私有地址转换成全球IP地址</li>
+</ul>
+</li>
+<li>
+<p>当私有地址主机需要跟因特网主机发送IP数据报时，该主机将数据报发送给NAT路由器，此时源地址为私有地址，目的地址为全球地址</p>
+</li>
+<li>
+<p>NAT路由器从自己的全球IP地址池中，为该主机分配一个临时的全球IP地址，并将IP数据报的源地址修改为该地址，然后将私有地址和全球地址的对应关系记录在NAT转换表中，随后转发该IP数据报</p>
+</li>
+<li>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807143917-backxqh.png'   alt="image" height="536" width="1502">​</p>
+</li>
+<li>
+<p>当外部主机给源主机发回数据报时，其填写的源地址和目的地址都是全球IP地址；NAT路由器收到后，在NAT转换表中进行查找，找到该数据报的目的地址所对应的私有地址，于是修改该IP数据报的目的地址为私有地址，并将其发送给相应的主机</p>
+</li>
+<li>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807144205-i2hn9ok.png'   alt="image" height="510" width="1494">​</p>
+</li>
+<li>
+<p>多个内部主机在通信时，需要有多个临时全球IP地址的记录</p>
+</li>
+<li>
+<p>=&gt; 问题：如果NAT路由器具有n个全球IP地址，那么至多只能有n各内网主机能够同时和因特网上的主机通信</p>
+<ul>
+<li>由于绝大多数的网络应用都是使用运输层协议TCP或UDP来传送数据，因此可以利用运输层的端口号和IP地址一起进行转换</li>
+<li>这样，用一个全球IP地址就可以使多个拥有本地地址的主机同时和因特网上的主机进行通信，这种<strong>将端口号和IP地址一起进行转换</strong>的技术叫做网络地址与端口号转换NAPT（Network Address and Port Translation）</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250807153913-e3dk7qw.png'   alt="image" height="580" width="1504">​</li>
+</ul>
+</li>
+<li>
+<p>值得一提的是，外网主机不能够首先发起通信，因为路由器在收到外网的IP数据报后，在NAPT转换表中找不到相应的记录</p>
+</li>
+<li>
+<p>位于网络内部（使用私有地址）的主机，也不能直接充当因特网服务器</p>
+</li>
+<li>
+<p>对于一些点对点网络应用，需要外网主机主动与内网主机进行通信，在通过NAT时会遇到麻烦，需要网络应用自己使用一些特殊的NAT穿越技术来解决问题（<strong>内网穿透</strong>）</p>
+</li>
+<li>
+<p>反过来想，由于NAT对外网屏蔽了内网主机的网络地址，能为内网的主机提供一定的安全保护</p>
+</li>
+<li>
+<p>​<img class="tw-inline" loading="lazy" src='/image/image-20250807154342-gny9eq0.png'   alt="image" height="458" width="772">​</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>‍</p>
+</li>
+</ul>
+</div>
+
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-08-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line print:!tw-hidden">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n06_net_route/" class="prev" rel="prev" title="网络笔记 | 06. 网络层与IP数据报的路由与交付"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络笔记 | 06. 网络层与IP数据报的路由与交付</a>
+            <a href="/posts/net/n09_application/" class="next" rel="next" title="网络笔记 | 09. 应用层">网络笔记 | 09. 应用层<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
+</div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
+
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
+</body>
+
+</html>
