@@ -1,26 +1,26 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>图像处理 - 分类 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+        <link>http://localhost:1313/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
         <description>图像处理 - 分类 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="self" type="application/rss+xml" /><item>
     <title>OpenCV | 空间域处理之邻域操作/几何变换/形态学操作</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/</link>
+    <link>http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/</link>
     <pubDate>Tue, 07 Apr 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_basic_processing_by_opencv/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_basic_processing_by_opencv/</guid>
     <description><![CDATA[<p>在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>]]></description>
 </item><item>
     <title>OpenCV | 图像的空间域处理之点运算</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</link>
+    <link>http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</link>
     <pubDate>Tue, 25 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_point_operations_in_spatial_domain_by_opencv/</guid>
     <description><![CDATA[<p>​		在给定图像的像素上直接进行运算的方法称之为图像空间域的处理；而根据所操作的像素的多少和类型分为：</p>]]></description>
 </item><item>
     <title>OpenCV | 图像的显示与存储</title>
-    <link>https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</link>
+    <link>http://localhost:1313/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</link>
     <pubDate>Sun, 23 Feb 2020 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/opencv/image_display_and_storage_by_opencv/</guid>
     <description><![CDATA[<h1 id="一python-opencv的安装" class="headerLink">
     <a href="#%e4%b8%80python-opencv%e7%9a%84%e5%ae%89%e8%a3%85" class="header-mark"></a>一、python-opencv的安装</h1><p><strong>方法一</strong>：使用pip命令</p>
 <ul>
@@ -50,18 +50,18 @@
           <p class="tw-select-none !tw-my-1">bash</p>]]></description>
 </item><item>
     <title>视频的编码与封装</title>
-    <link>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</link>
+    <link>http://localhost:1313/posts/encoding_and_packaging_of_video/</link>
     <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/encoding_and_packaging_of_video/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/encoding_and_packaging_of_video/</guid>
     <description><![CDATA[<h1 id="容器封装格式" class="headerLink">
     <a href="#%e5%ae%b9%e5%99%a8%e5%b0%81%e8%a3%85%e6%a0%bc%e5%bc%8f" class="header-mark"></a>容器——封装格式</h1><ul>
 <li>
 <p><strong>avi</strong>——基本都能被软件兼容，但过于老旧，不兼容目前的很多编码方式H.264，其编码方式有也很多，若真要用到，推荐xvid编码（对DIVX编码方式的复仇）【所谓的a片画质，画质差体积大，基本不用！</p>]]></description>
 </item><item>
     <title>视频中常出现的参数解释</title>
-    <link>https://jwangl5.github.io/posts/explanation_of_parameters_commonly_seen_in_videos/</link>
+    <link>http://localhost:1313/posts/explanation_of_parameters_commonly_seen_in_videos/</link>
     <pubDate>Sat, 16 Jun 2018 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/explanation_of_parameters_commonly_seen_in_videos/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/explanation_of_parameters_commonly_seen_in_videos/</guid>
     <description><![CDATA[<h1 id="帧-frame" class="headerLink">
     <a href="#%e5%b8%a7-frame" class="header-mark"></a>帧 Frame</h1><h3 id="帧速率fpsframe-per-second-帧率每秒钟出现的帧数" class="headerLink">
     <a href="#%e5%b8%a7%e9%80%9f%e7%8e%87fpsframe-per-second-%e5%b8%a7%e7%8e%87%e6%af%8f%e7%a7%92%e9%92%9f%e5%87%ba%e7%8e%b0%e7%9a%84%e5%b8%a7%e6%95%b0" class="header-mark"></a>帧速率（FPS，frame per second 帧率）：每秒钟出现的帧数</h3><p>由胶片概念的产生而出现，把静态的连续画面进行播放以达到动态影像需要每秒出现8格，要出现较为流畅的画面则需每秒12格，即帧速率达到12帧/秒。而能让人感受到画面在动的原因在于视觉暂留现象。</p>]]></description>

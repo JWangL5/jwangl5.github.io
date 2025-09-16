@@ -431,12 +431,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
     <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
-    <description><![CDATA[<style>
-.page {
-    width: 60%;
-}
-</style>
-<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
 <link href="/css/pdf-js.css" rel="stylesheet">
 
 <style>
@@ -1025,39 +1020,12 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
     <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
-    <description><![CDATA[<h2 id="250710-mac地址ip地址arp协议" class="headerLink">
-    <a href="#250710-mac%e5%9c%b0%e5%9d%80ip%e5%9c%b0%e5%9d%80arp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250710 MAC地址、IP地址、ARP协议</h2><h3 id="mac地址" class="headerLink">
-    <a href="#mac%e5%9c%b0%e5%9d%80" class="header-mark"></a>MAC地址</h3><h4 id="基本概念" class="headerLink">
-    <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="header-mark"></a>基本概念</h4><ul>
-<li>MAC地址是以太网的MAC子层所使用的地址，属于数据链路层</li>
-<li>IP地址是TCP/IP体系结构中网际层所使用的地址，属于网际层</li>
-<li>ARP协议属于TCP/IP体系结构的网际层，其作用是已知设备所分配到的IP地址，使用ARP协议可以通过该IP地址获取到该设备的MAC地址</li>
-<li>尽管IP地址和ARP协议属于网际层，但他们与MAC地址存在一定的关系，并且日常的网络应用都离不开这三个东西，因此放在一起讨论</li>
-</ul>
-<h4 id="mac地址-1" class="headerLink">
-    <a href="#mac%e5%9c%b0%e5%9d%80-1" class="header-mark"></a>MAC地址</h4><ul>
-<li>使用点对点信道的数据链路层不需要地址（一条线连接两个机器时）</li>
-<li>使用<e-circle>广播信道</e-circle>的数据链路层（一个总线连接多个主机）必须使用地址来区分各主机</li>
-<li>每个主机必须有一个唯一的标识（即数据链路层地址），从而搞清楚发送主机和接收主机是谁</li>
-<li>在每个主机发送的帧中，必须携带标识发送主机和接收主机的地址，由于这类地址是用于<u-b>媒体接入控制</u-b>（MAC，Media Acess Control），因此这类地址被称为MAC地址</li>
-<li>MAC地址一般被固化在网卡（网络适配器）的电可擦、可编程、只读存储器EEPROM中，因此MAC地址也被称为硬件地址
-<ul>
-<li><a class="lightgallery" href="/image/image-20250710010734-2zj44uo.png" title="" data-thumbnail="/image/image-20250710010734-2zj44uo.png"><img  loading="lazy" src='/image/image-20250710010734-2zj44uo.png'    height="70%" width="70%"></a></li>
-</ul>
-</li>
-<li>MAC地址有时也被称为物理地址，但这并不意味着MAC地址属于网络体系结构中的物理层
-<ul>
-<li><a class="lightgallery" href="/image/image-20250710010821-tmjaj3b.png" title="" data-thumbnail="/image/image-20250710010821-tmjaj3b.png"><img  loading="lazy" src='/image/image-20250710010821-tmjaj3b.png'    height="70%" width="70%"></a></li>
-</ul>
-</li>
-<li>一般情况下，用户主机会包含<strong>两个</strong>网络适配器：有线局域网适配器（有线网卡）和无限局域网适配器（无线网卡），每个适配器都会有一个全球唯一的MAC地址</li>
-<li>而交换机和路由器往往拥有更多的网络接口，所以会拥有更多的MAC地址</li>
-<li>综上，严格来说，MAC地址是对网络上各接口的唯一标识，而不是对网络上各设备的唯一标识</li>
-</ul>
-<h4 id="ieee-802局域网的mac地址格式" class="headerLink">
-    <a href="#ieee-802%e5%b1%80%e5%9f%9f%e7%bd%91%e7%9a%84mac%e5%9c%b0%e5%9d%80%e6%a0%bc%e5%bc%8f" class="header-mark"></a>IEEE 802局域网的MAC地址格式</h4><ul>
-<li>
-<p>由48比特构成，每8个比特为1个字节，共6个字节</p>]]></description>
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" title="" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" data-sub-html="<h2>数据链路层框架之编址问题</h2>"><img  loading="lazy" src='/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png'    height="85%" width="85%"></a><figcaption class="image-caption">数据链路层框架之编址问题</figcaption>
+    </figure>
+</center>
+<blockquote>
+  <p>在这一部分，解决的是当网络中如何寻找到目标的问题，即如何编址的问题。其中MAC地址是唯一的主机地址，可以在网络内部实现高效地寻址。但在网络间的通信中，使用IP地址对网络以及网络内部接口进行编号，可以实现在网络间的信息转发。</p>]]></description>
 </item><item>
     <title>网络笔记 | 04. 媒体接入控制</title>
     <link>https://jwangl5.github.io/posts/net/n04_csma_cd/</link>

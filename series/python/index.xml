@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python - 系列 - JWangL5&#39;s Blog</title>
+        <link>http://localhost:1313/series/python/</link>
+        <description>Python - 系列 - JWangL5&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/python/" rel="self" type="application/rss+xml" /><item>
+    <title>利用Uniport数据接口批量下载信息</title>
+    <link>http://localhost:1313/posts/python-scripts/python_script_for_uniprot_data/</link>
+    <pubDate>Sat, 30 Oct 2021 21:11:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/python-scripts/python_script_for_uniprot_data/</guid>
+    <description><![CDATA[<p>最近Uniprot更新了新版本，对老的接口也做了一系列的更新，这里是参照<a href="https://www.uniprot.org/help/id_mapping" target="_blank" rel="noopener noreferrer">最新的API说明</a>重写的数据批量获取的代码</p>]]></description>
+</item></channel>
+</rss>

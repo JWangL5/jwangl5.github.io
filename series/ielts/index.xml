@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>IELTS - 系列 - JWangL5&#39;s Blog</title>
-        <link>https://jwangl5.github.io/series/ielts/</link>
+        <link>http://localhost:1313/series/ielts/</link>
         <description>IELTS - 系列 - JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/ielts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/series/ielts/" rel="self" type="application/rss+xml" /><item>
     <title>强烈推荐❗英语听写工具🪶（Developed by JWangL5🎉）</title>
-    <link>https://jwangl5.github.io/posts/languages/english_dictation_tool/</link>
+    <link>http://localhost:1313/posts/languages/english_dictation_tool/</link>
     <pubDate>Mon, 23 Oct 2023 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/languages/english_dictation_tool/</guid>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/languages/english_dictation_tool/</guid>
     <description><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>

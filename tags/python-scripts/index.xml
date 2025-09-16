@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python Scripts - 标签 - JWangL5&#39;s Blog</title>
+        <link>http://localhost:1313/tags/python-scripts/</link>
+        <description>Python Scripts - 标签 - JWangL5&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 22 Feb 2023 00:00:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/python-scripts/" rel="self" type="application/rss+xml" /><item>
+    <title>从米游社爬取原神wiki数据</title>
+    <link>http://localhost:1313/posts/happiness/data_collecting_from_miyoushe/</link>
+    <pubDate>Wed, 22 Feb 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>http://localhost:1313/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>http://localhost:1313/posts/happiness/data_collecting_from_miyoushe/</guid>
+    <description><![CDATA[<p>最近上头了一个尘歌壶套装，但是前期统计材料需求、收集材料是很痛苦的过程，如果计算出错就需要来回捯饬，很是费时间。于是乎就想要收集一个全素材的材料表，找到找去还是从米游社官方去爬数据最简单。大概思路是登陆之后，在浏览器控制台找到对数据的请求链接，然后用Python请求到数据，用<code>BeautifulSoup</code>解析html，用<code>json</code>模块解析数据，用<code>pandas</code>整理数据并输出。下面是一些抓数据的代码：</p>]]></description>
+</item></channel>
+</rss>

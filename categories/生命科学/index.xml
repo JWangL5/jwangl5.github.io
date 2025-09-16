@@ -1,0 +1,79 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>生命科学 - 分类 - JWangL5&#39;s Blog</title>
+        <link>https://jwangl5.github.io/categories/%E7%94%9F%E5%91%BD%E7%A7%91%E5%AD%A6/</link>
+        <description>生命科学 - 分类 - JWangL5&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Tue, 16 Jan 2024 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/categories/%E7%94%9F%E5%91%BD%E7%A7%91%E5%AD%A6/" rel="self" type="application/rss+xml" /><item>
+    <title>对动粒蛋白组分的整理</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/kinetochore/</link>
+    <pubDate>Tue, 16 Jan 2024 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/kinetochore/</guid>
+    <description><![CDATA[<blockquote>
+  <p>近期读到最新的Science文章，<a href="https://www.science.org/doi/abs/10.1126/science.adj8736" target="_blank" rel="noopener noreferrer">解析了酵母外层动粒与微管互作界面的冷冻电镜结构</a>，太漂亮了！之前一直觉得top-view的动粒是存在超微结构的，只可惜没有合适的方法去做。也因此想起来之前从事动粒蛋白互作组相关课题时，写过一些对动粒组分的总结，趁着对动粒结构还有热情再整理一下。</p>]]></description>
+</item><item>
+    <title>hTERT-RPE1细胞与Puromycin抗性筛选</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</link>
+    <pubDate>Thu, 14 Dec 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/htert_rpe1_postive_selection/</guid>
+    <description><![CDATA[<p>在用pCDH载体构建细胞器的RPE1细胞系的时候就明显感受到常规的Puromycin浓度（1mg/mL，1000×）似乎并不能有效杀死细胞，虽然最后得到的阳性率还不错（应该是病毒侵染效率足够高），但还是找到了一些资料可以对该过程做以反思。</p>]]></description>
+</item><item>
+    <title>哺乳动物细胞诱导表达系统(Tet-On/Off)</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/teton_system/</link>
+    <pubDate>Fri, 06 Oct 2023 15:56:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/teton_system/</guid>
+    <description><![CDATA[<blockquote>
+  <p>很早就听闻Tet-On诱导表达系统了，但一直没有很好的机会去用，最近正好想要用Tet-On系统来做一个诱导表达细胞系，就来查查这个系统，主要参考这篇文章。</p>]]></description>
+</item><item>
+    <title>2023年BioBit暑期学校课程笔记（生物计算/合成生物学）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</link>
+    <pubDate>Fri, 25 Aug 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/</guid>
+    <description><![CDATA[<p>很荣幸有机会参与这次之江实验室组织的暑期学校，这次学习到的知识完全刷新了我对合成生物学的印象。在18年准备iGEM比赛的时候，还觉得合成生物学元件的标准化和定量描述、多层次（DNA、RNA、蛋白）的元件之间组合、生物系统的定量描述等都是很困难的问题。在这次学习之后，虽然核心的问题仍旧存在，但已经能够看到一些解决办法了，也看到了一些做得很漂亮的案例。感恩之江之行。</p>]]></description>
+</item><item>
+    <title>用ODEs建模细胞周期（Julia代码）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/odes_model_for_cell_cycle/</link>
+    <pubDate>Wed, 14 Jun 2023 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/odes_model_for_cell_cycle/</guid>
+    <description><![CDATA[<p>最近PubMed推送的<a href="https://www.sciencedirect.com/science/article/pii/S0022519323001297" target="_blank" rel="noopener noreferrer">一篇文章</a>，正正好是我大二刚进实验室想要做的东西，当时苦于自身能力和知识的不足，就没有实践出结果。但着却一直是我在思考的问题，应该也会是我的终极目标之一——对细胞周期的调控过程进行动力学建模。</p>]]></description>
+</item><item>
+    <title>使用clusterProfiler完成GO富集（含R脚本）</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</link>
+    <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/go_enrich_by_clusterprofiler/</guid>
+    <description><![CDATA[<h2 id="关于go富集的原理" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8ego%e5%af%8c%e9%9b%86%e7%9a%84%e5%8e%9f%e7%90%86" class="header-mark"></a>关于GO富集的原理</h2><blockquote>
+  <p>这里直接引用很早之前在实验室汇报的PPT，节选了其中的一部分</p>]]></description>
+</item><item>
+    <title>Life-cell sensor for G1/S transition DHB-Ven</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</link>
+    <pubDate>Fri, 15 Oct 2021 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/dhb_sensor/</guid>
+    <description><![CDATA[<h3 id="构建" class="headerLink">
+    <a href="#%e6%9e%84%e5%bb%ba" class="header-mark"></a>构建：</h3><p>The sensor includes amino acids 994–1087 of human DNA helicase B fused to the yellow fluorescent protein mVenus (DHB-Ven), and contains four CDK consensus phosphorylation sites, a nuclear localization signal, and a nuclear export signal.</p>]]></description>
+</item><item>
+    <title>AlphaFold可以做什么？</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/</link>
+    <pubDate>Sun, 10 Oct 2021 00:04:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/what_could_alphafold_do_now/</guid>
+    <description><![CDATA[<blockquote>
+  <p>我自20年底AlphaFold2一战成名后就开始关注该模型，这篇文章是2021年10月，AlphaFold文章正式在Nature发布后，给实验室非计算机背景的同门写下的一些自己在应用层面的理解，时隔两年再次读起，发现<strong>本文一些观点已经不再正确了</strong>（比如AlphaFold官方已经开发了复合体的预测模型），但作为对当年学习的记录，就不再更正原文</p>]]></description>
+</item><item>
+    <title>生物学能基本原理与能量代谢</title>
+    <link>https://jwangl5.github.io/posts/cell-biology/mitochondrial_respiration_chain/</link>
+    <pubDate>Thu, 21 Nov 2019 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/cell-biology/mitochondrial_respiration_chain/</guid>
+    <description><![CDATA[<h2 id="生物学能基本原理" class="headerLink">
+    <a href="#%e7%94%9f%e7%89%a9%e5%ad%a6%e8%83%bd%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" class="header-mark"></a>生物学能基本原理</h2><h3 id="自由能与平衡常数" class="headerLink">
+    <a href="#%e8%87%aa%e7%94%b1%e8%83%bd%e4%b8%8e%e5%b9%b3%e8%a1%a1%e5%b8%b8%e6%95%b0" class="header-mark"></a>自由能与平衡常数</h3><ul>
+<li>
+<p>基本概念与原理</p>
+<ul>
+<li>能量//生物能（环境&ndash;&gt;生物&ndash;&gt;环境）//热力学能</li>
+<li>热力学第一定律（能量守恒）//热力学第二定律（熵增原理）</li>
+</ul>
+</li>
+<li>
+<p>△G = △H - T △S = - 2.303<em>R</em>T*lg(K_eq)</p>]]></description>
+</item></channel>
+</rss>

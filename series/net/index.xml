@@ -1,0 +1,984 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>计算机网络 - 系列 - JWangL5&#39;s Blog</title>
+        <link>https://jwangl5.github.io/series/net/</link>
+        <description>计算机网络 - 系列 - JWangL5&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/series/net/" rel="self" type="application/rss+xml" /><item>
+    <title>软考备考 | 海明码</title>
+    <link>https://jwangl5.github.io/posts/net/n03_hamming/</link>
+    <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n03_hamming/</guid>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-4cf2a0e2">
+  <div class="loadingWrapper" id="loadingWrapper-4cf2a0e2">
+    <div class="loading" id="loading-4cf2a0e2"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250822%20%e6%b5%b7%e6%98%8e%e7%a0%81.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250822 海明码.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-4cf2a0e2');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-4cf2a0e2');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-4cf2a0e2-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
+</item><item>
+    <title>软考备考 | 常见协议速查表</title>
+    <link>https://jwangl5.github.io/posts/net/n00_protocols/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n00_protocols/</guid>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-fe3fb243">
+  <div class="loadingWrapper" id="loadingWrapper-fe3fb243">
+    <div class="loading" id="loading-fe3fb243"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20Protocols.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 Protocols.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-fe3fb243');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-fe3fb243');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-fe3fb243-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
+</item><item>
+    <title>软考备考 | 生成树协议STP</title>
+    <link>https://jwangl5.github.io/posts/net/n05_stp/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_stp/</guid>
+    <description><![CDATA[<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-9731d451">
+  <div class="loadingWrapper" id="loadingWrapper-9731d451">
+    <div class="loading" id="loading-9731d451"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20STP.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 STP.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-9731d451');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-9731d451');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-9731d451-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
+</item><item>
+    <title>软考备考 | 以太网物理层规范</title>
+    <link>https://jwangl5.github.io/posts/net/n02_ethernet/</link>
+    <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_ethernet/</guid>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-911156ca">
+  <div class="loadingWrapper" id="loadingWrapper-911156ca">
+    <div class="loading" id="loading-911156ca"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250820%20%e4%bb%a5%e5%a4%aa%e7%bd%91%e7%89%a9%e7%90%86%e5%b1%82%e8%a7%84%e8%8c%83.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250820 以太网物理层规范.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-911156ca');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-911156ca');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-911156ca-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
+</item><item>
+    <title>软考备考 | 奈氏准则与香农公式</title>
+    <link>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</link>
+    <pubDate>Wed, 13 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n02_nyquist_shannon/</guid>
+    <description><![CDATA[<style>
+.page {
+    width: 60%;
+}
+</style>
+<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
+<link href="/css/pdf-js.css" rel="stylesheet">
+
+<style>
+.embed-pdf-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+   
+}
+
+.pdf-canvas {
+  border: 1px solid black;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.loadingWrapper {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 350px;
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d2d0d0;;
+  border-radius: 50%;
+  border-top-color: #383838;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#overlayText > a:link{
+  color: steelblue;
+}
+
+#overlayText {
+  position: absolute;
+  word-wrap: break-word;
+  right: 5px;
+  top: 5px;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+</style><div class="embed-pdf-container" id="embed-pdf-container-7f274746">
+  <div class="loadingWrapper" id="loadingWrapper-7f274746">
+    <div class="loading" id="loading-7f274746"></div>
+  </div>
+  <div id="overlayText">
+    <a href='/files/net/250813%20%e5%a5%88%e6%b0%8f%e5%87%86%e5%88%99.pdf' download>
+      <i class="fas fa-download fa-2x"></i>
+    </a>
+  </div>
+  
+</div>
+
+<script type="text/javascript">
+(function() {
+
+
+var url = "https:\/\/jwangl5.github.io\/" + '\/files\/net\/250813 奈氏准则.pdf';
+
+
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
+
+
+var pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 3,
+    loadingWrapper = document.getElementById('loadingWrapper-7f274746');
+
+
+
+showLoader();
+
+
+
+function renderPage(num) {
+  pageRendering = true;
+  
+  pdfDoc.getPage(num).then(function(page) {
+    var pdf_cont = document.getElementById('embed-pdf-container-7f274746');
+    var canvas = getCanvas(num);
+    pdf_cont.appendChild(canvas);
+
+    var viewport = page.getViewport({scale: scale});
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var ctx = canvas.getContext('2d');
+
+    
+    var renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    var renderTask = page.render(renderContext);
+
+    
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      showContent(canvas);
+
+      if (pageNumPending !== null) {
+        
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+
+}
+
+
+function renderAllPages() {
+  for (var i = 1; i <= pdfDoc.numPages; i++) {
+    renderPage(i);
+  }
+}
+
+
+
+function showContent(canvas) {
+  loadingWrapper.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+
+
+function showLoader() {
+  loadingWrapper.style.display = 'flex';
+}
+
+
+
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+
+
+function getCanvas(num) {
+  var canvasId = 'embed-pdf-container-7f274746-'+num;
+  var canvas = document.createElement("canvas");
+  canvas.id = canvasId;
+  canvas.className = 'pdf-canvas';
+  return canvas
+}
+
+
+
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+  pdfDoc = pdfDoc_;
+  renderAllPages();
+});
+})()
+
+</script>]]></description>
+</item><item>
+    <title>网络笔记 | 08. 运输层TCP协议</title>
+    <link>https://jwangl5.github.io/posts/net/n08_tcp/</link>
+    <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n08_tcp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>网络笔记 | 09. 应用层</title>
+    <link>https://jwangl5.github.io/posts/net/n09_application/</link>
+    <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>网络笔记 | 07. IP数据报与IP协议</title>
+    <link>https://jwangl5.github.io/posts/net/n07_ip_protocol/</link>
+    <pubDate>Wed, 06 Aug 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_ip_protocol/</guid>
+    <description><![CDATA[<h3 id="250806-ip数据报与ip协议" class="headerLink">
+    <a href="#250806-ip%e6%95%b0%e6%8d%ae%e6%8a%a5%e4%b8%8eip%e5%8d%8f%e8%ae%ae" class="header-mark"></a>250806 IP数据报与IP协议</h3><ul>
+<li>
+<p>IPv4数据报（IP数据报）首部格式</p>]]></description>
+</item><item>
+    <title>网络笔记 | 06. 网络层与IP数据报的路由与交付</title>
+    <link>https://jwangl5.github.io/posts/net/n06_net_route/</link>
+    <pubDate>Tue, 15 Jul 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n06_net_route/</guid>
+    <description><![CDATA[<h3 id="250715-网络层与ipv4" class="headerLink">
+    <a href="#250715-%e7%bd%91%e7%bb%9c%e5%b1%82%e4%b8%8eipv4" class="header-mark"></a>250715 网络层与IPv4</h3><ul>
+<li>
+<p>网络层</p>]]></description>
+</item><item>
+    <title>网络笔记 | 05. MAC与IP地址、ARP协议、集线器与交换机、虚拟局域网</title>
+    <link>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</link>
+    <pubDate>Thu, 10 Jul 2025 00:00:00 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n05_mac_ip_arp/</guid>
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" title="" data-thumbnail="/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png" data-sub-html="<h2>数据链路层框架之编址问题</h2>"><img  loading="lazy" src='/image/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82MindMap3.png'    height="85%" width="85%"></a><figcaption class="image-caption">数据链路层框架之编址问题</figcaption>
+    </figure>
+</center>
+<blockquote>
+  <p>在这一部分，解决的是当网络中如何寻找到目标的问题，即如何编址的问题。其中MAC地址是唯一的主机地址，可以在网络内部实现高效地寻址。但在网络间的通信中，使用IP地址对网络以及网络内部接口进行编号，可以实现在网络间的信息转发。</p>]]></description>
+</item></channel>
+</rss>
