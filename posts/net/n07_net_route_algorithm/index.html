@@ -7,7 +7,7 @@
     <meta name="robots" content="noodp" /><title>网络笔记 | 07. 路由选择算法 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/net/n07_net_route_algorithm/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
   <meta property="og:title" content="网络笔记 | 07. 路由选择算法">
-  <meta property="og:description" content="具体的路由选择协议算法 路由信息协议RIP 开放最短路径优先OSPF 边界网关协议BGP">
+  <meta property="og:description" content="网络层内容框架 路由信息协议RIP 距离向量的定义">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -22,7 +22,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="网络笔记 | 07. 路由选择算法">
-  <meta name="twitter:description" content="具体的路由选择协议算法 路由信息协议RIP 开放最短路径优先OSPF 边界网关协议BGP">
+  <meta name="twitter:description" content="网络层内容框架 路由信息协议RIP 距离向量的定义">
       <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -38,7 +38,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://jwangl5.github.io/posts/net/n07_net_route_algorithm/"
-        },"genre": "posts","wordcount":  41 ,
+        },"genre": "posts","wordcount":  3737 ,
         "url": "https://jwangl5.github.io/posts/net/n07_net_route_algorithm/","datePublished": "2025-09-17T00:00:00+08:00","dateModified": "2025-09-17T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
@@ -162,7 +162,17 @@
 </div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
         <div class="toc tw-mx-4 tw-max-w-full">
             <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
-            <div class="toc-content"><nav id="TableOfContents"></nav></div>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#路由信息协议rip">路由信息协议RIP</a></li>
+        <li><a href="#开放最短路径优先-ospf">开放最短路径优先 OSPF</a></li>
+        <li><a href="#边界网关协议bgp">边界网关协议BGP</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
         </div>
     </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-09-17" data-pagefind-body>网络笔记 | 07. 路由选择算法</h1><div class="post-meta">
             <div class="post-meta-line">
@@ -174,18 +184,253 @@
             <div class="post-meta-line"><svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-09-17">2025-09-17</time>&nbsp;<svg class="icon"
     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-09-17">2025-09-17</time>&nbsp;<svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 41 字&nbsp;
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 3737 字&nbsp;
                     <svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 1 分钟&nbsp;</div>
-        </div><div class="content" id="content" data-pagefind-body><ul>
-<li>具体的路由选择协议算法
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 17 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><center>
+<figure><a class="lightgallery" href="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png" title="" data-thumbnail="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png" data-sub-html="<h2>网络层内容框架</h2>"><img  loading="lazy" src='/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png'    height="85%" width="85%"></a><figcaption class="image-caption">网络层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="路由信息协议rip" class="headerLink">
+    <a href="#%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e5%8d%8f%e8%ae%aerip" class="header-mark"></a>路由信息协议RIP</h3><ul>
+<li>
+<p>距离向量的定义</p>
 <ul>
-<li>路由信息协议RIP</li>
-<li>开放最短路径优先OSPF</li>
-<li>边界网关协议BGP</li>
+<li>路由信息协议RIP（Routing Information Protocol）是内部网关协议IGP中最先得到广泛使用的协议之一，其相关标准文档为RFC1058</li>
+<li>RIP要求自治系统AS内的每一个路由器都要维护从它自己到AS内其他每一个网络的距离记录。这是一组距离，称为“距离向量D-V(Distance-Vector)</li>
+<li>RIP使用跳数(Hop Count)作为度量(Metric)来衡量到达目的网络的距离
+<ul>
+<li>路由器到直连网络的距离定义为1</li>
+<li>路由器到非直连网络的距离定义为所经过的路由器数加1，允许一条路径最多只能包含15个路由器</li>
+<li>“距离”等于16时相当于不可达。因此，RP只适用于小型互联网。
+<figure><img src="/image/image-20250917112702-hjur4ck.png" width="70%" height="70%">
+    </figure>
+</li>
+<li>有些厂商的路由器没有按照标准文档来实现RIP，例如思科路由器就将路由器到直连网络的距离定义为0，但这并不影响其正常运行</li>
 </ul>
 </li>
 </ul>
+</li>
+<li>
+<p>工作原理</p>
+<ul>
+<li>RIP包含以下三个要点：仅<u>周期性地</u>（如30秒）和<u>相邻路由器</u>交换<u>自己的路由表</u></li>
+<li>RIP认为，好的路由就是距离短的路由，也就是通过路由器少的路由，例如下图中的网络结构中，RIP会认为蓝色的路由线路更优，即使其链路带宽都很小
+<figure><img src="/image/image-20250917112943-yafmldp.png" width="40%" height="40%">
+  </figure>
+</li>
+<li>当到达同一目的网络有多条距离相等的路由时，可以实现等价负载均衡，即可以将通信量均衡地分布到多条等价的路由上</li>
+</ul>
+</li>
+<li>
+<p>RIP工作的基本过程与更新规则</p>
+<ul>
+<li>
+<p>路由器刚开始工作时，只知道自己到直连网络的距离为1</p>
+</li>
+<li>
+<p>每个路由器进周期性地和相邻路由器交换并更新路由信息</p>
+</li>
+<li>
+<p>若干次交换和更新后，每个路由器都知道到达本AS内各网络的最短距离和下一跳的地址，称为收敛</p>
+</li>
+<li>
+<p>RIP信息交换的更新规则，以如下结构举例</p>
+<center>
+<a class="lightgallery" href="/image/image-20250917114038-qwunp9j.png" title="" data-thumbnail="/image/image-20250917114038-qwunp9j.png"><img  loading="lazy" src='/image/image-20250917114038-qwunp9j.png'    height="20%" width="20%"></a>
+<a class="lightgallery" href="/image/image-20250917114100-t7fxmaj.png" title="" data-thumbnail="/image/image-20250917114100-t7fxmaj.png"><img  loading="lazy" src='/image/image-20250917114100-t7fxmaj.png'    height="20%" width="20%"></a>
+</center>
+* 路由器C的信息在交换给路由器D时，路由器D并不关心路由器C的下一条是谁，这里直接用`?`​表示
+* 路由器D在收到路由器C发来的路由表时，首先对其进行更新：将下一跳全部更新为C，路由距离+1，随后用更新后的表格与自己的表格进行比对
+  <figure><img src="/image/image-20250917114551-fteneb9.png" width="70%" height="70%">
+      </figure>
+
+* 在表格更新时，有如下更新理由：
+  * 相同目的网络和相同下一跳，可能由于网络拓扑改变，需要更新距离
+  * 相邻路由器发现了新的网络，添加到自己的表格中
+  * 相同的目的网络，下一跳不同，则比较距离，新路由更短或相等时更新或添加新记录，新路由更长时则不更新
+<ul>
+<li>习题
+<ul>
+<li><a class="lightgallery" href="/image/image-20250917165500-24bsfle.png" title="" data-thumbnail="/image/image-20250917165500-24bsfle.png"><img  loading="lazy" src='/image/image-20250917165500-24bsfle.png'    height="70%" width="70%"></a>
+<a class="lightgallery" href="/image/image-20250917165524-nijlyv5.png" title="" data-thumbnail="/image/image-20250917165524-nijlyv5.png"><img  loading="lazy" src='/image/image-20250917165524-nijlyv5.png'    height="70%" width="70%"></a></li>
+<li><a class="lightgallery" href="/image/image-20250917165422-h2frdu3.png" title="" data-thumbnail="/image/image-20250917165422-h2frdu3.png"><img  loading="lazy" src='/image/image-20250917165422-h2frdu3.png'    height="70%" width="70%"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>RIP存在坏消息传得慢的问题，如下图案例所示，</p>
+<ul>
+<li>当R1与N1网络连接出现故障，R1首先将路由表中的记录更改为16，意味不可达</li>
+<li>当到达下一次更新周期时，如果R2发送来的信息早于R1发出，那么R1就会被谣言误导，认为可以通过R2+1的距离达到改变网络</li>
+<li>随后该谣言会随着时间在两者间来回摆动，直到两者都达到16之后才收敛</li>
+<li>这期间，R1和R2之间会出现路由环路，历时数分钟
+<figure><img src="/image/image-20250917170215-0syejdu.png" width="70%" height="70%">
+  </figure>
+</li>
+<li>该问题被称为““坏消息传得慢”，或者路由环路、距离无穷计数问题，是距离向量算法的固有问题，可以采取多种措施来减少该问题出现的频率或出现后的危害
+<ul>
+<li>限制最大路径为15，16即表示不可达</li>
+<li>当路由表发生变化后，立即发送路由更新报文（触发更新），而不仅是周期性更新</li>
+<li>让路由器记录收到某特定路由信息的接口，且不让同一路由信息再通过此接口反向传送（水平分割）</li>
+</ul>
+</li>
+<li>练习
+<figure><img src="/image/image-20250917171058-2cvexz3.png" width="70%" height="70%">
+    </figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="开放最短路径优先-ospf" class="headerLink">
+    <a href="#%e5%bc%80%e6%94%be%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84%e4%bc%98%e5%85%88-ospf" class="header-mark"></a>开放最短路径优先 OSPF</h3><ul>
+<li>
+<p>基本信息</p>
+<ul>
+<li>开放最短路径优先OSPF（Open Shortest Path First）是为克服RIP的缺点在1989年开发出来的</li>
+<li>“开放”表明OSPF协议不是受某一家厂商控制，而是公开发表的</li>
+<li>“最短路径优先”是因为使用了Dijkstra提出的最短路径算法SPF</li>
+<li>OSPF是基于<strong>链路状态</strong>的，而不像RIP那样是基于距离向量的</li>
+<li>OSPF采用SPF算法计算路由，从算法上保证了不会产生路由环路</li>
+<li>OSPF不限制网络规模，更新效率高，收敛速度快</li>
+</ul>
+</li>
+<li>
+<p>基本工作原理</p>
+<ul>
+<li>链路状态是指本路由器都和哪些路由器相邻，以及相应链路的“代价”（cost）</li>
+<li>“代价”用来表示费用、距离、时延、带宽，等等，这些都由网络管理人员来决定，例如在思科路由器中，其被定义为：100Mpbs/链路带宽，结果小于1的记为1，大于1的舍去小数部分
+<figure><img src="/image/image-20250917172106-q2g1xh6.png" width="70%" height="70%">
+    </figure>
+</li>
+<li>OSPF相邻路由器之间通过交换问候（hello）分组，建立和维护邻居关系
+<ul>
+<li>问候分组封装在IP数据报中，发往组播地址<code>224.0.0.5</code>​</li>
+<li>其发送周期为10秒；若40秒未收到来自邻居路由器的Hello分组，则认为路由器不可达</li>
+<li>因而，每个路由器都会有一个邻居表，包含邻居ID、接口，以及死亡倒计时</li>
+</ul>
+</li>
+<li>使用OSPF的每个路由器，都会产生链路状态通告LSA（Link State Advertisment），包含直连网络的链路状态信息和邻居路由器的链路状态信息，该信息被封装在链路状态更新分组LSU中，采用洪泛法发送，确保每个路由器都能收到该信息</li>
+<li>使用OSPF的每个路由器都有一个链路状态数据库LSDB，用于存储LSA</li>
+<li>通过各路由器洪泛发送封装有自己LSA的LSU分组，各路由器的LSDB最终将达到一致；使用OSPF的各路由器，基于LSDB进行最短路径优先SPF计算，构建出各自到达其他路由器的最短路径，即构建各自的路由表
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250917173603-a5lcaji.png'   alt="image" height="984" width="1990">​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>OSPF有五种分组类型</p>
+<ul>
+<li>问候分组Hello，用来发现和维护邻居路由器的可达性</li>
+<li>数据库描述分组Database description，向邻居路由器给出自己的链路状态数据库中的所有链路状态项目的摘要信息</li>
+<li>链路状态请求分组Link state request，向邻居路由器请求发送某些链路状态项目的详细信息</li>
+<li>链路状态更新分组Link state update，路由器使用这种分组，将其链路状态进行洪泛发送，全网更新链路状态</li>
+<li>链路状态确认分组Link state acknowledgement，是对链路状态更新分组的确认分组</li>
+</ul>
+</li>
+<li>
+<p>基本工作过程：其主要分为三个阶段，如下图所示
+<figure><img src="/image/image-20250917174519-z7upxxd.png" width="70%" height="70%">
+  </figure>
+</p>
+</li>
+<li>
+<p>当OSPF路由器在多点接入网络中建立邻居关系时，如果不采用其他机制，会产生大量的多播分组</p>
+<ul>
+<li>例如下图所示的网络结构，5台主机多点接入在网络中，他们之间任意两个路由器都互为邻居关系（数量为$\frac{n(n-1)}{2}$），此时如果他们周期性地发送问候分组以建立和维护邻居关系，消息就会很冗余</li>
+</ul>
+<center>
+<a class="lightgallery" href="/image/image-20250917193312-10fo9gy.png" title="" data-thumbnail="/image/image-20250917193312-10fo9gy.png"><img  loading="lazy" src='/image/image-20250917193312-10fo9gy.png'    height="30%" width="30%"></a>
+<a class="lightgallery" href="/image/image-20250917193330-yrprtdg.png" title="" data-thumbnail="/image/image-20250917193330-yrprtdg.png"><img  loading="lazy" src='/image/image-20250917193330-yrprtdg.png'    height="30%" width="30%"></a>
+</center>
+<ul>
+<li>为了减少所发送分组的数量，OSPF会选举出指定路由器DR和备用的指定路由器BDR，所有的非DR/BDR路由器，只与他们之间建立邻居关系，非DR/BDR之间必须通过DR/BDR交换信息。此时邻居关系可表示如下，此时的邻居关系数量为$2(n-2)+1$<br>
+<figure><img src="/image/image-20250917193539-kym9tq3.png" width="30%" height="30%">
+    </figure>
+</li>
+<li>选举方法跟生成树协议选举根交换机类似</li>
+</ul>
+</li>
+<li>
+<p>为了使OSPF能够用于规模很大的网络，OSPF还把一个自治系统再划分为若干个更小范围的区域（Area）</p>
+<ul>
+<li>如下图所示的自治系统中，所有路由器使用OSPF协议</li>
+<li>OSPF将该资质系统再划分为4个更小的区域，每个区域都有一个32比特的区域标识符，可以用点分十进制表示
+<ul>
+<li>主干区域的标识符必须为0，可以表示为<code>0.0.0.0</code>​，其用于连通其他区域</li>
+<li>其他区域的标识符不能为0，且互不相同，其规模不应太大，通常不超过200个</li>
+<li>这样划分的好处是在使用洪泛法交换链路状态信息的范围局限于每一个区域，而不是整个自治系统，从而减少整个网络上的通信量</li>
+</ul>
+</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250917174828-e04d2um.png'   alt="image" height="934" width="2216">​</li>
+<li>如果路由器的所有接口都在区域内，称为区域内路由器IR</li>
+<li>为了本区域能够和自治系统中的其他区域连通，每个区域都会有一个区域边界路由器ABR，其一个接口用于连接自身所在区域，另一个接口连接主干区域</li>
+<li>位于主干区域内的路由器称为主干路由器BBR，所有的区域边界路由器也是主干路由器</li>
+<li>主干区域内还需要一个路由器，专门和本自治系统外的其他路由器交换路由信息，称为自治系统边界路由器ASBR</li>
+</ul>
+</li>
+</ul>
+<h3 id="边界网关协议bgp" class="headerLink">
+    <a href="#%e8%be%b9%e7%95%8c%e7%bd%91%e5%85%b3%e5%8d%8f%e8%ae%aebgp" class="header-mark"></a>边界网关协议BGP</h3><ul>
+<li>基本特征
+<ul>
+<li>外部网关协议用于自治系统之间的路由选择，典型的协议为边界网关协议BGP</li>
+<li>在不同的自治系统内，度量路由的代价可能不同（如距离、带宽、费用等），因此，对于自治系统间的路由选择，使用代价作为度量来寻找最佳路由的策略是不可行的
+<figure><img src="/image/image-20250917195111-gf5kw5o.png" width="70%" height="70%">
+    </figure>
+</li>
+<li>自治系统之间的路由选择，还必须考虑政治、经济、安全等相关策略
+<figure><img src="/image/image-20250917195211-pqrqpmf.png" width="80%" height="80%">
+    </figure>
+</li>
+<li>因而，BGP的目标只能是力求选择一条能够到达目的网络且比较好的路由（不能兜圈子），而并非寻找一条最佳路由</li>
+</ul>
+</li>
+<li>BGP发言人
+<ul>
+<li>在配置BGP时，每个自治系统的管理员，要选择至少一个路由器作为作为该自治系统的“BGP发言人”</li>
+<li>通常而言，两个BGP发言人都是通过一个共享网网络连接在一起的，而BGP发言人往往就是BGP边界路由器</li>
+<li>使用TCP连接交换路由信息的两个BGP发言人，彼此称为对方的邻站（neighbor）或对等站（peer）</li>
+<li>不同自治系统的BGP发言人要交换路由信息，必须先建立TCP连接，端口号为179，从而在此TCP连接上交换BGP报文以建立BGP会话
+<ul>
+<li>利用BGP会话交换路由信息，如增加新的路由、撤销过时的路由、 报告出错的情况等</li>
+<li>这里是一个BGP发言人交换路径向量的例子
+<figure><img src="/image/image-20250917200740-qs8nt0g.png" width="70%" height="70%">
+    </figure>
+</li>
+</ul>
+</li>
+<li>BGP发言人除了运行BGP外，还必须运行自己所在自治系统所使用的内部网关协议IGP，例如OSPF或RIP
+<figure><img src="/image/image-20250917200138-4d89yk9.png" width="60%" height="60%">
+  </figure>
+</li>
+<li>BGP发言人交换网络可达性的信息后（要到达某个网络要经过的一系列自治系统），各BGP发言人就根据所采用的策略从收到的路由信息中，找出到达个自治系统的较好的路由；其所构建出的自治系统连同图是树形结构的、不存在回路</li>
+</ul>
+</li>
+<li>BGP-4中的四种报文
+<ul>
+<li>OPEN（打开）报文：用来与相邻的另一个BGP发言人建立关系，使通信初始化</li>
+<li>UPDATE（更新）报文：用来通告某一路由的信息，以及列出要撤销的多条路由</li>
+<li>KEEPALIVE（保活）报文：用来周期性地证实邻站的连通性</li>
+<li>NOTIFICATION（通知）报文：用来发送检测到的差错</li>
+</ul>
+</li>
+<li>练习
+<figure><img src="/image/image-20250917201047-l43xhfh.png" width="80%" height="80%">
+    </figure>
+
+<figure><img src="/image/image-20250917201152-xui91wd.png" width="70%" height="70%">
+    </figure>
+
+<figure><img src="/image/image-20250917201218-nxwot38.png" width="50%" height="50%">
+    </figure>
+</li>
+</ul>
+<p>‍</p>
 </div>
 
         <div class="sponsor print:tw-hidden">

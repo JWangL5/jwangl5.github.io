@@ -9,15 +9,14 @@
     <link>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</link>
     <pubDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</guid>
-    <description><![CDATA[<ul>
-<li>具体的路由选择协议算法
-<ul>
-<li>路由信息协议RIP</li>
-<li>开放最短路径优先OSPF</li>
-<li>边界网关协议BGP</li>
-</ul>
-</li>
-</ul>]]></description>
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png" title="" data-thumbnail="/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png" data-sub-html="<h2>网络层内容框架</h2>"><img  loading="lazy" src='/image/%E7%BD%91%E7%BB%9C%E5%B1%82MindMap2.png'    height="85%" width="85%"></a><figcaption class="image-caption">网络层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="路由信息协议rip" class="headerLink">
+    <a href="#%e8%b7%af%e7%94%b1%e4%bf%a1%e6%81%af%e5%8d%8f%e8%ae%aerip" class="header-mark"></a>路由信息协议RIP</h3><ul>
+<li>
+<p>距离向量的定义</p>]]></description>
 </item><item>
     <title>Rust | 04. 迭代器与闭包、代码发布、智能指针、多线程</title>
     <link>https://jwangl5.github.io/posts/rust/rust_note_04/</link>
