@@ -1035,7 +1035,14 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <link>https://jwangl5.github.io/posts/net/n10_application/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
                         <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_application/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png" title="" data-thumbnail="/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png" data-sub-html="<h2>运输层内容框架</h2>"><img  loading="lazy" src='/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png'    height="80%" width="80%"></a><figcaption class="image-caption">运输层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="应用层概述" class="headerLink">
+    <a href="#%e5%ba%94%e7%94%a8%e5%b1%82%e6%a6%82%e8%bf%b0" class="header-mark"></a>应用层概述</h3><ul>
+<li>
+<p>应用层享受其下各层提供的服务，解决通过应用进程的交互来实现特定网络应用的问题</p>]]></description>
 </item><item>
     <title>网络笔记 | 08. IP数据报与IP协议</title>
     <link>https://jwangl5.github.io/posts/net/n08_ip_protocol/</link>
