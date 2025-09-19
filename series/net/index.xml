@@ -948,16 +948,93 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 
 </script>]]></description>
 </item><item>
-    <title>网络笔记 | 08. 运输层TCP协议</title>
-    <link>https://jwangl5.github.io/posts/net/n10_tcp/</link>
+    <title>网络笔记 | 09. 运输层TCP协议</title>
+    <link>https://jwangl5.github.io/posts/net/n09_tcp/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_tcp/</guid>
-    <description><![CDATA[]]></description>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_tcp/</guid>
+    <description><![CDATA[<center>
+<figure><a class="lightgallery" href="/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png" title="" data-thumbnail="/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png" data-sub-html="<h2>运输层内容框架</h2>"><img  loading="lazy" src='/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png'    height="80%" width="80%"></a><figcaption class="image-caption">运输层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="概述" class="headerLink">
+    <a href="#%e6%a6%82%e8%bf%b0" class="header-mark"></a>概述</h3><ul>
+<li>计算机网络体系结构中的物理层、数据链路层和网络层，他们共同解决了将主机通过异构网络互联起来的问题，实现了主机到主机的通信</li>
+<li>但实际上，在计算机网络中，<u-b>进行通信的真正实体，是位于通信两端主机中的进程</u-b></li>
+<li>如何为运行在不同主机上的应用进程提供直接的通信服务，是运输层的任务，运输层协议又称为端到端协议
+<figure><img src="/image/image-20250808002422-zr6pyv9.png" width="70%" height="70%">
+</figure>
+</li>
+</ul>
+<h3 id="端口号" class="headerLink">
+    <a href="#%e7%ab%af%e5%8f%a3%e5%8f%b7" class="header-mark"></a>端口号</h3><ul>
+<li>引入
+<ul>
+<li>运行中在计算机上的进程使用进程标识符PID来标志</li>
+<li>但因特网上的计算机并不是使用统一的操作系统，不同的操作系统又使用不同格式的进程标识符</li>
+<li>为了使运行不同操作系统的计算机的应用进程之间能够进行通信，就必须使用统一的方法对TCP/IP体系的应用进程进行标识</li>
+</ul>
+</li>
+<li>TCP/IP体系的运输层使用<strong>端口号</strong>来区分应用层的不同进程
+<ul>
+<li>端口号使用16比特标识，取值范围为0～65535</li>
+<li>有3类
+<ul>
+<li>熟知端口号：0～1023，IANA把这些端口号指派给了TCP/IP体系中最重要的一些应用协议
+<ul>
+<li>例如：FTP使用21/20，HTTP使用80，DNS使用53
+<figure><img src="/image/image-20250808003801-top57q2.png" width="70%" height="70%">
+			</figure>
+</li>
+</ul>
+</li>
+<li>登记端口号：1024～49151，为没有熟知端口号的应用程序使用。使用这类端口号必须在IANA按照规定的手续登记，以防止重复
+<ul>
+<li>例如：Microsoft RDP微软远程桌面使用的端口是3389</li>
+</ul>
+</li>
+<li>短暂端口号：49152～65535，留给客户进程选择暂时使用。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的动态端口号。通信结束后，这个端口号可供其他客户进程以后使用</li>
+</ul>
+</li>
+<li>端口号只具有<strong>本地意义</strong>，即端口号只是为了标识本计算机应用层中的各进程，在因特网中，不同计算机中的相同端口号是没有联系的</li>
+</ul>
+</li>
+<li>发送方的<strong>复用</strong>与接收方的<strong>分用</strong>
+<figure><img src="/image/image-20250808003335-6gxdzmf.png" width="70%" height="70%">
+	</figure>
+
+<ul>
+<li>发送方的某些应用进程所发送的不同应用报文，在运输层使用UDP协议进行封装，称为UDP复用</li>
+<li>UDP封装而成的用户数据报或TCP封装而成的报文段，都需要在网络层使用IP协议封装为IP数据报，该过程称为IP复用</li>
+<li>在接收方也有类似的过程，相同的IP数据报，需要根据其首部协议字段的值，将其用不同的协议进行解析，该过程称为IP分用</li>
+</ul>
+</li>
+<li>举例：DNS解析和Web请求（具体先不写了，有点长，但很符逻辑）
+<ul>
+<li>在网络拓扑中，用户PC、DNS服务器、Web服务器通过交换机进行互联，处于同一个以太网中</li>
+<li>假设Web服务器的域名为www.porttest.com，在DNS服务器中记录有该域名对应的IP地址<code>192.168.0.3</code>​</li>
+<li>当我们在用户PC中使用网页浏览器访问Web服务器中内容时，用户PC中的DNS客户端进程会发送一个DNS查询请求报文，其对应的内容为www.porttest.com所对应的IP地址是什么？</li>
+<li>DNS的查询请求报文需要使用运输层的UDP协议，封装成UDP用户数据报，其源进程端口号可以在短暂端口号中选择一个未被占用的端口号，用于表示DNS客户端进程，目的端口号为53，这是DNS服务器客户端进程所使用的熟知端口号</li>
+<li>之后，将UDP用户数据报封装在IP数据报中，通过以太网发送给DNS服务器，DNS服务器收到该数据报后，从中解封出UDP用户数据报，UDP用户数据报首部的目的端口号为53，意味着需要将其数据载荷部分，即DNS查询请求报文，交付给本服务器中的DNS服务器端进程</li>
+<li>DNS服务器端进程解析DNS查询请求报文的内容，后按其要求查找对应的IP地址；之后，会给用户PC发送DNS响应报文，其内容为“域名www.porttest.com所对应的IP地址为192.168.0.3”，该响应报文被封装为UDP用户数据报格式，再将其封装为IP数据报，通过以太网发给用户PC</li>
+<li>用户PC收到该数据报后，从中解封出UDP用户数据报，根据目的端口号，将数据部分交付给DNS客户端进程</li>
+<li>DNS客户端进程解析DNS响应报文的内容，就可直到自己之前所请求的Web服务器的域名所对应的IP地址</li>
+<li>此时，用户PC的HTTP客户端进程可以向Web服务器发送HTTP请求报文了，该请求报文使用运输层的TCP协议封装称TCP报文段，源端口号为未被占用的源端口，目的端口字段值设置为80</li>
+<li>随后将该报文封装在IP数据报中，通过以太网发送给Web服务器，Web服务器收到该数据报后，从中解封出TCP报文段，根据目的端口号80，将数据载荷交付给本服务器中的HTTP服务器端进程</li>
+<li>HTTP服务端进程解析报文请求的内容，并按其要求查找页面内容，后给用户PC发送HTTP响应报文，其内容正是用户所请求的页面内容</li>
+<li>该HTTP响应报文需要使用运输层的TCP协议封装成TCP报文段，其首部中的源端口好字段设置为熟知端口号80，目的端口号与请求报文中的源端口号一致</li>
+<li>随后将TCP报文端封装在IP数据报中，通过以太网发送给用户PC，用户PC在收到该数据报后，从中解封出TCP报文段，根据目的端口号将数据交付给HTTP客户端进程，并由其进一步解析该响应报文的内容，并在网页浏览器中进行显示</li>
+</ul>
+</li>
+</ul>
+<h3 id="udp和tcp的对比" class="headerLink">
+    <a href="#udp%e5%92%8ctcp%e7%9a%84%e5%af%b9%e6%af%94" class="header-mark"></a>UDP和TCP的对比</h3><ul>
+<li>
+<p>UDP和TCP是TCP/IP体系结构运输层中的两个重要协议，其使用频率仅低于网际层的IP协议</p>]]></description>
 </item><item>
-    <title>网络笔记 | 09. 应用层</title>
-    <link>https://jwangl5.github.io/posts/net/n09_application/</link>
+    <title>网络笔记 | 10. 应用层</title>
+    <link>https://jwangl5.github.io/posts/net/n10_application/</link>
     <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n09_application/</guid>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_application/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>网络笔记 | 08. IP数据报与IP协议</title>

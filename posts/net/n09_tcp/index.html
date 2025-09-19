@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" /><title>网络笔记 | 09. 运输层TCP协议 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/net/n09_tcp/">
+  <meta property="og:site_name" content="JWangL5&#39;s Blog">
+  <meta property="og:title" content="网络笔记 | 09. 运输层TCP协议">
+  <meta property="og:description" content="运输层内容框架 概述 计算机网络体系结构中的物理层、数据链路层和网络层，他们共同解决了将主机通过异构网络互联起来的问题，实现了主机到主机的通信 但实际上，在计算机网络中，进行通信的真正实体，是位于通信两端主机中的进程 如何为运行在不同主机上的应用进程提供直接的通信服务，是运输层的任务，运输层协议又称为端到端协议 端口号 引入 运行中在计算机上的进程使用进程标识符PID来标志 但因特网上的计算机并不是使用统一的操作系统，不同的操作系统又使用不同格式的进程标识符 为了使运行不同操作系统的计算机的应用进程之间能够进行通信，就必须使用统一的方法对TCP/IP体系的应用进程进行标识 TCP/IP体系的运输层使用端口号来区分应用层的不同进程 端口号使用16比特标识，取值范围为0～65535 有3类 熟知端口号：0～1023，IANA把这些端口号指派给了TCP/IP体系中最重要的一些应用协议 例如：FTP使用21/20，HTTP使用80，DNS使用53 登记端口号：1024～49151，为没有熟知端口号的应用程序使用。使用这类端口号必须在IANA按照规定的手续登记，以防止重复 例如：Microsoft RDP微软远程桌面使用的端口是3389 短暂端口号：49152～65535，留给客户进程选择暂时使用。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的动态端口号。通信结束后，这个端口号可供其他客户进程以后使用 端口号只具有本地意义，即端口号只是为了标识本计算机应用层中的各进程，在因特网中，不同计算机中的相同端口号是没有联系的 发送方的复用与接收方的分用 发送方的某些应用进程所发送的不同应用报文，在运输层使用UDP协议进行封装，称为UDP复用 UDP封装而成的用户数据报或TCP封装而成的报文段，都需要在网络层使用IP协议封装为IP数据报，该过程称为IP复用 在接收方也有类似的过程，相同的IP数据报，需要根据其首部协议字段的值，将其用不同的协议进行解析，该过程称为IP分用 举例：DNS解析和Web请求（具体先不写了，有点长，但很符逻辑） 在网络拓扑中，用户PC、DNS服务器、Web服务器通过交换机进行互联，处于同一个以太网中 假设Web服务器的域名为www.porttest.com，在DNS服务器中记录有该域名对应的IP地址192.168.0.3​ 当我们在用户PC中使用网页浏览器访问Web服务器中内容时，用户PC中的DNS客户端进程会发送一个DNS查询请求报文，其对应的内容为www.porttest.com所对应的IP地址是什么？ DNS的查询请求报文需要使用运输层的UDP协议，封装成UDP用户数据报，其源进程端口号可以在短暂端口号中选择一个未被占用的端口号，用于表示DNS客户端进程，目的端口号为53，这是DNS服务器客户端进程所使用的熟知端口号 之后，将UDP用户数据报封装在IP数据报中，通过以太网发送给DNS服务器，DNS服务器收到该数据报后，从中解封出UDP用户数据报，UDP用户数据报首部的目的端口号为53，意味着需要将其数据载荷部分，即DNS查询请求报文，交付给本服务器中的DNS服务器端进程 DNS服务器端进程解析DNS查询请求报文的内容，后按其要求查找对应的IP地址；之后，会给用户PC发送DNS响应报文，其内容为“域名www.porttest.com所对应的IP地址为192.168.0.3”，该响应报文被封装为UDP用户数据报格式，再将其封装为IP数据报，通过以太网发给用户PC 用户PC收到该数据报后，从中解封出UDP用户数据报，根据目的端口号，将数据部分交付给DNS客户端进程 DNS客户端进程解析DNS响应报文的内容，就可直到自己之前所请求的Web服务器的域名所对应的IP地址 此时，用户PC的HTTP客户端进程可以向Web服务器发送HTTP请求报文了，该请求报文使用运输层的TCP协议封装称TCP报文段，源端口号为未被占用的源端口，目的端口字段值设置为80 随后将该报文封装在IP数据报中，通过以太网发送给Web服务器，Web服务器收到该数据报后，从中解封出TCP报文段，根据目的端口号80，将数据载荷交付给本服务器中的HTTP服务器端进程 HTTP服务端进程解析报文请求的内容，并按其要求查找页面内容，后给用户PC发送HTTP响应报文，其内容正是用户所请求的页面内容 该HTTP响应报文需要使用运输层的TCP协议封装成TCP报文段，其首部中的源端口好字段设置为熟知端口号80，目的端口号与请求报文中的源端口号一致 随后将TCP报文端封装在IP数据报中，通过以太网发送给用户PC，用户PC在收到该数据报后，从中解封出TCP报文段，根据目的端口号将数据交付给HTTP客户端进程，并由其进一步解析该响应报文的内容，并在网页浏览器中进行显示 UDP和TCP的对比 UDP和TCP是TCP/IP体系结构运输层中的两个重要协议，其使用频率仅低于网际层的IP协议">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-08T00:00:00+08:00">
+    <meta property="article:modified_time" content="2025-08-08T00:00:00+08:00">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n07_net_route_algorithm/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n03_hamming/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n00_protocols/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n05_stp/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n02_ethernet/">
+      <meta property="og:see_also" content="https://jwangl5.github.io/posts/net/n02_nyquist_shannon/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="网络笔记 | 09. 运输层TCP协议">
+  <meta name="twitter:description" content="运输层内容框架 概述 计算机网络体系结构中的物理层、数据链路层和网络层，他们共同解决了将主机通过异构网络互联起来的问题，实现了主机到主机的通信 但实际上，在计算机网络中，进行通信的真正实体，是位于通信两端主机中的进程 如何为运行在不同主机上的应用进程提供直接的通信服务，是运输层的任务，运输层协议又称为端到端协议 端口号 引入 运行中在计算机上的进程使用进程标识符PID来标志 但因特网上的计算机并不是使用统一的操作系统，不同的操作系统又使用不同格式的进程标识符 为了使运行不同操作系统的计算机的应用进程之间能够进行通信，就必须使用统一的方法对TCP/IP体系的应用进程进行标识 TCP/IP体系的运输层使用端口号来区分应用层的不同进程 端口号使用16比特标识，取值范围为0～65535 有3类 熟知端口号：0～1023，IANA把这些端口号指派给了TCP/IP体系中最重要的一些应用协议 例如：FTP使用21/20，HTTP使用80，DNS使用53 登记端口号：1024～49151，为没有熟知端口号的应用程序使用。使用这类端口号必须在IANA按照规定的手续登记，以防止重复 例如：Microsoft RDP微软远程桌面使用的端口是3389 短暂端口号：49152～65535，留给客户进程选择暂时使用。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的动态端口号。通信结束后，这个端口号可供其他客户进程以后使用 端口号只具有本地意义，即端口号只是为了标识本计算机应用层中的各进程，在因特网中，不同计算机中的相同端口号是没有联系的 发送方的复用与接收方的分用 发送方的某些应用进程所发送的不同应用报文，在运输层使用UDP协议进行封装，称为UDP复用 UDP封装而成的用户数据报或TCP封装而成的报文段，都需要在网络层使用IP协议封装为IP数据报，该过程称为IP复用 在接收方也有类似的过程，相同的IP数据报，需要根据其首部协议字段的值，将其用不同的协议进行解析，该过程称为IP分用 举例：DNS解析和Web请求（具体先不写了，有点长，但很符逻辑） 在网络拓扑中，用户PC、DNS服务器、Web服务器通过交换机进行互联，处于同一个以太网中 假设Web服务器的域名为www.porttest.com，在DNS服务器中记录有该域名对应的IP地址192.168.0.3​ 当我们在用户PC中使用网页浏览器访问Web服务器中内容时，用户PC中的DNS客户端进程会发送一个DNS查询请求报文，其对应的内容为www.porttest.com所对应的IP地址是什么？ DNS的查询请求报文需要使用运输层的UDP协议，封装成UDP用户数据报，其源进程端口号可以在短暂端口号中选择一个未被占用的端口号，用于表示DNS客户端进程，目的端口号为53，这是DNS服务器客户端进程所使用的熟知端口号 之后，将UDP用户数据报封装在IP数据报中，通过以太网发送给DNS服务器，DNS服务器收到该数据报后，从中解封出UDP用户数据报，UDP用户数据报首部的目的端口号为53，意味着需要将其数据载荷部分，即DNS查询请求报文，交付给本服务器中的DNS服务器端进程 DNS服务器端进程解析DNS查询请求报文的内容，后按其要求查找对应的IP地址；之后，会给用户PC发送DNS响应报文，其内容为“域名www.porttest.com所对应的IP地址为192.168.0.3”，该响应报文被封装为UDP用户数据报格式，再将其封装为IP数据报，通过以太网发给用户PC 用户PC收到该数据报后，从中解封出UDP用户数据报，根据目的端口号，将数据部分交付给DNS客户端进程 DNS客户端进程解析DNS响应报文的内容，就可直到自己之前所请求的Web服务器的域名所对应的IP地址 此时，用户PC的HTTP客户端进程可以向Web服务器发送HTTP请求报文了，该请求报文使用运输层的TCP协议封装称TCP报文段，源端口号为未被占用的源端口，目的端口字段值设置为80 随后将该报文封装在IP数据报中，通过以太网发送给Web服务器，Web服务器收到该数据报后，从中解封出TCP报文段，根据目的端口号80，将数据载荷交付给本服务器中的HTTP服务器端进程 HTTP服务端进程解析报文请求的内容，并按其要求查找页面内容，后给用户PC发送HTTP响应报文，其内容正是用户所请求的页面内容 该HTTP响应报文需要使用运输层的TCP协议封装成TCP报文段，其首部中的源端口好字段设置为熟知端口号80，目的端口号与请求报文中的源端口号一致 随后将TCP报文端封装在IP数据报中，通过以太网发送给用户PC，用户PC在收到该数据报后，从中解封出TCP报文段，根据目的端口号将数据交付给HTTP客户端进程，并由其进一步解析该响应报文的内容，并在网页浏览器中进行显示 UDP和TCP的对比 UDP和TCP是TCP/IP体系结构运输层中的两个重要协议，其使用频率仅低于网际层的IP协议">
+      <meta name="twitter:site" content="@JWangL5">
+<meta name="application-name" content="JWangL5&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="twitter:creator" content="@JWangL5" /><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<link rel="canonical" href="https://jwangl5.github.io/posts/net/n09_tcp/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n10_application/" /><link rel="next" href="https://jwangl5.github.io/posts/net/n02_nyquist_shannon/" />
+<link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
+        "headline": "网络笔记 | 09. 运输层TCP协议",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://jwangl5.github.io/posts/net/n09_tcp/"
+        },"genre": "posts","wordcount":  11255 ,
+        "url": "https://jwangl5.github.io/posts/net/n09_tcp/","datePublished": "2025-08-08T00:00:00+08:00","dateModified": "2025-08-08T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": "卢旺"},"author": [{
+                        "@type": "Person",
+                        "name": "卢旺",
+                        "url":  null 
+                    }],"description": ""
+    }</script></head>
+
+
+<body data-instant-intensity="viewport" class="tw-flex tw-min-h-screen tw-flex-col"><script>
+    function setTheme(theme) {
+      document.body.setAttribute('theme', theme); 
+      document.documentElement.className = theme;
+      document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');
+      if (theme === 'light') {
+        document.documentElement.classList.remove('tw-dark')
+      } else {
+        document.documentElement.classList.add('tw-dark')
+      }
+      window.theme = theme;   
+      window.isDark = window.theme !== 'light' 
+    }
+    function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+    function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+    if (window.localStorage && localStorage.getItem('theme')) {
+        let theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+        setTheme(theme);
+        } else {
+            if ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+      } else { 
+        if ('' === 'light' || '' === 'dark') 
+            setTheme(''), saveTheme(''); 
+        else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');
+    }
+    let metaColors = {'light': '#f8f8f8','dark': '#161b22'}
+    getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    window.switchThemeEventSet = new Set()
+</script><div id="back-to-top"></div>
+    <div id="mask"></div><header class="desktop print:!tw-hidden" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item"
+                    href="/categories/" > 分类 </a><a class="menu-item"
+                    href="/series/" > 系列 </a><a class="menu-item"
+                    href="/posts/" > 文章 </a><a class="menu-item"
+                    href="/galleries/" > 相册 </a><a class="menu-item"
+                    href="/about/" > 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-desktop">
+                    <button class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-desktop">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </span><button class="menu-item theme-switch" aria-label="切换主题">
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+                </button></div>
+        </div>
+    </div>
+</header><header class="mobile print:!tw-hidden" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="JWangL5&#39;s Blog">JWangL5&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                <div class="search mobile" id="search-mobile">
+                    <input type="text"
+                        placeholder="搜索文章标题或内容..."
+                        id="search-input-mobile">
+                    <button class="search-button search-toggle tw-h-10" id="search-toggle-mobile" title="搜索">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </button>
+                    <button class="search-button search-clear tw-h-fit" id="search-clear-mobile" title="清空">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"/></svg>
+                    </button>
+                    <span class="search-button search-loading tw-animate-spin" id="search-loading-mobile">
+                        <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
+                    </span>
+                </div>
+                <button class="search-cancel" id="search-cancel-mobile">
+                    取消
+                </button>
+            </div><a class="menu-item" href="/categories/" title="" >分类</a><a class="menu-item" href="/series/" title="" >系列</a><a class="menu-item" href="/posts/" title="" >文章</a><a class="menu-item" href="/galleries/" title="" >相册</a><a class="menu-item" href="/about/" title="" >关于我</a><button class="menu-item theme-switch tw-w-full" aria-label="切换主题">
+                <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M8 256c0 136.966 111.033 248 248 248s248-111.034 248-248S392.966 8 256 8 8 119.033 8 256zm248 184V72c101.705 0 184 82.311 184 184 0 101.705-82.311 184-184 184z"/></svg>
+            </button></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
+        <div class="toc tw-mx-4 tw-max-w-full">
+            <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#端口号">端口号</a></li>
+        <li><a href="#udp和tcp的对比">UDP和TCP的对比</a></li>
+        <li><a href="#tcp协议">TCP协议</a>
+          <ul>
+            <li><a href="#流量控制">流量控制</a></li>
+            <li><a href="#拥塞控制">拥塞控制</a></li>
+            <li><a href="#超时重传时间的选择">超时重传时间的选择</a></li>
+          </ul>
+        </li>
+        <li><a href="#tcp的连接管理">TCP的连接管理</a>
+          <ul>
+            <li><a href="#连接的建立三报文握手">连接的建立（三报文握手）</a></li>
+            <li><a href="#连接的释放">连接的释放</a></li>
+          </ul>
+        </li>
+        <li><a href="#tcp报文段的首部格式">TCP报文段的首部格式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+        </div>
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-08-08" data-pagefind-body>网络笔记 | 09. 运输层TCP协议</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'>
+        <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%9C%BA%E6%9E%A2%E7%BB%87%E5%BA%8F/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>机枢织序</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/net/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V86a6 6 0 0 1 6-6h404a6 6 0 0 1 6 6v340a6 6 0 0 1-6 6zm-42-92v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm0-96v24c0 6.627-5.373 12-12 12H204c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h200c6.627 0 12 5.373 12 12zm-252 12c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36zm0 96c0 19.882-16.118 36-36 36s-36-16.118-36-36 16.118-36 36-36 36 16.118 36 36z"/></svg>计算机网络</a></span></div>
+            <div class="post-meta-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-08-08">2025-08-08</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-08-08">2025-08-08</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 11255 字&nbsp;
+                    <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 50 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><center>
+<figure><a class="lightgallery" href="/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png" title="" data-thumbnail="/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png" data-sub-html="<h2>运输层内容框架</h2>"><img  loading="lazy" src='/image/%E8%BF%90%E8%BE%93%E5%B1%82MindMap.png'    height="80%" width="80%"></a><figcaption class="image-caption">运输层内容框架</figcaption>
+    </figure>
+</center>
+<h3 id="概述" class="headerLink">
+    <a href="#%e6%a6%82%e8%bf%b0" class="header-mark"></a>概述</h3><ul>
+<li>计算机网络体系结构中的物理层、数据链路层和网络层，他们共同解决了将主机通过异构网络互联起来的问题，实现了主机到主机的通信</li>
+<li>但实际上，在计算机网络中，<u-b>进行通信的真正实体，是位于通信两端主机中的进程</u-b></li>
+<li>如何为运行在不同主机上的应用进程提供直接的通信服务，是运输层的任务，运输层协议又称为端到端协议
+<figure><img src="/image/image-20250808002422-zr6pyv9.png" width="70%" height="70%">
+</figure>
+</li>
+</ul>
+<h3 id="端口号" class="headerLink">
+    <a href="#%e7%ab%af%e5%8f%a3%e5%8f%b7" class="header-mark"></a>端口号</h3><ul>
+<li>引入
+<ul>
+<li>运行中在计算机上的进程使用进程标识符PID来标志</li>
+<li>但因特网上的计算机并不是使用统一的操作系统，不同的操作系统又使用不同格式的进程标识符</li>
+<li>为了使运行不同操作系统的计算机的应用进程之间能够进行通信，就必须使用统一的方法对TCP/IP体系的应用进程进行标识</li>
+</ul>
+</li>
+<li>TCP/IP体系的运输层使用<strong>端口号</strong>来区分应用层的不同进程
+<ul>
+<li>端口号使用16比特标识，取值范围为0～65535</li>
+<li>有3类
+<ul>
+<li>熟知端口号：0～1023，IANA把这些端口号指派给了TCP/IP体系中最重要的一些应用协议
+<ul>
+<li>例如：FTP使用21/20，HTTP使用80，DNS使用53
+<figure><img src="/image/image-20250808003801-top57q2.png" width="70%" height="70%">
+			</figure>
+</li>
+</ul>
+</li>
+<li>登记端口号：1024～49151，为没有熟知端口号的应用程序使用。使用这类端口号必须在IANA按照规定的手续登记，以防止重复
+<ul>
+<li>例如：Microsoft RDP微软远程桌面使用的端口是3389</li>
+</ul>
+</li>
+<li>短暂端口号：49152～65535，留给客户进程选择暂时使用。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的动态端口号。通信结束后，这个端口号可供其他客户进程以后使用</li>
+</ul>
+</li>
+<li>端口号只具有<strong>本地意义</strong>，即端口号只是为了标识本计算机应用层中的各进程，在因特网中，不同计算机中的相同端口号是没有联系的</li>
+</ul>
+</li>
+<li>发送方的<strong>复用</strong>与接收方的<strong>分用</strong>
+<figure><img src="/image/image-20250808003335-6gxdzmf.png" width="70%" height="70%">
+	</figure>
+
+<ul>
+<li>发送方的某些应用进程所发送的不同应用报文，在运输层使用UDP协议进行封装，称为UDP复用</li>
+<li>UDP封装而成的用户数据报或TCP封装而成的报文段，都需要在网络层使用IP协议封装为IP数据报，该过程称为IP复用</li>
+<li>在接收方也有类似的过程，相同的IP数据报，需要根据其首部协议字段的值，将其用不同的协议进行解析，该过程称为IP分用</li>
+</ul>
+</li>
+<li>举例：DNS解析和Web请求（具体先不写了，有点长，但很符逻辑）
+<ul>
+<li>在网络拓扑中，用户PC、DNS服务器、Web服务器通过交换机进行互联，处于同一个以太网中</li>
+<li>假设Web服务器的域名为www.porttest.com，在DNS服务器中记录有该域名对应的IP地址<code>192.168.0.3</code>​</li>
+<li>当我们在用户PC中使用网页浏览器访问Web服务器中内容时，用户PC中的DNS客户端进程会发送一个DNS查询请求报文，其对应的内容为www.porttest.com所对应的IP地址是什么？</li>
+<li>DNS的查询请求报文需要使用运输层的UDP协议，封装成UDP用户数据报，其源进程端口号可以在短暂端口号中选择一个未被占用的端口号，用于表示DNS客户端进程，目的端口号为53，这是DNS服务器客户端进程所使用的熟知端口号</li>
+<li>之后，将UDP用户数据报封装在IP数据报中，通过以太网发送给DNS服务器，DNS服务器收到该数据报后，从中解封出UDP用户数据报，UDP用户数据报首部的目的端口号为53，意味着需要将其数据载荷部分，即DNS查询请求报文，交付给本服务器中的DNS服务器端进程</li>
+<li>DNS服务器端进程解析DNS查询请求报文的内容，后按其要求查找对应的IP地址；之后，会给用户PC发送DNS响应报文，其内容为“域名www.porttest.com所对应的IP地址为192.168.0.3”，该响应报文被封装为UDP用户数据报格式，再将其封装为IP数据报，通过以太网发给用户PC</li>
+<li>用户PC收到该数据报后，从中解封出UDP用户数据报，根据目的端口号，将数据部分交付给DNS客户端进程</li>
+<li>DNS客户端进程解析DNS响应报文的内容，就可直到自己之前所请求的Web服务器的域名所对应的IP地址</li>
+<li>此时，用户PC的HTTP客户端进程可以向Web服务器发送HTTP请求报文了，该请求报文使用运输层的TCP协议封装称TCP报文段，源端口号为未被占用的源端口，目的端口字段值设置为80</li>
+<li>随后将该报文封装在IP数据报中，通过以太网发送给Web服务器，Web服务器收到该数据报后，从中解封出TCP报文段，根据目的端口号80，将数据载荷交付给本服务器中的HTTP服务器端进程</li>
+<li>HTTP服务端进程解析报文请求的内容，并按其要求查找页面内容，后给用户PC发送HTTP响应报文，其内容正是用户所请求的页面内容</li>
+<li>该HTTP响应报文需要使用运输层的TCP协议封装成TCP报文段，其首部中的源端口好字段设置为熟知端口号80，目的端口号与请求报文中的源端口号一致</li>
+<li>随后将TCP报文端封装在IP数据报中，通过以太网发送给用户PC，用户PC在收到该数据报后，从中解封出TCP报文段，根据目的端口号将数据交付给HTTP客户端进程，并由其进一步解析该响应报文的内容，并在网页浏览器中进行显示</li>
+</ul>
+</li>
+</ul>
+<h3 id="udp和tcp的对比" class="headerLink">
+    <a href="#udp%e5%92%8ctcp%e7%9a%84%e5%af%b9%e6%af%94" class="header-mark"></a>UDP和TCP的对比</h3><ul>
+<li>
+<p>UDP和TCP是TCP/IP体系结构运输层中的两个重要协议，其使用频率仅低于网际层的IP协议</p>
+</li>
+<li>
+<p>有些应用需要使用TCP提供服务，有些应用则需要UDP协议来提供服务</p>
+<ul>
+<li>UDP（User Datagram Protocol，用户数据报协议）</li>
+<li>TCP（Transmission Control Protocol，传输控制协议）</li>
+</ul>
+</li>
+<li>
+<p>对比1：是否连接
+<figure><img src="/image/image-20250808133101-7rvbay5.png" width="60%" height="60%">
+	</figure>
+</p>
+<ul>
+<li>UDP是无连接的，用户可以随时发送数据</li>
+<li>而TCP是面向连接的，用户必须经过三报文握手建立连接之后再进行数据传输，数据传输结束后，必须使用四报文回收来释放连接</li>
+<li>这里的连接是逻辑意义上的，不是物理连接</li>
+</ul>
+</li>
+<li>
+<p>对比2：多播与广播
+<figure><img src="/image/image-20250808133259-uk6jnyo.png" width="60%" height="60%">
+	</figure>
+</p>
+<ul>
+<li>局域网下使用UDP通信的主机，任何一台主机都可以下其他主机发送广播，向某一个多播组发送多播，还可以向某台主机发送单播；即UCP支持单播、多播以及广播</li>
+<li>使用TCP进行通信的主机在数据传输前需要先建立连接，连接建立后通信双方就像有了一条可靠的传输信道，双方基于该信道通信；因而，TCP仅支持单播（一对一通信）</li>
+</ul>
+</li>
+<li>
+<p>对比3：对数据报文的处理
+<figure><img src="/image/image-20250808133443-cxsct97.png" width="60%" height="60%">
+	</figure>
+</p>
+<ul>
+<li>应用层UDP直接给应用层报文添加一个UDP首部，随后发送给接收方，接收方直接去掉首部后交付给应用进程</li>
+<li>即是说，UDP对应用进程交付下来的数据报文，既不合并也不拆分，保留了这些报文的边界</li>
+<li>可以总结说，UDP是面向应用报文的</li>
+<li>但对于TCP协议，其将应用进程交付下来的数据块看作是一系列的字节流，TCP并不在意这些字节流的含义，只是将他们编号并存储在自己的发送缓存中。在发送数据时，TCP根据发送策略，从发送缓存中提取一定数量的字节，构建TCP报文段并发送；接收方一方面从接收到的TCP报文段中提出数据载荷并存储在接收缓存中，一方面也将接收缓存中的一些字节交付给应用进程</li>
+<li>TCP不保证接收发应用进程接收到的数据块与发送方应用进程所发送的数据块具有对应大小关系，但字节必须完全一样；例如发送方可能发出了10个块来表示全部数据，但接收方可能只上交了4个块来表示全部数据</li>
+<li>接收方的应用进程必须有能力识别收到的字节流，并将其还原为有意义的应用层数据</li>
+<li>这可以总结为：TCP是面向字节流的</li>
+</ul>
+</li>
+<li>
+<p>对比4：可靠或不可靠服务
+<figure><img src="/image/image-20250808133642-ge9409p.png" width="60%" height="60%">
+	</figure>
+</p>
+<ul>
+<li>接收方UDP可以通沟该数据报手段中的校验和字段的值，检查出产生误码的情况，但其仅仅只是丢弃该数据报，什么也不做</li>
+<li>在发送过程中，UDP数据报若是被某个路由器丢弃了，发送方UDP不做什么处理</li>
+<li>即是说，UDP向上层提供的是无连接不可靠的传输服务，对于传输中出现的误码，UDP并不关心</li>
+<li>基于这个特点，UDP更适用与IP电话、视频会议等实时应用</li>
+<li>对于TCP而言，尽管网际层IP协议向上提供的是无连接、不可靠的传输服务，但只要运输层是使用TCP协议，就可以向上层提供面向连接的可靠传输服务</li>
+<li>可以将该过程想想成为，数据通过基于TCP连接的可靠信道进行传输，不会出现误码、丢失、乱序、重复等传输差错</li>
+<li>TCP向上层提供的是面向连接的可靠传输服务，可以应用于文件传输等可靠传输应用</li>
+</ul>
+</li>
+<li>
+<p>对比5：首部结构
+<figure><img src="/image/image-20250808133715-d4czj57.png" width="60%" height="60%">
+	</figure>
+</p>
+<ul>
+<li>UDP数据报由首部和数据载荷两部分构成，其首部仅有4个字段，每个字段占2个字节，分别是源端口、目的端口、长度、校验和</li>
+<li>而TCP协议首部就复杂的多，其固定长度20字节，可变部分最大40字节，其不仅仅需要保障可靠传输，还需要提供流量控制、拥塞控制等服务</li>
+</ul>
+</li>
+</ul>
+<h3 id="tcp协议" class="headerLink">
+    <a href="#tcp%e5%8d%8f%e8%ae%ae" class="header-mark"></a>TCP协议</h3><h4 id="流量控制" class="headerLink">
+    <a href="#%e6%b5%81%e9%87%8f%e6%8e%a7%e5%88%b6" class="header-mark"></a>流量控制</h4><ul>
+<li>一般来说，我们总是希望数据传输得更快一些，但如果发送方把数据发送得过快，接收方就可能来不及接收，这就会造成数据的丢失。</li>
+<li>所谓流量控制(flow control)就是让发送方的发送速率不要太快，要让接收方来得及接收。</li>
+<li>利用<strong>滑动窗口机制</strong>可以很方便地在TCP连接上实现对发送方的流量控制（和之前将的回退N帧很像）
+<ul>
+<li>当A需要给B发送数据时，B可以对A进行流量控制</li>
+<li>在传输开始时，B会告诉A自己的接收窗口大小，A会根据该信息调整自己的发送窗口大小（下图案例中最初是400）</li>
+<li>下图所示的信息是一个发送案例</li>
+<li>值得一提的是，发送方首先需要将数据缓存在发送缓存区，随着发送确认而移出缓存区</li>
+<li>主机B可以随时调整发送方的滑动窗口大小，进而实现对发送速率的控制</li>
+<li>主机A发送的数据若丢失了，会在重传计时器超时之后再次发送</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250808134345-nd0a9iy.png'   alt="image" height="730" width="1496">​</li>
+<li>此时，发送端滑动窗口被调整为了0，发送方不再发送数据</li>
+<li>过了一段时间，如果主机B有了空闲的接收缓存区，可以发送确认信息调整滑动窗口大小</li>
+<li>但如果该信息不幸丢失了，A会一直等待B发送非零窗口通知，B会等待A发送数据，此时如果不采取措施，就会形成死锁局面，一直等待下去</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250808134534-jp5p79w.png'   alt="image" height="732" width="1630">​</li>
+<li>当发送方收到零窗口通知时，就需要启动一个持续计时器，当计时器超时时，则发送一个零窗口探测报文段（仅1字节数据）</li>
+<li>接收方在确认零窗口探测报文段时，需给出自己当前的接收窗口值，如果窗口仍旧为0，发送方在接收到后重置持续计时器；如果不是0，就可以继续发送数据，打破死锁的局面</li>
+<li>接收方没有缓存怎么接收零窗口探测报文段？TCP规定，即使接收方的接收窗口为0，也必须接收零窗口探测报文段、确认报文段、以及携带有紧急数据的报文段</li>
+<li>零窗口探测报文段丢失怎么办？零窗口探测报文段也有重传计时器的功能，当一定时间内没有收到反馈，会再一次发送</li>
+</ul>
+</li>
+<li>练习
+<figure><img src="/image/image-20250808135024-7idbmmo.png" width="90%" height="90%">
+	</figure>
+</li>
+</ul>
+<h4 id="拥塞控制" class="headerLink">
+    <a href="#%e6%8b%a5%e5%a1%9e%e6%8e%a7%e5%88%b6" class="header-mark"></a>拥塞控制</h4><ul>
+<li>问题引入
+<figure><img src="/image/image-20250808135238-yn1yepk.png" width="70%" height="70%">
+	</figure>
+</li>
+<li>四种算法：
+<ul>
+<li>问题背景假设和算法应用背景
+<figure><img src="/image/image-20250808135343-odxkvu7.png" width="70%" height="70%">
+		</figure>
+
+<figure><img src="/image/image-20250808135459-l76o855.png">
+		</figure>
+</li>
+<li>慢开始与拥塞避免
+<ul>
+<li>有一个叫做慢开始门限ssthres的状态变量，控制着慢开始算法与避免拥塞算法的切换</li>
+<li>拥塞窗口的初始值为1，而发送窗口的值取能发送数据大小和拥塞窗口的最小值，通常发送窗口值受限于拥塞窗口值</li>
+<li>当发送窗口小于该阈值时，用慢开始算法，发送窗口大小按照指数规律增大，达到阈值后，则线性增大（每次增加1）</li>
+<li>当线性增大到一定程度之后，若出现损失，则认为网络达到了阈值，此时执行2个动作
+<ul>
+<li>将慢开始阈值调整为当前窗口大小的一半</li>
+<li>将发送窗口重新设置为1，重新开始执行慢开始算法</li>
+</ul>
+</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250808143205-bvgnpa4.png'   alt="image" height="534" width="1608">​</li>
+<li>需要注意的是，慢开始是指一开始向网络注入的报文段少，并不是指发送窗口增长速度慢</li>
+<li>另外，拥塞避免也并非指完全能够避免拥塞，而是指在拥塞避免阶段将拥塞窗口控制为线性增长规律，使网络比较不容易出现拥塞</li>
+<li>这两个算法是1988年提出的TCP拥塞控制算法（TCP Tahoe版本）</li>
+</ul>
+</li>
+<li>快重传与快恢复
+<ul>
+<li>1900年，有新增的两个算法以改进TCP性能（TCP Reno版本）</li>
+<li>背景
+<ul>
+<li>有时，个别报文段的丢失并不意味着网络发生了拥塞，</li>
+<li>偶尔的丢失同样会导致发送方的超时重传，并误认为拥塞的发生，限制网络的性能</li>
+<li>采用快重传算法可以让发送方尽早知道发生了个别报文段的丢失</li>
+</ul>
+</li>
+<li>所谓<strong>快重传</strong>，就是使发送方尽快进行重传，而不是等超时重传计时器超时再重传
+<ul>
+<li>即是说，要求接收方不要等待自己发送数据时才进行捎带确认，而是要<strong>立即发送确认</strong></li>
+<li>即使收到了失序的报文段，也要立即发出对已收到的报文段的<strong>重复确认</strong></li>
+<li>发送方一旦收到3个连续的重复确认，就将相应的报文段立即重传，而不是等该报文段的计时器超时后再重传</li>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250808145101-5vm1uxu.png'   alt="image" height="442" width="1044">​</li>
+<li>对于个别丢失的报文段，发送方不会超时重传，也就不会误认为出现了拥塞，进而降低拥塞窗口为1</li>
+<li>使用快重传可以使整个网络的吞吐量提高约20%</li>
+</ul>
+</li>
+<li>快恢复
+<ul>
+<li>发送方一旦收到3个重复确认，就知道现在只是丢失了个别的报文段，于是不启动慢开始算法，而是执行快恢复算法</li>
+<li>在该算法中，执行2个操作
+<ul>
+<li>发送方将慢开始门限ssthresh值和拥塞窗口cwnd值调整为当前窗口的一半，开始执行避免拥塞算法</li>
+<li>也有的快回复实现，是把快回复开始时的拥塞窗口值cwnd值再增大一些，即等于新的ssthresh+3
+<ul>
+<li>其基本想法是说，既然已经收到了3个重复的确认，就表明已经有3个数据报文段已经离开了网络</li>
+<li>其不再消耗网络资源，而是停留在接收方的接收缓存中</li>
+<li>此时网络中不是堆积了报文段，而是减少了3个报文段</li>
+<li>因此可以适当把拥塞窗口再扩大一些</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>举例
+​<img class="tw-inline" loading="lazy" src='/image/image-20250808145945-ulqp9eo.png'   alt="image" height="754" width="1598">​</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>练习
+<figure><img src="/image/image-20250808150351-asknj8n.png" width="90%" height="90%">
+		</figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="超时重传时间的选择" class="headerLink">
+    <a href="#%e8%b6%85%e6%97%b6%e9%87%8d%e4%bc%a0%e6%97%b6%e9%97%b4%e7%9a%84%e9%80%89%e6%8b%a9" class="header-mark"></a>超时重传时间的选择</h4><ul>
+<li>
+<p>超时重传事件的选择是TCP最复杂的问题之一</p>
+<ul>
+<li>如果将超时重传时间RTO设置为小于往返时间RTT，这会造成不必要的重传，使网络负荷增大</li>
+<li>但若将其设置得远大于RTT，则会使网络空闲时间增大，降低传输效率</li>
+<li>由此可知，超时重传时间RTO应略大于往返时间RTT</li>
+<li>但实际上，由于网络环境和路由方式的不同，数据的发送可能经过1个高速率网络或多个低速率的网络，并且每个IP数据报的转发路由也可能不同，这会使得每一次测的往返时间都不一样
+<figure><img src="/image/image-20250808150600-l1e1wxb.png" width="50%" height="50%">
+	</figure>
+</li>
+</ul>
+</li>
+<li>
+<p>RTT的测量</p>
+<ul>
+<li>不能直接使用某次测量得到的RTT样本来计算超时重传时间RTO</li>
+<li>利用每次测量得到的RTT样本，计算加权平均往返时间RTTs（又称为平滑的往返时间）
+<figure><img src="/image/image-20250808150749-89iplha.png" width="50%" height="50%">
+	</figure>
+</li>
+<li>使用该方法得到的加权平均往返时间RTTs，比测量出的RTT值更加平滑</li>
+<li>超时重传时间RTO应略大于加权平均往返时间RTTs</li>
+</ul>
+</li>
+<li>
+<p>RCF6298建议使用下式计算超时重传时间RTO</p>
+<ul>
+<li>$$
+RTO=RTT_S + 4 \times RTT_D
+$$
+<figure><img src="/image/image-20250808151426-7xu6kp7.png" width="70%" height="70%">
+	</figure>
+</li>
+</ul>
+</li>
+<li>
+<p>如何测量RTT</p>
+<ul>
+<li>
+<p>复杂的情况
+<figure><img src="/image/image-20250808151616-lcj23ra.png" width="70%" height="70%">
+		</figure>
+</p>
+</li>
+<li>
+<p>针对<u>出现超时重传时无法测准往返时间RTT</u>的问题，Karn提出了一个算法：</p>
+<ul>
+<li>
+<p>在计算加权平均往返时间RTTs时，只要报文段重传了，就不采用其往返时间RTT样本。</p>
+</li>
+<li>
+<p>也就是出现重传时，不重新计算RTTs，进而超时重传时间RTO也不会重新计算。</p>
+</li>
+<li>
+<p>但这又引起了新的问题，如果报文段的时延突然增大了很多，并且之后很长一段时间都会保持这种时延</p>
+</li>
+<li>
+<p>因此在原来得出的重传时间内，不会收到确认报文段，于是就重传报文段</p>
+</li>
+<li>
+<p>但根据Karn算法，不考虑重传的报文段的往返时间样本，超时重传时间也就无法更新，这会导致报文段反复被重传</p>
+</li>
+<li>
+<p>因此，要对Karn算法进行修正，其方法是：报文段每重传一次，就把超时重传时间<br>
+RTO增大一些，典型的做法是将新RTO的值取为旧RTO值的2倍</p>
+</li>
+<li>
+<p>举例修正的Karn算法</p>
+<ul>
+<li>​<img class="tw-inline" loading="lazy" src='/image/image-20250808152239-rwleg2s.png'   alt="image" height="782" width="1644">​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>可靠传输的实现</p>
+<ul>
+<li>
+<p>TCP基于以字节为单位的滑动窗口来实现可靠传输</p>
+</li>
+<li>
+<p>滑动窗口的实现</p>
+<ul>
+<li>对于发送窗口</li>
+<li><figure><img src="/image/image-20250918173547-90xflnp.png" width="70%" height="70%">
+</figure>
+</li>
+<li>可以使用3个指针来表示发送窗口的状态</li>
+<li><figure><img src="/image/image-20250918173652-tpf3eld.png" width="70%" height="70%">
+</figure>
+</li>
+<li>对于接收窗口</li>
+<li><figure><img src="/image/image-20250918174713-3wakvkv.png" width="70%" height="70%">
+</figure>
+</li>
+</ul>
+</li>
+<li>
+<p>几点补充</p>
+<ul>
+<li>
+<p>虽然发送方的发送窗口是根据接收方的接收窗口设置的，但在同一时刻，发送方的发送窗口并不总是和接收方的接收窗口一样大</p>
+<ul>
+<li>网络传送窗口值需要经历一定的时间滞后，并且这个时间还是不确定的</li>
+<li>发送方还可能根据网络当时的拥塞情况适当减小自己的发送窗口尺寸</li>
+</ul>
+</li>
+<li>
+<p>对于不按序到达的数据应如何处理，TCP并无明确规定</p>
+<ul>
+<li>如果接收方把不按序到达的数据一律丢弃，那么接收窗口的管理将会比较简单，但这样做对网络资源的利用不利，因为发送方会重复传送较多的数据</li>
+<li>TCP通常对不按序到达的数据是先临时存放在接收窗口中，等到字节流中所缺少的字节收到后，再按序交付上层的应用进程</li>
+</ul>
+</li>
+<li>
+<p>TCP要求接收方必须有累积确认和捎带确认机制，这样可以减小传输开销。接收方可以在合适的时候发送确认，也可以在自己有数据要发送时把确认信息顺便捎带上</p>
+<ul>
+<li>但是，接收方不应过分推迟发送确认，否则会导致发送方不必要的超时重传，这反而浪费了网络的资源</li>
+<li>TCP标准规定，确认推迟的时间不应超过0.5秒。若收到一连串具有最大长度的报文段，则必须每隔一个报文段就发送一个确认[RFC1122]</li>
+<li>捎带确认实际上并不经常发生，因为大多数应用程序很少同时在两个方向上发送数据</li>
+</ul>
+</li>
+<li>
+<p>TCP的通信是全双工通信。通信中的每一方都在发送和接收报文段。因此，每一方都有自己的发送窗口和接收窗口。在谈到这些窗口时，一定要弄清楚是哪娜一方的窗口</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>练习
+<figure><img src="/image/image-20250918175121-u977fz5.png" width="80%" height="80%">
+</figure>
+
+<figure><img src="/image/image-20250918175121-u977fz5.png" width="80%" height="80%">
+</figure>
+</p>
+</li>
+</ul>
+<h3 id="tcp的连接管理" class="headerLink">
+    <a href="#tcp%e7%9a%84%e8%bf%9e%e6%8e%a5%e7%ae%a1%e7%90%86" class="header-mark"></a>TCP的连接管理</h3><blockquote>
+  <p>连接的三个阶段：建立TCP连接、数据传送、释放TCP连接</p>
+</blockquote><h4 id="连接的建立三报文握手" class="headerLink">
+    <a href="#%e8%bf%9e%e6%8e%a5%e7%9a%84%e5%bb%ba%e7%ab%8b%e4%b8%89%e6%8a%a5%e6%96%87%e6%8f%a1%e6%89%8b" class="header-mark"></a>连接的建立（三报文握手）</h4><ul>
+<li>
+<p>三个核心问题</p>
+<ul>
+<li>使TCP双方都能够确知对方的存在</li>
+<li>使TCP双方都能够协商一些参数（如最大窗口值、是否使用窗口扩大选项和时间戳选项以及服务质量等）</li>
+<li>使TCP双方能够对运输实体资源（如缓存大小、连接表中的项目等）进行分配</li>
+</ul>
+</li>
+<li>
+<p>具体过程</p>
+<figure><img src="/image/image-20250919153254-py24vo8.png" width="70%" height="70%">
+	</figure>
+
+<ul>
+<li>
+<p>主动发起建立TCP连接的应用进程称为TCP客户，被动等待建立TCP连接的应用进程称为TCP服务器</p>
+</li>
+<li>
+<p>TCP服务的建立需要在两者间交换3个TCP报文段</p>
+</li>
+<li>
+<p>最初，两端的TCP进程都处于关闭状态，TCP服务器进程首先创建传输控制块，用来存储TCP连接中的一些重要信息，比如TCP连接表、指向发送和接收缓存的指针、指向重传的队列的指针、当前的发送和接收序号</p>
+</li>
+<li>
+<p>之后，服务器进程进入监听状态，准备接受TCP客户进程的连接请求（被动打开连接）</p>
+</li>
+<li>
+<p>TCP客户进程在启动后，首先也是创建传输控制块，在需要建立TCP连接时，向TCP服务器进程发送TCP连接请求报文段，并进入同步已发送状态</p>
+<ul>
+<li>TCP连接请求报文段首部中的同部位SYN被设置为1，表明这是一个TCP连接请求报文段；序号seq被设置为了一个初始值x，作为TCP客户进程所选择的初始序号</li>
+<li>需要注意，TCP规定SYN被设置为1的报文段不能携带数据，但要消耗掉1个序号</li>
+</ul>
+</li>
+<li>
+<p>TCP连接建立是由TCP客户进程主动发起的，称为主动打开连接</p>
+</li>
+<li>
+<p>TCP服务器进程收到TCP连接请求报文段后，如果同意建立连接，则向TCP客户端进程发送TCP连接请求确认报文段，并进入同步已接收状态</p>
+<ul>
+<li>该报文段首部重点 同部位SYN和确认位ACK都设置为1，表明这是一个TCP连接请求确认报文段</li>
+<li>序号seq被设置为了一个初始值y，作为TCP服务器进程所选择的初始序号</li>
+<li>确认号ack的值被设置为了x+1，表示是对TCP客户进程所选择的初始序号的确认</li>
+<li>注意：这个报文段也不能携带数据，因为其SYN为1，同样消耗掉1个序号</li>
+</ul>
+</li>
+<li>
+<p>TCP客户进程收到TCP连接请求确认报文段后，还要向TCP服务器进程发送一个普通的TCP确认报文段，并进入连接已建立状态</p>
+<ul>
+<li>该报文段首部中的确认为ACK被设置为1，表明这是一个普通的TCP确认报文段</li>
+<li>序号字段seq被设置为x+1，这是因为TCP客户端进程发送的第一个TCP报文段的序号为x（不携带数据），第二个报文段为x+1</li>
+<li>注意，TCP规定普通的TCP确认报文段可以携带数据，但如果不携带数据，则不消耗序号，下一个数据报文段的序号仍是x+1</li>
+<li>确认号字段ack被设置为y+1，这是对TCP服务器进程所选择的初始序号的确认</li>
+</ul>
+</li>
+<li>
+<p>TCP服务器进程收到该确认报文段后也进入连接已建立状态</p>
+</li>
+<li>
+<p>此时，TCP双方都进入了连接已建立状态，他们可以基于已建立好的TCP连接，进行可靠的数据传输了</p>
+</li>
+</ul>
+</li>
+<li>
+<p>问题：为什么TCP客户进程最后还要发送一个普通的TCP确认报文段呢？是否可以使用两报文握手来建立连接呢？
+<figure><img src="/image/image-20250919152859-mqrejji.png" width="50%" height="50%">
+	</figure>
+</p>
+<ul>
+<li>采用三报文握手而不是两报文，是为了防止已失效的连接请求段突然又传送到了TCP服务器，因而导致错误</li>
+</ul>
+</li>
+<li>
+<p>练习
+<figure><img src="/image/image-20250919153218-i7cix01.png" width="80%" height="80%">
+</figure>
+</p>
+</li>
+</ul>
+<h4 id="连接的释放" class="headerLink">
+    <a href="#%e8%bf%9e%e6%8e%a5%e7%9a%84%e9%87%8a%e6%94%be" class="header-mark"></a>连接的释放</h4><figure><img src="/image/image-20250919163044-vciuvu4.png" width="70%" height="70%">
+</figure>
+
+<ul>
+<li>
+<p>在数据传输完成后，客户端或服务器双方都可以使用四报文挥手的方式释放连接</p>
+</li>
+<li>
+<p>这里假设使用TCP客户进程的应用进程通知其主动关闭TCP连接，TCP客户进程会发送TCP连接释放报文段，并进入终止等待1状态</p>
+<ul>
+<li>该报文段中的终止位FIN和确认位ACK的值都被设置为1，表明这是一个TCP连接释放报文段，同时也对之前收到的报文段进行确认</li>
+<li>序号seq字段的值设置为u，他等于TCP客户进程之前已传送过的、数据的最后一个字节的序号加1</li>
+<li>TCP规定，终止位FIN等于1的报文段即使不携带数据，也要消耗掉1个序号</li>
+<li>确认号ack字段的值设置为v，他等于TCP客户进程之前已收到的、数据的最后一个字节的序号加1</li>
+</ul>
+</li>
+<li>
+<p>TCP服务器进程收到TCP连接释放报文段后，会发送一个普通的TCP确认报文段并进入关闭等待状态</p>
+<ul>
+<li>该报文段首部中确认位ACK的值被设置为1，表明这是一个普通的TCP确认报文段</li>
+<li>序号seq字段设置为v，等于TCP服务器进程之前已传送过的数据的最后一个字节的序号加1</li>
+<li>这也与之前收到的TCP连接释放报文段中的确认号匹配</li>
+<li>确认号ack字段的值设置为u+1，这是对TCP连接释放报文段的确认</li>
+</ul>
+</li>
+<li>
+<p>TCP服务器进程这时应通知高层应用进程，TCP客户进程要断开与自己的TCP连接；</p>
+<ul>
+<li>此时，从TCP客户进程到TCP服务器进程这个方向上的连接就释放了</li>
+<li>这时的TCP连接属于半关闭状态，即TCP客户进程已经没有数据要发送了，但如果TCP服务器进程仍旧有数据要发送，TCP客户进程仍要接收</li>
+<li>即从TCP服务进程到TCP客户端进程，这个方向的连接并未关闭</li>
+<li>这个状态可能会持续一段时间</li>
+</ul>
+</li>
+<li>
+<p>TCP客户进程收到TCP确认报文段后，就进入终止等待状态2，等待TCP服务器进程发出的TCP连接释放报文段</p>
+</li>
+<li>
+<p>若使用TCP服务器进程的应用进程已经没有数据要发送了，应用进程就通知其TCP服务器进程释放连接</p>
+</li>
+<li>
+<p>由于TCP连接释放是由TCO客户进程主动发起的，因此TCP服务器进程对TCP连接的释放称为被动关闭连接</p>
+</li>
+<li>
+<p>TCP服务器进程发送TCP连接释放报文段，并进入最后确认状态</p>
+<ul>
+<li>该报文段首部中的终止位FIN和确认位ACK的值都被设置为1，表明这是一个TCP连接释放报文段，同时也对之前收到的报文段进行确认</li>
+<li>现在假定序号seq字段的值为w，这是因为在半关闭状态下，TCP服务进程可能又发送了一些数据</li>
+<li>确认号ack字段的值为u+1，这是对之前收到的TCP连接释放报文段的重复确认</li>
+</ul>
+</li>
+<li>
+<p>TCP客户进程收到TCP连接释放报文段后，必须针对该报文段发送普通的TCP确认报文段，之后进入时间等待状态</p>
+<ul>
+<li>该报文段首部中确认位ACK的值被设置为1，表明这是一个普通的TCP确认报文段</li>
+<li>序号seq字段的值设置为u+1，这是因为TCP客户进程之前发送的TCP连接释放报文段虽然不携带数据，但要消耗掉1个序号</li>
+<li>确认号ack字段的值设置为w+1，这是对所收到的TCP连接释放报文段的确认</li>
+</ul>
+</li>
+<li>
+<p>TCP服务器进程收到该报文段后就进入关闭状态，而TCP客户进程还要经过2倍的MSL后才能进入关闭状态</p>
+<ul>
+<li>MSL（Maximum Segment Lifetime）指，最长报文段寿命，RFC793建议为2分钟</li>
+<li>也就是说，TCP客户进程进入时间等待状态之后还需要经过4分钟才能进入关闭状态</li>
+<li>这完全是从工程上考虑的，对于现在的网络，MSL取为2分钟可能太长了，因此TCP允许不同的实现可根据具体情况使用更小的MSL值</li>
+</ul>
+</li>
+<li>
+<p>TCP客户进程在发送完最后一个确认报文段后，为什么不直接进入关闭状态？</p>
+<figure><img src="/image/image-20250919163153-xmkouwr.png" width="70%" height="70%">
+	</figure>
+
+<ul>
+<li>如果TCP客户端发送的最后一封TCP确认报文段在发送后就直接进入关闭状态</li>
+<li>若当该报文丢失，就会触发TCP服务器进程对之前所发送的TCP连接释放报文段的超时重传，并仍处于最后确认状态</li>
+<li>重传的TCP连接释放报文段到达TCP客户进程后，由于TCP客户进程已处于关闭状态，因此不理睬该报文段，这边会造成TCP服务器进程反复重传TCP连接释放报文段，并一直处于最后确认状态而无法进入关闭状态</li>
+<li>因此时间等待状态以及处于该状态2MSL时长，可以确保TCP服务器进程可以收到最后一个TCP确认报文段而进入关闭状态</li>
+<li>另外，TCP客户进程在发送完最后一个TCP确认报文段后，再经过2MLS时长，就可以使本次连接持续时间内所产生的所有报文段都从网络中消失</li>
+<li>这样可以使下一个新的TCP连接中，不会出现旧链接中的报文段</li>
+</ul>
+</li>
+<li>
+<p>TCP保活计时器的作用</p>
+<ul>
+<li>
+<p>设想，TCP双方已经建立了连接，后来，TCP客户进程所在的主机突然出现了故障，随后TCP服务器进程以后就不能再收到TCP客户进程发来的数据</p>
+</li>
+<li>
+<p>因此，应该有措施使TCP服务器进程不要再白白等待下去</p>
+</li>
+<li>
+<p>保活计时器就是TCP服务器进程发现这种状态的策略</p>
+<ul>
+<li>TCP服务器进程每收到一次TCP客户进程的数据，就重新设置并启动保活计时器（2小时定时）</li>
+<li>若保活计时器定时周期内未收到TCP客户进程发来的数据，则当保活计时器到时后，TCP服务器进程就向TCP客户进程发送一个探测报文段，以后则每隔75秒钟发送一次</li>
+<li>若一连发送10个探测报文段后仍无TCP客户进程的响应，TCP服务器进程就认为TCP客户进程所在主机出了故障，<br>
+接着就关闭这个连接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="tcp报文段的首部格式" class="headerLink">
+    <a href="#tcp%e6%8a%a5%e6%96%87%e6%ae%b5%e7%9a%84%e9%a6%96%e9%83%a8%e6%a0%bc%e5%bc%8f" class="header-mark"></a>TCP报文段的首部格式</h3><ul>
+<li>为了实现可靠传输，TCP采用了面向字节流的方式，但TCP在发送数据时，是从发送缓存取出一部分或全部字节并给其添加一个首部使之成为TCP报文段后进行发送
+<ul>
+<li>一个TCP报文段由首部和数据载荷两部分构成</li>
+<li>TCP的全部功能都体现在它首部中各字段的作用</li>
+</ul>
+</li>
+</ul>
+<figure><img src="/image/PixPin_2025-09-19_17-44-56-20250919174536-3ejkswm.png" width="70%" height="70%">
+</figure>
+
+<ul>
+<li>
+<p>由20字节固定首部和最大40字节的扩展首部构成</p>
+<ul>
+<li>
+<p>应用进程相关</p>
+<ul>
+<li>源端口号，占16比特，用来标识发送该TCP报文段的应用进程</li>
+<li>目的端口号，占16比特，用来标识接收该TCP报文段的引用进程</li>
+<li>其内容根据上层应用的报文来填写，如根据HTTP请求/响应报文中的源端口和目的端口来填写</li>
+</ul>
+</li>
+<li>
+<p>可靠传输相关</p>
+<ul>
+<li>序号字段，占32比特，取值范围为$[0, 2^{32}-1]$，序号增加到最后一个后，下一个序号就又回到0</li>
+<li>序号字段指出，本TCP报文段数据载荷的第一个字节的序号</li>
+<li><a class="lightgallery" href="/image/image-20250919170939-uy4i6uj.png" title="" data-thumbnail="/image/image-20250919170939-uy4i6uj.png"><img  loading="lazy" src='/image/image-20250919170939-uy4i6uj.png'    height="70%" width="70%"></a></li>
+<li>确认号字段，占32比特，取值范围为$[0, 2^{32}-1]$，序号增加到最后一个后，下一个序号就又回到0</li>
+<li>确认号字段指出期望收到对方下一个TCP报文段的数据载荷的第一个字节的序号，同时也是对之前收到的所有数据的确认</li>
+<li>若确认号=n，则表明到序号n-1为止的所有数据都已正确接收，期望接收序号为n的数据</li>
+<li>只有当确认标志位ACK，取值为1时，确认号字段才有效，为0时无效</li>
+<li>TCP规定，在连接建立后，所有传送的TCP报文段都必须把ACK设置为1</li>
+</ul>
+</li>
+<li>
+<p>数据偏移字段，占4比特，以4字节为单位，用来指出TCP报文段的<u>数据载荷部分的起始处</u>距离<u>TCP报文段起始处</u>有多远</p>
+<ul>
+<li>这个字段实际上是指出了TCP报文段的首部长度</li>
+<li>首部固定长度为20字节，因此数据偏移字段的最小值为b0101；首部的最大长度为60字节，因此数据偏移字段最大值为b1111</li>
+</ul>
+</li>
+<li>
+<p>保留字段，占6比特，为今后使用，目前应置为0</p>
+</li>
+<li>
+<p>窗口字段，占16比特，以字节为单位，指出发送本报文段的一方的接收窗口</p>
+<ul>
+<li>窗口值作为接收方让发送方设置其发送窗口的依据</li>
+<li>是以接收方能力来控制发送方的发送能力，实现流量控制</li>
+<li>实际的发送窗口，应为接收窗口与拥塞窗口的最小值</li>
+</ul>
+</li>
+<li>
+<p>校验和字段，占16比特，用来检查整个TCP报文段在传输过程中是否出现了误码，包括首部和数据载荷两部分</p>
+<ul>
+<li>与UDP类似，在计算校验和时，需要在TCP报文段前面加上12字节的伪首部</li>
+</ul>
+</li>
+<li>
+<p>同步标志位SYN，该标志位在TCP连接建立时用来同步序号，表明这是一个TCP连接请求报文段或连接请求的确认报文段</p>
+</li>
+<li>
+<p>终止标志位FIN，用来释放TCP连接，表明其是一个TCP连接的释放报文段</p>
+</li>
+<li>
+<p>复位标志位RST，用来复位TCP连接</p>
+<ul>
+<li>当RST=1时，表明TCP连接出现了异常，必须释放连接，然后再重新建立连接</li>
+<li>RST置1还可以用来拒绝一个非法的报文段，或拒绝打开一个TCP连接</li>
+</ul>
+</li>
+<li>
+<p>推送标志位PSH，用来实现推送操作，接收方的TCP收到该标志位为1的报文段，会尽快上交应用进程，而不必等到接收缓存都填满后再向上交付</p>
+</li>
+<li>
+<p>紧急操作</p>
+<ul>
+<li>紧急标志位URG取值为1时，紧急指针字段有效，否则无效</li>
+<li>紧急指针字段，占16比特，以字节为单位，用来指明紧急数据的长度</li>
+<li>当发送方有紧急数据时，可将紧急数据插队到发送缓存的最前面，并立即封装到一个TCP报文段中进行发送</li>
+<li>紧急指针会指出本报文段数据载荷部分包含了多长的紧急数据，紧急数据之后是普通数据</li>
+<li>接收方接收到紧急标志位为1的报文段后，会按照紧急指针字段的值，从报文段数据载荷部分，取出紧急数据，并直接上交应用进程，而不必在接收缓存中排队</li>
+</ul>
+</li>
+<li>
+<p>TCP报文段还包含40字节的选项部分，增加选项可以增加TCP的功能，目前有以下选项</p>
+<ul>
+<li>
+<p>最大报文段长度MSS选项：TCP报文段数据载荷部分的最大长度</p>
+</li>
+<li>
+<p>窗口扩大选项：可以用于扩大窗口，提高吞吐率</p>
+</li>
+<li>
+<p>时间戳选项</p>
+<ul>
+<li>用来计算往返时间RTT</li>
+<li>用于处理序号超范围的情况，又称为防止序号绕回PAWS</li>
+</ul>
+</li>
+<li>
+<p>选择确认选项，用于实现选择确认功能</p>
+</li>
+<li>
+<p>由于选项的长度可变，因此使用填充来确保报文段首部能被4整除（因为数据偏移字段，也就是首部长度字段，是以4字节为单位的）</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>‍</p>
+</div>
+
+        <div class="sponsor print:tw-hidden">
+        <div class="sponsor-avatar"><img   src='/avater.jpg'    height="959" width="959"></div><p class="sponsor-bio"><em>如果你觉得这篇文章对你有帮助，欢迎赞赏~</em></p><a href="https://www.buymeacoffee.com/jwangl5" title="Sponsor" target="_blank" class="sponsor-button" rel="noopener noreferrer">
+                <span style="color: #ec6cb9;"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg></span>
+                <span>赞赏</span>
+            </a></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2025-08-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line print:!tw-hidden">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section class="print:!tw-hidden">
+            <span><button class="tw-text-fgColor-link-muted hover:tw-text-fgColor-link-muted-hover" onclick="window.history.back();">返回</button></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n10_application/" class="prev" rel="prev" title="网络笔记 | 10. 应用层"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络笔记 | 10. 应用层</a>
+            <a href="/posts/net/n02_nyquist_shannon/" class="next" rel="next" title="软考备考 | 奈氏准则与香农公式">软考备考 | 奈氏准则与香农公式<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
+</div>
+</article></main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm107.351-101.064c-9.614 9.712-45.53 41.396-104.065 41.396-82.43 0-140.484-61.425-140.484-141.567 0-79.152 60.275-139.401 139.762-139.401 55.531 0 88.738 26.62 97.593 34.779a11.965 11.965 0 0 1 1.936 15.322l-18.155 28.113c-3.841 5.95-11.966 7.282-17.499 2.921-8.595-6.776-31.814-22.538-61.708-22.538-48.303 0-77.916 35.33-77.916 80.082 0 41.589 26.888 83.692 78.277 83.692 32.657 0 56.843-19.039 65.726-27.225 5.27-4.857 13.596-4.039 17.82 1.738l19.865 27.17a11.947 11.947 0 0 1-1.152 15.518z"/></svg>2023 - 2025</div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer><div class="print:!tw-hidden tw-flex tw-flex-col tw-fixed tw-right-4 tw-bottom-4 tw-gap-2"><a href="#back-to-top" id="back-to-top-button" class="tw-transition-opacity tw-opacity-0 tw-block tw-bg-bgColor-secondary tw-rounded-full" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;" title="回到顶部">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg>
+  </a>
+
+  <button id="toc-drawer-button" class="tw-block tw-bg-bgColor-secondary tw-rounded-full md:tw-hidden" style="padding: 0.6rem; line-height: 1.3rem; font-size: 1rem;">
+      <svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+  </button></div>
+<link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript>
+<script>window.config={"autocomplete.min.js":"/lib/autocomplete/autocomplete.min.js","comment":{},"fuse.min.js":"/lib/fuse/fuse.min.js","math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"table":{"sort":true}};</script><script
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script>
+
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
+</body>
+
+</html>
