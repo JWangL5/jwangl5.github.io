@@ -4,19 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" /><title>2023年BioBit暑期学校课程笔记（生物计算/合成生物学） - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/">
+    <meta name="robots" content="noodp" /><title>RNA-seq数据分析中的MA图和方差膨胀 - JWangL5&#39;s Blog</title><meta name="Description" content=""><meta property="og:url" content="https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/">
   <meta property="og:site_name" content="JWangL5&#39;s Blog">
-  <meta property="og:title" content="2023年BioBit暑期学校课程笔记（生物计算/合成生物学）">
-  <meta property="og:description" content="很荣幸有机会参与这次之江实验室组织的暑期学校，这次学习到的知识完全刷新了我对合成生物学的印象。在18年准备iGEM比赛的时候，还觉得合成生物学元件的标准化和定量描述、多层次（DNA、RNA、蛋白）的元件之间组合、生物系统的定量描述等都是很困难的问题。在这次学习之后，虽然核心的问题仍旧存在，但已经能够看到一些解决办法了，也看到了一些做得很漂亮的案例。感恩之江之行。">
+  <meta property="og:title" content="RNA-seq数据分析中的MA图和方差膨胀">
+  <meta property="og:description" content="MA图 MA图在RNA-seq中用于数据质量控制和整体分布观察，其每个点代表一个基因， X轴：$A = \frac12 (log_2(Group1) &#43; log_2(Group2))$，代表基因在两组样本中的平均表达水平 Y轴：$M = \log_2(Group1) - log_2(Group2)$，这就是$log_2 FoldChange$ 在MA图中，绝大多数基因应该围绕在y=0（FoldChange=1，x轴）的水平线附近，表示没有差异，只有差异表达基因会偏离Y=0线，向上或向下分散 MA图主要用于观察FoldChange的分布是否依赖于基因本身的表达水平，该问题也称为方差膨胀 方差膨胀问题 方差膨胀指的是在统计模型中，某个或某类观测值的方差远大于模型所期望的方差，从而导致其波动范围被不合理地放大 在RNA-seq的MA图语境下，它特指低表达基因的Log2 Fold Change方差异常增大的现象 这并非生物学真实情况，而是由技术局限性导致的统计偏差，可以简单理解为固定分度值的尺子在测量小的数据时，会由于不的精确而显得波动巨大，因此可能本来很小的差异被测量工具放大了 RNA-seq数据本质上是计数数据，通常服从泊松分布，其方差主要来源于抽样方差，在RNA-seq中，低表达基因通常会因为数量少而被更少地抽样到，但实际上，这个差异很可能是由于计数太低，随机抽样“运气”不好造成的，而不是真正的生物学差异 在一个理想的、无偏的数据集中，无论基因表达量是高是低（X轴的值），FoldChange的波动范围应该是均匀的（Y轴的离散度一致） 在存在方差膨胀的RNA-seq数据集中，MA图通常表现为 在右侧（高平均表达量区域），基因的Log2 FoldChange密集地分布在0线附近，波动范围很窄 在左侧（低平均表达量区域），基因的Log2 FoldChange像“喇叭”或“扇子”一样散开，波动范围非常宽。这就是方差膨胀的典型视觉特征 如果不处理方差膨胀，会 产生大量假阳性，许多低表达但并无真实生物学差异的基因，会因为其巨大的、随机的Log2FC而被错误地鉴定为“差异表达基因” 导致结果不可靠，使得最终差异基因列表中会混杂大量“噪音”，误导后续的生物學解释和验证实验 可以使用DESeq2、edgeR等工具对方差膨胀问题进行矫正 Kallisto和Sleuth对方差膨胀问题的处理策略传统的工具如DESeq2在得到基因或转录本的计数矩阵后，就将其视为确定的、固定的值。但Sleuth认为，由Kallisto等工具通过引导程序估计出的转录本丰度（TPM/Counts）本身是存在不确定性的。这种不确定性在低表达转录本中尤其显著。Sleuth的核心理念是：将这种量化不确定性直接整合到差异表达测试的统计模型中。其分析流程可以分为3步，">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-08-25T00:00:00+08:00">
-    <meta property="article:modified_time" content="2023-08-25T00:00:00+08:00">
+    <meta property="article:published_time" content="2025-10-12T00:17:49+08:00">
+    <meta property="article:modified_time" content="2025-10-12T00:17:49+08:00">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="2023年BioBit暑期学校课程笔记（生物计算/合成生物学）">
-  <meta name="twitter:description" content="很荣幸有机会参与这次之江实验室组织的暑期学校，这次学习到的知识完全刷新了我对合成生物学的印象。在18年准备iGEM比赛的时候，还觉得合成生物学元件的标准化和定量描述、多层次（DNA、RNA、蛋白）的元件之间组合、生物系统的定量描述等都是很困难的问题。在这次学习之后，虽然核心的问题仍旧存在，但已经能够看到一些解决办法了，也看到了一些做得很漂亮的案例。感恩之江之行。">
+  <meta name="twitter:title" content="RNA-seq数据分析中的MA图和方差膨胀">
+  <meta name="twitter:description" content="MA图 MA图在RNA-seq中用于数据质量控制和整体分布观察，其每个点代表一个基因， X轴：$A = \frac12 (log_2(Group1) &#43; log_2(Group2))$，代表基因在两组样本中的平均表达水平 Y轴：$M = \log_2(Group1) - log_2(Group2)$，这就是$log_2 FoldChange$ 在MA图中，绝大多数基因应该围绕在y=0（FoldChange=1，x轴）的水平线附近，表示没有差异，只有差异表达基因会偏离Y=0线，向上或向下分散 MA图主要用于观察FoldChange的分布是否依赖于基因本身的表达水平，该问题也称为方差膨胀 方差膨胀问题 方差膨胀指的是在统计模型中，某个或某类观测值的方差远大于模型所期望的方差，从而导致其波动范围被不合理地放大 在RNA-seq的MA图语境下，它特指低表达基因的Log2 Fold Change方差异常增大的现象 这并非生物学真实情况，而是由技术局限性导致的统计偏差，可以简单理解为固定分度值的尺子在测量小的数据时，会由于不的精确而显得波动巨大，因此可能本来很小的差异被测量工具放大了 RNA-seq数据本质上是计数数据，通常服从泊松分布，其方差主要来源于抽样方差，在RNA-seq中，低表达基因通常会因为数量少而被更少地抽样到，但实际上，这个差异很可能是由于计数太低，随机抽样“运气”不好造成的，而不是真正的生物学差异 在一个理想的、无偏的数据集中，无论基因表达量是高是低（X轴的值），FoldChange的波动范围应该是均匀的（Y轴的离散度一致） 在存在方差膨胀的RNA-seq数据集中，MA图通常表现为 在右侧（高平均表达量区域），基因的Log2 FoldChange密集地分布在0线附近，波动范围很窄 在左侧（低平均表达量区域），基因的Log2 FoldChange像“喇叭”或“扇子”一样散开，波动范围非常宽。这就是方差膨胀的典型视觉特征 如果不处理方差膨胀，会 产生大量假阳性，许多低表达但并无真实生物学差异的基因，会因为其巨大的、随机的Log2FC而被错误地鉴定为“差异表达基因” 导致结果不可靠，使得最终差异基因列表中会混杂大量“噪音”，误导后续的生物學解释和验证实验 可以使用DESeq2、edgeR等工具对方差膨胀问题进行矫正 Kallisto和Sleuth对方差膨胀问题的处理策略传统的工具如DESeq2在得到基因或转录本的计数矩阵后，就将其视为确定的、固定的值。但Sleuth认为，由Kallisto等工具通过引导程序估计出的转录本丰度（TPM/Counts）本身是存在不确定性的。这种不确定性在低表达转录本中尤其显著。Sleuth的核心理念是：将这种量化不确定性直接整合到差异表达测试的统计模型中。其分析流程可以分为3步，">
       <meta name="twitter:site" content="@JWangL5">
 <meta name="application-name" content="JWangL5&#39;s Blog">
 <meta name="apple-mobile-web-app-title" content="JWangL5&#39;s Blog">
@@ -25,15 +25,15 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-<link rel="canonical" href="https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/" /><link rel="prev" href="https://jwangl5.github.io/posts/statistic/binomial_and_poisson_distribution/" /><link rel="next" href="https://jwangl5.github.io/posts/use_logseq_to_take_paper_notes/" />
+<link rel="canonical" href="https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/" /><link rel="prev" href="https://jwangl5.github.io/posts/net/n07_net_route_algorithm/" />
 <link rel="stylesheet" href="/css/main.min.css"><link rel="stylesheet" href="/css/style.min.css"><meta name="google-site-verification" content="DrFigam98M993iANGvQ77R9ZkJB3SP8Qqx8Hl3eIK9w" /><meta name="msvalidate.01" content="1EE757E849C4CDADD27165C490982B4E" /><script type="application/ld+json">{"@context": "https://schema.org","@type": "BlogPosting",
-        "headline": "2023年BioBit暑期学校课程笔记（生物计算/合成生物学）",
+        "headline": "RNA-seq数据分析中的MA图和方差膨胀",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/"
-        },"genre": "posts","wordcount":  265 ,
-        "url": "https://jwangl5.github.io/posts/cell-biology/biobit_note_in_2023/","datePublished": "2023-08-25T00:00:00+08:00","dateModified": "2023-08-25T00:00:00+08:00","publisher": {
+            "@id": "https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/"
+        },"genre": "posts","wordcount":  1974 ,
+        "url": "https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/","datePublished": "2025-10-12T00:17:49+08:00","dateModified": "2025-10-12T00:17:49+08:00","publisher": {
             "@type": "Organization",
             "name": "卢旺"},"author": [{
                         "@type": "Person",
@@ -156,233 +156,92 @@
 </div><main class="tw-mx-4 tw-flex-1"><dialog id="toc-dialog" class="tw-max-w-full tw-w-full tw-max-h-full tw-h-full tw-ml-16">
         <div class="toc tw-mx-4 tw-max-w-full">
             <h2 class="tw-mx-0 tw-my-6 tw-uppercase tw-text-2xl">目录</h2>
-            <div class="toc-content"><nav id="TableOfContents"></nav></div>
+            <div class="toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ma图">MA图</a></li>
+        <li><a href="#方差膨胀问题">方差膨胀问题</a></li>
+        <li><a href="#kallisto和sleuth对方差膨胀问题的处理策略">Kallisto和Sleuth对方差膨胀问题的处理策略</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
         </div>
-    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2023-08-25" data-pagefind-body>2023年BioBit暑期学校课程笔记（生物计算/合成生物学）</h1><div class="post-meta">
+    </dialog><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "false")</script><article class="page single print:!tw-w-full print:!tw-max-w-none print:!tw-m-0 print:!tw-p-0"><h1 class="single-title" data-pagefind-meta="date:2025-10-12" data-pagefind-body>RNA-seq数据分析中的MA图和方差膨胀</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'>
         <span class='screen-reader-text'>  </span><a href='https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/'><img class="tw-inline-block tw-max-h-4 tw-rounded-full tw-translate-y-[-2px] tw-mr-1"  src='/avater.jpg'   alt="卢旺 avatar" height="16" width="16">卢旺</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%94%9F%E5%91%BD%E7%A7%91%E5%AD%A6/"><svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>生命科学</a></span></div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%A0%BC%E7%89%A9%E8%87%B4%E7%9F%A5/"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>格物致知</a></span></div>
             <div class="post-meta-line"><svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2023-08-25">2023-08-25</time>&nbsp;<svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2023-08-25">2023-08-25</time>&nbsp;<svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 265 字&nbsp;
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;<time datetime="2025-10-12">2025-10-12</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"/></svg>&nbsp;<time datetime="2025-10-12">2025-10-12</time>&nbsp;<svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;约 1974 字&nbsp;
                     <svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 2 分钟&nbsp;</div>
-        </div><div class="content" id="content" data-pagefind-body><p>很荣幸有机会参与这次之江实验室组织的暑期学校，这次学习到的知识完全刷新了我对合成生物学的印象。在18年准备iGEM比赛的时候，还觉得合成生物学元件的标准化和定量描述、多层次（DNA、RNA、蛋白）的元件之间组合、生物系统的定量描述等都是很困难的问题。在这次学习之后，虽然核心的问题仍旧存在，但已经能够看到一些解决办法了，也看到了一些做得很漂亮的案例。感恩之江之行。</p>
-<center>
-<a class="lightgallery" href="/image/BioBit-02.jpg" title="" data-thumbnail="/image/BioBit-02.jpg"><img  loading="lazy" src='/image/BioBit-02.jpg'    height="59.5%" width="59.5%"></a>
-</center>
-<figure><a class="lightgallery" href="/image/BioBit-01.jpg" title="" data-thumbnail="/image/BioBit-01.jpg" data-sub-html="<h2>与陈昊荣老师、娄春波老师的合影</h2>"><img  loading="lazy" src='/image/BioBit-01.jpg'    height="450" width="600"></a><figcaption class="image-caption">与陈昊荣老师、娄春波老师的合影</figcaption>
-    </figure>
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="content" id="content" data-pagefind-body><h3 id="ma图" class="headerLink">
+    <a href="#ma%e5%9b%be" class="header-mark"></a>MA图</h3><ul>
+<li>MA图在RNA-seq中用于数据质量控制和整体分布观察，其每个点代表一个基因，
+<ul>
+<li>X轴：$A = \frac12 (log_2(Group1) + log_2(Group2))$，代表基因在两组样本中的平均表达水平</li>
+<li>Y轴：$M = \log_2(Group1) - log_2(Group2)$，这就是$log_2 FoldChange$</li>
+</ul>
+</li>
+<li>在MA图中，绝大多数基因应该围绕在y=0（FoldChange=1，x轴）的水平线附近，表示没有差异，只有差异表达基因会偏离Y=0线，向上或向下分散</li>
+<li>MA图主要用于观察FoldChange的分布是否依赖于基因本身的表达水平，该问题也称为<c-r><strong>方差膨胀</strong></c-r></li>
+</ul>
+<h3 id="方差膨胀问题" class="headerLink">
+    <a href="#%e6%96%b9%e5%b7%ae%e8%86%a8%e8%83%80%e9%97%ae%e9%a2%98" class="header-mark"></a>方差膨胀问题</h3><ul>
+<li>方差膨胀指的是在统计模型中，某个或某类观测值的方差远大于模型所期望的方差，从而导致其波动范围被不合理地放大</li>
+<li>在RNA-seq的MA图语境下，它特指<u-r>低表达基因的Log2 Fold Change方差异常增大</u-r>的现象</li>
+<li>这并非生物学真实情况，而是由技术局限性导致的统计偏差，可以简单理解为<strong>固定分度值的尺子在测量小的数据时，会由于不的精确而显得波动巨大</strong>，因此可能本来很小的差异被测量工具放大了</li>
+<li>RNA-seq数据本质上是计数数据，通常服从泊松分布，其方差主要来源于抽样方差，在RNA-seq中，低表达基因通常会因为数量少而被更少地抽样到，但实际上，这个差异很可能是由于计数太低，随机抽样“运气”不好造成的，而不是真正的生物学差异</li>
+</ul>
+<!-- - RNA-seq数据通常服从泊松分布，其特性是均值 = 方差。但实际RNA-seq数据由于生物学和技术变异，方差往往大于均值，这被称为“过度离散”，在MA图上体现为数据点不集中在y=0周围，而是更胖、更散 -->
+<ul>
+<li>在一个理想的、无偏的数据集中，无论基因表达量是高是低（X轴的值），FoldChange的波动范围应该是均匀的（Y轴的离散度一致）</li>
+<li>在存在方差膨胀的RNA-seq数据集中，MA图通常表现为
+<ul>
+<li>在右侧（高平均表达量区域），基因的Log2 FoldChange密集地分布在0线附近，波动范围很窄</li>
+<li>在左侧（低平均表达量区域），基因的Log2 FoldChange像“喇叭”或“扇子”一样散开，波动范围非常宽。这就是方差膨胀的典型视觉特征</li>
+</ul>
+</li>
+<li>如果不处理方差膨胀，会
+<ul>
+<li>产生大量假阳性，许多低表达但并无真实生物学差异的基因，会因为其巨大的、随机的Log2FC而被错误地鉴定为“差异表达基因”</li>
+<li>导致结果不可靠，使得最终差异基因列表中会混杂大量“噪音”，误导后续的生物學解释和验证实验</li>
+</ul>
+</li>
+<li>可以使用<code>DESeq2</code>、<code>edgeR</code>等工具对方差膨胀问题进行矫正</li>
+</ul>
 <hr>
-<p>下面是本次暑期学校学习的笔记：</p>
-<style>
-    .copyright-box{
-        border: 1px black solid;
-        padding: 20px;
-        line-height: 20px;
-        text-align: center;
-        margin: 20px 0;
-    }
-    .tool-icons img{
-        width: 40px;
-        height: 40px;
-    }
-
-</style>
-<div class="copyright-box">
-    <span class="tool-icons">
-        <img src="https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/icons/cc-icons.svg#cc-logo">
-        <img src="https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/icons/cc-icons.svg#cc-by">
-        <img src="https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/icons/cc-icons.svg#cc-nc">
-        <img src="https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/icons/cc-icons.svg#cc-nd">
-    </span>
-    <h3><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans" style="color: black;">CC BY-NC-ND 4.0 Deed</a></h3>
-
-    <p>感谢您的阅读, 欢迎分享！</p><p>引用或转载请注明文章来源，并遵守署名-非商业性使用-禁止演绎 4.0 国际授权条款</p>
-</div>
-<script type="text/javascript" src= '/js/pdf-js/build/pdf.js'></script>
-<link href="/css/pdf-js.css" rel="stylesheet">
-
-<style>
-.embed-pdf-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-   
-}
-
-.pdf-canvas {
-  border: 1px solid black;
-  direction: ltr;
-  width: 100%;
-  height: auto;
-  display: none;
-}
-
-.loadingWrapper {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 350px;
-}
-
-.loading {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border: 3px solid #d2d0d0;;
-  border-radius: 50%;
-  border-top-color: #383838;
-  animation: spin 1s ease-in-out infinite;
-  -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-#overlayText > a:link{
-  color: steelblue;
-}
-
-#overlayText {
-  position: absolute;
-  word-wrap: break-word;
-  right: 5px;
-  top: 5px;
-}
-
-@keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
-}
-</style><div class="embed-pdf-container" id="embed-pdf-container-80ee9c1e">
-  <div class="loadingWrapper" id="loadingWrapper-80ee9c1e">
-    <div class="loading" id="loading-80ee9c1e"></div>
-  </div>
-  <div id="overlayText">
-    <a href='/files/230825_BioBit%e7%ac%94%e8%ae%b0_LJW.pdf' download>
-      <i class="fas fa-download fa-2x"></i>
-    </a>
-  </div>
-  
-</div>
-
-<script type="text/javascript">
-(function() {
-
-
-var url = "https:\/\/jwangl5.github.io\/" + '\/files\/230825_BioBit笔记_LJW.pdf';
-
-
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https:\/\/jwangl5.github.io\/" + '/js/pdf-js/build/pdf.worker.js';
-
-
-var pdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    scale = 3,
-    loadingWrapper = document.getElementById('loadingWrapper-80ee9c1e');
-
-
-
-showLoader();
-
-
-
-function renderPage(num) {
-  pageRendering = true;
-  
-  pdfDoc.getPage(num).then(function(page) {
-    var pdf_cont = document.getElementById('embed-pdf-container-80ee9c1e');
-    var canvas = getCanvas(num);
-    pdf_cont.appendChild(canvas);
-
-    var viewport = page.getViewport({scale: scale});
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    var ctx = canvas.getContext('2d');
-
-    
-    var renderContext = {
-      canvasContext: ctx,
-      viewport: viewport
-    };
-    var renderTask = page.render(renderContext);
-
-    
-    renderTask.promise.then(function() {
-      pageRendering = false;
-      showContent(canvas);
-
-      if (pageNumPending !== null) {
-        
-        renderPage(pageNumPending);
-        pageNumPending = null;
-      }
-    });
-  });
-
-}
-
-
-function renderAllPages() {
-  for (var i = 1; i <= pdfDoc.numPages; i++) {
-    renderPage(i);
-  }
-}
-
-
-
-function showContent(canvas) {
-  loadingWrapper.style.display = 'none';
-  canvas.style.display = 'block';
-}
-
-
-
-function showLoader() {
-  loadingWrapper.style.display = 'flex';
-}
-
-
-
-function queueRenderPage(num) {
-  if (pageRendering) {
-    pageNumPending = num;
-  } else {
-    renderPage(num);
-  }
-}
-
-
-
-function getCanvas(num) {
-  var canvasId = 'embed-pdf-container-80ee9c1e-'+num;
-  var canvas = document.createElement("canvas");
-  canvas.id = canvasId;
-  canvas.className = 'pdf-canvas';
-  return canvas
-}
-
-
-
-pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-  pdfDoc = pdfDoc_;
-  renderAllPages();
-});
-})()
-
-</script>
-
-
+<h3 id="kallisto和sleuth对方差膨胀问题的处理策略" class="headerLink">
+    <a href="#kallisto%e5%92%8csleuth%e5%af%b9%e6%96%b9%e5%b7%ae%e8%86%a8%e8%83%80%e9%97%ae%e9%a2%98%e7%9a%84%e5%a4%84%e7%90%86%e7%ad%96%e7%95%a5" class="header-mark"></a>Kallisto和Sleuth对方差膨胀问题的处理策略</h3><p>传统的工具如DESeq2在得到基因或转录本的计数矩阵后，就将其视为确定的、固定的值。但Sleuth认为，由Kallisto等工具通过引导程序估计出的转录本丰度（TPM/Counts）本身是存在不确定性的。这种不确定性在低表达转录本中尤其显著。Sleuth的核心理念是：将这种量化不确定性直接整合到差异表达测试的统计模型中。其分析流程可以分为3步，</p>
+<ol>
+<li>
+<p>获取方差的原始数据</p>
+<p>当使用Kallisto进行转录本定量时，通过 <code>-b</code> 参数（例如 <code>-b 100</code>）运行引导程序，Kallisto会为每个样本生成：一个“最佳猜测”的丰度估计值，以及数十或数百个引导样本，这些样本模拟了由于测序读长随机抽样而导致的丰度估计波动。即是说，其不是只告诉你“这个转录本的平均表达量是10”，而是给了你100次独立测量的结果（如 9.5, 10.8, 11.2, 9.1, &hellip;），让你能直接计算出这个平均值为10的<strong>测量误差（方差）</strong></p>
+</li>
+<li>
+<p>建立方差与均值的全局关系</p>
+<p>随后，Sleuth会汇集所有样本、所有转录本的引导数据，拟合一个测量误差模型。这个模型描述了转录本丰度的方差如何随其平均表达水平变化。与计数数据类似，Sleuth可以观察到<strong>低丰度转录本的量化不确定性（方差）远高于高丰度转录本</strong>，这正是导致低表达基因方差膨胀的根本原因。这个模型使得Sleuth能够“知道”对于一个给定的平均表达水平，一个转录本的丰度估计值“通常”应该有多大的波动范围。</p>
+</li>
+<li>
+<p>方差收缩</p>
+<p>这是Sleuth解决方差膨胀最核心的一步，它通过一个<strong>加性线性模型</strong>来实现。其首先需要构建<strong>完整模型</strong>，其包含了您关心的实验条件（例如 <code>~ condition</code>）。随后需要构建不包含实验条件的<strong>简化模型</strong>。最后使用<strong>套索算法</strong>执行收缩，对这两个模型进行比较，在这个过程中：</p>
+<ul>
+<li>对于每个转录本，它都会计算一个“原始”的效应大小（β值，类似于Log2FC）和其标准误。</li>
+<li>然后，它利用第二步建立的<strong>全局测量误差模型</strong>作为先验，对每个转录本的效应大小和方差进行<strong>收缩</strong>。</li>
+</ul>
+<p>收缩的逻辑是：</p>
+<ul>
+<li>如果一个低表达转录本的β值很大，但其引导程序显示它的量化不确定性也很高（方差大），那么Sleuth会认为这个巨大的β值很可能是由测量噪音造成的。因此，它会强烈地将这个β值向零收缩，并增大其标准误，导致其最终不显著</li>
+<li>如果一个高表达转录本的β值很大，且其量化不确定性很低（方差小），Sleuth会认为这个效应是可靠的，收缩幅度会很小</li>
+<li>如果一个低表达转录本的β值很大，但它的量化不确定性异常地低（即尽管表达低，但多次引导估计都很稳定），Sleuth也会认为这个效应可能是真实的，从而给予较小的收缩</li>
+</ul>
+</li>
+</ol>
 </div>
 
         <div class="sponsor print:tw-hidden">
@@ -394,7 +253,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-08-25</span>
+                <span>更新于 2025-10-12</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -411,10 +270,8 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
         </section>
     </div>
 
-    <div class="post-nav print:tw-hidden"><a href="/posts/statistic/binomial_and_poisson_distribution/" class="prev" rel="prev" title="BioModel | 对二项分布与泊松分布的理解"><svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>BioModel | 对二项分布与泊松分布的理解</a>
-            <a href="/posts/use_logseq_to_take_paper_notes/" class="next" rel="next" title="logseq、zotero和坚果云的相互关联配制">logseq、zotero和坚果云的相互关联配制<svg class="icon"
-    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"/></svg></a></div>
+    <div class="post-nav print:tw-hidden"><a href="/posts/net/n07_net_route_algorithm/" class="prev" rel="prev" title="网络笔记 | 07. 路由选择算法"><svg class="icon"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"/></svg>网络笔记 | 07. 路由选择算法</a></div>
 </div>
 </article></main><footer class="footer">
         <div class="footer-container"><div class="footer-line"><svg class="icon"

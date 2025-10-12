@@ -4,7 +4,50 @@
         <link>https://jwangl5.github.io/posts/</link>
         <description>所有文章 | JWangL5&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>l392537594@163.com (卢旺)</managingEditor>
-            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>l392537594@163.com (卢旺)</webMaster><lastBuildDate>Sun, 12 Oct 2025 00:17:49 &#43;0800</lastBuildDate><atom:link href="https://jwangl5.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>RNA-seq数据分析中的MA图和方差膨胀</title>
+    <link>https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/</link>
+    <pubDate>Sun, 12 Oct 2025 00:17:49 &#43;0800</pubDate><author>
+                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/statistic/ma_plot_and_volcano_plot/</guid>
+    <description><![CDATA[<h3 id="ma图" class="headerLink">
+    <a href="#ma%e5%9b%be" class="header-mark"></a>MA图</h3><ul>
+<li>MA图在RNA-seq中用于数据质量控制和整体分布观察，其每个点代表一个基因，
+<ul>
+<li>X轴：$A = \frac12 (log_2(Group1) + log_2(Group2))$，代表基因在两组样本中的平均表达水平</li>
+<li>Y轴：$M = \log_2(Group1) - log_2(Group2)$，这就是$log_2 FoldChange$</li>
+</ul>
+</li>
+<li>在MA图中，绝大多数基因应该围绕在y=0（FoldChange=1，x轴）的水平线附近，表示没有差异，只有差异表达基因会偏离Y=0线，向上或向下分散</li>
+<li>MA图主要用于观察FoldChange的分布是否依赖于基因本身的表达水平，该问题也称为<c-r><strong>方差膨胀</strong></c-r></li>
+</ul>
+<h3 id="方差膨胀问题" class="headerLink">
+    <a href="#%e6%96%b9%e5%b7%ae%e8%86%a8%e8%83%80%e9%97%ae%e9%a2%98" class="header-mark"></a>方差膨胀问题</h3><ul>
+<li>方差膨胀指的是在统计模型中，某个或某类观测值的方差远大于模型所期望的方差，从而导致其波动范围被不合理地放大</li>
+<li>在RNA-seq的MA图语境下，它特指<u-r>低表达基因的Log2 Fold Change方差异常增大</u-r>的现象</li>
+<li>这并非生物学真实情况，而是由技术局限性导致的统计偏差，可以简单理解为<strong>固定分度值的尺子在测量小的数据时，会由于不的精确而显得波动巨大</strong>，因此可能本来很小的差异被测量工具放大了</li>
+<li>RNA-seq数据本质上是计数数据，通常服从泊松分布，其方差主要来源于抽样方差，在RNA-seq中，低表达基因通常会因为数量少而被更少地抽样到，但实际上，这个差异很可能是由于计数太低，随机抽样“运气”不好造成的，而不是真正的生物学差异</li>
+</ul>
+<!-- - RNA-seq数据通常服从泊松分布，其特性是均值 = 方差。但实际RNA-seq数据由于生物学和技术变异，方差往往大于均值，这被称为“过度离散”，在MA图上体现为数据点不集中在y=0周围，而是更胖、更散 -->
+<ul>
+<li>在一个理想的、无偏的数据集中，无论基因表达量是高是低（X轴的值），FoldChange的波动范围应该是均匀的（Y轴的离散度一致）</li>
+<li>在存在方差膨胀的RNA-seq数据集中，MA图通常表现为
+<ul>
+<li>在右侧（高平均表达量区域），基因的Log2 FoldChange密集地分布在0线附近，波动范围很窄</li>
+<li>在左侧（低平均表达量区域），基因的Log2 FoldChange像“喇叭”或“扇子”一样散开，波动范围非常宽。这就是方差膨胀的典型视觉特征</li>
+</ul>
+</li>
+<li>如果不处理方差膨胀，会
+<ul>
+<li>产生大量假阳性，许多低表达但并无真实生物学差异的基因，会因为其巨大的、随机的Log2FC而被错误地鉴定为“差异表达基因”</li>
+<li>导致结果不可靠，使得最终差异基因列表中会混杂大量“噪音”，误导后续的生物學解释和验证实验</li>
+</ul>
+</li>
+<li>可以使用<code>DESeq2</code>、<code>edgeR</code>等工具对方差膨胀问题进行矫正</li>
+</ul>
+<hr>
+<h3 id="kallisto和sleuth对方差膨胀问题的处理策略" class="headerLink">
+    <a href="#kallisto%e5%92%8csleuth%e5%af%b9%e6%96%b9%e5%b7%ae%e8%86%a8%e8%83%80%e9%97%ae%e9%a2%98%e7%9a%84%e5%a4%84%e7%90%86%e7%ad%96%e7%95%a5" class="header-mark"></a>Kallisto和Sleuth对方差膨胀问题的处理策略</h3><p>传统的工具如DESeq2在得到基因或转录本的计数矩阵后，就将其视为确定的、固定的值。但Sleuth认为，由Kallisto等工具通过引导程序估计出的转录本丰度（TPM/Counts）本身是存在不确定性的。这种不确定性在低表达转录本中尤其显著。Sleuth的核心理念是：将这种量化不确定性直接整合到差异表达测试的统计模型中。其分析流程可以分为3步，</p>]]></description>
+</item><item>
     <title>网络笔记 | 07. 路由选择算法</title>
     <link>https://jwangl5.github.io/posts/net/n07_net_route_algorithm/</link>
     <pubDate>Wed, 17 Sep 2025 00:00:00 &#43;0800</pubDate><author>
@@ -1074,18 +1117,5 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     <a href="#udp%e5%92%8ctcp%e7%9a%84%e5%af%b9%e6%af%94" class="header-mark"></a>UDP和TCP的对比</h3><ul>
 <li>
 <p>UDP和TCP是TCP/IP体系结构运输层中的两个重要协议，其使用频率仅低于网际层的IP协议</p>]]></description>
-</item><item>
-    <title>网络笔记 | 10. 应用层</title>
-    <link>https://jwangl5.github.io/posts/net/n10_application/</link>
-    <pubDate>Fri, 08 Aug 2025 00:00:00 &#43;0800</pubDate><author>
-                        <name>卢旺</name><uri>https://jwangl5.github.io/authors/%E5%8D%A2%E6%97%BA/</uri><email>l392537594@163.com</email></author><guid>https://jwangl5.github.io/posts/net/n10_application/</guid>
-    <description><![CDATA[<center>
-<figure><a class="lightgallery" href="/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png" title="" data-thumbnail="/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png" data-sub-html="<h2>运输层内容框架</h2>"><img  loading="lazy" src='/image/%E5%BA%94%E7%94%A8%E5%B1%82MindMap.png'    height="80%" width="80%"></a><figcaption class="image-caption">运输层内容框架</figcaption>
-    </figure>
-</center>
-<h3 id="应用层概述" class="headerLink">
-    <a href="#%e5%ba%94%e7%94%a8%e5%b1%82%e6%a6%82%e8%bf%b0" class="header-mark"></a>应用层概述</h3><ul>
-<li>
-<p>应用层享受其下各层提供的服务，解决通过应用进程的交互来实现特定网络应用的问题</p>]]></description>
 </item></channel>
 </rss>
